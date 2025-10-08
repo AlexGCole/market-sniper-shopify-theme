@@ -1,35 +1,38 @@
-<section id="pricing" class="pricing">
+{% comment %}
+  sections/pricing.liquid
+  Updated to support Shopify subscription products
+{% endcomment %}
+
+<section class="pricing-section" id="pricing">
   <div class="container">
     <div class="section-header">
       <h2>{{ section.settings.section_title }}</h2>
       <p>{{ section.settings.section_subtitle }}</p>
     </div>
-    
-    <div class="pricing-wrapper">
+
+    <div class="pricing-grid">
       {% for block in section.blocks %}
-        {% if block.type == 'pricing_header' %}
-          <div class="pricing-category-header">
-            <h3>{{ block.settings.header_text }}</h3>
-          </div>
-        {% elsif block.type == 'pricing_plan' %}
-          <div class="pricing-card {% if block.settings.featured %}featured{% endif %}">
-            {% if block.settings.featured %}
-              <div class="popular-badge">{{ block.settings.badge_text }}</div>
+        {% if block.type == 'pricing_plan' %}
+          <div class="pricing-card" {{ block.shopify_attributes }}>
+            {% if block.settings.is_popular %}
+              <span class="popular-badge">Most Popular</span>
             {% endif %}
             
-            <div class="pricing-header">
-              <h3>{{ block.settings.plan_name }}</h3>
-              <div class="price">
-                <span class="currency">$</span>
-                <span class="amount">{{ block.settings.price }}</span>
-                <span class="period">/{{ block.settings.period }}</span>
+            <div class="plan-header">
+              <h3 class="plan-name">{{ block.settings.plan_name }}</h3>
+              <div class="plan-price">
+                {% if block.settings.setup_fee and block.settings.setup_fee != '0' %}
+                  <div class="setup-fee">
+                    <span class="fee-amount">${{ block.settings.setup_fee }}</span>
+                    <span class="fee-label">one-time setup</span>
+                  </div>
+                {% endif %}
+                <span class="price-amount">${{ block.settings.price }}</span>
+                <span class="price-period">/{{ block.settings.period }}</span>
               </div>
-              {% if block.settings.savings_text != blank %}
-                <div class="savings">{{ block.settings.savings_text }}</div>
-              {% endif %}
             </div>
-            
-            <ul class="pricing-features">
+
+            <ul class="feature-list">
               {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
               {% for feature in features %}
                 {% if feature != blank %}
@@ -37,21 +40,33 @@
                 {% endif %}
               {% endfor %}
             </ul>
-            
-            {% if block.settings.product != blank %}
-              {% assign selected_product = all_products[block.settings.product] %}
-              {% if selected_product != blank %}
-                <div class="pricing-checkout">
-                  {% form 'product', selected_product, class: 'pricing-form' %}
-                    <input type="hidden" name="id" value="{{ selected_product.selected_or_first_available_variant.id }}">
-                    <button type="submit" name="add" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
-                      {{ block.settings.button_text }}
-                    </button>
-                  {% endform %}
-                </div>
+
+            {% if block.settings.shopify_product_handle != blank %}
+              {%- assign subscription_product = all_products[block.settings.shopify_product_handle] -%}
+              
+              {% if subscription_product %}
+                <form action="/cart/add" method="post" class="subscription-form">
+                  <input type="hidden" name="id" value="{{ subscription_product.selected_or_first_available_variant.id }}">
+                  
+                  {% comment %} If product has selling plans (subscriptions) {% endcomment %}
+                  {% if subscription_product.selling_plan_groups.size > 0 %}
+                    {% assign selling_plan_group = subscription_product.selling_plan_groups.first %}
+                    <input type="hidden" name="selling_plan" value="{{ selling_plan_group.selling_plans.first.id }}">
+                  {% endif %}
+                  
+                  <button type="submit" class="cta-button primary">
+                    {{ block.settings.button_text }}
+                  </button>
+                </form>
+              {% else %}
+                {%- comment -%} Fallback if product not found {%- endcomment -%}
+                <a href="{{ block.settings.button_link }}" class="cta-button primary">
+                  {{ block.settings.button_text }}
+                </a>
               {% endif %}
             {% else %}
-              <a href="{{ block.settings.button_link }}" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
+              {%- comment -%} Use external link if no Shopify product {%- endcomment -%}
+              <a href="{{ block.settings.button_link }}" class="cta-button primary">
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
@@ -63,69 +78,133 @@
 </section>
 
 <style>
-  .pricing-wrapper {
+  .pricing-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  }
+
+  .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 320px));
-    justify-content: center;
-    gap: var(--spacing-xl);
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
   }
 
-  .pricing-category-header {
-    grid-column: 1 / -1;
-    text-align: center;
-    margin-top: var(--spacing-2xl);
-    margin-bottom: var(--spacing-lg);
-    padding-top: var(--spacing-2xl);
-    border-top: 1px solid rgba(0, 255, 65, 0.2);
+  .pricing-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 30px;
+    position: relative;
+    transition: all 0.3s ease;
   }
 
-  .pricing-category-header:first-child {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
+  .pricing-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color, #00d9ff);
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
   }
 
-  .pricing-category-header h3 {
-    font-size: var(--text-3xl);
+  .popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00d9ff, #00a8cc);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  .setup-fee {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .fee-amount {
+    font-size: 1.2rem;
+    color: #00d9ff;
+    font-weight: 600;
+  }
+
+  .fee-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .plan-price {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  .price-amount {
+    font-size: 3rem;
     font-weight: 700;
-    color: var(--light);
-    margin-bottom: var(--spacing-xs);
+    color: white;
+    line-height: 1;
   }
 
-  .pricing-checkout {
-    margin-top: auto;
+  .price-period {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
   }
 
-  .pricing-form {
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+  }
+
+  .feature-list li {
+    padding: 12px 0;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .subscription-form {
     width: 100%;
   }
 
-  .pricing-form .btn {
+  .cta-button {
     width: 100%;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
   }
 
-  @media (max-width: 1024px) {
-    .pricing-wrapper {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .cta-button.primary {
+    background: linear-gradient(135deg, #00d9ff, #00a8cc);
+    color: white;
   }
 
-  @media (max-width: 768px) {
-    .pricing-wrapper {
-      grid-template-columns: 1fr;
-    }
-    
-    .pricing-card.featured {
-      transform: scale(1);
-    }
+  .cta-button.primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
   }
 </style>
 
 {% schema %}
 {
-  "name": "Pricing",
+  "name": "Pricing Section",
   "settings": [
     {
       "type": "text",
@@ -137,22 +216,10 @@
       "type": "text",
       "id": "section_subtitle",
       "label": "Section Subtitle",
-      "default": "Flexible pricing options to match your trading needs"
+      "default": "Flexible pricing options"
     }
   ],
   "blocks": [
-    {
-      "type": "pricing_header",
-      "name": "Category Header",
-      "settings": [
-        {
-          "type": "text",
-          "id": "header_text",
-          "label": "Header Text",
-          "default": "Plan Category"
-        }
-      ]
-    },
     {
       "type": "pricing_plan",
       "name": "Pricing Plan",
@@ -166,66 +233,62 @@
         {
           "type": "text",
           "id": "price",
-          "label": "Price",
+          "label": "Price (numbers only)",
           "default": "79"
         },
         {
-          "type": "select",
+          "type": "text",
           "id": "period",
-          "label": "Billing Period",
-          "options": [
-            { "value": "mo", "label": "Monthly" },
-            { "value": "yr", "label": "Yearly" }
-          ],
+          "label": "Period",
           "default": "mo"
         },
         {
           "type": "text",
-          "id": "savings_text",
-          "label": "Savings Text",
-          "info": "e.g., 'Save 30%' or '$250 Setup Fee'"
+          "id": "setup_fee",
+          "label": "One-time Setup Fee (optional, numbers only)",
+          "info": "Leave blank or 0 for no setup fee"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_popular",
+          "label": "Mark as Popular",
+          "default": false
         },
         {
           "type": "textarea",
           "id": "features",
           "label": "Features (one per line)",
-          "default": "✓ Feature 1\n✓ Feature 2"
+          "default": "✓ Feature 1\n✓ Feature 2\n✓ Feature 3"
         },
         {
-          "type": "checkbox",
-          "id": "featured",
-          "label": "Featured Plan",
-          "default": false
+          "type": "product",
+          "id": "shopify_product_handle",
+          "label": "Shopify Subscription Product",
+          "info": "Select the subscription product from your Shopify store"
         },
         {
-          "type": "text",
-          "id": "badge_text",
-          "label": "Featured Badge Text",
-          "default": "Most Popular"
+          "type": "url",
+          "id": "button_link",
+          "label": "Fallback Button Link",
+          "info": "Used if no Shopify product is selected"
         },
         {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
           "default": "Get Started"
-        },
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Select Product"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link (fallback)",
-          "info": "Used if no product is selected"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Pricing"
+      "name": "Pricing",
+      "blocks": [
+        {
+          "type": "pricing_plan"
+        }
+      ]
     }
   ]
 }

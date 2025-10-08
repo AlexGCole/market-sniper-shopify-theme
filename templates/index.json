@@ -192,6 +192,7 @@
         "indicator-1",
         "indicator-2"
       ],
+      "disabled": true,
       "settings": {}
     },
     "trading-bot": {
@@ -251,7 +252,10 @@
             "plan_name": "Monthly",
             "price": "79",
             "period": "mo",
+            "savings_text": "",
             "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group",
+            "featured": false,
+            "badge_text": "Most Popular",
             "button_text": "Get Started",
             "button_link": "https://buy.stripe.com/3csbJB8HF6YI6EU14d"
           }

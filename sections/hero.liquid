@@ -1,127 +1,289 @@
-<section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      {% if section.settings.show_badge %}
-        <div class="hero-badge">{{ section.settings.badge_text }}</div>
-      {% endif %}
-      
-      <h1 class="hero-title">
-        {{ section.settings.hero_title_line1 }}<br>
-        <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
-      </h1>
-      
-      <p class="hero-subtitle">{{ section.settings.hero_subtitle }}</p>
-      
-      <div class="hero-cta">
-        {% if section.settings.primary_button_text != blank %}
-          <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
-            {{ section.settings.primary_button_text }}
-          </a>
-        {% endif %}
-        {% if section.settings.secondary_button_text != blank %}
-          <a href="{{ section.settings.secondary_button_link }}" class="btn btn-secondary">
-            {{ section.settings.secondary_button_text }}
-          </a>
-        {% endif %}
-      </div>
-      
-      {% if section.settings.show_stats %}
-        <div class="hero-stats">
-          {% for block in section.blocks %}
-            <div class="stat">
-              <div class="stat-number">{{ block.settings.stat_number }}</div>
-              <div class="stat-label">{{ block.settings.stat_label }}</div>
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-  </div>
-  <div class="hero-bg"></div>
-</section>
-
-{% schema %}
 {
-  "name": "Hero Section",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_badge",
-      "label": "Show Badge",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "badge_text",
-      "label": "Badge Text",
-      "default": "🎯 Professional Trading Tools"
-    },
-    {
-      "type": "text",
-      "id": "hero_title_line1",
-      "label": "Title Line 1",
-      "default": "Precision Trading"
-    },
-    {
-      "type": "text",
-      "id": "hero_title_line2",
-      "label": "Title Line 2 (Gradient)",
-      "default": "Made Simple"
-    },
-    {
-      "type": "textarea",
-      "id": "hero_subtitle",
-      "label": "Subtitle",
-      "default": "Advanced indicators, automated alerts, and expert coaching to elevate your trading game"
-    },
-    {
-      "type": "text",
-      "id": "primary_button_text",
-      "label": "Primary Button Text",
-      "default": "Start Trading Smarter"
-    },
-    {
-      "type": "url",
-      "id": "primary_button_link",
-      "label": "Primary Button Link"
-    },
-    {
-      "type": "text",
-      "id": "secondary_button_text",
-      "label": "Secondary Button Text",
-      "default": "Learn More"
-    },
-    {
-      "type": "url",
-      "id": "secondary_button_link",
-      "label": "Secondary Button Link"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_stats",
-      "label": "Show Statistics",
-      "default": true
-    }
-  ],
-  "blocks": [
-    {
-      "type": "stat",
-      "name": "Statistic",
-      "settings": [
-        {
-          "type": "text",
-          "id": "stat_number",
-          "label": "Number",
-          "default": "2+"
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "show_badge": true,
+        "badge_text": "🎯 Professional Trading Tools",
+        "hero_title_line1": "Precision Trading",
+        "hero_title_line2": "Made Simple",
+        "hero_subtitle": "Advanced indicators, automated alerts, and expert coaching to elevate your trading game",
+        "primary_button_text": "Start Trading Smarter",
+        "primary_button_link": "#pricing",
+        "secondary_button_text": "Learn More",
+        "secondary_button_link": "#features",
+        "show_stats": true
+      },
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "2+",
+            "stat_label": "Years Optimized"
+          }
         },
-        {
-          "type": "text",
-          "id": "stat_label",
-          "label": "Label",
-          "default": "Years Optimized"
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "60+",
+            "stat_label": "Hours of Coaching"
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "247",
+            "stat_label": "Discord Support"
+          }
         }
-      ]
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3"]
+    },
+    "how-it-works": {
+      "type": "how-it-works",
+      "settings": {
+        "section_title": "What Happens After Purchase",
+        "section_subtitle": "Get started in minutes with our streamlined onboarding process"
+      },
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "icon": "💳",
+            "title": "Complete Payment",
+            "description": "Secure checkout with instant access"
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "icon": "🔗",
+            "title": "Get Discord Link",
+            "description": "Private community access on thank you page"
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "icon": "📝",
+            "title": "Fill Out Form",
+            "description": "Submit billing email, Discord & TradingView names"
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "icon": "🚀",
+            "title": "Start Trading",
+            "description": "Access indicators and coaching instantly"
+          }
+        }
+      },
+      "block_order": ["step-1", "step-2", "step-3", "step-4"]
+    },
+    "features": {
+      "type": "features",
+      "settings": {
+        "section_title": "Sharp Shooter Package",
+        "section_subtitle": "Everything you need to trade like a professional"
+      },
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "💬",
+            "title": "Private Discord Access",
+            "description": "Join our exclusive community of traders with real-time discussions and support"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "📊",
+            "title": "Sharp Shooter Candles 3.1",
+            "description": "Advanced candle indicator with buy/sell signals, reversal detection, and MACD integration"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "📈",
+            "title": "Sharp Shooter RSI 2.0",
+            "description": "Spot divergences and trend changes before the market catches on"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "icon": "🤖",
+            "title": "Sniper Bot Alerts",
+            "description": "Automated notifications for potential buy and sell opportunities"
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎥",
+            "title": "60+ Hours of Coaching",
+            "description": "Comprehensive video library covering strategies, setups, and advanced techniques"
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "icon": "👥",
+            "title": "Coaching Discussion Group",
+            "description": "Ask questions directly and learn from experienced traders"
+          }
+        }
+      },
+      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4", "feature-5", "feature-6"]
+    },
+    "indicators": {
+      "type": "indicators",
+      "blocks": {
+        "indicator-1": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 3.1",
+            "title": "Sharp Shooter Candles",
+            "description": "Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.",
+            "features": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Bearish/Bullish Crossover\n✓ MACD Above/Below Zero Line\n✓ Trending Dots\n✓ Multiple Customization Options",
+            "fallback_image": "sharp-shooter-candles.jpg"
+          }
+        },
+        "indicator-2": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 2.0",
+            "title": "Sharp Shooter RSI",
+            "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
+            "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style\n✓ Real-time Alerts",
+            "fallback_image": "sharp-shooter-rsi.jpg"
+          }
+        }
+      },
+      "block_order": ["indicator-1", "indicator-2"]
+    },
+    "trading-bot": {
+      "type": "trading-bot",
+      "settings": {
+        "badge_text": "🤖 Coming Soon",
+        "title": "Trading Bot Waitlist",
+        "subtitle": "Join the 5% of traders who win consistently with our fully automated trading solution",
+        "show_stat": true,
+        "stat_number": "2+",
+        "stat_label": "Years of Optimization"
+      },
+      "blocks": {
+        "bot-feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "⚡",
+            "title": "100% Automated",
+            "description": "Long and short positions with intelligent take-profit and stop losses"
+          }
+        },
+        "bot-feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "⚙️",
+            "title": "Endless Optimization",
+            "description": "Fine-tune settings and use our proven configurations"
+          }
+        },
+        "bot-feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎯",
+            "title": "Subscriber Priority",
+            "description": "Available exclusively to Market Sniper members"
+          }
+        }
+      },
+      "block_order": ["bot-feature-1", "bot-feature-2", "bot-feature-3"]
+    },
+    "pricing": {
+      "type": "pricing",
+      "settings": {
+        "section_title": "Choose Your Plan",
+        "section_subtitle": "Flexible pricing options to match your trading needs"
+      },
+      "blocks": {
+        "pricing-1": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Monthly",
+            "price": "79",
+            "period": "mo",
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Trading Bot Waitlist Priority",
+            "button_text": "Get Started",
+            "button_link": "https://buy.stripe.com/3csbJB8HF6YI6EU14d"
+          }
+        },
+        "pricing-2": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Yearly",
+            "price": "660",
+            "period": "yr",
+            "savings_text": "Save 30%",
+            "featured": true,
+            "badge_text": "Most Popular",
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Trading Bot Waitlist Priority\n✓ Priority Support",
+            "button_text": "Get Started",
+            "button_link": "https://buy.stripe.com/9AQaFx0b9beY3sI28q"
+          }
+        }
+      },
+      "block_order": ["pricing-1", "pricing-2"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "section_title": "Frequently Asked Questions",
+        "section_subtitle": "Everything you need to know about Market Sniper"
+      },
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I cancel my subscription?",
+            "answer": "Yes, you can create and manage your account within Stripe, or send an email to jesse@marketsniper.pro to cancel anytime."
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer refunds?",
+            "answer": "We have a no refunds policy. We encourage you to review all features and benefits before purchasing."
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I upgrade or downgrade my subscription?",
+            "answer": "Yes, email jesse@marketsniper.pro for upgrade or downgrade requests, and we'll help you switch plans."
+          }
+        },
+        "faq-4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer a discount?",
+            "answer": "Yes! The yearly plan saves you 30% compared to paying monthly. That's like getting 4 months free!"
+          }
+        }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4"]
     }
+  },
+  "order": [
+    "hero",
+    "how-it-works",
+    "features",
+    "indicators",
+    "trading-bot",
+    "pricing",
+    "faq"
   ]
 }
-{% endschema %}

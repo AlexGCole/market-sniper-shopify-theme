@@ -1,0 +1,48 @@
+<nav class="navbar">
+  <div class="container">
+    <a href="/" class="logo">
+      <span class="logo-icon">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | img_url: '80x80' }}" alt="{{ shop.name }}">
+        {% else %}
+          <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name }}" onerror="this.style.display='none'">
+        {% endif %}
+      </span>
+      <span class="logo-text">{{ section.settings.logo_text | default: 'Market Sniper' }}</span>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li>
+        <a href="#pricing" class="btn-nav">Get Started</a>
+      </li>
+    </ul>
+    
+    <button class="mobile-menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "Market Sniper"
+    }
+  ]
+}
+{% endschema %}

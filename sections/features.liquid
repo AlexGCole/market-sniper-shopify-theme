@@ -1,0 +1,95 @@
+<section id="features" class="features">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.section_subtitle }}</p>
+    </div>
+
+    <div class="features-grid">
+      {% for block in section.blocks %}
+        <div class="feature-card">
+          <div class="feature-icon">{{ block.settings.icon }}</div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Sharp Shooter Package"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Everything you need to trade like a professional"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji or HTML)",
+          "default": "💬"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Feature Name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description",
+          "default": "Description of the feature"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "💬",
+            "title": "Private Discord Access",
+            "description": "Join our exclusive community of traders with real-time discussions and support"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "📊",
+            "title": "Sharp Shooter Candles 3.1",
+            "description": "Advanced candle indicator with buy/sell signals, reversal detection, and MACD integration"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "📈",
+            "title": "Sharp Shooter RSI 2.0",
+            "description": "Spot divergences and trend changes before the market catches on"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

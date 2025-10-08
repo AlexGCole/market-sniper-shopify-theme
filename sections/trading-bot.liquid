@@ -1,0 +1,100 @@
+<section class="trading-bot">
+  <div class="container">
+    <div class="bot-content">
+      <div class="bot-badge">{{ section.settings.badge_text }}</div>
+      <h2>{{ section.settings.title }}</h2>
+      <p class="bot-subtitle">{{ section.settings.subtitle }}</p>
+      
+      <div class="bot-features">
+        {% for block in section.blocks %}
+          <div class="bot-feature">
+            <div class="bot-feature-icon">{{ block.settings.icon }}</div>
+            <div>
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+      {% if section.settings.show_stat %}
+        <div class="bot-stat">
+          <span class="bot-stat-number">{{ section.settings.stat_number }}</span>
+          <span class="bot-stat-label">{{ section.settings.stat_label }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trading Bot",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "🤖 Coming Soon"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Trading Bot Waitlist"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stat",
+      "label": "Show Statistic",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_number",
+      "label": "Stat Number",
+      "default": "2+"
+    },
+    {
+      "type": "text",
+      "id": "stat_label",
+      "label": "Stat Label",
+      "default": "Years of Optimization"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Bot Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji)",
+          "default": "⚡"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trading Bot"
+    }
+  ]
+}
+{% endschema %}

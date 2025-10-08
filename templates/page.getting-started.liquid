@@ -1,0 +1,129 @@
+{% comment %}
+  This is the "Getting Started" page template
+  Assign this template to your page in: Pages → [Page] → Template
+{% endcomment %}
+
+<section class="hero" style="min-height: 60vh">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">🎉 Welcome to Market Sniper!</div>
+      <h1 class="hero-title">
+        You're All Set<br />
+        <span class="gradient-text">Let's Get You Trading</span>
+      </h1>
+      <p class="hero-subtitle">
+        Follow these simple steps to access your indicators and start your trading journey
+      </p>
+    </div>
+  </div>
+  <div class="hero-bg"></div>
+</section>
+
+<section class="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>Your Next Steps</h2>
+      <p>Complete these steps to unlock your full Market Sniper experience</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-icon">🔗</div>
+        <h3>Join Our Discord</h3>
+        <p>Access your private Discord community for support, updates, and live trading discussions</p>
+        <a href="{{ settings.social_discord }}" class="btn btn-primary" style="margin-top: 1rem">Join Discord Server</a>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-icon">📝</div>
+        <h3>Complete Your Profile</h3>
+        <p>Fill out the onboarding form with your billing email, Discord username, and TradingView username</p>
+        <a href="#" class="btn btn-secondary" style="margin-top: 1rem">Fill Out Form</a>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-icon">📊</div>
+        <h3>Install Your Indicators</h3>
+        <p>You'll receive access links to Sharp Shooter Candles 3.1 and Sharp Shooter RSI 2.0 within 24 hours</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-icon">🎥</div>
+        <h3>Watch Training Videos</h3>
+        <p>Access 60+ hours of coaching videos to master your new trading tools</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" style="background: rgba(255, 255, 255, 0.02)">
+  <div class="container">
+    <div class="section-header">
+      <h2>Your Resources</h2>
+      <p>Everything you need in one place</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>Documentation</h3>
+        <p>Step-by-step guides for installing and configuring your indicators</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎓</div>
+        <h3>Training Library</h3>
+        <p>Complete video courses on trading strategies and technical analysis</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Community Support</h3>
+        <p>Ask questions and get help from experienced traders in Discord</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Sniper Bot Alerts</h3>
+        <p>Configure your automated trading alerts for instant notifications</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>Account Settings</h3>
+        <p>Manage your subscription, billing, and preferences through Stripe</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>Trading Bot Waitlist</h3>
+        <p>You're on the priority list for our upcoming automated trading bot</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>Important Information</h2>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto">
+      <div class="feature-card" style="margin-bottom: 2rem">
+        <h3 style="color: var(--primary); margin-bottom: 1rem">⏰ Access Timeline</h3>
+        <ul style="list-style: none; padding: 0">
+          <li style="margin-bottom: 0.75rem">✓ Discord access: Immediate</li>
+          <li style="margin-bottom: 0.75rem">✓ Indicator licenses: Within 24 hours of form submission</li>
+          <li style="margin-bottom: 0.75rem">✓ Training videos: Immediate via Discord</li>
+          <li style="margin-bottom: 0.75rem">✓ Bot alerts: Setup guide sent after indicator access</li>
+        </ul>
+      </div>
+
+      <div class="feature-card" style="margin-bottom: 2rem">
+        <h3 style="color: var(--primary); margin-bottom: 1rem">🔧 Need Help?</h3>
+        <p style="margin-bottom: 1rem">If you have any questions or issues:</p>
+        <ul style="list-style: none; padding: 0">
+          <li style="margin-bottom: 0.75rem">• Post in the #support channel on Discord</li>
+          <li style="margin-bottom: 0.75rem">• Email: <a href="mailto:{{ settings.contact_email }}" style="color: var(--primary)">{{ settings.contact_email }}</a></li>
+          <li style="margin-bottom: 0.75rem">• Response time: Within 24 hours</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

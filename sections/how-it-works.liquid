@@ -1,0 +1,69 @@
+<section class="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.section_subtitle }}</p>
+    </div>
+    <div class="steps">
+      {% for block in section.blocks %}
+        <div class="step">
+          <div class="step-number">{{ forloop.index }}</div>
+          <div class="step-icon">{{ block.settings.icon }}</div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "What Happens After Purchase"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Get started in minutes with our streamlined onboarding process"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji)",
+          "default": "💳"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Step Name"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works"
+    }
+  ]
+}
+{% endschema %}

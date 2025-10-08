@@ -1,0 +1,75 @@
+<section id="faq" class="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.section_subtitle }}</p>
+    </div>
+    <div class="faq-list">
+      {% for block in section.blocks %}
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>{{ block.settings.question }}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>{{ block.settings.answer }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Everything you need to know about Market Sniper"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Your question here?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Your answer here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I cancel my subscription?",
+            "answer": "Yes, you can create and manage your account within Stripe, or send an email to jesse@marketsniper.pro to cancel anytime."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

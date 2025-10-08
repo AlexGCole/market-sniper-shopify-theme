@@ -1,0 +1,83 @@
+<section class="indicators">
+  <div class="container">
+    {% for block in section.blocks %}
+      <div class="indicator-item {% if forloop.index == 2 %}reverse{% endif %}">
+        <div class="indicator-content">
+          <div class="indicator-badge">{{ block.settings.version }}</div>
+          <h2>{{ block.settings.title }}</h2>
+          <p class="indicator-description">{{ block.settings.description }}</p>
+          <ul class="indicator-features">
+            {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
+            {% for feature in features %}
+              {% if feature != blank %}
+                <li>{{ feature }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="indicator-visual">
+          <div class="indicator-visual-container">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title }}">
+            {% else %}
+              <img src="{{ block.settings.fallback_image | asset_url }}" alt="{{ block.settings.title }}">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Indicators",
+  "blocks": [
+    {
+      "type": "indicator",
+      "name": "Indicator",
+      "settings": [
+        {
+          "type": "text",
+          "id": "version",
+          "label": "Version Badge",
+          "default": "Version 3.1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Indicator Name",
+          "default": "Sharp Shooter Candles"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (one per line)",
+          "default": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Integration"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Indicator Screenshot"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback Image (from assets)",
+          "default": "sharp-shooter-candles.jpg"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Indicators"
+    }
+  ]
+}
+{% endschema %}

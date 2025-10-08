@@ -1,0 +1,13 @@
+{
+  "general": {
+    "404": {
+      "title": "Page Not Found",
+      "subtext": "The page you requested does not exist."
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu"
+    }
+  }
+}

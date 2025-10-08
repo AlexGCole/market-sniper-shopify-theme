@@ -50,16 +50,22 @@
 
 <style>
   .pricing-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 320px));
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: var(--spacing-xl);
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.pricing-card {
+  flex: 0 1 320px;
+  max-width: 380px;
+}
+
 .pricing-category-header {
-  grid-column: 1 / -1;
+  flex-basis: 100%;
+  width: 100%;
 }
 
   .pricing-category-header {

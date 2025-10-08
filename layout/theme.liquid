@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page_title | default: shop.name }}">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{ page_description | default: shop.description | escape }}">
+
+  <link rel="icon" type="image/jpg" href="{{ 'logo.jpg' | asset_url }}">
+
+  {{ content_for_header }}
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="{{ 'reset.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'variables.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'layout.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'components.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'animations.css' | asset_url }}">
+</head>
+<body class="template-{{ template.name | handle }}">
+  
+  {% section 'header' %}
+
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <!-- JavaScript Files -->
+  <script src="{{ 'utils.js' | asset_url }}" defer></script>
+  <script src="{{ 'animations.js' | asset_url }}" defer></script>
+  <script src="{{ 'main.js' | asset_url }}" defer></script>
+</body>
+</html>

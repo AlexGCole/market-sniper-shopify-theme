@@ -1,0 +1,103 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Market Sniper Pro",
+    "theme_version": "1.0.0",
+    "theme_author": "Market Sniper",
+    "theme_documentation_url": "https://marketsniper.pro",
+    "theme_support_url": "mailto:jesse@marketsniper.pro"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Primary Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Color (Green)",
+        "default": "#00ff41"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary Color",
+        "default": "#0a4d2e"
+      },
+      {
+        "type": "header",
+        "content": "Background Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_dark",
+        "label": "Dark Background",
+        "default": "#0a0e0d"
+      },
+      {
+        "type": "color",
+        "id": "color_darker",
+        "label": "Darker Background",
+        "default": "#050807"
+      },
+      {
+        "type": "header",
+        "content": "Text Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_light",
+        "label": "Light Text",
+        "default": "#e8f5e9"
+      },
+      {
+        "type": "color",
+        "id": "color_gray",
+        "label": "Gray Text",
+        "default": "#6b8f7a"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Links"
+      },
+      {
+        "type": "text",
+        "id": "social_discord",
+        "label": "Discord Invite Link",
+        "info": "Full URL to your Discord server"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "Twitter/X URL"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      }
+    ]
+  },
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Contact Information"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Support Email",
+        "default": "jesse@marketsniper.pro"
+      }
+    ]
+  }
+]

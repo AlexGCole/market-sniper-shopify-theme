@@ -38,9 +38,23 @@
               {% endfor %}
             </ul>
             
-            <a href="{{ block.settings.button_link }}" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
-              {{ block.settings.button_text }}
-            </a>
+            {% if block.settings.product != blank %}
+              {% assign selected_product = all_products[block.settings.product] %}
+              {% if selected_product != blank %}
+                <div class="pricing-checkout">
+                  {% form 'product', selected_product, class: 'pricing-form' %}
+                    <input type="hidden" name="id" value="{{ selected_product.selected_or_first_available_variant.id }}">
+                    <button type="submit" name="add" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
+                      {{ block.settings.button_text }}
+                    </button>
+                  {% endform %}
+                </div>
+              {% endif %}
+            {% else %}
+              <a href="{{ block.settings.button_link }}" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
           </div>
         {% endif %}
       {% endfor %}
@@ -50,23 +64,13 @@
 
 <style>
   .pricing-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-xl);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.pricing-card {
-  flex: 0 1 320px;
-  max-width: 380px;
-}
-
-.pricing-category-header {
-  flex-basis: 100%;
-  width: 100%;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 320px));
+    justify-content: center;
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
   .pricing-category-header {
     grid-column: 1 / -1;
@@ -88,6 +92,18 @@
     font-weight: 700;
     color: var(--light);
     margin-bottom: var(--spacing-xs);
+  }
+
+  .pricing-checkout {
+    margin-top: auto;
+  }
+
+  .pricing-form {
+    width: 100%;
+  }
+
+  .pricing-form .btn {
+    width: 100%;
   }
 
   @media (max-width: 1024px) {
@@ -167,7 +183,7 @@
           "type": "text",
           "id": "savings_text",
           "label": "Savings Text",
-          "info": "e.g., 'Save 30%'"
+          "info": "e.g., 'Save 30%' or '$250 Setup Fee'"
         },
         {
           "type": "textarea",
@@ -194,9 +210,15 @@
           "default": "Get Started"
         },
         {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
           "type": "url",
           "id": "button_link",
-          "label": "Button Link"
+          "label": "Button Link (fallback)",
+          "info": "Used if no product is selected"
         }
       ]
     }

@@ -1,0 +1,160 @@
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.section_subtitle }}</p>
+    </div>
+    
+    <div class="pricing-cards">
+      {% for block in section.blocks %}
+        <div class="pricing-card {% if block.settings.featured %}featured{% endif %}">
+          {% if block.settings.featured %}
+            <div class="popular-badge">{{ block.settings.badge_text }}</div>
+          {% endif %}
+          
+          <div class="pricing-header">
+            <h3>{{ block.settings.plan_name }}</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">{{ block.settings.price }}</span>
+              <span class="period">/{{ block.settings.period }}</span>
+            </div>
+            {% if block.settings.savings_text != blank %}
+              <div class="savings">{{ block.settings.savings_text }}</div>
+            {% endif %}
+          </div>
+          
+          <ul class="pricing-features">
+            {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
+            {% for feature in features %}
+              {% if feature != blank %}
+                <li>{{ feature }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          
+          <a href="{{ block.settings.button_link }}" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
+            {{ block.settings.button_text }}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pricing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Flexible pricing options to match your trading needs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pricing_plan",
+      "name": "Pricing Plan",
+      "settings": [
+        {
+          "type": "text",
+          "id": "plan_name",
+          "label": "Plan Name",
+          "default": "Monthly"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "79"
+        },
+        {
+          "type": "select",
+          "id": "period",
+          "label": "Billing Period",
+          "options": [
+            { "value": "mo", "label": "Monthly" },
+            { "value": "yr", "label": "Yearly" }
+          ],
+          "default": "mo"
+        },
+        {
+          "type": "text",
+          "id": "savings_text",
+          "label": "Savings Text",
+          "info": "e.g., 'Save 30%'"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (one per line)",
+          "default": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured Plan",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Featured Badge Text",
+          "default": "Most Popular"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Get Started"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing",
+      "blocks": [
+        {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Monthly",
+            "price": "79",
+            "period": "mo",
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Trading Bot Waitlist Priority",
+            "button_text": "Get Started",
+            "button_link": "https://buy.stripe.com/3csbJB8HF6YI6EU14d"
+          }
+        },
+        {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Yearly",
+            "price": "660",
+            "period": "yr",
+            "savings_text": "Save 30%",
+            "featured": true,
+            "badge_text": "Most Popular",
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Trading Bot Waitlist Priority\n✓ Priority Support",
+            "button_text": "Get Started",
+            "button_link": "https://buy.stripe.com/9AQaFx0b9beY3sI28q"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

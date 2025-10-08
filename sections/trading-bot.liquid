@@ -46,7 +46,8 @@
     {
       "type": "textarea",
       "id": "subtitle",
-      "label": "Subtitle"
+      "label": "Subtitle",
+      "default": "Join the 5% of traders who win consistently with our fully automated trading solution"
     },
     {
       "type": "checkbox",
@@ -81,19 +82,47 @@
         {
           "type": "text",
           "id": "title",
-          "label": "Feature Title"
+          "label": "Feature Title",
+          "default": "Feature Name"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description"
+          "label": "Description",
+          "default": "Feature description"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Trading Bot"
+      "name": "Trading Bot",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "⚡",
+            "title": "100% Automated",
+            "description": "Long and short positions with intelligent take-profit and stop losses"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "⚙️",
+            "title": "Endless Optimization",
+            "description": "Fine-tune settings and use our proven configurations"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🎯",
+            "title": "Subscriber Priority",
+            "description": "Available exclusively to Market Sniper members"
+          }
+        }
+      ]
     }
   ]
 }

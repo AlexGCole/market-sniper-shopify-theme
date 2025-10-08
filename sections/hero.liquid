@@ -1,0 +1,127 @@
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      {% if section.settings.show_badge %}
+        <div class="hero-badge">{{ section.settings.badge_text }}</div>
+      {% endif %}
+      
+      <h1 class="hero-title">
+        {{ section.settings.hero_title_line1 }}<br>
+        <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
+      </h1>
+      
+      <p class="hero-subtitle">{{ section.settings.hero_subtitle }}</p>
+      
+      <div class="hero-cta">
+        {% if section.settings.primary_button_text != blank %}
+          <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
+            {{ section.settings.primary_button_text }}
+          </a>
+        {% endif %}
+        {% if section.settings.secondary_button_text != blank %}
+          <a href="{{ section.settings.secondary_button_link }}" class="btn btn-secondary">
+            {{ section.settings.secondary_button_text }}
+          </a>
+        {% endif %}
+      </div>
+      
+      {% if section.settings.show_stats %}
+        <div class="hero-stats">
+          {% for block in section.blocks %}
+            <div class="stat">
+              <div class="stat-number">{{ block.settings.stat_number }}</div>
+              <div class="stat-label">{{ block.settings.stat_label }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="hero-bg"></div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "🎯 Professional Trading Tools"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_line1",
+      "label": "Title Line 1",
+      "default": "Precision Trading"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_line2",
+      "label": "Title Line 2 (Gradient)",
+      "default": "Made Simple"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Subtitle",
+      "default": "Advanced indicators, automated alerts, and expert coaching to elevate your trading game"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
+      "default": "Start Trading Smarter"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Statistics",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Number",
+          "default": "2+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Label",
+          "default": "Years Optimized"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

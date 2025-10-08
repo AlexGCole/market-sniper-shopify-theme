@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "show_badge": true,
+        "badge_text": "🎯 Professional Trading Tools",
+        "hero_title_line1": "Precision Trading",
+        "hero_title_line2": "Made Simple",
+        "hero_subtitle": "Advanced indicators, automated alerts, and expert coaching to elevate your trading game",
+        "primary_button_text": "Start Trading Smarter",
+        "primary_button_link": "#pricing",
+        "secondary_button_text": "Learn More",
+        "secondary_button_link": "#features",
+        "show_stats": true
+      },
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "2+",
+            "stat_label": "Years Optimized"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "60+",
+            "stat_label": "Hours of Coaching"
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "24/7",
+            "stat_label": "Discord Support"
+          }
+        }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3"]
+    },
+    "how-it-works": {
+      "type": "how-it-works"
+    },
+    "features": {
+      "type": "features"
+    },
+    "indicators": {
+      "type": "indicators"
+    },
+    "trading-bot": {
+      "type": "trading-bot"
+    },
+    "pricing": {
+      "type": "pricing"
+    },
+    "faq": {
+      "type": "faq"
+    }
+  },
+  "order": [
+    "hero",
+    "how-it-works",
+    "features",
+    "indicators",
+    "trading-bot",
+    "pricing",
+    "faq"
+  ]
+}

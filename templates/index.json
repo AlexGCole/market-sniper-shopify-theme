@@ -192,7 +192,6 @@
         "indicator-1",
         "indicator-2"
       ],
-      "disabled": true,
       "settings": {}
     },
     "trading-bot": {

@@ -1,6 +1,6 @@
 {% comment %}
   sections/pricing.liquid
-  Green-themed pricing with proper section separation and setup fee display
+  Complete pricing section with cyan theme, section separation, and setup fee display
 {% endcomment %}
 
 <section class="pricing-section" id="pricing">
@@ -90,7 +90,7 @@
 <style>
   .pricing-section {
     padding: 80px 20px;
-    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
   }
 
   .section-header {
@@ -132,7 +132,7 @@
 
   .category-title {
     font-size: 2rem;
-    color: #00ff41;
+    color: #00d9ff;
     margin-bottom: 20px;
     font-weight: 700;
     text-transform: uppercase;
@@ -142,7 +142,7 @@
   .category-divider {
     width: 100px;
     height: 3px;
-    background: linear-gradient(90deg, transparent, #00ff41, transparent);
+    background: linear-gradient(90deg, transparent, #00d9ff, transparent);
     margin: 0 auto;
   }
 
@@ -150,8 +150,8 @@
   .pricing-card {
     flex: 0 1 320px;
     max-width: 380px;
-    background: rgba(0, 255, 65, 0.03);
-    border: 2px solid rgba(0, 255, 65, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 40px 30px;
     position: relative;
@@ -162,15 +162,14 @@
 
   .pricing-card:hover {
     transform: translateY(-10px);
-    border-color: #00ff41;
-    box-shadow: 0 20px 40px rgba(0, 255, 65, 0.3);
-    background: rgba(0, 255, 65, 0.05);
+    border-color: #00d9ff;
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
   }
 
   .pricing-card.featured {
-    border-color: #00ff41;
-    background: rgba(0, 255, 65, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+    border-color: #00d9ff;
+    background: rgba(0, 217, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15);
     transform: scale(1.05);
   }
 
@@ -183,8 +182,8 @@
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, #00ff41, #00cc33);
-    color: #000;
+    background: linear-gradient(135deg, #00d9ff, #00a8cc);
+    color: white;
     padding: 8px 20px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -200,7 +199,7 @@
 
   .plan-name {
     font-size: 1.5rem;
-    color: #00ff41;
+    color: white;
     margin-bottom: 20px;
     font-weight: 700;
   }
@@ -242,21 +241,21 @@
   .price-amount {
     font-size: 3.5rem;
     font-weight: 800;
-    color: #00ff41;
+    color: white;
     line-height: 1;
   }
 
   .price-period {
     font-size: 1.2rem;
-    color: rgba(0, 255, 65, 0.7);
+    color: rgba(255, 255, 255, 0.6);
     align-self: flex-end;
     margin-bottom: 10px;
   }
 
   .savings-badge {
     display: inline-block;
-    background: rgba(0, 255, 65, 0.2);
-    color: #00ff41;
+    background: rgba(0, 217, 255, 0.15);
+    color: #00d9ff;
     padding: 5px 15px;
     border-radius: 15px;
     font-size: 0.9rem;
@@ -276,14 +275,14 @@
     padding: 12px 0;
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
   }
 
   .feature-list li:before {
     content: "✓";
-    color: #00ff41;
+    color: #00d9ff;
     font-weight: bold;
     margin-right: 10px;
     font-size: 1.2rem;
@@ -316,25 +315,25 @@
   }
 
   .cta-button.primary {
-    background: linear-gradient(135deg, #00ff41, #00cc33);
-    color: #000;
-    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.4);
+    background: linear-gradient(135deg, #00d9ff, #00a8cc);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3);
   }
 
   .cta-button.primary:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
-    background: linear-gradient(135deg, #00ff41, #00dd3a);
+    box-shadow: 0 6px 20px rgba(0, 217, 255, 0.5);
+    background: linear-gradient(135deg, #00e5ff, #00b8dd);
   }
 
   .cta-button.secondary {
     background: transparent;
-    border: 2px solid #00ff41;
-    color: #00ff41;
+    border: 2px solid #00d9ff;
+    color: #00d9ff;
   }
 
   .cta-button.secondary:hover {
-    background: rgba(0, 255, 65, 0.1);
+    background: rgba(0, 217, 255, 0.1);
     transform: scale(1.05);
   }
 
@@ -426,7 +425,7 @@
           "type": "text",
           "id": "savings_text",
           "label": "Savings Text (optional)",
-          "info": "e.g., Save $338"
+          "info": "e.g., Save $98"
         },
         {
           "type": "checkbox",

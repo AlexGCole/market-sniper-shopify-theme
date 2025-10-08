@@ -247,7 +247,7 @@
             "price": "490",
             "period": "yr",
             "setup_fee": "249",
-            "savings_text": "Save $339",
+            "savings_text": "Save $98",
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support\n✓ Annual Strategy Review",
             "button_text": "Get Started",
@@ -297,7 +297,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How does the automated trading bot work?",
-            "answer": "Our trading bot executes trades automatically based on the signals from our Sharp Shooter indicators. It includes risk management features like stop losses and take profits. The $250 setup fee covers personalized configuration for your account and risk tolerance."
+            "answer": "Our trading bot executes trades automatically based on the signals from our Sharp Shooter indicators. It includes risk management features like stop losses and take profits. The $249 setup fee covers personalized configuration for your account and risk tolerance."
           }
         },
         "faq-6": {

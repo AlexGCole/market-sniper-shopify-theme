@@ -5,42 +5,96 @@
       <p>{{ section.settings.section_subtitle }}</p>
     </div>
     
-    <div class="pricing-cards">
+    <div class="pricing-wrapper">
       {% for block in section.blocks %}
-        <div class="pricing-card {% if block.settings.featured %}featured{% endif %}">
-          {% if block.settings.featured %}
-            <div class="popular-badge">{{ block.settings.badge_text }}</div>
-          {% endif %}
-          
-          <div class="pricing-header">
-            <h3>{{ block.settings.plan_name }}</h3>
-            <div class="price">
-              <span class="currency">$</span>
-              <span class="amount">{{ block.settings.price }}</span>
-              <span class="period">/{{ block.settings.period }}</span>
-            </div>
-            {% if block.settings.savings_text != blank %}
-              <div class="savings">{{ block.settings.savings_text }}</div>
-            {% endif %}
+        {% if block.type == 'pricing_header' %}
+          <div class="pricing-category-header">
+            <h3>{{ block.settings.header_text }}</h3>
           </div>
-          
-          <ul class="pricing-features">
-            {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
-            {% for feature in features %}
-              {% if feature != blank %}
-                <li>{{ feature }}</li>
+        {% elsif block.type == 'pricing_plan' %}
+          <div class="pricing-card {% if block.settings.featured %}featured{% endif %}">
+            {% if block.settings.featured %}
+              <div class="popular-badge">{{ block.settings.badge_text }}</div>
+            {% endif %}
+            
+            <div class="pricing-header">
+              <h3>{{ block.settings.plan_name }}</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">{{ block.settings.price }}</span>
+                <span class="period">/{{ block.settings.period }}</span>
+              </div>
+              {% if block.settings.savings_text != blank %}
+                <div class="savings">{{ block.settings.savings_text }}</div>
               {% endif %}
-            {% endfor %}
-          </ul>
-          
-          <a href="{{ block.settings.button_link }}" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
-            {{ block.settings.button_text }}
-          </a>
-        </div>
+            </div>
+            
+            <ul class="pricing-features">
+              {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
+              {% for feature in features %}
+                {% if feature != blank %}
+                  <li>{{ feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            
+            <a href="{{ block.settings.button_link }}" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %}">
+              {{ block.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
 </section>
+
+<style>
+  .pricing-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pricing-category-header {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+  }
+
+  .pricing-category-header:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .pricing-category-header h3 {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--light);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pricing-wrapper {
+      grid-template-columns: 1fr;
+    }
+    
+    .pricing-card.featured {
+      transform: scale(1);
+    }
+  }
+</style>
 
 {% schema %}
 {
@@ -60,6 +114,18 @@
     }
   ],
   "blocks": [
+    {
+      "type": "pricing_header",
+      "name": "Category Header",
+      "settings": [
+        {
+          "type": "text",
+          "id": "header_text",
+          "label": "Header Text",
+          "default": "Plan Category"
+        }
+      ]
+    },
     {
       "type": "pricing_plan",
       "name": "Pricing Plan",
@@ -96,7 +162,7 @@
           "type": "textarea",
           "id": "features",
           "label": "Features (one per line)",
-          "default": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts"
+          "default": "✓ Feature 1\n✓ Feature 2"
         },
         {
           "type": "checkbox",
@@ -126,34 +192,7 @@
   ],
   "presets": [
     {
-      "name": "Pricing",
-      "blocks": [
-        {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Monthly",
-            "price": "79",
-            "period": "mo",
-            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Trading Bot Waitlist Priority",
-            "button_text": "Get Started",
-            "button_link": "https://buy.stripe.com/3csbJB8HF6YI6EU14d"
-          }
-        },
-        {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Yearly",
-            "price": "660",
-            "period": "yr",
-            "savings_text": "Save 30%",
-            "featured": true,
-            "badge_text": "Most Popular",
-            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Trading Bot Waitlist Priority\n✓ Priority Support",
-            "button_text": "Get Started",
-            "button_link": "https://buy.stripe.com/9AQaFx0b9beY3sI28q"
-          }
-        }
-      ]
+      "name": "Pricing"
     }
   ]
 }

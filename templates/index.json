@@ -210,6 +210,12 @@
     "section_subtitle": "Flexible pricing options to match your trading needs"
   },
   "blocks": {
+    "coaching-header": {
+      "type": "pricing_header",
+      "settings": {
+        "header_text": "Coaching Plans"
+      }
+    },
     "pricing-1": {
       "type": "pricing_plan",
       "settings": {
@@ -235,6 +241,12 @@
         "button_link": "https://buy.stripe.com/9AQaFx0b9beY3sI28q"
       }
     },
+    "bot-header": {
+      "type": "pricing_header",
+      "settings": {
+        "header_text": "Automated Trading"
+      }
+    },
     "pricing-3": {
       "type": "pricing_plan",
       "settings": {
@@ -250,7 +262,7 @@
       }
     }
   },
-  "block_order": ["pricing-1", "pricing-2", "pricing-3"]
+  "block_order": ["coaching-header", "pricing-1", "pricing-2", "bot-header", "pricing-3"]
 },
     "faq": {
       "type": "faq",

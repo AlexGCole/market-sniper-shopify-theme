@@ -1,0 +1,251 @@
+{% comment %}
+  sections/main-product.liquid
+  Main product page section with green theme
+{% endcomment %}
+
+<section class="product-page">
+  <div class="container">
+    <div class="product-grid">
+      <!-- Product Images -->
+      <div class="product-images">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+        {% else %}
+          <div class="no-image">
+            <p>No image available</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        <div class="product-price">
+          <span class="price">{{ product.selected_or_first_available_variant.price | money }}</span>
+          {% if product.compare_at_price > product.price %}
+            <span class="compare-price">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
+
+        {% if product.description != blank %}
+          <div class="product-description">
+            {{ product.description }}
+          </div>
+        {% endif %}
+
+        <!-- Product Form -->
+        {% form 'product', product %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          <!-- Selling Plans (Subscriptions) -->
+          {% if product.selling_plan_groups.size > 0 %}
+            <div class="selling-plans">
+              <label>Purchase Options:</label>
+              {% for selling_plan_group in product.selling_plan_groups %}
+                {% for selling_plan in selling_plan_group.selling_plans %}
+                  <div class="selling-plan-option">
+                    <input 
+                      type="radio" 
+                      name="selling_plan" 
+                      value="{{ selling_plan.id }}" 
+                      id="plan-{{ selling_plan.id }}"
+                      {% if forloop.first %}checked{% endif %}
+                    >
+                    <label for="plan-{{ selling_plan.id }}">
+                      {{ selling_plan.name }} - {{ selling_plan.price_adjustments[0].value | money }}
+                    </label>
+                  </div>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <!-- Quantity -->
+          <div class="quantity-selector">
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" value="1" min="1">
+          </div>
+
+          <!-- Add to Cart Button -->
+          <button type="submit" name="add" class="add-to-cart-btn">
+            Add to Cart
+          </button>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-page {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+    min-height: 60vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .product-images img {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 65, 0.2);
+  }
+
+  .no-image {
+    width: 100%;
+    height: 400px;
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .product-title {
+    font-size: 2.5rem;
+    color: #00ff41;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .product-price {
+    margin-bottom: 30px;
+  }
+
+  .price {
+    font-size: 2rem;
+    color: #00ff41;
+    font-weight: 700;
+  }
+
+  .compare-price {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: line-through;
+    margin-left: 15px;
+  }
+
+  .product-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+
+  .selling-plans {
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .selling-plans label {
+    display: block;
+    color: #00ff41;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+
+  .selling-plan-option {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .selling-plan-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    accent-color: #00ff41;
+  }
+
+  .selling-plan-option label {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .quantity-selector {
+    margin-bottom: 30px;
+  }
+
+  .quantity-selector label {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  .quantity-selector input {
+    width: 100px;
+    padding: 12px;
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 18px 40px;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.4);
+  }
+
+  .add-to-cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
+  }
+
+  .add-to-cart-btn:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .product-title {
+      font-size: 2rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": []
+}
+{% endschema %}

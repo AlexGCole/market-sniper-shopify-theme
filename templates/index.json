@@ -1,35 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
-      "type": "header"
+      "type": "header",
+      "settings": {
+        "logo_text": "Market Sniper"
+      }
     },
     "hero": {
       "type": "hero",
       "settings": {
+        "show_badge": true,
         "badge_text": "🎯 Professional Trading Tools",
-        "title": "Master the Markets with Precision",
-        "subtitle": "Join 1,000+ traders using our advanced indicators and automated tools to achieve consistent results",
+        "hero_title_line1": "Precision Trading",
+        "hero_title_line2": "Made Simple",
+        "hero_subtitle": "Advanced indicators, automated alerts, and expert coaching to elevate your trading game",
         "primary_button_text": "Start Trading Smarter",
         "primary_button_link": "#pricing",
         "secondary_button_text": "Watch Demo",
         "secondary_button_link": "#",
-        "show_trust_badges": true,
-        "trust_badge_1": "⭐ 4.9/5 Rating",
-        "trust_badge_2": "✓ 1000+ Active Traders",
-        "trust_badge_3": "🔒 Secure & Private"
+        "show_stats": true
       }
     },
     "how-it-works": {
       "type": "how-it-works",
-      "settings": {
-        "section_title": "Your Path to Trading Success",
-        "section_subtitle": "Get started in minutes with our proven 3-step system"
-      },
       "blocks": {
         "step-1": {
           "type": "step",
           "settings": {
-            "step_number": "1",
             "icon": "📊",
             "title": "Choose Your Plan",
             "description": "Select the subscription that matches your trading style and goals"
@@ -38,7 +44,6 @@
         "step-2": {
           "type": "step",
           "settings": {
-            "step_number": "2",
             "icon": "📥",
             "title": "Get Instant Access",
             "description": "Download our indicators and join the private Discord community immediately"
@@ -47,21 +52,24 @@
         "step-3": {
           "type": "step",
           "settings": {
-            "step_number": "3",
             "icon": "🚀",
             "title": "Start Trading",
             "description": "Follow along with 60+ hours of coaching and real-time trading signals"
           }
         }
       },
-      "block_order": ["step-1", "step-2", "step-3"]
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "settings": {
+        "section_title": "Your Path to Trading Success",
+        "section_subtitle": "Get started in minutes with our proven 3-step system"
+      }
     },
     "features": {
       "type": "features",
-      "settings": {
-        "section_title": "Everything You Need to Succeed",
-        "section_subtitle": "Comprehensive tools and support for every trader"
-      },
       "blocks": {
         "feature-1": {
           "type": "feature",
@@ -112,14 +120,21 @@
           }
         }
       },
-      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4", "feature-5", "feature-6"]
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4",
+        "feature-5",
+        "feature-6"
+      ],
+      "settings": {
+        "section_title": "Everything You Need to Succeed",
+        "section_subtitle": "Comprehensive tools and support for every trader"
+      }
     },
     "indicators": {
       "type": "indicators",
-      "settings": {
-        "section_title": "Professional-Grade Indicators",
-        "section_subtitle": "Battle-tested tools used by successful traders worldwide"
-      },
       "blocks": {
         "indicator-1": {
           "type": "indicator",
@@ -142,18 +157,14 @@
           }
         }
       },
-      "block_order": ["indicator-1", "indicator-2"]
+      "block_order": [
+        "indicator-1",
+        "indicator-2"
+      ],
+      "settings": {}
     },
     "trading-bot": {
       "type": "trading-bot",
-      "settings": {
-        "badge_text": "🤖 Now Available",
-        "title": "Automated Trading Bot",
-        "subtitle": "Join the 5% of traders who win consistently with our fully automated trading solution",
-        "show_stat": true,
-        "stat_number": "2+",
-        "stat_label": "Years of Optimization"
-      },
       "blocks": {
         "bot-feature-1": {
           "type": "feature",
@@ -180,14 +191,22 @@
           }
         }
       },
-      "block_order": ["bot-feature-1", "bot-feature-2", "bot-feature-3"]
+      "block_order": [
+        "bot-feature-1",
+        "bot-feature-2",
+        "bot-feature-3"
+      ],
+      "settings": {
+        "badge_text": "🤖 Now Available",
+        "title": "Automated Trading Bot",
+        "subtitle": "Join the 5% of traders who win consistently with our fully automated trading solution",
+        "show_stat": true,
+        "stat_number": "2+",
+        "stat_label": "Years of Optimization"
+      }
     },
     "pricing": {
       "type": "pricing",
-      "settings": {
-        "section_title": "Choose Your Plan",
-        "section_subtitle": "Flexible pricing options to match your trading needs"
-      },
       "blocks": {
         "coaching-header": {
           "type": "pricing_header",
@@ -201,10 +220,13 @@
             "plan_name": "Monthly",
             "price": "79",
             "period": "mo",
+            "setup_fee": "",
+            "savings_text": "",
+            "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group",
-            "button_text": "Get Started",
+            "shopify_product_handle": "",
             "button_link": "https://buy.stripe.com/3csbJB8HF6YI6EU14d",
-            "shopify_product_handle": ""
+            "button_text": "Get Started"
           }
         },
         "pricing-2": {
@@ -213,12 +235,13 @@
             "plan_name": "Yearly",
             "price": "660",
             "period": "yr",
+            "setup_fee": "",
             "savings_text": "Save 30%",
             "is_popular": true,
             "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Priority Support",
-            "button_text": "Get Started",
+            "shopify_product_handle": "",
             "button_link": "https://buy.stripe.com/9AQaFx0b9beY3sI28q",
-            "shopify_product_handle": ""
+            "button_text": "Get Started"
           }
         },
         "bot-header": {
@@ -234,10 +257,12 @@
             "price": "49",
             "period": "mo",
             "setup_fee": "249",
+            "savings_text": "",
+            "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support",
-            "button_text": "Get Started",
+            "shopify_product_handle": "trading-bot-suite-49",
             "button_link": "",
-            "shopify_product_handle": ""
+            "button_text": "Get Started"
           }
         },
         "pricing-4": {
@@ -250,20 +275,27 @@
             "savings_text": "Save $98",
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support\n✓ Annual Strategy Review",
-            "button_text": "Get Started",
+            "shopify_product_handle": "trading-bot-suite-490-annual",
             "button_link": "",
-            "shopify_product_handle": ""
+            "button_text": "Get Started"
           }
         }
       },
-      "block_order": ["coaching-header", "pricing-1", "pricing-2", "bot-header", "pricing-3", "pricing-4"]
+      "block_order": [
+        "coaching-header",
+        "pricing-1",
+        "pricing-2",
+        "bot-header",
+        "pricing-3",
+        "pricing-4"
+      ],
+      "settings": {
+        "section_title": "Choose Your Plan",
+        "section_subtitle": "Flexible pricing options to match your trading needs"
+      }
     },
     "faq": {
       "type": "faq",
-      "settings": {
-        "section_title": "Frequently Asked Questions",
-        "section_subtitle": "Everything you need to know about Market Sniper Pro"
-      },
       "blocks": {
         "faq-1": {
           "type": "faq_item",
@@ -308,10 +340,25 @@
           }
         }
       },
-      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6"]
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5",
+        "faq-6"
+      ],
+      "settings": {
+        "section_title": "Frequently Asked Questions",
+        "section_subtitle": "Everything you need to know about Market Sniper Pro"
+      }
     },
     "footer": {
-      "type": "footer"
+      "type": "footer",
+      "settings": {
+        "company_name": "Market Sniper",
+        "tagline": "Precision trading tools for professional traders"
+      }
     }
   },
   "order": [

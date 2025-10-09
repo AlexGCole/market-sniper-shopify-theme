@@ -1,6 +1,6 @@
 {% comment %}
   sections/pricing.liquid
-  Clean pricing section - green theme, links to product pages
+  Pricing section with green theme
 {% endcomment %}
 
 <section class="pricing-section" id="pricing">
@@ -101,7 +101,6 @@
     margin: 0 auto;
   }
 
-  /* Category Headers */
   .pricing-category-header {
     flex-basis: 100%;
     width: 100%;
@@ -129,7 +128,6 @@
     margin: 0 auto;
   }
 
-  /* Pricing Cards */
   .pricing-card {
     flex: 0 1 320px;
     max-width: 380px;
@@ -187,7 +185,6 @@
     font-weight: 700;
   }
 
-  /* Setup Fee Badge */
   .setup-fee-badge {
     display: inline-block;
     background: rgba(0, 255, 65, 0.15);
@@ -246,7 +243,6 @@
     margin-top: 10px;
   }
 
-  /* Feature List */
   .feature-list {
     list-style: none;
     padding: 0;
@@ -266,7 +262,6 @@
     border-bottom: none;
   }
 
-  /* Buttons */
   .cta-button {
     width: 100%;
     padding: 15px 30px;
@@ -307,7 +302,6 @@
     transform: scale(1.05);
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .pricing-card {
       flex: 1 1 100%;
@@ -389,7 +383,7 @@
           "type": "text",
           "id": "setup_fee",
           "label": "One-time Setup Fee (optional, numbers only)",
-          "info": "Leave blank or 0 for no setup fee. Will display prominently on card."
+          "info": "Leave blank or 0 for no setup fee"
         },
         {
           "type": "text",
@@ -429,10 +423,7 @@
       "name": "Pricing",
       "blocks": [
         {
-          "type": "pricing_header",
-          "settings": {
-            "header_text": "Coaching Plans"
-          }
+          "type": "pricing_header"
         },
         {
           "type": "pricing_plan"

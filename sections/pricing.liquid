@@ -1,6 +1,6 @@
 {% comment %}
   sections/pricing.liquid
-  Complete pricing section with green theme, section separation, setup fee display, and Buy Now buttons
+  Clean pricing section - green theme, links to product pages
 {% endcomment %}
 
 <section class="pricing-section" id="pricing">
@@ -54,29 +54,12 @@
               {% endfor %}
             </ul>
 
-            {% if block.settings.shopify_product_handle != blank %}
-              {%- assign subscription_product = all_products[block.settings.shopify_product_handle] -%}
-              
-              {% if subscription_product %}
-                <form action="/cart/add" method="post" class="subscription-form">
-                  <input type="hidden" name="id" value="{{ subscription_product.selected_or_first_available_variant.id }}">
-                  
-                  {% if subscription_product.selling_plan_groups.size > 0 %}
-                    {% assign selling_plan_group = subscription_product.selling_plan_groups.first %}
-                    <input type="hidden" name="selling_plan" value="{{ selling_plan_group.selling_plans.first.id }}">
-                  {% endif %}
-                  
-                  <button type="submit" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
-                    {{ block.settings.button_text }}
-                  </button>
-                </form>
-              {% else %}
-                <a href="{{ block.settings.button_link }}" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
-                  {{ block.settings.button_text }}
-                </a>
-              {% endif %}
-            {% else %}
+            {% if block.settings.button_link != blank %}
               <a href="{{ block.settings.button_link }}" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
+                {{ block.settings.button_text }}
+              </a>
+            {% else %}
+              <a href="#" class="cta-button secondary" onclick="alert('Please configure product link'); return false;">
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
@@ -279,21 +262,11 @@
     border-bottom: 1px solid rgba(0, 255, 65, 0.1);
   }
 
-  .feature-list li:before {
-    content: "";
-    display: none;
-  }
-
   .feature-list li:last-child {
     border-bottom: none;
   }
 
   /* Buttons */
-  .subscription-form {
-    width: 100%;
-    margin-top: auto;
-  }
-
   .cta-button {
     width: 100%;
     padding: 15px 30px;
@@ -308,6 +281,7 @@
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-top: auto;
   }
 
   .cta-button.primary {
@@ -436,16 +410,10 @@
           "default": "✓ Feature 1\n✓ Feature 2\n✓ Feature 3"
         },
         {
-          "type": "product",
-          "id": "shopify_product_handle",
-          "label": "Shopify Subscription Product",
-          "info": "Select the subscription product from your Shopify store"
-        },
-        {
           "type": "url",
           "id": "button_link",
-          "label": "Fallback Button Link",
-          "info": "Used if no Shopify product is selected"
+          "label": "Product Page Link",
+          "info": "e.g., /products/your-product-handle"
         },
         {
           "type": "text",

@@ -1,480 +1,328 @@
-{% comment %}
-  sections/pricing.liquid
-  Complete pricing section with cyan theme, section separation, and setup fee display
-{% endcomment %}
-
-<section class="pricing-section" id="pricing">
-  <div class="container">
-    <div class="section-header">
-      <h2>{{ section.settings.section_title }}</h2>
-      <p>{{ section.settings.section_subtitle }}</p>
-    </div>
-
-    <div class="pricing-wrapper">
-      {% for block in section.blocks %}
-        {% if block.type == 'pricing_header' %}
-          <div class="pricing-category-header" {{ block.shopify_attributes }}>
-            <h3 class="category-title">{{ block.settings.header_text }}</h3>
-            <div class="category-divider"></div>
-          </div>
-        {% endif %}
-
-        {% if block.type == 'pricing_plan' %}
-          <div class="pricing-card {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
-            {% if block.settings.is_popular %}
-              <span class="popular-badge">Most Popular</span>
-            {% endif %}
-            
-            <div class="plan-header">
-              <h3 class="plan-name">{{ block.settings.plan_name }}</h3>
-              
-              {% if block.settings.setup_fee != blank and block.settings.setup_fee != '0' %}
-                <div class="setup-fee-badge">
-                  <span class="fee-amount">${{ block.settings.setup_fee }}</span>
-                  <span class="fee-label">one-time setup</span>
-                </div>
-              {% endif %}
-              
-              <div class="plan-price">
-                <span class="price-amount">${{ block.settings.price }}</span>
-                <span class="price-period">/{{ block.settings.period }}</span>
-              </div>
-              
-              {% if block.settings.savings_text != blank %}
-                <div class="savings-badge">{{ block.settings.savings_text }}</div>
-              {% endif %}
-            </div>
-
-            <ul class="feature-list">
-              {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
-              {% for feature in features %}
-                {% if feature != blank %}
-                  <li>{{ feature }}</li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-
-            {% if block.settings.shopify_product_handle != blank %}
-              {%- assign subscription_product = all_products[block.settings.shopify_product_handle] -%}
-              
-              {% if subscription_product %}
-                <form action="/cart/add" method="post" class="subscription-form">
-                  <input type="hidden" name="id" value="{{ subscription_product.selected_or_first_available_variant.id }}">
-                  
-                  {% if subscription_product.selling_plan_groups.size > 0 %}
-                    {% assign selling_plan_group = subscription_product.selling_plan_groups.first %}
-                    <input type="hidden" name="selling_plan" value="{{ selling_plan_group.selling_plans.first.id }}">
-                  {% endif %}
-                  
-                  <button type="submit" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
-                    {{ block.settings.button_text }}
-                  </button>
-                </form>
-              {% else %}
-                <a href="{{ block.settings.button_link }}" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
-                  {{ block.settings.button_text }}
-                </a>
-              {% endif %}
-            {% else %}
-              <a href="{{ block.settings.button_link }}" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
-                {{ block.settings.button_text }}
-              </a>
-            {% endif %}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<style>
-  .pricing-section {
-    padding: 80px 20px;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .section-header h2 {
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 15px;
-  }
-
-  .section-header p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .pricing-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  /* Category Headers */
-  .pricing-category-header {
-    flex-basis: 100%;
-    width: 100%;
-    text-align: center;
-    margin: 40px 0 20px 0;
-  }
-
-  .pricing-category-header:first-of-type {
-    margin-top: 0;
-  }
-
-  .category-title {
-    font-size: 2rem;
-    color: #00d9ff;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .category-divider {
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #00d9ff, transparent);
-    margin: 0 auto;
-  }
-
-  /* Pricing Cards */
-  .pricing-card {
-    flex: 0 1 320px;
-    max-width: 380px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 40px 30px;
-    position: relative;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .pricing-card:hover {
-    transform: translateY(-10px);
-    border-color: #00d9ff;
-    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
-  }
-
-  .pricing-card.featured {
-    border-color: #00d9ff;
-    background: rgba(0, 217, 255, 0.05);
-    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15);
-    transform: scale(1.05);
-  }
-
-  .pricing-card.featured:hover {
-    transform: scale(1.05) translateY(-10px);
-  }
-
-  .popular-badge {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #00d9ff, #00a8cc);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .plan-header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .plan-name {
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-
-  /* Setup Fee Badge */
-  .setup-fee-badge {
-    display: inline-block;
-    background: rgba(255, 193, 7, 0.15);
-    border: 1px solid rgba(255, 193, 7, 0.4);
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin-bottom: 15px;
-  }
-
-  .fee-amount {
-    display: block;
-    font-size: 1.3rem;
-    color: #ffc107;
-    font-weight: 700;
-  }
-
-  .fee-label {
-    display: block;
-    font-size: 0.8rem;
-    color: rgba(255, 193, 7, 0.8);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 2px;
-  }
-
-  .plan-price {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin: 15px 0;
-  }
-
-  .price-amount {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: white;
-    line-height: 1;
-  }
-
-  .price-period {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.6);
-    align-self: flex-end;
-    margin-bottom: 10px;
-  }
-
-  .savings-badge {
-    display: inline-block;
-    background: rgba(0, 217, 255, 0.15);
-    color: #00d9ff;
-    padding: 5px 15px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-top: 10px;
-  }
-
-  /* Feature List */
-  .feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 30px 0;
-    flex-grow: 1;
-  }
-
-  .feature-list li {
-    padding: 12px 0;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.95rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-  }
-
-  .feature-list li:before {
-    content: "✓";
-    color: #00d9ff;
-    font-weight: bold;
-    margin-right: 10px;
-    font-size: 1.2rem;
-  }
-
-  .feature-list li:last-child {
-    border-bottom: none;
-  }
-
-  /* Buttons */
-  .subscription-form {
-    width: 100%;
-    margin-top: auto;
-  }
-
-  .cta-button {
-    width: 100%;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .cta-button.primary {
-    background: linear-gradient(135deg, #00d9ff, #00a8cc);
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3);
-  }
-
-  .cta-button.primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 217, 255, 0.5);
-    background: linear-gradient(135deg, #00e5ff, #00b8dd);
-  }
-
-  .cta-button.secondary {
-    background: transparent;
-    border: 2px solid #00d9ff;
-    color: #00d9ff;
-  }
-
-  .cta-button.secondary:hover {
-    background: rgba(0, 217, 255, 0.1);
-    transform: scale(1.05);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .pricing-card {
-      flex: 1 1 100%;
-      max-width: 100%;
-    }
-
-    .pricing-card.featured {
-      transform: scale(1);
-    }
-
-    .pricing-card.featured:hover {
-      transform: translateY(-10px);
-    }
-
-    .category-title {
-      font-size: 1.5rem;
-    }
-
-    .price-amount {
-      font-size: 2.5rem;
-    }
-  }
-</style>
-
-{% schema %}
 {
-  "name": "Pricing Section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
-      "default": "Choose Your Plan"
+  "sections": {
+    "header": {
+      "type": "header"
     },
-    {
-      "type": "text",
-      "id": "section_subtitle",
-      "label": "Section Subtitle",
-      "default": "Flexible pricing options"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "pricing_header",
-      "name": "Section Header",
-      "settings": [
-        {
-          "type": "text",
-          "id": "header_text",
-          "label": "Header Text",
-          "default": "Coaching Plans"
-        }
-      ]
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "badge_text": "🎯 Professional Trading Tools",
+        "title": "Master the Markets with Precision",
+        "subtitle": "Join 200+ traders using our advanced indicators and automated tools to achieve consistent results",
+        "primary_button_text": "Start Trading Smarter",
+        "primary_button_link": "#pricing",
+        "secondary_button_text": "Watch Demo",
+        "secondary_button_link": "#",
+        "show_trust_badges": true,
+        "trust_badge_1": "⭐ 4.9/5 Rating",
+        "trust_badge_2": "✓ 1000+ Active Traders",
+        "trust_badge_3": "🔒 Secure & Private"
+      }
     },
-    {
-      "type": "pricing_plan",
-      "name": "Pricing Plan",
-      "settings": [
-        {
-          "type": "text",
-          "id": "plan_name",
-          "label": "Plan Name",
-          "default": "Monthly"
-        },
-        {
-          "type": "text",
-          "id": "price",
-          "label": "Price (numbers only)",
-          "default": "79"
-        },
-        {
-          "type": "text",
-          "id": "period",
-          "label": "Period",
-          "default": "mo",
-          "info": "e.g., mo, yr"
-        },
-        {
-          "type": "text",
-          "id": "setup_fee",
-          "label": "One-time Setup Fee (optional, numbers only)",
-          "info": "Leave blank or 0 for no setup fee. Will display prominently on card."
-        },
-        {
-          "type": "text",
-          "id": "savings_text",
-          "label": "Savings Text (optional)",
-          "info": "e.g., Save $98"
-        },
-        {
-          "type": "checkbox",
-          "id": "is_popular",
-          "label": "Mark as Most Popular",
-          "default": false
-        },
-        {
-          "type": "textarea",
-          "id": "features",
-          "label": "Features (one per line)",
-          "default": "✓ Feature 1\n✓ Feature 2\n✓ Feature 3"
-        },
-        {
-          "type": "product",
-          "id": "shopify_product_handle",
-          "label": "Shopify Subscription Product",
-          "info": "Select the subscription product from your Shopify store"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Fallback Button Link",
-          "info": "Used if no Shopify product is selected"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "Get Started"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Pricing",
-      "blocks": [
-        {
-          "type": "pricing_header",
+    "how-it-works": {
+      "type": "how-it-works",
+      "settings": {
+        "section_title": "Your Path to Trading Success",
+        "section_subtitle": "Get started in minutes with our proven 3-step system"
+      },
+      "blocks": {
+        "step-1": {
+          "type": "step",
           "settings": {
-            "header_text": "Coaching Plans"
+            "step_number": "1",
+            "icon": "📊",
+            "title": "Choose Your Plan",
+            "description": "Select the subscription that matches your trading style and goals"
           }
         },
-        {
-          "type": "pricing_plan"
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "icon": "📥",
+            "title": "Get Instant Access",
+            "description": "Download our indicators and join the private Discord community immediately"
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "icon": "🚀",
+            "title": "Start Trading",
+            "description": "Follow along with 60+ hours of coaching and real-time trading signals"
+          }
         }
-      ]
+      },
+      "block_order": ["step-1", "step-2", "step-3"]
+    },
+    "features": {
+      "type": "features",
+      "settings": {
+        "section_title": "Everything You Need to Succeed",
+        "section_subtitle": "Comprehensive tools and support for every trader"
+      },
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "📈",
+            "title": "Advanced Indicators",
+            "description": "Sharp Shooter Candles 3.1 and RSI 2.0 with precise buy/sell signals"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🤖",
+            "title": "Sniper Bot Alerts",
+            "description": "Automated trading signals delivered in real-time to your Discord"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎓",
+            "title": "60+ Hours of Training",
+            "description": "Comprehensive video courses from beginner to advanced strategies"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "icon": "💬",
+            "title": "Private Community",
+            "description": "Exclusive Discord access with fellow traders and mentors"
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔔",
+            "title": "Real-Time Alerts",
+            "description": "Never miss a trading opportunity with instant notifications"
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "icon": "📊",
+            "title": "Multiple Timeframes",
+            "description": "Works on all timeframes from scalping to swing trading"
+          }
+        }
+      },
+      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4", "feature-5", "feature-6"]
+    },
+    "indicators": {
+      "type": "indicators",
+      "settings": {
+        "section_title": "Professional-Grade Indicators",
+        "section_subtitle": "Battle-tested tools used by successful traders worldwide"
+      },
+      "blocks": {
+        "indicator-1": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 3.1",
+            "title": "Sharp Shooter Candles",
+            "description": "Revolutionary candlestick indicator that identifies high-probability setups with precise entry and exit points.",
+            "features": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Bearish/Bullish Crossover\n✓ MACD Above/Below Zero Line\n✓ Trending Dots\n✓ Multiple Customization Options",
+            "fallback_image": "sharp-shooter-candles.jpg"
+          }
+        },
+        "indicator-2": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 2.0",
+            "title": "Sharp Shooter RSI",
+            "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
+            "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style\n✓ Real-time Alerts",
+            "fallback_image": "sharp-shooter-rsi.jpg"
+          }
+        }
+      },
+      "block_order": ["indicator-1", "indicator-2"]
+    },
+    "trading-bot": {
+      "type": "trading-bot",
+      "settings": {
+        "badge_text": "🤖 Now Available",
+        "title": "Automated Trading Bot",
+        "subtitle": "Join the 5% of traders who win consistently with our fully automated trading solution",
+        "show_stat": true,
+        "stat_number": "2+",
+        "stat_label": "Years of Optimization"
+      },
+      "blocks": {
+        "bot-feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "⚡",
+            "title": "100% Automated",
+            "description": "Long and short positions with intelligent take-profit and stop losses"
+          }
+        },
+        "bot-feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "⚙️",
+            "title": "Endless Optimization",
+            "description": "Fine-tune settings and use our proven configurations"
+          }
+        },
+        "bot-feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎯",
+            "title": "Priority Support",
+            "description": "Get dedicated assistance with bot setup and optimization"
+          }
+        }
+      },
+      "block_order": ["bot-feature-1", "bot-feature-2", "bot-feature-3"]
+    },
+    "pricing": {
+      "type": "pricing",
+      "settings": {
+        "section_title": "Choose Your Plan",
+        "section_subtitle": "Flexible pricing options to match your trading needs"
+      },
+      "blocks": {
+        "coaching-header": {
+          "type": "pricing_header",
+          "settings": {
+            "header_text": "Coaching & Indicators"
+          }
+        },
+        "pricing-1": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Monthly",
+            "price": "79",
+            "period": "mo",
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group",
+            "button_text": "Buy Now",
+            "button_link": "",
+            "shopify_product_handle": ""
+          }
+        },
+        "pricing-2": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Yearly",
+            "price": "660",
+            "period": "yr",
+            "savings_text": "Save 30%",
+            "is_popular": true,
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Priority Support",
+            "button_text": "Buy Now",
+            "button_link": "",
+            "shopify_product_handle": ""
+          }
+        },
+        "bot-header": {
+          "type": "pricing_header",
+          "settings": {
+            "header_text": "Automated Trading"
+          }
+        },
+        "pricing-3": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Bot Suite Monthly",
+            "price": "49",
+            "period": "mo",
+            "setup_fee": "249",
+            "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support",
+            "button_text": "Buy Now",
+            "button_link": "",
+            "shopify_product_handle": ""
+          }
+        },
+        "pricing-4": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Bot Suite Annual",
+            "price": "490",
+            "period": "yr",
+            "setup_fee": "249",
+            "savings_text": "Save $98",
+            "is_popular": false,
+            "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support\n✓ Annual Strategy Review",
+            "button_text": "Buy Now",
+            "button_link": "",
+            "shopify_product_handle": ""
+          }
+        }
+      },
+      "block_order": ["coaching-header", "pricing-1", "pricing-2", "bot-header", "pricing-3", "pricing-4"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "section_title": "Frequently Asked Questions",
+        "section_subtitle": "Everything you need to know about Market Sniper Pro"
+      },
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What trading platforms do the indicators work on?",
+            "answer": "Our indicators are designed for TradingView, the industry-standard charting platform used by millions of traders worldwide."
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I cancel my subscription anytime?",
+            "answer": "Yes! You can cancel your subscription at any time. Your access will continue until the end of your current billing period."
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is there a money-back guarantee?",
+            "answer": "We offer a 30-day satisfaction guarantee. If you're not happy with your purchase, contact us for a full refund within 30 days."
+          }
+        },
+        "faq-4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need trading experience to use these tools?",
+            "answer": "No! Our 60+ hours of coaching videos cover everything from beginner basics to advanced strategies. However, we recommend paper trading first to build confidence."
+          }
+        },
+        "faq-5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does the automated trading bot work?",
+            "answer": "Our trading bot executes trades automatically based on the signals from our Sharp Shooter indicators. It includes risk management features like stop losses and take profits. The $249 setup fee covers personalized configuration for your account and risk tolerance."
+          }
+        },
+        "faq-6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What's included in the Discord community?",
+            "answer": "You'll get access to our private Discord server with real-time trading alerts, strategy discussions, coaching Q&A sessions, and a community of like-minded traders. Bot subscribers also get access to an exclusive bot discussion channel."
+          }
+        }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6"]
+    },
+    "footer": {
+      "type": "footer"
     }
+  },
+  "order": [
+    "header",
+    "hero",
+    "how-it-works",
+    "features",
+    "indicators",
+    "trading-bot",
+    "pricing",
+    "faq",
+    "footer"
   ]
 }
-{% endschema %}

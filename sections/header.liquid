@@ -5,20 +5,17 @@
 
 <header class="site-header">
   <div class="header-container">
-    <!-- Logo -->
     <a href="/" class="logo">
       <span class="logo-icon">🎯</span>
       <span class="logo-text">Market Sniper</span>
     </a>
 
-    <!-- Mobile Menu Toggle -->
     <button class="mobile-menu-toggle" id="mobile-menu-toggle">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
       <a href="/" class="nav-link">Home</a>
       <a href="/#features" class="nav-link">Features</a>
@@ -127,7 +124,6 @@
     box-shadow: 0 6px 20px rgba(0, 255, 65, 0.5);
   }
 
-  /* Mobile Menu Toggle */
   .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -146,7 +142,20 @@
     transition: all 0.3s ease;
   }
 
-  /* Mobile Styles */
   @media (max-width: 768px) {
     .mobile-menu-toggle {
-      display
+      display: flex;
+    }
+
+    .main-nav {
+      display: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

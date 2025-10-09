@@ -11,9 +11,7 @@
         {% if product.featured_image %}
           <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
         {% else %}
-          <div class="no-image">
-            <p>No image available</p>
-          </div>
+          <img src="{{ 'trading-bot-suite.png' | asset_url }}" alt="{{ product.title }}">
         {% endif %}
       </div>
 
@@ -23,14 +21,34 @@
         
         <div class="product-price">
           <span class="price">{{ product.selected_or_first_available_variant.price | money }}</span>
+          <span class="period">/mo</span>
           {% if product.compare_at_price > product.price %}
             <span class="compare-price">{{ product.compare_at_price | money }}</span>
           {% endif %}
         </div>
 
+        <!-- Setup Fee Notice -->
+        {% if product.title contains 'Bot' %}
+          <div class="setup-fee-notice">
+            <strong>$249</strong> one-time setup fee
+          </div>
+        {% endif %}
+
         {% if product.description != blank %}
           <div class="product-description">
             {{ product.description }}
+          </div>
+        {% else %}
+          <div class="product-description">
+            <h3>What's Included:</h3>
+            <ul class="feature-list">
+              <li>✓ Private Discord Access</li>
+              <li>✓ Private Sniper Bot Discussion Channel</li>
+              <li>✓ Automated Trading Bot</li>
+              <li>✓ Bot Configuration & Setup</li>
+              <li>✓ Ongoing Bot Optimization</li>
+              <li>✓ Priority Bot Support</li>
+            </ul>
           </div>
         {% endif %}
 
@@ -84,9 +102,9 @@
 
 <style>
   .product-page {
-    padding: 60px 20px;
+    padding: 60px 20px 100px;
     background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
-    min-height: 60vh;
+    min-height: 80vh;
   }
 
   .container {
@@ -96,9 +114,14 @@
 
   .product-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 450px 1fr;
+    gap: 80px;
     align-items: start;
+  }
+
+  .product-images {
+    position: sticky;
+    top: 20px;
   }
 
   .product-images img {
@@ -109,7 +132,7 @@
 
   .no-image {
     width: 100%;
-    height: 400px;
+    height: 450px;
     background: rgba(0, 255, 65, 0.05);
     border: 1px solid rgba(0, 255, 65, 0.2);
     border-radius: 20px;
@@ -119,71 +142,146 @@
     color: rgba(255, 255, 255, 0.5);
   }
 
+  .product-info {
+    padding-top: 20px;
+  }
+
   .product-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #00ff41;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 700;
+    line-height: 1.2;
   }
 
   .product-price {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
   }
 
   .price {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #00ff41;
-    font-weight: 700;
+    font-weight: 800;
+  }
+
+  .period {
+    font-size: 1.3rem;
+    color: rgba(0, 255, 65, 0.7);
   }
 
   .compare-price {
     font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     text-decoration: line-through;
     margin-left: 15px;
   }
 
+  .setup-fee-notice {
+    background: rgba(0, 255, 65, 0.15);
+    border: 1px solid rgba(0, 255, 65, 0.4);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+  }
+
+  .setup-fee-notice strong {
+    color: #00ff41;
+    font-size: 1.3rem;
+  }
+
   .product-description {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     line-height: 1.8;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
+    margin-bottom: 35px;
+    font-size: 1.05rem;
+  }
+
+  .product-description h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+    font-size: 1rem;
+  }
+
+  .feature-list li:last-child {
+    border-bottom: none;
   }
 
   .selling-plans {
     background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.2);
+    border: 1px solid rgba(0, 255, 65, 0.3);
     border-radius: 15px;
-    padding: 20px;
+    padding: 25px;
     margin-bottom: 30px;
   }
 
-  .selling-plans label {
+  .selling-plans > label {
     display: block;
-    color: #00ff41;
+    color: white;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 1.1rem;
   }
 
   .selling-plan-option {
-    margin-bottom: 15px;
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .selling-plan-option:hover {
+    background: rgba(0, 255, 65, 0.08);
+    border-color: rgba(0, 255, 65, 0.4);
+  }
+
+  .selling-plan-option:last-child {
+    margin-bottom: 0;
   }
 
   .selling-plan-option input[type="radio"] {
     width: 20px;
     height: 20px;
-    margin-right: 10px;
+    margin-right: 15px;
+    margin-top: 2px;
     accent-color: #00ff41;
+    flex-shrink: 0;
   }
 
   .selling-plan-option label {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 400;
     margin: 0;
     cursor: pointer;
+    flex-grow: 1;
+    line-height: 1.6;
+  }
+
+  .selling-plan-option label strong {
+    color: #00ff41;
+    font-size: 1.05rem;
   }
 
   .quantity-selector {
@@ -252,10 +350,18 @@
     color: #ff4141;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     .product-grid {
       grid-template-columns: 1fr;
-      gap: 30px;
+      gap: 40px;
+    }
+
+    .product-images {
+      position: static;
+    }
+
+    .no-image {
+      height: 300px;
     }
 
     .product-title {
@@ -263,7 +369,17 @@
     }
 
     .price {
-      font-size: 1.5rem;
+      font-size: 2.2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .product-title {
+      font-size: 1.8rem;
+    }
+
+    .price {
+      font-size: 2rem;
     }
   }
 </style>

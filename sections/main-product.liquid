@@ -54,7 +54,18 @@
 
         <!-- Product Form -->
         {% form 'product', product, id: 'product-form' %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
+          
+          <!-- Debug Info (remove after testing) -->
+          <div style="background: rgba(255,255,0,0.1); padding: 10px; margin-bottom: 20px; border-radius: 8px; font-size: 0.9rem;">
+            <strong>Debug Info:</strong><br>
+            Product Available: {{ product.available }}<br>
+            Variant ID: {{ product.selected_or_first_available_variant.id }}<br>
+            Variant Available: {{ product.selected_or_first_available_variant.available }}<br>
+            Selling Plans: {{ product.selling_plan_groups.size }}
+          </div>
+          
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
           
           <!-- Selling Plans (Subscriptions) -->
           {% if product.selling_plan_groups.size > 0 %}
@@ -80,19 +91,22 @@
                 {% endfor %}
               {% endfor %}
             </div>
+          {% else %}
+            <p style="color: #ff4141; padding: 10px; background: rgba(255,0,0,0.1); border-radius: 8px;">
+              ⚠️ No subscription plans found. Please set up subscriptions in Shopify Admin.
+            </p>
           {% endif %}
 
-          <!-- Quantity -->
-          <div class="quantity-selector">
-            <label for="quantity">Quantity:</label>
-            <input type="hidden" name="quantity" value="1">
-            <input type="number" id="quantity-display" value="1" min="1" disabled style="opacity: 0.7;">
-          </div>
-
           <!-- Add to Cart Button -->
-          <button type="submit" name="add" class="add-to-cart-btn">
-            Add to Cart
-          </button>
+          {% if product.available %}
+            <button type="submit" name="add" class="add-to-cart-btn">
+              Add to Cart
+            </button>
+          {% else %}
+            <button type="button" class="add-to-cart-btn" disabled style="opacity: 0.5; cursor: not-allowed;">
+              Sold Out
+            </button>
+          {% endif %}
         {% endform %}
       </div>
     </div>
@@ -331,26 +345,6 @@
     transform: translateY(0);
   }
 
-  .cart-message {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .cart-message.success {
-    background: rgba(0, 255, 65, 0.2);
-    border: 1px solid #00ff41;
-    color: #00ff41;
-  }
-
-  .cart-message.error {
-    background: rgba(255, 65, 65, 0.2);
-    border: 1px solid #ff4141;
-    color: #ff4141;
-  }
-
   @media (max-width: 968px) {
     .product-grid {
       grid-template-columns: 1fr;
@@ -384,69 +378,6 @@
     }
   }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('product-form');
-  const addButton = document.getElementById('add-to-cart');
-  const btnText = addButton.querySelector('.btn-text');
-  const messageDiv = document.getElementById('cart-message');
-
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const formData = new FormData(form);
-      
-      // Log what we're sending
-      console.log('Form data:', Object.fromEntries(formData));
-      
-      // Disable button
-      addButton.disabled = true;
-      btnText.textContent = 'Adding...';
-      
-      fetch('/cart/add.js', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        console.log('Response status:', response.status);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Success:', data);
-        
-        // Success!
-        btnText.textContent = '✓ Added to Cart!';
-        addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
-        
-        messageDiv.textContent = 'Item added to cart successfully!';
-        messageDiv.className = 'cart-message success';
-        messageDiv.style.display = 'block';
-        
-        // Redirect to cart after 1 second
-        setTimeout(() => {
-          window.location.href = '/cart';
-        }, 1000);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        
-        // Show error
-        btnText.textContent = 'Add to Cart';
-        addButton.disabled = false;
-        
-        messageDiv.textContent = 'Error: ' + error.message + '. Please refresh and try again.';
-        messageDiv.className = 'cart-message error';
-        messageDiv.style.display = 'block';
-      });
-    });
-  }
-});
-</script>
 
 {% schema %}
 {

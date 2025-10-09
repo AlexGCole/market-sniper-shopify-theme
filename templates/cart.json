@@ -1,11 +1,19 @@
 {
   "sections": {
+    "header": {
+      "type": "header"
+    },
     "cart-items": {
       "type": "main-cart",
       "settings": {}
+    },
+    "footer": {
+      "type": "footer"
     }
   },
   "order": [
-    "cart-items"
+    "header",
+    "cart-items",
+    "footer"
   ]
 }

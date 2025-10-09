@@ -1,48 +1,161 @@
-<nav class="navbar">
-  <div class="container">
+{% comment %}
+  sections/header.liquid
+  Site header with navigation
+{% endcomment %}
+
+<header class="site-header">
+  <div class="header-container">
     <a href="/" class="logo">
-      <span class="logo-icon">
-        {% if section.settings.logo != blank %}
-          <img src="{{ section.settings.logo | img_url: '80x80' }}" alt="{{ shop.name }}">
-        {% else %}
-          <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name }}" onerror="this.style.display='none'">
-        {% endif %}
-      </span>
-      <span class="logo-text">{{ section.settings.logo_text | default: 'Market Sniper' }}</span>
+      <span class="logo-icon">🎯</span>
+      <span class="logo-text">Market Sniper</span>
     </a>
-    
-    <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li>
-        <a href="#pricing" class="btn-nav">Get Started</a>
-      </li>
-    </ul>
-    
-    <button class="mobile-menu-btn">
+
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
       <span></span>
       <span></span>
       <span></span>
     </button>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/#features" class="nav-link">Features</a>
+      <a href="/#pricing" class="nav-link">Pricing</a>
+      <a href="/#faq" class="nav-link">FAQ</a>
+      <a href="/cart" class="nav-link cart-link">
+        Cart 
+        <span class="cart-count" id="cart-count">{{ cart.item_count }}</span>
+      </a>
+      <a href="/#pricing" class="nav-cta">Get Started</a>
+    </nav>
   </div>
-</nav>
+</header>
+
+<style>
+  .site-header {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+  }
+
+  .header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    transition: opacity 0.3s ease;
+  }
+
+  .logo:hover {
+    opacity: 0.8;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .logo-text {
+    color: #00ff41;
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: #00ff41;
+  }
+
+  .cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cart-count {
+    background: #00ff41;
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .nav-cta {
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 65, 0.5);
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #00ff41;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-toggle {
+      display: flex;
+    }
+
+    .main-nav {
+      display: none;
+    }
+  }
+</style>
 
 {% schema %}
 {
   "name": "Header",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo Image"
-    },
-    {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Logo Text",
-      "default": "Market Sniper"
-    }
-  ]
+  "settings": []
 }
 {% endschema %}

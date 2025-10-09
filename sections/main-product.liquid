@@ -52,13 +52,8 @@
           </div>
         {% endif %}
 
-        <!-- Product Form -->
-        <form action="/cart/add" method="post" id="product-form" accept-charset="UTF-8" enctype="multipart/form-data">
-          
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <input type="hidden" name="quantity" value="1">
-          
-          <!-- Selling Plans (Subscriptions) -->
+        <!-- Product Form - Alternative Direct Method -->
+        <div class="product-purchase">
           {% if product.selling_plan_groups.size > 0 %}
             <div class="selling-plans">
               <label>Purchase Options:</label>
@@ -67,9 +62,10 @@
                   <div class="selling-plan-option">
                     <input 
                       type="radio" 
-                      name="selling_plan" 
+                      name="plan_selector" 
                       value="{{ selling_plan.id }}" 
                       id="plan-{{ selling_plan.id }}"
+                      data-plan-id="{{ selling_plan.id }}"
                       {% if forloop.first %}checked{% endif %}
                     >
                     <label for="plan-{{ selling_plan.id }}">
@@ -84,11 +80,22 @@
             </div>
           {% endif %}
 
-          <!-- Add to Cart Button -->
-          <button type="submit" name="add" class="add-to-cart-btn">
+          <!-- Direct Add to Cart Link -->
+          {% assign variant_id = product.selected_or_first_available_variant.id %}
+          {% assign selling_plan_id = product.selling_plan_groups[0].selling_plans[0].id %}
+          
+          <a 
+            href="/cart/{{ variant_id }}:1?selling_plan={{ selling_plan_id }}" 
+            class="add-to-cart-btn"
+            id="direct-cart-link"
+          >
             Add to Cart
-          </button>
-        </form>
+          </a>
+          
+          <p style="margin-top: 15px; color: rgba(255,255,255,0.6); font-size: 0.9rem; text-align: center;">
+            Click button to add item and go to cart
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -359,6 +366,28 @@
     }
   }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const link = document.getElementById('direct-cart-link');
+  const planInputs = document.querySelectorAll('input[name="plan_selector"]');
+  const variantId = '{{ product.selected_or_first_available_variant.id }}';
+  
+  // Update link when plan changes
+  planInputs.forEach(input => {
+    input.addEventListener('change', function() {
+      const planId = this.value;
+      link.href = '/cart/' + variantId + ':1?selling_plan=' + planId;
+      console.log('Updated cart link:', link.href);
+    });
+  });
+  
+  // Log click
+  link.addEventListener('click', function(e) {
+    console.log('Navigating to:', this.href);
+  });
+});
+</script>
 
 {% schema %}
 {

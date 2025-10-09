@@ -53,16 +53,7 @@
         {% endif %}
 
         <!-- Product Form -->
-        {% form 'product', product, id: 'product-form' %}
-          
-          <!-- Debug Info (remove after testing) -->
-          <div style="background: rgba(255,255,0,0.1); padding: 10px; margin-bottom: 20px; border-radius: 8px; font-size: 0.9rem;">
-            <strong>Debug Info:</strong><br>
-            Product Available: {{ product.available }}<br>
-            Variant ID: {{ product.selected_or_first_available_variant.id }}<br>
-            Variant Available: {{ product.selected_or_first_available_variant.available }}<br>
-            Selling Plans: {{ product.selling_plan_groups.size }}
-          </div>
+        <form action="/cart/add" method="post" id="product-form" accept-charset="UTF-8" enctype="multipart/form-data">
           
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           <input type="hidden" name="quantity" value="1">
@@ -91,23 +82,13 @@
                 {% endfor %}
               {% endfor %}
             </div>
-          {% else %}
-            <p style="color: #ff4141; padding: 10px; background: rgba(255,0,0,0.1); border-radius: 8px;">
-              ⚠️ No subscription plans found. Please set up subscriptions in Shopify Admin.
-            </p>
           {% endif %}
 
           <!-- Add to Cart Button -->
-          {% if product.available %}
-            <button type="submit" name="add" class="add-to-cart-btn">
-              Add to Cart
-            </button>
-          {% else %}
-            <button type="button" class="add-to-cart-btn" disabled style="opacity: 0.5; cursor: not-allowed;">
-              Sold Out
-            </button>
-          {% endif %}
-        {% endform %}
+          <button type="submit" name="add" class="add-to-cart-btn">
+            Add to Cart
+          </button>
+        </form>
       </div>
     </div>
   </div>

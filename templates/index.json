@@ -313,14 +313,12 @@
     }
   },
   "order": [
-    "header",
     "hero",
     "how-it-works",
     "features",
     "indicators",
     "trading-bot",
     "pricing",
-    "faq",
-    "footer"
+    "faq"
   ]
 }

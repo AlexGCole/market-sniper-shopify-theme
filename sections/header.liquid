@@ -39,10 +39,6 @@
           </a>
         </li>
       {% endif %}
-      
-      <li>
-        <a href="#pricing" class="btn-nav">Get Started</a>
-      </li>
     </ul>
     
     <button class="mobile-menu-btn">
@@ -54,16 +50,25 @@
 </nav>
 
 <style>
-  .site-header {
+  .navbar {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     padding: 15px 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .header-container {
+  .navbar.scrolled {
+    background: rgba(0, 255, 65, 0.15);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+  }
+
+  .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
@@ -87,7 +92,7 @@
     opacity: 0.8;
   }
 
-  .logo-image {
+  .logo-icon img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -98,13 +103,16 @@
     color: #00ff41;
   }
 
-  .main-nav {
+  .nav-links {
     display: flex;
     align-items: center;
     gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  .nav-link {
+  .nav-links a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 1rem;
@@ -112,62 +120,11 @@
     position: relative;
   }
 
-  .nav-link:hover {
+  .nav-links a:hover {
     color: #00ff41;
   }
 
-  .cart-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .cart-count {
-    background: #00ff41;
-    color: #000;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    min-width: 20px;
-    text-align: center;
-  }
-
-  .nav-cta {
-    background: linear-gradient(135deg, #00ff41, #00cc33);
-    color: #000;
-    padding: 10px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
-  }
-
-  .nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 255, 65, 0.5);
-  }
-
-  .mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-  }
-
-  .mobile-menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background: #00ff41;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-    .account-icon {
+  .account-icon {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -182,26 +139,54 @@
     align-items: center;
     gap: 6px;
     padding: 8px 16px;
-    border: 1px solid rgba(0, 255, 65, 0.3);
     border-radius: 8px;
     transition: all 0.3s ease;
   }
   
   .login-btn:hover {
     background: rgba(0, 255, 65, 0.1);
-    border-color: #00ff41;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-btn span {
+    width: 25px;
+    height: 3px;
+    background: #00ff41;
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
   @media (max-width: 768px) {
-    .mobile-menu-toggle {
+    .mobile-menu-btn {
       display: flex;
     }
 
-    .main-nav {
+    .nav-links {
       display: none;
     }
   }
 </style>
+
+<script>
+  // Add scroll effect to navbar
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
 
 {% schema %}
 {

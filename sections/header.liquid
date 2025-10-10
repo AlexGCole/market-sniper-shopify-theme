@@ -93,7 +93,7 @@
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 10001;
     padding: 15px 0;
   }
 
@@ -104,6 +104,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 10001;
   }
 
   .logo {
@@ -115,7 +117,8 @@
     font-weight: 700;
     color: white;
     transition: opacity 0.3s ease;
-    z-index: 1001;
+    z-index: 10000;
+    position: relative;
   }
 
   .logo:hover {
@@ -191,7 +194,7 @@
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 1001;
+    z-index: 10000;
     position: relative;
   }
 

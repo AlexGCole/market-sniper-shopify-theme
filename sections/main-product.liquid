@@ -52,14 +52,6 @@
           </div>
         {% endif %}
 
-<!-- DEBUG START -->
-<div style="background: red; color: white; padding: 20px; margin: 20px 0;">
-  <p>Product Title: {{ product.title }}</p>
-  <p>Contains 'Bot': {% if product.title contains 'Bot' %}YES{% else %}NO{% endif %}</p>
-  <p>Contains 'bot': {% if product.title contains 'bot' %}YES{% else %}NO{% endif %}</p>
-</div>
-<!-- DEBUG END -->
-
         <!-- Plan Selector for Bot Suite Products -->
         {% if product.title contains 'Bot' or product.title contains 'bot' %}
           <div class="plan-selector">
@@ -90,31 +82,33 @@
         {% form 'product', product, id: 'product-form' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
           
-          <!-- Selling Plans (Subscriptions) -->
-          {% if product.selling_plan_groups.size > 0 %}
-            <div class="selling-plans">
-              <label>Purchase Options:</label>
-              {% for selling_plan_group in product.selling_plan_groups %}
-                {% for selling_plan in selling_plan_group.selling_plans %}
-                  <div class="selling-plan-option">
-                    <input 
-                      type="radio" 
-                      name="selling_plan" 
-                      value="{{ selling_plan.id }}" 
-                      id="plan-{{ selling_plan.id }}"
-                      {% if forloop.first %}checked{% endif %}
-                    >
-                    <label for="plan-{{ selling_plan.id }}">
-                      <strong>{{ selling_plan.name }}</strong>
-                      {% if selling_plan.description != blank %}
-                        <br><span style="font-size: 0.9rem; opacity: 0.8;">{{ selling_plan.description }}</span>
-                      {% endif %}
-                    </label>
-                  </div>
+          <!-- Selling Plans (Subscriptions) - Hidden for Bot products -->
+          {% unless product.title contains 'Bot' or product.title contains 'bot' %}
+            {% if product.selling_plan_groups.size > 0 %}
+              <div class="selling-plans">
+                <label>Purchase Options:</label>
+                {% for selling_plan_group in product.selling_plan_groups %}
+                  {% for selling_plan in selling_plan_group.selling_plans %}
+                    <div class="selling-plan-option">
+                      <input 
+                        type="radio" 
+                        name="selling_plan" 
+                        value="{{ selling_plan.id }}" 
+                        id="plan-{{ selling_plan.id }}"
+                        {% if forloop.first %}checked{% endif %}
+                      >
+                      <label for="plan-{{ selling_plan.id }}">
+                        <strong>{{ selling_plan.name }}</strong>
+                        {% if selling_plan.description != blank %}
+                          <br><span style="font-size: 0.9rem; opacity: 0.8;">{{ selling_plan.description }}</span>
+                        {% endif %}
+                      </label>
+                    </div>
+                  {% endfor %}
                 {% endfor %}
-              {% endfor %}
-            </div>
-          {% endif %}
+              </div>
+            {% endif %}
+          {% endunless %}
 
           <!-- Quantity -->
           <div class="quantity-selector">

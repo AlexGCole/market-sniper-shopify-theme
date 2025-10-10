@@ -41,23 +41,39 @@
 </section>
 
 <style>
-  /* Force hero section below mobile menu */
+  /* Force hero section below mobile menu - Nuclear option */
   @media (max-width: 968px) {
     .hero {
       z-index: 1 !important;
       isolation: isolate !important;
+      transform: none !important;
+      filter: none !important;
+      perspective: none !important;
+      will-change: auto !important;
     }
     
-    .hero * {
+    .hero *,
+    .hero-content,
+    .hero-badge,
+    .hero-title,
+    .hero-subtitle,
+    .hero-cta,
+    .hero-stats {
       z-index: 1 !important;
+      transform: none !important;
+      filter: none !important;
     }
     
     .hero-bg {
       z-index: 0 !important;
     }
     
-    .hero-content {
-      z-index: 1 !important;
+    /* Ensure body doesn't create stacking context */
+    body,
+    #shopify-section-template--* {
+      transform: none !important;
+      filter: none !important;
+      perspective: none !important;
     }
   }
 </style>

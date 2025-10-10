@@ -64,12 +64,12 @@ function initNavbarScroll() {
     
     const handleScroll = () => {
         if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(2, 6, 23, 0.95)';
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';  // Pure black
             navbar.style.backdropFilter = 'blur(10px)';
             navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.background = 'transparent';
-            navbar.style.backdropFilter = 'none';
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';  // Keep it black at top too
+            navbar.style.backdropFilter = 'blur(10px)';
             navbar.style.boxShadow = 'none';
         }
     };

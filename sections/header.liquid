@@ -3,7 +3,7 @@
   Site header with navigation
 {% endcomment %}
 
-<nav class="navbar">
+<nav class="navbar site-header">
   <div class="container">
     <a href="/" class="logo">
       <span class="logo-icon">
@@ -54,13 +54,15 @@
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 1000;
     padding: 15px 0;
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .site-header.scrolled {
+  .site-header.scrolled,
+  .navbar.scrolled {
     background: rgba(10, 10, 10, 0.95);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
   }
@@ -208,11 +210,13 @@
 <script>
   // Add scroll effect to navbar
   window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.site-header');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     }
   });
 </script>

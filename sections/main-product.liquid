@@ -431,6 +431,70 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+(function() {
+  const BOT_SUBSCRIPTION_MONTHLY = '7995703263412';
+  const BOT_SUBSCRIPTION_ANNUAL = '7995706015924';
+  const SETUP_FEE = '7995945418932';
+  
+  const currentVariantId = '{{ product.selected_or_first_available_variant.id }}';
+  
+  // If this is a bot subscription product
+  if (currentVariantId === BOT_SUBSCRIPTION_MONTHLY || currentVariantId === BOT_SUBSCRIPTION_ANNUAL) {
+    console.log('Bot subscription product detected');
+    
+    // Find all add to cart buttons
+    const addToCartButtons = document.querySelectorAll('[name="add"]');
+    
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        const form = button.closest('form');
+        if (form && form.getAttribute('action') === '/cart/add') {
+          e.preventDefault();
+          
+          const formData = new FormData(form);
+          const variantId = formData.get('id') || currentVariantId;
+          
+          console.log('Adding bot bundle...');
+          
+          // Add both items
+          fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: variantId,
+                  quantity: 1
+                },
+                {
+                  id: SETUP_FEE,
+                  quantity: 1,
+                  properties: {
+                    '_Bundle': 'Bot Plan Setup Fee'
+                  }
+                }
+              ]
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Bundle added successfully');
+            window.location.href = '/cart';
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Error adding to cart. Please try again.');
+          });
+        }
+      });
+    });
+  }
+})();
+</script>
+
 {% schema %}
 {
   "name": "Product Information",

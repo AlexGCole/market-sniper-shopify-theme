@@ -3,9 +3,9 @@
   Site header with navigation and mobile menu
 {% endcomment %}
 
-<nav class="navbar">
-  <div class="container">
-    <a href="/" class="logo">
+<nav class="navbar" style="z-index: 999999 !important; position: fixed !important;">
+  <div class="container" style="z-index: 999999 !important; position: relative !important;">
+    <a href="/" class="logo" style="z-index: 999999 !important; position: relative !important;">
       <span class="logo-icon">
         <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name }}">
       </span>
@@ -41,7 +41,7 @@
       {% endif %}
     </ul>
     
-    <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+    <button class="mobile-menu-btn" aria-label="Toggle mobile menu" style="z-index: 999999 !important; position: relative !important;">
       <span></span>
       <span></span>
       <span></span>
@@ -49,10 +49,10 @@
   </div>
 
   <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu-overlay"></div>
+  <div class="mobile-menu-overlay" style="z-index: 999997 !important; position: fixed !important;"></div>
   
   <!-- Mobile Menu -->
-  <div class="mobile-menu">
+  <div class="mobile-menu" style="z-index: 999998 !important; position: fixed !important;">
     <ul class="mobile-nav-links">
       <li><a href="/#features">Features</a></li>
       <li><a href="/#pricing">Plans</a></li>

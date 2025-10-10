@@ -299,6 +299,22 @@
     color: #ff6b6b !important;
   }
 
+  /* FORCE MOBILE MENU ABOVE EVERYTHING */
+  @media (max-width: 968px) {
+    body {
+      position: relative;
+    }
+    
+    /* Ensure all sections stay below mobile menu */
+    section,
+    .hero,
+    main,
+    #MainContent {
+      position: relative;
+      z-index: 1 !important;
+    }
+  }
+
   @media (max-width: 968px) {
     .nav-links {
       display: none;

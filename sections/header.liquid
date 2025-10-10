@@ -209,18 +209,34 @@
     background: #00ff41;
     border-radius: 2px;
     transition: all 0.3s ease;
+    transform: none !important;
+    opacity: 1 !important;
   }
 
+  /* Hamburger icon - default state */
+  .mobile-menu-btn:not(.active) span:nth-child(1) {
+    transform: none !important;
+  }
+
+  .mobile-menu-btn:not(.active) span:nth-child(2) {
+    opacity: 1 !important;
+  }
+
+  .mobile-menu-btn:not(.active) span:nth-child(3) {
+    transform: none !important;
+  }
+
+  /* X icon - active state */
   .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(6px, 6px) !important;
   }
 
   .mobile-menu-btn.active span:nth-child(2) {
-    opacity: 0;
+    opacity: 0 !important;
   }
 
   .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(6px, -6px) !important;
   }
 
   /* Mobile Menu Overlay - MAXIMUM z-index */
@@ -327,64 +343,56 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
 
-  // Close mobile menu
-  function closeMobileMenu() {
-    if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
-    if (mobileMenu) mobileMenu.classList.remove('active');
-    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  // Open mobile menu
-  function openMobileMenu() {
-    if (mobileMenuBtn) mobileMenuBtn.classList.add('active');
-    if (mobileMenu) mobileMenu.classList.add('active');
-    if (mobileMenuOverlay) mobileMenuOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
   // Toggle mobile menu
-  function toggleMobileMenu(e) {
-    if (e) e.preventDefault();
-    
-    const isOpen = mobileMenu && mobileMenu.classList.contains('active');
-    
-    if (isOpen) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
-    }
-  }
-
-  // Button click - toggle
   if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    mobileMenuBtn.addEventListener('click', function() {
+      const isActive = this.classList.contains('active');
+      
+      if (isActive) {
+        // Close
+        this.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      } else {
+        // Open
+        this.classList.add('active');
+        mobileMenu.classList.add('active');
+        mobileMenuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
   }
 
   // Close menu when overlay clicked
   if (mobileMenuOverlay) {
-    mobileMenuOverlay.addEventListener('click', function(e) {
-      e.preventDefault();
-      closeMobileMenu();
+    mobileMenuOverlay.addEventListener('click', function() {
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      this.classList.remove('active');
+      document.body.style.overflow = '';
     });
   }
 
   // Close menu when nav link clicked
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', function() {
-      closeMobileMenu();
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
     });
   });
 
   // Close menu on escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
-      closeMobileMenu();
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
-
-  // Force close on page load (safety check)
-  closeMobileMenu();
 });
 </script>
 

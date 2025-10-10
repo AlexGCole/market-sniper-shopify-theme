@@ -13,150 +13,154 @@
         {% else %}
           <div class="product-image-placeholder">
             <svg class="trend-line" viewBox="0 0 400 300" preserveAspectRatio="none">
-              <path d="M 0 280 Q 100 260 150 200 T 250 120 T 350 80" 
+              <!-- Green uptrend -->
+              <path d="M 0 280 Q 100 260 150 200 T 250 120 T 310 80" 
                     stroke="#00ff41" 
+                    stroke-width="2" 
+                    fill="none" 
+                    opacity="0.6"/>
+              <!-- Red downtrend -->
+              <path d="M 310 80 L 400 140" 
+                    stroke="#ff4444" 
                     stroke-width="2" 
                     fill="none" 
                     opacity="0.6"/>
             </svg>
             <div class="chart-container">
-              <div class="candlestick bearish" style="height: 25%;">
-                <div class="wick upper" style="height: 15px;"></div>
-                <div class="candle-body" style="height: 30px;"></div>
-                <div class="wick" style="height: 10px;"></div>
-              </div>
-              <div class="candlestick bearish" style="height: 28%;">
-                <div class="wick upper" style="height: 12px;"></div>
-                <div class="candle-body" style="height: 25px;"></div>
-                <div class="wick" style="height: 18px;"></div>
-              </div>
-              <div class="candlestick bullish" style="height: 35%;">
-                <div class="wick upper" style="height: 8px;"></div>
-                <div class="candle-body" style="height: 50px;"></div>
-                <div class="wick" style="height: 12px;"></div>
-                <div class="signal buy">Buy</div>
-                <div class="star-marker" style="bottom: -15px; left: 50%; transform: translateX(-50%);">✱</div>
-              </div>
-              <div class="candlestick bullish" style="height: 42%;">
-                <div class="wick upper" style="height: 10px;"></div>
-                <div class="candle-body" style="height: 45px;"></div>
+              <div class="candlestick bearish">
                 <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 20px;"></div>
+                <div class="wick" style="height: 6px;"></div>
               </div>
-              <div class="candlestick bullish" style="height: 48%;">
-                <div class="wick upper" style="height: 15px;"></div>
-                <div class="candle-body" style="height: 55px;"></div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 6px;"></div>
+                <div class="candle-body" style="height: 18px;"></div>
                 <div class="wick" style="height: 10px;"></div>
               </div>
-              <div class="candlestick bullish" style="height: 52%;">
-                <div class="wick upper" style="height: 12px;"></div>
-                <div class="candle-body" style="height: 48px;"></div>
-                <div class="wick" style="height: 15px;"></div>
-              </div>
-              <div class="candlestick special-orange" style="height: 58%;">
-                <div class="wick upper" style="height: 8px;"></div>
-                <div class="candle-body" style="height: 70px;"></div>
+              <div class="candlestick bullish">
                 <div class="wick" style="height: 5px;"></div>
-                <div class="star-marker" style="top: -20px; left: 50%; transform: translateX(-50%);">✱</div>
+                <div class="candle-body" style="height: 35px;"></div>
+                <div class="wick" style="height: 8px;"></div>
+                <div class="signal buy">Buy</div>
               </div>
-              <div class="candlestick bullish" style="height: 60%;">
-                <div class="wick upper" style="height: 10px;"></div>
-                <div class="candle-body" style="height: 45px;"></div>
-                <div class="wick" style="height: 12px;"></div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 30px;"></div>
+                <div class="wick" style="height: 5px;"></div>
               </div>
-              <div class="candlestick bullish" style="height: 62%;">
-                <div class="wick upper" style="height: 18px;"></div>
-                <div class="candle-body" style="height: 40px;"></div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 10px;"></div>
+                <div class="candle-body" style="height: 38px;"></div>
+                <div class="wick" style="height: 6px;"></div>
+              </div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 32px;"></div>
                 <div class="wick" style="height: 10px;"></div>
               </div>
-              <div class="candlestick bearish" style="height: 64%;">
-                <div class="wick upper" style="height: 8px;"></div>
-                <div class="candle-body" style="height: 35px;"></div>
-                <div class="wick" style="height: 15px;"></div>
+              <div class="candlestick special-orange">
+                <div class="wick" style="height: 5px;"></div>
+                <div class="candle-body" style="height: 48px;"></div>
+                <div class="wick" style="height: 4px;"></div>
               </div>
-              <div class="candlestick special-orange" style="height: 68%;">
-                <div class="wick upper" style="height: 12px;"></div>
-                <div class="candle-body" style="height: 42px;"></div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 6px;"></div>
+                <div class="candle-body" style="height: 30px;"></div>
                 <div class="wick" style="height: 8px;"></div>
               </div>
-              <div class="candlestick bullish" style="height: 70%;">
-                <div class="wick upper" style="height: 15px;"></div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 12px;"></div>
+                <div class="candle-body" style="height: 28px;"></div>
+                <div class="wick" style="height: 6px;"></div>
+              </div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 5px;"></div>
+                <div class="candle-body" style="height: 24px;"></div>
+                <div class="wick" style="height: 10px;"></div>
+              </div>
+              <div class="candlestick special-orange">
+                <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 28px;"></div>
+                <div class="wick" style="height: 5px;"></div>
+              </div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 10px;"></div>
+                <div class="candle-body" style="height: 26px;"></div>
+                <div class="wick" style="height: 6px;"></div>
+              </div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 6px;"></div>
+                <div class="candle-body" style="height: 28px;"></div>
+                <div class="wick" style="height: 8px;"></div>
+              </div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 5px;"></div>
                 <div class="candle-body" style="height: 38px;"></div>
                 <div class="wick" style="height: 10px;"></div>
               </div>
-              <div class="candlestick bearish" style="height: 72%;">
-                <div class="wick upper" style="height: 10px;"></div>
-                <div class="candle-body" style="height: 40px;"></div>
-                <div class="wick" style="height: 12px;"></div>
-              </div>
-              <div class="candlestick bullish" style="height: 75%;">
-                <div class="wick upper" style="height: 8px;"></div>
-                <div class="candle-body" style="height: 55px;"></div>
-                <div class="wick" style="height: 15px;"></div>
-              </div>
-              <div class="candlestick bullish" style="height: 78%;">
-                <div class="wick upper" style="height: 12px;"></div>
-                <div class="candle-body" style="height: 48px;"></div>
-                <div class="wick" style="height: 10px;"></div>
-                <div class="r-marker" style="top: -20px; left: 50%; transform: translateX(-50%);">R</div>
-              </div>
-              <div class="candlestick bullish" style="height: 82%;">
-                <div class="wick upper" style="height: 10px;"></div>
-                <div class="candle-body" style="height: 52px;"></div>
+              <div class="candlestick bullish">
                 <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 32px;"></div>
+                <div class="wick" style="height: 6px;"></div>
+                <div class="r-marker" style="top: -15px; left: 50%; transform: translateX(-50%);">R</div>
               </div>
-              <div class="candlestick bullish" style="height: 85%;">
-                <div class="wick upper" style="height: 15px;"></div>
-                <div class="candle-body" style="height: 45px;"></div>
-                <div class="wick" style="height: 12px;"></div>
-                <div class="r-marker" style="top: -20px; left: 50%; transform: translateX(-50%);">R</div>
-                <div class="star-marker" style="top: -38px; left: 50%; transform: translateX(-50%);">✱</div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 6px;"></div>
+                <div class="candle-body" style="height: 36px;"></div>
+                <div class="wick" style="height: 5px;"></div>
               </div>
-              <div class="candlestick bearish" style="height: 88%;">
-                <div class="wick upper" style="height: 8px;"></div>
-                <div class="candle-body" style="height: 60px;"></div>
+              <div class="candlestick bullish">
                 <div class="wick" style="height: 10px;"></div>
+                <div class="candle-body" style="height: 30px;"></div>
+                <div class="wick" style="height: 8px;"></div>
+                <div class="r-marker" style="top: -15px; left: 50%; transform: translateX(-50%);">R</div>
               </div>
-              <div class="candlestick bearish" style="height: 80%;">
-                <div class="wick upper" style="height: 12px;"></div>
-                <div class="candle-body" style="height: 55px;"></div>
-                <div class="wick" style="height: 15px;"></div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 5px;"></div>
+                <div class="candle-body" style="height: 42px;"></div>
+                <div class="wick" style="height: 6px;"></div>
+              </div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 38px;"></div>
+                <div class="wick" style="height: 10px;"></div>
                 <div class="signal sell">Sell</div>
               </div>
-              <div class="candlestick bearish" style="height: 72%;">
-                <div class="wick upper" style="height: 10px;"></div>
-                <div class="candle-body" style="height: 48px;"></div>
-                <div class="wick" style="height: 12px;"></div>
-              </div>
-              <div class="candlestick bearish" style="height: 68%;">
-                <div class="wick upper" style="height: 15px;"></div>
-                <div class="candle-body" style="height: 42px;"></div>
-                <div class="wick" style="height: 18px;"></div>
-              </div>
-              <div class="candlestick bearish" style="height: 65%;">
-                <div class="wick upper" style="height: 8px;"></div>
-                <div class="candle-body" style="height: 38px;"></div>
-                <div class="wick" style="height: 10px;"></div>
-              </div>
-              <div class="candlestick bearish" style="height: 62%;">
-                <div class="wick upper" style="height: 12px;"></div>
-                <div class="candle-body" style="height: 35px;"></div>
-                <div class="wick" style="height: 15px;"></div>
-              </div>
-              <div class="candlestick bullish" style="height: 68%;">
-                <div class="wick upper" style="height: 10px;"></div>
-                <div class="candle-body" style="height: 50px;"></div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 6px;"></div>
+                <div class="candle-body" style="height: 32px;"></div>
                 <div class="wick" style="height: 8px;"></div>
               </div>
-              <div class="candlestick bullish" style="height: 72%;">
-                <div class="wick upper" style="height: 8px;"></div>
-                <div class="candle-body" style="height: 55px;"></div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 10px;"></div>
+                <div class="candle-body" style="height: 28px;"></div>
                 <div class="wick" style="height: 12px;"></div>
+              </div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 5px;"></div>
+                <div class="candle-body" style="height: 26px;"></div>
+                <div class="wick" style="height: 6px;"></div>
+              </div>
+              <div class="candlestick bearish">
+                <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 24px;"></div>
+                <div class="wick" style="height: 10px;"></div>
+              </div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 6px;"></div>
+                <div class="candle-body" style="height: 35px;"></div>
+                <div class="wick" style="height: 5px;"></div>
+              </div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 5px;"></div>
+                <div class="candle-body" style="height: 38px;"></div>
+                <div class="wick" style="height: 8px;"></div>
                 <div class="signal buy">Buy</div>
               </div>
-              <div class="candlestick bullish" style="height: 75%;">
-                <div class="wick upper" style="height: 12px;"></div>
-                <div class="candle-body" style="height: 48px;"></div>
-                <div class="wick" style="height: 10px;"></div>
+              <div class="candlestick bullish">
+                <div class="wick" style="height: 8px;"></div>
+                <div class="candle-body" style="height: 32px;"></div>
+                <div class="wick" style="height: 6px;"></div>
               </div>
             </div>
           </div>
@@ -192,7 +196,7 @@
             <ul class="feature-list">
               <li>✓ Private Discord Access</li>
               <li>✓ Private Sniper Bot Discussion Channel</li>
-              <li>✓ Automated Trading Bot</li>
+              <li>✓ Automated Bot</li>
               <li>✓ Bot Configuration & Setup</li>
               <li>✓ Ongoing Bot Optimization</li>
               <li>✓ Priority Bot Support</li>
@@ -320,24 +324,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    min-height: 50px;
   }
 
   .wick {
     width: 2px;
     background: currentColor;
-    position: absolute;
-    bottom: 0;
-  }
-
-  .wick.upper {
-    bottom: auto;
-    top: 0;
   }
 
   .candle-body {
     width: 100%;
-    max-width: 16px;
+    max-width: 12px;
     border-radius: 2px;
     position: relative;
     z-index: 2;
@@ -422,10 +419,7 @@
 
   /* Star markers */
   .star-marker {
-    position: absolute;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
-    z-index: 5;
+    display: none;
   }
 
   .product-info {

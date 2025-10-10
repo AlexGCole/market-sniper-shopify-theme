@@ -560,36 +560,54 @@ document.addEventListener('DOMContentLoaded', function() {
       if (isBotProduct) {
         console.log('🤖 Bot product detected - adding bundle (subscription + setup fee)');
         
-        // Add BOTH items as a bundle
+        // Get selling plan if exists
+        const sellingPlanInput = document.querySelector('input[name="selling_plan"]:checked');
+        const sellingPlan = sellingPlanInput ? sellingPlanInput.value : null;
+        
+        console.log('Selling plan:', sellingPlan);
+        
+        // First, add the bot subscription using the regular form data
         fetch('/cart/add.js', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            items: [
-              {
-                id: variantId,
-                quantity: 1
-              },
-              {
-                id: SETUP_FEE,
-                quantity: 1,
-                properties: {
-                  '_Bundle': 'Bot Plan Setup Fee'
-                }
-              }
-            ]
-          })
+          body: formData
         })
         .then(response => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Failed to add bot subscription');
           }
           return response.json();
         })
         .then(data => {
-          console.log('✅ Bundle added successfully:', data);
+          console.log('✅ Bot subscription added:', data);
+          
+          // Now add the setup fee
+          return fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: SETUP_FEE,
+                  quantity: 1,
+                  properties: {
+                    '_Bundle': 'Bot Plan Setup Fee'
+                  }
+                }
+              ]
+            })
+          });
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to add setup fee');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('✅ Setup fee added:', data);
+          console.log('✅ Bundle complete!');
           
           // Success!
           btnText.textContent = '✓ Added to Cart!';

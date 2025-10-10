@@ -52,6 +52,14 @@
           </div>
         {% endif %}
 
+<!-- DEBUG START -->
+<div style="background: red; color: white; padding: 20px; margin: 20px 0;">
+  <p>Product Title: {{ product.title }}</p>
+  <p>Contains 'Bot': {% if product.title contains 'Bot' %}YES{% else %}NO{% endif %}</p>
+  <p>Contains 'bot': {% if product.title contains 'bot' %}YES{% else %}NO{% endif %}</p>
+</div>
+<!-- DEBUG END -->
+
         <!-- Plan Selector for Bot Suite Products -->
         {% if product.title contains 'Bot' or product.title contains 'bot' %}
           <div class="plan-selector">

@@ -243,13 +243,13 @@
         "bot-header": {
           "type": "pricing_header",
           "settings": {
-            "header_text": "Automated Trading"
+            "header_text": "Bot Suite"
           }
         },
         "pricing-3": {
           "type": "pricing_plan",
           "settings": {
-            "plan_name": "Bot Suite Monthly",
+            "plan_name": "Monthly",
             "price": "49",
             "period": "mo",
             "setup_fee": "249",
@@ -263,7 +263,7 @@
         "pricing-4": {
           "type": "pricing_plan",
           "settings": {
-            "plan_name": "Bot Suite Annual",
+            "plan_name": "Annual",
             "price": "490",
             "period": "yr",
             "setup_fee": "249",

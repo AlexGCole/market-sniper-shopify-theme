@@ -1,6 +1,6 @@
 {% comment %}
   sections/pricing.liquid
-  Pricing section with green theme
+  Pricing section with green theme and auto-bundle support
 {% endcomment %}
 
 <section class="pricing-section" id="pricing">
@@ -54,14 +54,33 @@
               {% endfor %}
             </ul>
 
-            {% if block.settings.button_link != blank %}
+            {% if block.settings.subscription_product != blank and block.settings.setup_fee_product != blank %}
+              {%- comment -%} Bot Plan with bundle - get variant IDs from products {%- endcomment -%}
+              {% assign subscription = all_products[block.settings.subscription_product] %}
+              {% assign setup_fee = all_products[block.settings.setup_fee_product] %}
+              
+              {% if subscription != blank and setup_fee != blank %}
+                <button 
+                  type="button" 
+                  class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}"
+                  onclick="addBundleToCart('{{ subscription.selected_or_first_available_variant.id }}', '{{ setup_fee.selected_or_first_available_variant.id }}')"
+                >
+                  {{ block.settings.button_text }}
+                </button>
+              {% else %}
+                <button class="cta-button secondary" onclick="alert('Product not found. Check theme settings.'); return false;">
+                  {{ block.settings.button_text }}
+                </button>
+              {% endif %}
+            {% elsif block.settings.button_link != blank %}
+              {%- comment -%} Regular plans with just a link {%- endcomment -%}
               <a href="{{ block.settings.button_link }}" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
                 {{ block.settings.button_text }}
               </a>
             {% else %}
-              <a href="#" class="cta-button secondary" onclick="alert('Please configure product link'); return false;">
+              <button class="cta-button secondary" onclick="alert('Please add a link or select products in theme settings'); return false;">
                 {{ block.settings.button_text }}
-              </a>
+              </button>
             {% endif %}
           </div>
         {% endif %}
@@ -302,6 +321,11 @@
     transform: scale(1.05);
   }
 
+  .cta-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   @media (max-width: 768px) {
     .pricing-card {
       flex: 1 1 100%;
@@ -325,6 +349,54 @@
     }
   }
 </style>
+
+<script>
+function addBundleToCart(subscriptionVariantId, setupFeeVariantId) {
+  const button = event.target;
+  const originalText = button.textContent;
+  
+  // Show loading state
+  button.disabled = true;
+  button.textContent = 'Adding to cart...';
+  
+  // Add both items to cart
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      items: [
+        {
+          id: subscriptionVariantId,
+          quantity: 1
+        },
+        {
+          id: setupFeeVariantId,
+          quantity: 1
+        }
+      ]
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to add to cart');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Success - redirect to checkout
+    window.location.href = '/checkout';
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    alert('There was an error adding items to cart. Please try again.');
+    // Reset button
+    button.disabled = false;
+    button.textContent = originalText;
+  });
+}
+</script>
 
 {% schema %}
 {
@@ -382,8 +454,8 @@
         {
           "type": "text",
           "id": "setup_fee",
-          "label": "One-time Setup Fee (optional, numbers only)",
-          "info": "Leave blank or 0 for no setup fee"
+          "label": "One-time Setup Fee Display (numbers only)",
+          "info": "Leave blank or 0 for no setup fee. This is for DISPLAY only."
         },
         {
           "type": "text",
@@ -404,16 +476,36 @@
           "default": "✓ Feature 1\n✓ Feature 2\n✓ Feature 3"
         },
         {
+          "type": "header",
+          "content": "For Regular Plans (Monthly/Yearly Coaching)"
+        },
+        {
           "type": "url",
           "id": "button_link",
-          "label": "Product Page Link",
-          "info": "e.g., /products/your-product-handle"
+          "label": "Checkout Link",
+          "info": "Use your Stripe link or product page URL"
+        },
+        {
+          "type": "header",
+          "content": "For Bot Plan (Auto-Bundle)"
+        },
+        {
+          "type": "product",
+          "id": "subscription_product",
+          "label": "Subscription Product",
+          "info": "Select the Bot Plan subscription product ($49/mo)"
+        },
+        {
+          "type": "product",
+          "id": "setup_fee_product",
+          "label": "Setup Fee Product",
+          "info": "Select trading-bot-suite-setup ($249)"
         },
         {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
-          "default": "Buy Now"
+          "default": "Get Started"
         }
       ]
     }

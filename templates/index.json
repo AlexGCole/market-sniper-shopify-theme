@@ -229,7 +229,7 @@
         "pricing-2": {
           "type": "pricing_plan",
           "settings": {
-            "plan_name": "Yearly",
+            "plan_name": "Annual",
             "price": "660",
             "period": "yr",
             "setup_fee": "",

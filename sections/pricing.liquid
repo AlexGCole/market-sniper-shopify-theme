@@ -6,66 +6,106 @@
 <section class="pricing-section" id="pricing">
   <div class="container">
     <div class="section-header">
-      <h2>{{ section.settings.section_title }}</h2>
-      <p>{{ section.settings.section_subtitle }}</p>
+      <h2>Choose Your Plan</h2>
+      <p>Flexible pricing options to match your trading needs</p>
     </div>
 
     <div class="pricing-wrapper">
-      {% for block in section.blocks %}
-        {% if block.type == 'pricing_header' %}
-          <div class="pricing-category-header" {{ block.shopify_attributes }}>
-            <h3 class="category-title">{{ block.settings.header_text }}</h3>
-            <div class="category-divider"></div>
+      
+      <!-- COACHING PLANS HEADER -->
+      <div class="pricing-category-header">
+        <h3 class="category-title">Coaching Plans</h3>
+        <div class="category-divider"></div>
+      </div>
+
+      <!-- MONTHLY COACHING -->
+      <div class="pricing-card">
+        <div class="plan-header">
+          <h3 class="plan-name">Monthly</h3>
+          <div class="plan-price">
+            <span class="price-amount">$79</span>
+            <span class="price-period">/mo</span>
           </div>
-        {% endif %}
+        </div>
 
-        {% if block.type == 'pricing_plan' %}
-          <div class="pricing-card {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
-            {% if block.settings.is_popular %}
-              <span class="popular-badge">Most Popular</span>
-            {% endif %}
-            
-            <div class="plan-header">
-              <h3 class="plan-name">{{ block.settings.plan_name }}</h3>
-              
-              {% if block.settings.setup_fee != blank and block.settings.setup_fee != '0' %}
-                <div class="setup-fee-badge">
-                  <span class="fee-amount">${{ block.settings.setup_fee }}</span>
-                  <span class="fee-label">one-time setup</span>
-                </div>
-              {% endif %}
-              
-              <div class="plan-price">
-                <span class="price-amount">${{ block.settings.price }}</span>
-                <span class="price-period">/{{ block.settings.period }}</span>
-              </div>
-              
-              {% if block.settings.savings_text != blank %}
-                <div class="savings-badge">{{ block.settings.savings_text }}</div>
-              {% endif %}
-            </div>
+        <ul class="feature-list">
+          <li>✓ Private Discord Access</li>
+          <li>✓ Sharp Shooter Candles 3.1</li>
+          <li>✓ Sharp Shooter RSI 2.0</li>
+          <li>✓ Sniper Bot Alerts</li>
+          <li>✓ 60+ Hours Coaching Videos</li>
+          <li>✓ Private Discussion Group</li>
+        </ul>
 
-            <ul class="feature-list">
-              {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
-              {% for feature in features %}
-                {% if feature != blank %}
-                  <li>{{ feature }}</li>
-                {% endif %}
-              {% endfor %}
-            </ul>
+        <a href="https://buy.stripe.com/3csbJB8HF6YI6EU14d" class="cta-button secondary">
+          Get Started
+        </a>
+      </div>
 
-            {% if block.settings.button_link != blank %}
-              <a href="{{ block.settings.button_link }}" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
-                {{ block.settings.button_text }}
-              </a>
-            {% else %}
-              <button class="cta-button secondary" onclick="alert('Please add a link in theme settings'); return false;">
-                {{ block.settings.button_text }}
-              </button>
-            {% endif %}
+      <!-- YEARLY COACHING -->
+      <div class="pricing-card featured">
+        <span class="popular-badge">Most Popular</span>
+        
+        <div class="plan-header">
+          <h3 class="plan-name">Yearly</h3>
+          <div class="plan-price">
+            <span class="price-amount">$660</span>
+            <span class="price-period">/yr</span>
           </div>
-        {% endif %}
-      {% endfor %}
+          <div class="savings-badge">Save 30%</div>
+        </div>
+
+        <ul class="feature-list">
+          <li>✓ Private Discord Access</li>
+          <li>✓ Sharp Shooter Candles 3.1</li>
+          <li>✓ Sharp Shooter RSI 2.0</li>
+          <li>✓ Sniper Bot Alerts</li>
+          <li>✓ 60+ Hours Coaching Videos</li>
+          <li>✓ Private Discussion Group</li>
+          <li>✓ Priority Support</li>
+        </ul>
+
+        <a href="https://buy.stripe.com/9AQaFx0b9beY3sI28q" class="cta-button primary">
+          Get Started
+        </a>
+      </div>
+
+      <!-- AUTOMATED TRADING HEADER -->
+      <div class="pricing-category-header">
+        <h3 class="category-title">Automated Trading</h3>
+        <div class="category-divider"></div>
+      </div>
+
+      <!-- BOT PLAN MONTHLY -->
+      <div class="pricing-card">
+        <div class="plan-header">
+          <h3 class="plan-name">Bot Plan</h3>
+          
+          <div class="setup-fee-badge">
+            <span class="fee-amount">$249</span>
+            <span class="fee-label">one-time setup</span>
+          </div>
+          
+          <div class="plan-price">
+            <span class="price-amount">$49</span>
+            <span class="price-period">/mo</span>
+          </div>
+        </div>
+
+        <ul class="feature-list">
+          <li>✓ Private Discord Access</li>
+          <li>✓ Private Sniper Bot Discussion Channel</li>
+          <li>✓ Automated Trading Bot</li>
+          <li>✓ Bot Configuration & Setup</li>
+          <li>✓ Ongoing Bot Optimization</li>
+          <li>✓ Priority Bot Support</li>
+        </ul>
+
+        <a href="/products/trading-bot-suite-49" class="cta-button secondary">
+          Get Started
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -329,107 +369,6 @@
 {% schema %}
 {
   "name": "Pricing Section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
-      "default": "Choose Your Plan"
-    },
-    {
-      "type": "text",
-      "id": "section_subtitle",
-      "label": "Section Subtitle",
-      "default": "Flexible pricing options"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "pricing_header",
-      "name": "Section Header",
-      "settings": [
-        {
-          "type": "text",
-          "id": "header_text",
-          "label": "Header Text",
-          "default": "Coaching Plans"
-        }
-      ]
-    },
-    {
-      "type": "pricing_plan",
-      "name": "Pricing Plan",
-      "settings": [
-        {
-          "type": "text",
-          "id": "plan_name",
-          "label": "Plan Name",
-          "default": "Monthly"
-        },
-        {
-          "type": "text",
-          "id": "price",
-          "label": "Price (numbers only)",
-          "default": "79"
-        },
-        {
-          "type": "text",
-          "id": "period",
-          "label": "Period",
-          "default": "mo",
-          "info": "e.g., mo, yr"
-        },
-        {
-          "type": "text",
-          "id": "setup_fee",
-          "label": "One-time Setup Fee (optional, numbers only)",
-          "info": "Leave blank or 0 for no setup fee"
-        },
-        {
-          "type": "text",
-          "id": "savings_text",
-          "label": "Savings Text (optional)",
-          "info": "e.g., Save $98"
-        },
-        {
-          "type": "checkbox",
-          "id": "is_popular",
-          "label": "Mark as Most Popular",
-          "default": false
-        },
-        {
-          "type": "textarea",
-          "id": "features",
-          "label": "Features (one per line)",
-          "default": "✓ Feature 1\n✓ Feature 2\n✓ Feature 3"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Product Page Link or Checkout URL",
-          "info": "Link to product page, Stripe checkout, or cart URL"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "Get Started"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Pricing",
-      "blocks": [
-        {
-          "type": "pricing_header"
-        },
-        {
-          "type": "pricing_plan"
-        }
-      ]
-    }
-  ]
+  "settings": []
 }
 {% endschema %}

@@ -14,8 +14,6 @@
         "hero_subtitle": "Advanced indicators, automated alerts, and expert coaching to elevate your trading game",
         "primary_button_text": "Start Trading Smarter",
         "primary_button_link": "#pricing",
-        "secondary_button_text": "Watch Demo",
-        "secondary_button_link": "#",
         "show_stats": true
       }
     },
@@ -65,7 +63,7 @@
           "settings": {
             "icon": "📈",
             "title": "Advanced Indicators",
-            "description": "Sharp Shooter Candles 3.1 and RSI 2.0 with precise buy/sell signals"
+            "description": "Sharp Shooter Candles 4.2 and RSI 2.0 with precise buy/sell signals"
           }
         },
         "feature-2": {
@@ -128,7 +126,7 @@
         "indicator-1": {
           "type": "indicator",
           "settings": {
-            "version": "Version 3.1",
+            "version": "Version 4.2",
             "title": "Sharp Shooter Candles",
             "description": "Revolutionary candlestick indicator that identifies high-probability setups with precise entry and exit points.",
             "features": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Bearish/Bullish Crossover\n✓ MACD Above/Below Zero Line\n✓ Trending Dots\n✓ Multiple Customization Options",

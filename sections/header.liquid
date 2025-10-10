@@ -87,25 +87,26 @@
 </nav>
 
 <style>
+  /* CRITICAL: Override layout.css navbar z-index */
   .navbar {
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 10001;
-    padding: 15px 0;
+    background: rgba(10, 10, 10, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 99999 !important;
+    padding: 15px 0 !important;
   }
 
   .navbar .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 10001;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    position: relative !important;
+    z-index: 99999 !important;
   }
 
   .logo {
@@ -117,7 +118,7 @@
     font-weight: 700;
     color: white;
     transition: opacity 0.3s ease;
-    z-index: 10000;
+    z-index: 99999 !important;
     position: relative;
   }
 
@@ -194,7 +195,7 @@
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 10000;
+    z-index: 99999 !important;
     position: relative;
   }
 
@@ -227,7 +228,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
-    z-index: 9998;
+    z-index: 99997 !important;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -246,7 +247,7 @@
     height: 100%;
     background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
     border-left: 1px solid rgba(0, 255, 65, 0.2);
-    z-index: 9999;
+    z-index: 99998 !important;
     padding: 80px 30px 30px;
     transition: right 0.3s ease;
     overflow-y: auto;

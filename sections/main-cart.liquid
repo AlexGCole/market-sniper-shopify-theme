@@ -414,91 +414,92 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 (function() {
-  // Variant IDs
-  const BOT_SUBSCRIPTION_MONTHLY = '7995703263412';
-  const BOT_SUBSCRIPTION_ANNUAL = '7995706015924';
-  const SETUP_FEE = '7995945418932';
+  console.log('Bot bundle script loaded');
   
-  // Function to check and update cart
-  function checkAndAddSetupFee() {
+  // Variant IDs - Updated with your actual IDs
+  const BOT_MONTHLY = 7995703263412;
+  const BOT_ANNUAL = 7995706015924;
+  const SETUP_FEE = 7995945418932;
+  
+  function addSetupFee() {
+    console.log('Attempting to add setup fee...');
+    
+    return fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: [{ id: SETUP_FEE, quantity: 1 }]
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      console.log('Setup fee added successfully');
+      window.location.reload();
+    })
+    .catch(err => console.error('Error adding setup fee:', err));
+  }
+  
+  function removeSetupFee(itemKey) {
+    console.log('Removing setup fee...');
+    
+    return fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: itemKey, quantity: 0 })
+    })
+    .then(r => r.json())
+    .then(() => {
+      console.log('Setup fee removed');
+      window.location.reload();
+    })
+    .catch(err => console.error('Error removing setup fee:', err));
+  }
+  
+  function checkCart() {
+    console.log('Checking cart...');
+    
     fetch('/cart.js')
-      .then(response => response.json())
+      .then(r => r.json())
       .then(cart => {
-        console.log('Cart check - items:', cart.items.length);
+        console.log('Cart has', cart.items.length, 'items');
         
-        // Check if any bot subscription is in cart
-        const hasBotMonthly = cart.items.some(item => item.variant_id.toString() === BOT_SUBSCRIPTION_MONTHLY);
-        const hasBotAnnual = cart.items.some(item => item.variant_id.toString() === BOT_SUBSCRIPTION_ANNUAL);
-        const hasSetupFee = cart.items.some(item => item.variant_id.toString() === SETUP_FEE);
+        // Log each item for debugging
+        cart.items.forEach(item => {
+          console.log('- Item:', item.product_title, 'Variant ID:', item.variant_id);
+        });
         
-        console.log('Has Monthly:', hasBotMonthly, 'Has Annual:', hasBotAnnual, 'Has Setup:', hasSetupFee);
+        const hasBotMonthly = cart.items.some(item => item.variant_id === BOT_MONTHLY);
+        const hasBotAnnual = cart.items.some(item => item.variant_id === BOT_ANNUAL);
+        const setupFeeItem = cart.items.find(item => item.variant_id === SETUP_FEE);
+        const hasSetupFee = !!setupFeeItem;
         
-        // If bot subscription exists but setup fee doesn't, add it
-        if ((hasBotMonthly || hasBotAnnual) && !hasSetupFee) {
-          console.log('Adding setup fee...');
-          
-          fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              items: [{
-                id: SETUP_FEE,
-                quantity: 1,
-                properties: {
-                  '_Bundle': 'Bot Plan Setup Fee'
-                }
-              }]
-            })
-          })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Setup fee added');
-            location.reload();
-          })
-          .catch(error => {
-            console.error('Error adding setup fee:', error);
-          });
-        }
+        console.log('Bot Monthly:', hasBotMonthly);
+        console.log('Bot Annual:', hasBotAnnual);
+        console.log('Setup Fee:', hasSetupFee);
         
-        // If setup fee exists but no bot subscription, remove it
-        if (hasSetupFee && !hasBotMonthly && !hasBotAnnual) {
-          console.log('Removing orphaned setup fee...');
-          
-          const setupFeeItem = cart.items.find(item => item.variant_id.toString() === SETUP_FEE);
-          if (setupFeeItem) {
-            fetch('/cart/change.js', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                id: setupFeeItem.key,
-                quantity: 0
-              })
-            })
-            .then(() => {
-              console.log('Setup fee removed');
-              location.reload();
-            });
-          }
+        const hasBotSubscription = hasBotMonthly || hasBotAnnual;
+        
+        if (hasBotSubscription && !hasSetupFee) {
+          console.log('✅ Bot subscription found, setup fee missing - adding now');
+          addSetupFee();
+        } else if (!hasBotSubscription && hasSetupFee) {
+          console.log('❌ Setup fee found but no bot subscription - removing');
+          removeSetupFee(setupFeeItem.key);
+        } else if (hasBotSubscription && hasSetupFee) {
+          console.log('✅ Bundle complete - both items in cart');
+        } else {
+          console.log('ℹ️ No bot subscription in cart');
         }
       })
-      .catch(error => {
-        console.error('Error checking cart:', error);
-      });
+      .catch(err => console.error('Error checking cart:', err));
   }
   
   // Run on page load
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkAndAddSetupFee);
+    document.addEventListener('DOMContentLoaded', checkCart);
   } else {
-    checkAndAddSetupFee();
+    checkCart();
   }
-  
-  // Also listen for cart updates
-  document.addEventListener('cart:updated', checkAndAddSetupFee);
 })();
 </script>
 

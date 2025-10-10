@@ -249,3 +249,32 @@ section {
         min-height: 90vh;
     }
 }
+
+/* Mobile Menu Override - ADD THIS TO THE BOTTOM OF layout.css */
+@media (max-width: 968px) {
+  .navbar {
+    z-index: 99999 !important;
+  }
+  
+  .navbar .container {
+    z-index: 99999 !important;
+  }
+  
+  .mobile-menu-btn {
+    z-index: 99999 !important;
+    position: relative !important;
+  }
+  
+  .mobile-menu-overlay {
+    z-index: 99997 !important;
+  }
+  
+  .mobile-menu {
+    z-index: 99998 !important;
+  }
+  
+  .logo {
+    z-index: 99999 !important;
+    position: relative !important;
+  }
+}

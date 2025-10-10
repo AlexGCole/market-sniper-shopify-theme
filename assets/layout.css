@@ -249,3 +249,44 @@ section {
         min-height: 90vh;
     }
 }
+
+/* Mobile Menu Fix - MUST BE AT THE BOTTOM */
+@media (max-width: 968px) {
+  /* Lower the hero section */
+  .hero {
+    z-index: 1 !important;
+    position: relative !important;
+  }
+  
+  .hero-content {
+    z-index: 1 !important;
+  }
+  
+  .hero-bg {
+    z-index: 0 !important;
+  }
+  
+  /* Raise mobile menu components */
+  .mobile-menu-overlay {
+    z-index: 99998 !important;
+    position: fixed !important;
+  }
+  
+  .mobile-menu {
+    z-index: 99999 !important;
+    position: fixed !important;
+  }
+  
+  .navbar {
+    z-index: 100000 !important;
+    position: fixed !important;
+  }
+  
+  .mobile-menu-btn {
+    z-index: 100001 !important;
+  }
+  
+  .logo {
+    z-index: 100001 !important;
+  }
+}

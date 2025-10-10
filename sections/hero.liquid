@@ -41,40 +41,10 @@
 </section>
 
 <style>
-  /* Force hero section below mobile menu - Nuclear option */
-  @media (max-width: 968px) {
-    .hero {
-      z-index: 1 !important;
-      isolation: isolate !important;
-      transform: none !important;
-      filter: none !important;
-      perspective: none !important;
-      will-change: auto !important;
-    }
-    
-    .hero *,
-    .hero-content,
-    .hero-badge,
-    .hero-title,
-    .hero-subtitle,
-    .hero-cta,
-    .hero-stats {
-      z-index: 1 !important;
-      transform: none !important;
-      filter: none !important;
-    }
-    
-    .hero-bg {
-      z-index: 0 !important;
-    }
-    
-    /* Ensure body doesn't create stacking context */
-    body,
-    #shopify-section-template--* {
-      transform: none !important;
-      filter: none !important;
-      perspective: none !important;
-    }
+  /* Hero section should stay below fixed navigation */
+  .hero {
+    position: relative;
+    z-index: 1;
   }
 </style>
 

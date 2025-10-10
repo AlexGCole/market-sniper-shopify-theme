@@ -14,7 +14,6 @@
     
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
-      <li><a href="#bot-suite">Bot Suite</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
       
@@ -66,37 +65,7 @@
     border-bottom: 1px solid rgba(0, 255, 65, 0.3);
   }
 
-  .navbar {
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    padding: 15px 0;
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-
-  .navbar.on-green-section {
-    background: rgba(10, 10, 10, 0.95);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-  }
-
-  .navbar.on-black-section {
-    background: rgba(0, 40, 20, 0.95);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.3);
-  }
-
   .header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
@@ -120,13 +89,6 @@
     opacity: 0.8;
   }
 
-  .logo-icon img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
   .logo-image {
     width: 40px;
     height: 40px;
@@ -135,27 +97,6 @@
   }
 
   .logo-text {
-    color: #00ff41;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-links a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    position: relative;
-  }
-
-  .nav-links a:hover {
     color: #00ff41;
   }
 
@@ -228,24 +169,6 @@
     transition: all 0.3s ease;
   }
 
-  .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-  }
-
-  .mobile-menu-btn span {
-    width: 25px;
-    height: 3px;
-    background: #00ff41;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
   .account-icon {
     display: flex;
     align-items: center;
@@ -271,97 +194,27 @@
     color: #00ff41;
   }
 
-  /* Add scroll offset for sections */
-  section,
-  [id] {
-    scroll-margin-top: 80px;
-  }
-
   @media (max-width: 768px) {
     .mobile-menu-toggle {
-      display: flex;
-    }
-
-    .mobile-menu-btn {
       display: flex;
     }
 
     .main-nav {
       display: none;
     }
-
-    .nav-links {
-      display: none;
-    }
   }
 </style>
 
 <script>
-  // Smooth scroll with offset
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const navbarHeight = 80;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  // Change navbar color based on section
-  function updateNavbar() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    
-    const sections = document.querySelectorAll('section[id], div[id]');
-    const scrollPos = window.scrollY + 100;
-    
-    let currentSection = null;
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        currentSection = section;
-      }
-    });
-    
-    if (currentSection) {
-      const bgColor = window.getComputedStyle(currentSection).backgroundColor;
-      
-      // Simple check: if background has significant green component
-      if (bgColor.includes('rgb')) {
-        const rgb = bgColor.match(/\d+/g);
-        if (rgb && rgb.length >= 3) {
-          const r = parseInt(rgb[0]);
-          const g = parseInt(rgb[1]);
-          const b = parseInt(rgb[2]);
-          
-          // If green is dominant, we're on a green section
-          if (g > r + 30 && g > b + 30) {
-            navbar.classList.remove('on-black-section');
-            navbar.classList.add('on-green-section');
-          } else {
-            navbar.classList.remove('on-green-section');
-            navbar.classList.add('on-black-section');
-          }
-        }
-      }
+  // Add scroll effect to navbar
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.site-header');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
     }
-  }
-
-  window.addEventListener('scroll', updateNavbar);
-  window.addEventListener('load', updateNavbar);
-  updateNavbar();
+  });
 </script>
 
 {% schema %}

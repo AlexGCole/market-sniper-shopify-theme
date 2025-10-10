@@ -40,6 +40,28 @@
   <div class="hero-bg"></div>
 </section>
 
+<style>
+  /* Force hero section below mobile menu */
+  @media (max-width: 968px) {
+    .hero {
+      z-index: 1 !important;
+      isolation: isolate !important;
+    }
+    
+    .hero * {
+      z-index: 1 !important;
+    }
+    
+    .hero-bg {
+      z-index: 0 !important;
+    }
+    
+    .hero-content {
+      z-index: 1 !important;
+    }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Hero Section",
@@ -124,5 +146,4 @@
     }
   ]
 }
-
 {% endschema %}

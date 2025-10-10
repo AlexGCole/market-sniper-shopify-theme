@@ -327,12 +327,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
 
-  // Toggle mobile menu
-  function toggleMobileMenu() {
-    mobileMenuBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    mobileMenuOverlay.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  // Open mobile menu
+  function openMobileMenu() {
+    mobileMenuBtn.classList.add('active');
+    mobileMenu.classList.add('active');
+    mobileMenuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
   // Close mobile menu
@@ -343,7 +343,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
   }
 
-  // Open/close menu
+  // Toggle mobile menu
+  function toggleMobileMenu() {
+    if (mobileMenu.classList.contains('active')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
+  // Open/close menu on button click
   if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
   }
@@ -356,13 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Close menu when nav link clicked
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      // Check if it's a hash link (anchor on same page)
-      if (this.getAttribute('href').startsWith('/#')) {
-        closeMobileMenu();
-      } else {
-        // For external links, close immediately
-        closeMobileMenu();
-      }
+      closeMobileMenu();
     });
   });
 

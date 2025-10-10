@@ -455,6 +455,75 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(err => console.error('Error removing setup fee:', err));
   }
   
+  function blockCheckout(message) {
+    // Find all checkout buttons
+    const checkoutButtons = document.querySelectorAll('[name="checkout"], button[type="submit"], a[href*="checkout"]');
+    
+    checkoutButtons.forEach(button => {
+      button.style.opacity = '0.5';
+      button.style.cursor = 'not-allowed';
+      button.disabled = true;
+      
+      // Add click handler to show message
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert(message);
+        return false;
+      }, true);
+    });
+    
+    // Show warning message
+    showWarningMessage(message);
+  }
+  
+  function enableCheckout() {
+    // Re-enable all checkout buttons
+    const checkoutButtons = document.querySelectorAll('[name="checkout"], button[type="submit"], a[href*="checkout"]');
+    
+    checkoutButtons.forEach(button => {
+      button.style.opacity = '1';
+      button.style.cursor = 'pointer';
+      button.disabled = false;
+    });
+    
+    // Remove warning message
+    removeWarningMessage();
+  }
+  
+  function showWarningMessage(message) {
+    // Remove existing warning if any
+    removeWarningMessage();
+    
+    // Create warning banner
+    const warning = document.createElement('div');
+    warning.id = 'bundle-warning';
+    warning.style.cssText = `
+      background: #ff4444;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-weight: bold;
+      text-align: center;
+      border: 2px solid #cc0000;
+    `;
+    warning.textContent = message;
+    
+    // Insert at top of cart
+    const cartForm = document.querySelector('form[action="/cart"]') || document.querySelector('.cart');
+    if (cartForm) {
+      cartForm.insertBefore(warning, cartForm.firstChild);
+    }
+  }
+  
+  function removeWarningMessage() {
+    const existing = document.getElementById('bundle-warning');
+    if (existing) {
+      existing.remove();
+    }
+  }
+  
   function checkCart() {
     console.log('Checking cart...');
     
@@ -481,14 +550,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (hasBotSubscription && !hasSetupFee) {
           console.log('✅ Bot subscription found, setup fee missing - adding now');
+          blockCheckout('Please wait while we add the required setup fee to your cart...');
           addSetupFee();
         } else if (!hasBotSubscription && hasSetupFee) {
           console.log('❌ Setup fee found but no bot subscription - removing');
           removeSetupFee(setupFeeItem.key);
         } else if (hasBotSubscription && hasSetupFee) {
           console.log('✅ Bundle complete - both items in cart');
+          enableCheckout();
         } else {
           console.log('ℹ️ No bot subscription in cart');
+          enableCheckout();
         }
       })
       .catch(err => console.error('Error checking cart:', err));
@@ -500,6 +572,26 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     checkCart();
   }
+  
+  // Also check when cart updates
+  document.addEventListener('cart:updated', checkCart);
+  
+  // Prevent direct checkout navigation if bundle incomplete
+  window.addEventListener('beforeunload', function(e) {
+    fetch('/cart.js')
+      .then(r => r.json())
+      .then(cart => {
+        const hasBotMonthly = cart.items.some(item => item.variant_id === BOT_MONTHLY);
+        const hasBotAnnual = cart.items.some(item => item.variant_id === BOT_ANNUAL);
+        const hasSetupFee = cart.items.some(item => item.variant_id === SETUP_FEE);
+        
+        if ((hasBotMonthly || hasBotAnnual) && !hasSetupFee) {
+          e.preventDefault();
+          e.returnValue = 'Your cart is missing the required setup fee. Please wait for it to be added.';
+          return e.returnValue;
+        }
+      });
+  });
 })();
 </script>
 

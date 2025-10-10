@@ -1,0 +1,259 @@
+<div class="account-page">
+  <div class="container">
+    
+    <div class="account-header">
+      <h1>Welcome, {{ customer.first_name }}!</h1>
+      <a href="/account/logout" class="btn btn-secondary">Logout</a>
+    </div>
+    
+    <div class="account-grid">
+      
+      <!-- Account Info -->
+      <div class="account-card">
+        <h2>Account Information</h2>
+        <div class="account-info">
+          <p><strong>Name:</strong> {{ customer.first_name }} {{ customer.last_name }}</p>
+          <p><strong>Email:</strong> {{ customer.email }}</p>
+          <a href="/account/addresses" class="link">Manage Addresses →</a>
+        </div>
+      </div>
+      
+      <!-- Active Subscriptions -->
+      <div class="account-card">
+        <h2>Active Subscriptions</h2>
+        <div class="subscription-list">
+          {% if customer.orders.size > 0 %}
+            {% for order in customer.orders %}
+              {% for line_item in order.line_items %}
+                {% if line_item.product_id == 7995703263412 or line_item.product_id == 7995706015924 %}
+                  <div class="subscription-item">
+                    <div>
+                      <h3>{{ line_item.title }}</h3>
+                      <p class="subscription-price">${{ line_item.price | money_without_currency }}/{{ line_item.product_id == 7995703263412 ? 'mo' : 'yr' }}</p>
+                    </div>
+                    <span class="status-badge active">Active</span>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% else %}
+            <p class="empty-state">No active subscriptions</p>
+            <a href="/#pricing" class="btn btn-primary">View Plans</a>
+          {% endif %}
+        </div>
+        
+        <div class="manage-subscription">
+          <a href="mailto:jesse@marketsniper.pro?subject=Manage Subscription" class="btn btn-outline">
+            Manage Subscription
+          </a>
+          <p class="help-text">Contact support to modify or cancel your subscription</p>
+        </div>
+      </div>
+      
+      <!-- Recent Orders -->
+      <div class="account-card full-width">
+        <h2>Recent Orders</h2>
+        {% if customer.orders.size > 0 %}
+          <div class="orders-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders limit: 5 %}
+                  <tr>
+                    <td>#{{ order.order_number }}</td>
+                    <td>{{ order.created_at | date: "%B %d, %Y" }}</td>
+                    <td><span class="status-badge {{ order.financial_status }}">{{ order.financial_status }}</span></td>
+                    <td>{{ order.total_price | money }}</td>
+                    <td><a href="/account/orders/{{ order.id }}">View →</a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="empty-state">No orders yet</p>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .account-page {
+    min-height: 100vh;
+    padding: 100px 20px 60px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+  }
+  
+  .account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .account-header h1 {
+    color: #00ff41;
+    font-size: 2.5rem;
+  }
+  
+  .account-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+  }
+  
+  .account-card {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+  }
+  
+  .account-card.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .account-card h2 {
+    color: #00ff41;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .account-info p {
+    color: #e8f5e9;
+    margin-bottom: 12px;
+  }
+  
+  .account-info strong {
+    color: #6b8f7a;
+    margin-right: 8px;
+  }
+  
+  .link {
+    color: #00ff41;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 16px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  .subscription-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: rgba(0, 255, 65, 0.05);
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .subscription-item h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  
+  .subscription-price {
+    color: #6b8f7a;
+  }
+  
+  .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .status-badge.active {
+    background: rgba(0, 255, 65, 0.2);
+    color: #00ff41;
+  }
+  
+  .status-badge.paid {
+    background: rgba(0, 255, 65, 0.2);
+    color: #00ff41;
+  }
+  
+  .status-badge.pending {
+    background: rgba(255, 165, 0, 0.2);
+    color: #ffa500;
+  }
+  
+  .manage-subscription {
+    margin-top: 24px;
+    text-align: center;
+  }
+  
+  .help-text {
+    color: #6b8f7a;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  .empty-state {
+    color: #6b8f7a;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .orders-table {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead tr {
+    border-bottom: 2px solid rgba(0, 255, 65, 0.2);
+  }
+  
+  th {
+    text-align: left;
+    padding: 12px;
+    color: #00ff41;
+    font-weight: 600;
+  }
+  
+  td {
+    padding: 16px 12px;
+    color: #e8f5e9;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  }
+  
+  td a {
+    color: #00ff41;
+    text-decoration: none;
+  }
+  
+  td a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .account-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .account-header {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+  }
+</style>

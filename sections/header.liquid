@@ -3,32 +3,55 @@
   Site header with navigation
 {% endcomment %}
 
-<header class="site-header">
-  <div class="header-container">
+<nav class="navbar">
+  <div class="container">
     <a href="/" class="logo">
-      <img src="{{ 'logo.jpg' | asset_url }}" alt="Market Sniper Logo" class="logo-image">
-      <span class="logo-text">Market Sniper</span>
+      <span class="logo-icon">
+        <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name }}">
+      </span>
+      <span class="logo-text">{{ section.settings.logo_text | default: shop.name }}</span>
     </a>
-
-    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+    
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      
+      <!-- Login/Account Icon -->
+      {% if customer %}
+        <li>
+          <a href="/account" class="account-icon" title="My Account">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="account-name">{{ customer.first_name | default: "Account" }}</span>
+          </a>
+        </li>
+      {% else %}
+        <li>
+          <a href="/account/login" class="login-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Login
+          </a>
+        </li>
+      {% endif %}
+      
+      <li>
+        <a href="#pricing" class="btn-nav">Get Started</a>
+      </li>
+    </ul>
+    
+    <button class="mobile-menu-btn">
       <span></span>
       <span></span>
       <span></span>
     </button>
-
-    <nav class="main-nav" id="main-nav">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/#features" class="nav-link">Features</a>
-      <a href="/#pricing" class="nav-link">Pricing</a>
-      <a href="/#faq" class="nav-link">FAQ</a>
-      <a href="/cart" class="nav-link cart-link">
-        Cart 
-        <span class="cart-count" id="cart-count">{{ cart.item_count }}</span>
-      </a>
-      <a href="/#pricing" class="nav-cta">Get Started</a>
-    </nav>
   </div>
-</header>
+</nav>
 
 <style>
   .site-header {
@@ -142,6 +165,31 @@
     background: #00ff41;
     border-radius: 2px;
     transition: all 0.3s ease;
+  }
+
+    .account-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .account-name {
+    font-size: 14px;
+  }
+  
+  .login-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background: rgba(0, 255, 65, 0.1);
+    border-color: #00ff41;
   }
 
   @media (max-width: 768px) {

@@ -14,6 +14,7 @@
     
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
+      <li><a href="#bot-suite">Bot Suite</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
       
@@ -60,12 +61,32 @@
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .site-header.scrolled {
-    background: rgba(0, 255, 65, 0.15);
+  .navbar {
+    background: rgba(0, 255, 65, 0.95);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .navbar.on-green-bg {
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
   }
 
   .header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
@@ -89,6 +110,13 @@
     opacity: 0.8;
   }
 
+  .logo-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
   .logo-image {
     width: 40px;
     height: 40px;
@@ -97,6 +125,39 @@
   }
 
   .logo-text {
+    color: #00ff41;
+  }
+
+  .navbar.on-green-bg .logo-text {
+    color: #00ff41;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .navbar.on-green-bg .nav-links a {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .nav-links a:hover {
+    color: #000;
+  }
+
+  .navbar.on-green-bg .nav-links a:hover {
     color: #00ff41;
   }
 
@@ -169,6 +230,28 @@
     transition: all 0.3s ease;
   }
 
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-btn span {
+    width: 25px;
+    height: 3px;
+    background: #000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .navbar.on-green-bg .mobile-menu-btn span {
+    background: #00ff41;
+  }
+
   .account-icon {
     display: flex;
     align-items: center;
@@ -186,12 +269,15 @@
     padding: 8px 16px;
     border-radius: 8px;
     transition: all 0.3s ease;
-    color: rgba(255, 255, 255, 0.8);
   }
   
   .login-btn:hover {
     background: rgba(0, 255, 65, 0.1);
-    color: #00ff41;
+  }
+
+  /* Scroll offset for anchor links */
+  section {
+    scroll-margin-top: 80px;
   }
 
   @media (max-width: 768px) {
@@ -199,22 +285,77 @@
       display: flex;
     }
 
+    .mobile-menu-btn {
+      display: flex;
+    }
+
     .main-nav {
+      display: none;
+    }
+
+    .nav-links {
       display: none;
     }
   }
 </style>
 
 <script>
-  // Add scroll effect to navbar
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.site-header');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+  // Smooth scroll with offset for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = targetElement.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
+
+  // Change navbar style based on section background
+  function updateNavbarStyle() {
+    const navbar = document.querySelector('.navbar');
+    const scrollPosition = window.scrollY + navbar.offsetHeight + 50;
+    
+    // Get all sections
+    const sections = document.querySelectorAll('section, [id]');
+    let isOnGreenBackground = false;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      
+      // Check if current scroll position is within this section
+      if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+        const bgColor = window.getComputedStyle(section).backgroundColor;
+        const rgb = bgColor.match(/\d+/g);
+        
+        // Check if background is greenish (more green than other colors)
+        if (rgb && parseInt(rgb[1]) > parseInt(rgb[0]) && parseInt(rgb[1]) > parseInt(rgb[2])) {
+          isOnGreenBackground = true;
+        }
+      }
+    });
+    
+    if (isOnGreenBackground) {
+      navbar.classList.add('on-green-bg');
+    } else {
+      navbar.classList.remove('on-green-bg');
+    }
+  }
+  
+  // Run on scroll and on load
+  window.addEventListener('scroll', updateNavbarStyle);
+  window.addEventListener('load', updateNavbarStyle);
+  updateNavbarStyle();
 </script>
 
 {% schema %}

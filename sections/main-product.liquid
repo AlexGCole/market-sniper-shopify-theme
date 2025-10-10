@@ -54,7 +54,31 @@
 
         <!-- Product Form -->
         {% form 'product', product, id: 'product-form' %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
+          
+          <!-- Plan Selector for Bot Suite Products -->
+          {% if product.title contains 'Bot' %}
+            <div class="plan-selector">
+              <label>Choose Your Plan:</label>
+              <div class="plan-options">
+                <div class="plan-option" data-variant-id="7995703263412" data-price="49" data-period="mo">
+                  <input type="radio" name="plan_choice" id="monthly-plan" value="7995703263412" {% if product.selected_or_first_available_variant.id == '7995703263412' %}checked{% endif %}>
+                  <label for="monthly-plan">
+                    <strong>Monthly</strong>
+                    <span class="plan-price">$49/mo</span>
+                  </label>
+                </div>
+                <div class="plan-option" data-variant-id="7995706015924" data-price="490" data-period="yr">
+                  <input type="radio" name="plan_choice" id="annual-plan" value="7995706015924" {% if product.selected_or_first_available_variant.id == '7995706015924' %}checked{% endif %}>
+                  <label for="annual-plan">
+                    <strong>Annual</strong>
+                    <span class="plan-price">$490/yr</span>
+                    <span class="plan-savings">Save $98</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          {% endif %}
           
           <!-- Selling Plans (Subscriptions) -->
           {% if product.selling_plan_groups.size > 0 %}
@@ -377,6 +401,112 @@
     border-bottom: none;
   }
 
+  .plan-selector {
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+  }
+
+  .plan-selector > label {
+    display: block;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+
+  .plan-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .plan-option {
+    background: rgba(0, 255, 65, 0.03);
+    border: 2px solid rgba(0, 255, 65, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .plan-option:hover {
+    background: rgba(0, 255, 65, 0.08);
+    border-color: rgba(0, 255, 65, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .plan-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .plan-option input[type="radio"]:checked + label {
+    color: #00ff41;
+  }
+
+  .plan-option input[type="radio"]:checked ~ label::before {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #00ff41;
+    color: #000;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .plan-option input[type="radio"]:checked ~ * {
+    border-color: #00ff41;
+  }
+
+  .plan-option:has(input[type="radio"]:checked) {
+    border-color: #00ff41;
+    background: rgba(0, 255, 65, 0.12);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  }
+
+  .plan-option label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    padding-right: 30px;
+  }
+
+  .plan-option label strong {
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .plan-price {
+    font-size: 1.5rem;
+    color: #00ff41;
+    font-weight: 700;
+  }
+
+  .plan-savings {
+    display: inline-block;
+    background: rgba(0, 255, 65, 0.2);
+    color: #00ff41;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+
   .selling-plans {
     background: rgba(0, 255, 65, 0.05);
     border: 1px solid rgba(0, 255, 65, 0.3);
@@ -557,6 +687,113 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Plan selector functionality
+  const planOptions = document.querySelectorAll('.plan-option');
+  const variantIdInput = document.getElementById('variant-id');
+  const productPrice = document.querySelector('.product-price .price');
+  const productPeriod = document.querySelector('.product-price .period');
+  
+  planOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      const radio = this.querySelector('input[type="radio"]');
+      radio.checked = true;
+      
+      const variantId = this.dataset.variantId;
+      const price = this.dataset.price;
+      const period = this.dataset.period;
+      
+      // Update hidden input
+      if (variantIdInput) {
+        variantIdInput.value = variantId;
+      }
+      
+      // Update displayed price
+      if (productPrice) {
+        productPrice.textContent = '
+
+<script>
+(function() {
+  const BOT_SUBSCRIPTION_MONTHLY = '7995703263412';
+  const BOT_SUBSCRIPTION_ANNUAL = '7995706015924';
+  const SETUP_FEE = '7995945418932';
+  
+  const currentVariantId = '{{ product.selected_or_first_available_variant.id }}';
+  
+  // If this is a bot subscription product
+  if (currentVariantId === BOT_SUBSCRIPTION_MONTHLY || currentVariantId === BOT_SUBSCRIPTION_ANNUAL) {
+    console.log('Bot subscription product detected');
+    
+    // Find all add to cart buttons
+    const addToCartButtons = document.querySelectorAll('[name="add"]');
+    
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        const form = button.closest('form');
+        if (form && form.getAttribute('action') === '/cart/add') {
+          e.preventDefault();
+          
+          const formData = new FormData(form);
+          const variantId = formData.get('id') || currentVariantId;
+          
+          console.log('Adding bot bundle...');
+          
+          // Add both items
+          fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: variantId,
+                  quantity: 1
+                },
+                {
+                  id: SETUP_FEE,
+                  quantity: 1,
+                  properties: {
+                    '_Bundle': 'Bot Plan Setup Fee'
+                  }
+                }
+              ]
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Bundle added successfully');
+            window.location.href = '/cart';
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Error adding to cart. Please try again.');
+          });
+        }
+      });
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": []
+}
+{% endschema %} + price;
+      }
+      if (productPeriod) {
+        productPeriod.textContent = '/' + period;
+      }
+      
+      // Update URL without reload (optional)
+      const url = new URL(window.location);
+      url.searchParams.set('variant', variantId);
+      window.history.pushState({}, '', url);
+    });
+  });
+
+  // Add to cart functionality
   const form = document.getElementById('product-form');
   const addButton = document.getElementById('add-to-cart');
   const btnText = addButton.querySelector('.btn-text');

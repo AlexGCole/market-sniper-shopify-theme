@@ -61,15 +61,17 @@
             <div class="plan-selector">
               <label>Choose Your Plan:</label>
               <div class="plan-options">
-                <div class="plan-option" data-variant-id="7995703263412" data-price="49" data-period="mo">
-                  <input type="radio" name="plan_choice" id="monthly-plan" value="7995703263412" {% if product.selected_or_first_available_variant.id == '7995703263412' %}checked{% endif %}>
+                <div class="plan-option" data-variant-id="7995703263412" data-price="49.00" data-period="mo">
+                  <input type="radio" name="plan_choice" id="monthly-plan" value="7995703263412" 
+                    {% if product.title contains 'Monthly' or product.selected_or_first_available_variant.id == 7995703263412 %}checked{% endif %}>
                   <label for="monthly-plan">
                     <strong>Monthly</strong>
                     <span class="plan-price">$49/mo</span>
                   </label>
                 </div>
-                <div class="plan-option" data-variant-id="7995706015924" data-price="490" data-period="yr">
-                  <input type="radio" name="plan_choice" id="annual-plan" value="7995706015924" {% if product.selected_or_first_available_variant.id == '7995706015924' %}checked{% endif %}>
+                <div class="plan-option" data-variant-id="7995706015924" data-price="490.00" data-period="yr">
+                  <input type="radio" name="plan_choice" id="annual-plan" value="7995706015924"
+                    {% if product.title contains 'Annual' or product.selected_or_first_available_variant.id == 7995706015924 %}checked{% endif %}>
                   <label for="annual-plan">
                     <strong>Annual</strong>
                     <span class="plan-price">$490/yr</span>

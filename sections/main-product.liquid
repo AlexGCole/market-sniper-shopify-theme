@@ -513,8 +513,13 @@
 </style>
 
 <script>
-// Plan switcher
 document.addEventListener('DOMContentLoaded', function() {
+  // Bot variant IDs
+  const BOT_MONTHLY = 44060337504436;
+  const BOT_ANNUAL = 44060346876084;
+  const SETUP_FEE = 44060845605044;
+  
+  // Plan switcher
   const monthlyOption = document.querySelector('.monthly-option');
   const annualOption = document.querySelector('.annual-option');
   
@@ -541,112 +546,124 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       
       const formData = new FormData(this);
+      const variantId = parseInt(formData.get('id'));
+      
+      console.log('Add to cart clicked for variant:', variantId);
       
       // Disable button
       addButton.disabled = true;
       btnText.textContent = 'Adding...';
       
-      fetch('/cart/add.js', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Success!
-        btnText.textContent = '✓ Added!';
-        addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
+      // Check if this is a bot subscription product
+      const isBotProduct = (variantId === BOT_MONTHLY || variantId === BOT_ANNUAL);
+      
+      if (isBotProduct) {
+        console.log('🤖 Bot product detected - adding bundle (subscription + setup fee)');
         
-        messageDiv.textContent = 'Item added to cart successfully!';
-        messageDiv.className = 'cart-message success';
-        messageDiv.style.display = 'block';
+        // Add BOTH items as a bundle
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            items: [
+              {
+                id: variantId,
+                quantity: 1
+              },
+              {
+                id: SETUP_FEE,
+                quantity: 1,
+                properties: {
+                  '_Bundle': 'Bot Plan Setup Fee'
+                }
+              }
+            ]
+          })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('✅ Bundle added successfully:', data);
+          
+          // Success!
+          btnText.textContent = '✓ Added to Cart!';
+          addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
+          
+          messageDiv.textContent = 'Bot subscription + Setup fee added to cart!';
+          messageDiv.className = 'cart-message success';
+          messageDiv.style.display = 'block';
+          
+          // Redirect to cart
+          setTimeout(() => {
+            window.location.href = '/cart';
+          }, 800);
+        })
+        .catch(error => {
+          console.error('❌ Error adding bundle:', error);
+          
+          // Show error
+          btnText.textContent = 'Add to Cart';
+          addButton.disabled = false;
+          
+          messageDiv.textContent = 'Error adding to cart. Please try again.';
+          messageDiv.className = 'cart-message error';
+          messageDiv.style.display = 'block';
+          
+          setTimeout(() => {
+            messageDiv.style.display = 'none';
+          }, 3000);
+        });
         
-        // Redirect to cart after brief delay
-        setTimeout(() => {
-          window.location.href = '/cart';
-        }, 800);
-      })
-      .catch(error => {
-        console.error('Error:', error);
+      } else {
+        console.log('📦 Regular product - adding single item');
         
-        // Show error
-        btnText.textContent = 'Add to Cart';
-        addButton.disabled = false;
-        
-        messageDiv.textContent = 'Error adding to cart. Please try again.';
-        messageDiv.className = 'cart-message error';
-        messageDiv.style.display = 'block';
-        
-        setTimeout(() => {
-          messageDiv.style.display = 'none';
-        }, 3000);
-      });
+        // Regular product - add normally
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('✅ Item added successfully');
+          
+          // Success!
+          btnText.textContent = '✓ Added!';
+          addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
+          
+          messageDiv.textContent = 'Item added to cart successfully!';
+          messageDiv.className = 'cart-message success';
+          messageDiv.style.display = 'block';
+          
+          // Redirect to cart
+          setTimeout(() => {
+            window.location.href = '/cart';
+          }, 800);
+        })
+        .catch(error => {
+          console.error('❌ Error:', error);
+          
+          // Show error
+          btnText.textContent = 'Add to Cart';
+          addButton.disabled = false;
+          
+          messageDiv.textContent = 'Error adding to cart. Please try again.';
+          messageDiv.className = 'cart-message error';
+          messageDiv.style.display = 'block';
+          
+          setTimeout(() => {
+            messageDiv.style.display = 'none';
+          }, 3000);
+        });
+      }
     });
   }
 });
-</script>
-
-<script>
-(function() {
-  const BOT_SUBSCRIPTION_MONTHLY = '7995703263412';
-  const BOT_SUBSCRIPTION_ANNUAL = '7995706015924';
-  const SETUP_FEE = '7995945418932';
-  
-  const currentVariantId = '{{ product.selected_or_first_available_variant.id }}';
-  
-  // If this is a bot subscription product
-  if (currentVariantId === BOT_SUBSCRIPTION_MONTHLY || currentVariantId === BOT_SUBSCRIPTION_ANNUAL) {
-    console.log('Bot subscription product detected');
-    
-    // Find all add to cart buttons
-    const addToCartButtons = document.querySelectorAll('[name="add"]');
-    
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        const form = button.closest('form');
-        if (form && form.getAttribute('action') === '/cart/add') {
-          e.preventDefault();
-          
-          const formData = new FormData(form);
-          const variantId = formData.get('id') || currentVariantId;
-          
-          console.log('Adding bot bundle...');
-          
-          // Add both items
-          fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              items: [
-                {
-                  id: variantId,
-                  quantity: 1
-                },
-                {
-                  id: SETUP_FEE,
-                  quantity: 1,
-                  properties: {
-                    '_Bundle': 'Bot Plan Setup Fee'
-                  }
-                }
-              ]
-            })
-          })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Bundle added successfully');
-            window.location.href = '/cart';
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert('Error adding to cart. Please try again.');
-          });
-        }
-      });
-    });
-  }
-})();
 </script>
 
 {% schema %}

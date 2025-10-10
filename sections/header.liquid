@@ -87,6 +87,11 @@
 </div>
 
 <style>
+  /* Add padding to body to account for fixed navbar */
+  body {
+    padding-top: 70px;
+  }
+
   /* Reset any parent stacking contexts */
   body,
   html,
@@ -100,8 +105,11 @@
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
     padding: 15px 0;
   }

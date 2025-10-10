@@ -223,8 +223,6 @@
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group",
             "button_link": "",
-            "subscription_handle": "",
-            "setup_fee_handle": "",
             "button_text": "Buy Now"
           }
         },
@@ -239,8 +237,6 @@
             "is_popular": true,
             "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Priority Support",
             "button_link": "",
-            "subscription_handle": "",
-            "setup_fee_handle": "",
             "button_text": "Buy Now"
           }
         },
@@ -260,9 +256,7 @@
             "savings_text": "",
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support",
-            "button_link": "",
-            "subscription_handle": "trading-bot-suite-49",
-            "setup_fee_handle": "trading-bot-suite-setup",
+            "button_link": "shopify://products/trading-bot-suite-49",
             "button_text": "Buy Now"
           }
         },
@@ -276,9 +270,7 @@
             "savings_text": "Save $98",
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support\n✓ Annual Strategy Review",
-            "button_link": "",
-            "subscription_handle": "trading-bot-suite-490-annual",
-            "setup_fee_handle": "trading-bot-suite-setup",
+            "button_link": "shopify://products/trading-bot-suite-490-annual",
             "button_text": "Buy Now"
           }
         }

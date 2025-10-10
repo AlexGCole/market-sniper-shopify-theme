@@ -61,10 +61,15 @@
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .navbar {
-    background: rgba(0, 255, 65, 0.95);
-    backdrop-filter: blur(10px);
+  .site-header.scrolled {
+    background: rgba(0, 255, 65, 0.15);
     border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+  }
+
+  .navbar {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -72,9 +77,14 @@
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .navbar.on-green-bg {
+  .navbar.on-green-section {
     background: rgba(10, 10, 10, 0.95);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+  }
+
+  .navbar.on-black-section {
+    background: rgba(0, 40, 20, 0.95);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.3);
   }
 
   .header-container {
@@ -128,10 +138,6 @@
     color: #00ff41;
   }
 
-  .navbar.on-green-bg .logo-text {
-    color: #00ff41;
-  }
-
   .nav-links {
     display: flex;
     align-items: center;
@@ -142,22 +148,14 @@
   }
 
   .nav-links a {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s ease;
     position: relative;
   }
 
-  .navbar.on-green-bg .nav-links a {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
   .nav-links a:hover {
-    color: #000;
-  }
-
-  .navbar.on-green-bg .nav-links a:hover {
     color: #00ff41;
   }
 
@@ -243,13 +241,9 @@
   .mobile-menu-btn span {
     width: 25px;
     height: 3px;
-    background: #000;
+    background: #00ff41;
     border-radius: 2px;
     transition: all 0.3s ease;
-  }
-
-  .navbar.on-green-bg .mobile-menu-btn span {
-    background: #00ff41;
   }
 
   .account-icon {
@@ -269,14 +263,17 @@
     padding: 8px 16px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.8);
   }
   
   .login-btn:hover {
     background: rgba(0, 255, 65, 0.1);
+    color: #00ff41;
   }
 
-  /* Scroll offset for anchor links */
-  section {
+  /* Add scroll offset for sections */
+  section,
+  [id] {
     scroll-margin-top: 80px;
   }
 
@@ -300,7 +297,7 @@
 </style>
 
 <script>
-  // Smooth scroll with offset for anchor links
+  // Smooth scroll with offset
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -309,8 +306,8 @@
       
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
-        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-        const targetPosition = targetElement.offsetTop - navbarHeight;
+        const navbarHeight = 80;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
         
         window.scrollTo({
           top: targetPosition,
@@ -320,42 +317,51 @@
     });
   });
 
-  // Change navbar style based on section background
-  function updateNavbarStyle() {
+  // Change navbar color based on section
+  function updateNavbar() {
     const navbar = document.querySelector('.navbar');
-    const scrollPosition = window.scrollY + navbar.offsetHeight + 50;
+    if (!navbar) return;
     
-    // Get all sections
-    const sections = document.querySelectorAll('section, [id]');
-    let isOnGreenBackground = false;
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const scrollPos = window.scrollY + 100;
     
+    let currentSection = null;
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
-      const sectionBottom = sectionTop + section.offsetHeight;
+      const sectionHeight = section.offsetHeight;
       
-      // Check if current scroll position is within this section
-      if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-        const bgColor = window.getComputedStyle(section).backgroundColor;
-        const rgb = bgColor.match(/\d+/g);
-        
-        // Check if background is greenish (more green than other colors)
-        if (rgb && parseInt(rgb[1]) > parseInt(rgb[0]) && parseInt(rgb[1]) > parseInt(rgb[2])) {
-          isOnGreenBackground = true;
-        }
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        currentSection = section;
       }
     });
     
-    if (isOnGreenBackground) {
-      navbar.classList.add('on-green-bg');
-    } else {
-      navbar.classList.remove('on-green-bg');
+    if (currentSection) {
+      const bgColor = window.getComputedStyle(currentSection).backgroundColor;
+      
+      // Simple check: if background has significant green component
+      if (bgColor.includes('rgb')) {
+        const rgb = bgColor.match(/\d+/g);
+        if (rgb && rgb.length >= 3) {
+          const r = parseInt(rgb[0]);
+          const g = parseInt(rgb[1]);
+          const b = parseInt(rgb[2]);
+          
+          // If green is dominant, we're on a green section
+          if (g > r + 30 && g > b + 30) {
+            navbar.classList.remove('on-black-section');
+            navbar.classList.add('on-green-section');
+          } else {
+            navbar.classList.remove('on-green-section');
+            navbar.classList.add('on-black-section');
+          }
+        }
+      }
     }
   }
-  
-  // Run on scroll and on load
-  window.addEventListener('scroll', updateNavbarStyle);
-  window.addEventListener('load', updateNavbarStyle);
-  updateNavbarStyle();
+
+  window.addEventListener('scroll', updateNavbar);
+  window.addEventListener('load', updateNavbar);
+  updateNavbar();
 </script>
 
 {% schema %}

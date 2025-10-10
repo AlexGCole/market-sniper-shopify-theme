@@ -50,7 +50,7 @@
 </nav>
 
 <style>
-  .navbar {
+  .site-header {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
@@ -60,12 +60,12 @@
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .navbar.scrolled {
+  .site-header.scrolled {
     background: rgba(0, 255, 65, 0.15);
     border-bottom: 1px solid rgba(0, 255, 65, 0.3);
   }
 
-  .container {
+  .header-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
@@ -89,7 +89,7 @@
     opacity: 0.8;
   }
 
-  .logo-icon img {
+  .logo-image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -100,16 +100,13 @@
     color: #00ff41;
   }
 
-  .nav-links {
+  .main-nav {
     display: flex;
     align-items: center;
     gap: 30px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
 
-  .nav-links a {
+  .nav-link {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 1rem;
@@ -117,8 +114,59 @@
     position: relative;
   }
 
-  .nav-links a:hover {
+  .nav-link:hover {
     color: #00ff41;
+  }
+
+  .cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cart-count {
+    background: #00ff41;
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .nav-cta {
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 65, 0.5);
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #00ff41;
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
   .account-icon {
@@ -138,36 +186,20 @@
     padding: 8px 16px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.8);
   }
   
   .login-btn:hover {
     background: rgba(0, 255, 65, 0.1);
-  }
-
-  .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-  }
-
-  .mobile-menu-btn span {
-    width: 25px;
-    height: 3px;
-    background: #00ff41;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    color: #00ff41;
   }
 
   @media (max-width: 768px) {
-    .mobile-menu-btn {
+    .mobile-menu-toggle {
       display: flex;
     }
 
-    .nav-links {
+    .main-nav {
       display: none;
     }
   }
@@ -176,7 +208,7 @@
 <script>
   // Add scroll effect to navbar
   window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('.site-header');
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {

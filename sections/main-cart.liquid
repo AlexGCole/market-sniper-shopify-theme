@@ -50,8 +50,10 @@
               </div>
 
               <div class="item-remove">
-                <button class="remove-btn" data-line="{{ forloop.index }}">
-                  Remove
+                <button class="remove-btn" data-line="{{ forloop.index }}" aria-label="Remove item">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                  </svg>
                 </button>
               </div>
             </div>
@@ -100,6 +102,9 @@
     {% endif %}
   </div>
 </section>
+
+<!-- Toast Notification -->
+<div id="cart-toast" class="cart-toast"></div>
 
 <style>
   .cart-page {
@@ -210,11 +215,13 @@
     background: transparent;
     border: 1px solid rgba(255, 65, 65, 0.5);
     color: rgba(255, 65, 65, 0.8);
-    padding: 8px 16px;
+    padding: 8px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .remove-btn:hover {
@@ -332,6 +339,34 @@
     box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
   }
 
+  /* Toast Notification */
+  .cart-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 255, 65, 0.95);
+    color: #000;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.4);
+  }
+
+  .cart-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cart-toast.error {
+    background: rgba(255, 65, 65, 0.95);
+    color: white;
+  }
+
   @media (max-width: 968px) {
     .cart-content {
       grid-template-columns: 1fr;
@@ -350,11 +385,33 @@
     .item-remove {
       grid-column: 2;
     }
+
+    .cart-toast {
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+    }
   }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  const toast = document.getElementById('cart-toast');
+
+  function showToast(message, isError = false) {
+    toast.textContent = message;
+    toast.classList.remove('error');
+    if (isError) {
+      toast.classList.add('error');
+    }
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+  }
+
+  // Quantity update
   const quantityInputs = document.querySelectorAll('.quantity-input');
   quantityInputs.forEach(input => {
     input.addEventListener('change', function() {
@@ -373,40 +430,41 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .then(response => response.json())
       .then(data => {
-        location.reload();
+        showToast('Cart updated');
+        setTimeout(() => location.reload(), 500);
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('Error updating quantity');
+        showToast('Error updating quantity', true);
       });
     });
   });
 
+  // Remove item
   const removeButtons = document.querySelectorAll('.remove-btn');
   removeButtons.forEach(button => {
     button.addEventListener('click', function() {
       const line = this.dataset.line;
       
-      if (confirm('Remove this item from cart?')) {
-        fetch('/cart/change.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            line: line,
-            quantity: 0
-          })
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          line: line,
+          quantity: 0
         })
-        .then(response => response.json())
-        .then(data => {
-          location.reload();
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Error removing item');
-        });
-      }
+      })
+      .then(response => response.json())
+      .then(data => {
+        showToast('Item removed from cart');
+        setTimeout(() => location.reload(), 500);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        showToast('Error removing item', true);
+      });
     });
   });
 });
@@ -456,7 +514,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function blockCheckout(message) {
-    // Find all checkout buttons
     const checkoutButtons = document.querySelectorAll('[name="checkout"], button[type="submit"], a[href*="checkout"]');
     
     checkoutButtons.forEach(button => {
@@ -464,7 +521,6 @@ document.addEventListener('DOMContentLoaded', function() {
       button.style.cursor = 'not-allowed';
       button.disabled = true;
       
-      // Add click handler to show message
       button.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -473,12 +529,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }, true);
     });
     
-    // Show warning message
     showWarningMessage(message);
   }
   
   function enableCheckout() {
-    // Re-enable all checkout buttons
     const checkoutButtons = document.querySelectorAll('[name="checkout"], button[type="submit"], a[href*="checkout"]');
     
     checkoutButtons.forEach(button => {
@@ -487,15 +541,12 @@ document.addEventListener('DOMContentLoaded', function() {
       button.disabled = false;
     });
     
-    // Remove warning message
     removeWarningMessage();
   }
   
   function showWarningMessage(message) {
-    // Remove existing warning if any
     removeWarningMessage();
     
-    // Create warning banner
     const warning = document.createElement('div');
     warning.id = 'bundle-warning';
     warning.style.cssText = `
@@ -510,7 +561,6 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     warning.textContent = message;
     
-    // Insert at top of cart
     const cartForm = document.querySelector('form[action="/cart"]') || document.querySelector('.cart');
     if (cartForm) {
       cartForm.insertBefore(warning, cartForm.firstChild);
@@ -532,7 +582,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(cart => {
         console.log('Cart has', cart.items.length, 'items');
         
-        // Log each item for debugging
         cart.items.forEach(item => {
           console.log('- Item:', item.product_title, 'Variant ID:', item.variant_id);
         });
@@ -566,17 +615,14 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(err => console.error('Error checking cart:', err));
   }
   
-  // Run on page load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', checkCart);
   } else {
     checkCart();
   }
   
-  // Also check when cart updates
   document.addEventListener('cart:updated', checkCart);
   
-  // Prevent direct checkout navigation if bundle incomplete
   window.addEventListener('beforeunload', function(e) {
     fetch('/cart.js')
       .then(r => r.json())

@@ -211,18 +211,23 @@
     text-align: center;
   }
 
-  .remove-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 65, 65, 0.5);
-    color: rgba(255, 65, 65, 0.8);
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.remove-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 65, 65, 0.5);
+  color: rgba(255, 65, 65, 0.8);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+}
 
   .remove-btn:hover {
     background: rgba(255, 65, 65, 0.1);
@@ -376,10 +381,17 @@
       position: static;
     }
 
-    .cart-item {
-      grid-template-columns: 80px 1fr;
-      gap: 15px;
-    }
+.cart-item {
+  background: rgba(0, 255, 65, 0.03);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 100px 1fr auto;  /* Changed from: 100px 1fr auto auto */
+  gap: 20px;
+  align-items: center;
+  position: relative;
+}
 
     .item-quantity,
     .item-remove {
@@ -479,6 +491,21 @@ document.addEventListener('DOMContentLoaded', function() {
   const BOT_ANNUAL = 44060346876084;
   const SETUP_FEE = 44060845605044;
   
+  const toast = document.getElementById('cart-toast');
+
+  function showToast(message, isError = false) {
+    toast.textContent = message;
+    toast.classList.remove('error');
+    if (isError) {
+      toast.classList.add('error');
+    }
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3500);
+  }
+  
   function addSetupFee() {
     console.log('Attempting to add setup fee...');
     
@@ -524,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
       button.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        alert(message);
+        showToast(message, true);
         return false;
       }, true);
     });
@@ -573,6 +600,28 @@ document.addEventListener('DOMContentLoaded', function() {
       existing.remove();
     }
   }
+
+  // Prevent setup fee removal
+  function protectSetupFee() {
+    const removeButtons = document.querySelectorAll('.remove-btn');
+    
+    removeButtons.forEach(button => {
+      const line = button.dataset.line;
+      const cartItem = document.querySelector(`.cart-item[data-line="${line}"]`);
+      const itemTitle = cartItem?.querySelector('.item-title')?.textContent || '';
+      
+      // Check if this is the setup fee item
+      if (itemTitle.toLowerCase().includes('setup fee')) {
+        // Override the click event
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          showToast('Setup fee is required with Bot Suite subscription and cannot be removed separately', true);
+        }, true);
+      }
+    });
+  }
   
   function checkCart() {
     console.log('Checking cart...');
@@ -607,6 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (hasBotSubscription && hasSetupFee) {
           console.log('✅ Bundle complete - both items in cart');
           enableCheckout();
+          protectSetupFee(); // Protect the setup fee from removal
         } else {
           console.log('ℹ️ No bot subscription in cart');
           enableCheckout();

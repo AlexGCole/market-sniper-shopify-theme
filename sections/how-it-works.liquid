@@ -25,7 +25,7 @@
 <style>
   .how-it-works {
     padding: 80px 20px;
-    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+    background: #0a0a0a;
   }
 
   .section-header {
@@ -52,21 +52,6 @@
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
-  }
-
-  .steps-grid::before {
-    content: '';
-    position: absolute;
-    top: 60px;
-    left: 12.5%;
-    right: 12.5%;
-    height: 2px;
-    background: linear-gradient(90deg, 
-      rgba(0, 255, 65, 0.3) 0%, 
-      rgba(0, 255, 65, 0.6) 50%, 
-      rgba(0, 255, 65, 0.3) 100%
-    );
-    z-index: 0;
   }
 
   .step-card {
@@ -117,10 +102,6 @@
   @media (max-width: 1200px) {
     .steps-grid {
       grid-template-columns: repeat(2, 1fr);
-    }
-
-    .steps-grid::before {
-      display: none;
     }
   }
 

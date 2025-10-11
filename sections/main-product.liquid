@@ -6,16 +6,7 @@
 <section class="product-page">
   <div class="container">
     <div class="product-grid">
-      <!-- Product Images -->
-      <div class="product-images">
-        {% if product.featured_image %}
-          <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-        {% else %}
-          <img src="{{ 'trading-bot-suite.jpg' | asset_url }}" alt="{{ product.title }}">
-        {% endif %}
-      </div>
-
-      <!-- Product Info -->
+      <!-- Left Column: Product Info -->
       <div class="product-info">
         <h1 class="product-title">{{ product.title }}</h1>
         
@@ -36,6 +27,7 @@
 
         {% if product.description != blank %}
           <div class="product-description">
+            <h3>What's Included:</h3>
             {{ product.description }}
           </div>
         {% else %}
@@ -51,7 +43,10 @@
             </ul>
           </div>
         {% endif %}
+      </div>
 
+      <!-- Right Column: Form -->
+      <div class="product-form-section">
         <!-- Plan Selector for Bot Suite Products -->
         {% if product.title contains 'Bot' or product.title contains 'bot' %}
           <div class="plan-selector">
@@ -82,32 +77,6 @@
         {% form 'product', product, id: 'product-form' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
           
-          <!-- Selling Plans (Subscriptions) - Show for Bot products too -->
-          {% if product.selling_plan_groups.size > 0 %}
-            <div class="selling-plans">
-              <label>Purchase Options:</label>
-              {% for selling_plan_group in product.selling_plan_groups %}
-                {% for selling_plan in selling_plan_group.selling_plans %}
-                  <div class="selling-plan-option">
-                    <input 
-                      type="radio" 
-                      name="selling_plan" 
-                      value="{{ selling_plan.id }}" 
-                      id="plan-{{ selling_plan.id }}"
-                      {% if forloop.first %}checked{% endif %}
-                    >
-                    <label for="plan-{{ selling_plan.id }}">
-                      <strong>{{ selling_plan.name }}</strong>
-                      {% if selling_plan.description != blank %}
-                        <br><span style="font-size: 0.9rem; opacity: 0.8;">{{ selling_plan.description }}</span>
-                      {% endif %}
-                    </label>
-                  </div>
-                {% endfor %}
-              {% endfor %}
-            </div>
-          {% endif %}
-
           <!-- Quantity -->
           <div class="quantity-selector">
             <label for="quantity">Quantity:</label>
@@ -138,28 +107,12 @@
     margin: 0 auto;
   }
 
+  /* 2 column layout */
   .product-grid {
     display: grid;
-    grid-template-columns: 450px 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
     align-items: start;
-  }
-
-  .product-images {
-    position: relative;
-    background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(0, 255, 65, 0.01) 100%);
-    padding: 20px;
-    border-radius: 24px;
-    border: 2px solid rgba(0, 255, 65, 0.3);
-    box-shadow: inset 0 0 30px rgba(0, 255, 65, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-
-  .product-images img {
-    width: 100%;
-    max-height: 450px;
-    object-fit: cover;
-    border-radius: 16px;
-    background: rgba(0, 255, 65, 0.05);
   }
 
   .product-info {
@@ -242,6 +195,16 @@
 
   .feature-list li:last-child {
     border-bottom: none;
+  }
+
+  /* Right column form section */
+  .product-form-section {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    position: sticky;
+    top: 100px;
   }
 
   .plan-selector {
@@ -342,66 +305,6 @@
     margin-top: 5px;
   }
 
-  .selling-plans {
-    background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.3);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 30px;
-  }
-
-  .selling-plans > label {
-    display: block;
-    color: white;
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-  }
-
-  .selling-plan-option {
-    background: rgba(0, 255, 65, 0.03);
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: flex-start;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .selling-plan-option:hover {
-    background: rgba(0, 255, 65, 0.08);
-    border-color: rgba(0, 255, 65, 0.4);
-  }
-
-  .selling-plan-option:last-child {
-    margin-bottom: 0;
-  }
-
-  .selling-plan-option input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
-    margin-top: 2px;
-    accent-color: #00ff41;
-    flex-shrink: 0;
-  }
-
-  .selling-plan-option label {
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 400;
-    margin: 0;
-    cursor: pointer;
-    flex-grow: 1;
-    line-height: 1.6;
-  }
-
-  .selling-plan-option label strong {
-    color: #00ff41;
-    font-size: 1.05rem;
-  }
-
   .quantity-selector {
     margin-bottom: 30px;
   }
@@ -414,7 +317,7 @@
   }
 
   .quantity-selector input {
-    width: 100px;
+    width: 100%;
     padding: 12px;
     background: rgba(0, 255, 65, 0.05);
     border: 1px solid rgba(0, 255, 65, 0.3);
@@ -474,12 +377,8 @@
       gap: 40px;
     }
 
-    .product-images {
+    .product-form-section {
       position: static;
-    }
-
-    .product-images img {
-      max-height: 350px;
     }
 
     .product-title {
@@ -488,6 +387,10 @@
 
     .price {
       font-size: 2.2rem;
+    }
+
+    .plan-options {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -504,12 +407,9 @@
       font-size: 2rem;
     }
 
-    .plan-options {
-      grid-template-columns: 1fr;
+    .product-form-section {
+      padding: 25px;
     }
-  }
-  .selling-plans {
-    display: none !important;
   }
 </style>
 
@@ -560,12 +460,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (isBotProduct) {
         console.log('🤖 Bot product detected - adding bundle (subscription + setup fee)');
-        
-        // Get selling plan if exists
-        const sellingPlanInput = document.querySelector('input[name="selling_plan"]:checked');
-        const sellingPlan = sellingPlanInput ? sellingPlanInput.value : null;
-        
-        console.log('Selling plan:', sellingPlan);
         
         // First, add the bot subscription using the regular form data
         fetch('/cart/add.js', {

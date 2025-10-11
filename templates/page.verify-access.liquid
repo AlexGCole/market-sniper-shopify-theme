@@ -4,11 +4,8 @@
 </div>
 
 <script>
-// Your configuration
-const SPREADSHEET_ID = '1vhM_XyguXLMjM-K4f3OuamdN5HSy4juuK53XIbvxzuQ';
-const API_KEY = 'AIzaSyDCIveaumJ2b8pf70qRDLm2RD_TqsU3gds';
-const SHEET_NAME = 'Orders'; // Change if your sheet has a different name
-const DISCORD_INVITE = 'https://discord.gg/HxZrnX8CjR'; // Create a permanent invite
+// Configuration - ONLY the webhook URL
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/22532737/u55g4hf/';
 
 // Get token from URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -22,81 +19,34 @@ if (!token) {
 
 async function verifyToken(token) {
   try {
-    // Read the spreadsheet
-    const range = `${SHEET_NAME}!A:Z`; // Adjust if needed
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?key=${API_KEY}`;
+    // Send token to Zapier webhook
+    const response = await fetch(ZAPIER_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: token
+      })
+    });
     
-    const response = await fetch(url);
     const data = await response.json();
     
-    if (!data.values) {
-      document.getElementById('status').innerHTML = '❌ Error reading spreadsheet.';
-      return;
+    if (data.success) {
+      // Show success with Discord invite
+      document.getElementById('discord-container').innerHTML = `
+        <h2>✅ Access Granted!</h2>
+        <p>Your token is valid. Click the button below to join our Discord community:</p>
+        <a href="${data.discord_invite}" target="_blank" style="display: inline-block; padding: 15px 30px; background: #5865F2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Join Discord Server</a>
+        <p style="margin-top: 20px; color: #666;">Once you join, please message our bot with your email address to get your role.</p>
+      `;
+    } else {
+      // Show error
+      document.getElementById('status').innerHTML = '❌ ' + (data.message || 'Invalid or already used token.');
     }
-    
-    // Find the header row
-    const headers = data.values[0];
-    const tokenColumnIndex = headers.indexOf('Token');
-    const usedColumnIndex = headers.indexOf('Token Used');
-    
-    if (tokenColumnIndex === -1 || usedColumnIndex === -1) {
-      document.getElementById('status').innerHTML = '❌ Spreadsheet is not configured correctly.';
-      return;
-    }
-    
-    // Find the token row
-    let rowIndex = -1;
-    for (let i = 1; i < data.values.length; i++) {
-      if (data.values[i][tokenColumnIndex] == token) {
-        rowIndex = i;
-        break;
-      }
-    }
-    
-    if (rowIndex === -1) {
-      document.getElementById('status').innerHTML = '❌ Invalid token. Please check your email.';
-      return;
-    }
-    
-    // Check if already used
-    const isUsed = data.values[rowIndex][usedColumnIndex];
-    if (isUsed === 'TRUE' || isUsed === true) {
-      document.getElementById('status').innerHTML = '❌ This token has already been used.';
-      return;
-    }
-    
-    // Mark as used
-    await markTokenAsUsed(rowIndex + 1, usedColumnIndex); // +1 because sheets are 1-indexed
-    
-    // Show success
-    document.getElementById('discord-container').innerHTML = `
-      <h2>✅ Access Granted!</h2>
-      <p>Your token is valid. Click the button below to join our Discord community:</p>
-      <a href="${DISCORD_INVITE}" target="_blank" style="display: inline-block; padding: 15px 30px; background: #5865F2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Join Discord Server</a>
-      <p style="margin-top: 20px; color: #666;">Once you join, please message our bot with your email address to get your role.</p>
-    `;
     
   } catch (error) {
-    document.getElementById('status').innerHTML = '❌ Error verifying token. Please try again.';
-    console.error(error);
+    document.getElementById('status').innerHTML = '❌ Error verifying token. Please try again or contact support.';
   }
-}
-
-async function markTokenAsUsed(rowNumber, columnIndex) {
-  // Convert column index to letter (0 = A, 1 = B, etc.)
-  const columnLetter = String.fromCharCode(65 + columnIndex);
-  const range = `${SHEET_NAME}!${columnLetter}${rowNumber}`;
-  
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?valueInputOption=RAW&key=${API_KEY}`;
-  
-  await fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      values: [['TRUE']]
-    })
-  });
 }
 </script>

@@ -13,33 +13,33 @@
     </a>
     
     <ul class="nav-links">
-      <li><a href="/#features">Features</a></li>
-      <li><a href="/#pricing">Plans</a></li>
-      <li><a href="/#faq">FAQ</a></li>
-      
-      <!-- Login/Account Icon -->
-      {% if customer %}
-        <li>
-          <a href="/account" class="account-icon" title="My Account">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <span class="account-name">{{ customer.first_name | default: "Account" }}</span>
-          </a>
-        </li>
-      {% else %}
-        <li>
-          <a href="/account/login" class="login-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            Login
-          </a>
-        </li>
-      {% endif %}
-    </ul>
+  <li><a href="/#features">Features</a></li>
+  <li><a href="/#pricing">Pricing</a></li>
+  <li><a href="/#faq">FAQ</a></li>
+  
+  <!-- Login/Account Icon -->
+  {% if customer %}
+    <li>
+      <a href="/account" class="account-icon" title="My Account">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span class="account-name">{{ customer.first_name | default: "Account" }}</span>
+      </a>
+    </li>
+  {% else %}
+    <li>
+      <a href="/account/login" class="login-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        Login
+      </a>
+    </li>
+  {% endif %}
+</ul>
     
     <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
       <span></span>
@@ -53,10 +53,11 @@
 <div class="mobile-menu-overlay"></div>
 
 <!-- Mobile Menu - OUTSIDE navbar -->
+<!-- Mobile Menu - OUTSIDE navbar -->
 <div class="mobile-menu">
   <ul class="mobile-nav-links">
     <li><a href="/#features">Features</a></li>
-    <li><a href="/#pricing">Plans</a></li>
+    <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#faq">FAQ</a></li>
     
     {% if customer %}

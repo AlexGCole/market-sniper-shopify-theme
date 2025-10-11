@@ -289,49 +289,4 @@ section {
   .logo {
     z-index: 100001 !important;
   }
-
- /* Section Backgrounds - Alternating Black and Gray Pattern */
-/* Hero stays default (has its own gradient with green) */
-
-/* How It Works Section - Black */
-.how-it-works {
-  background: #0a0a0a !important;
-  padding: 80px 20px;
-}
-
-/* Features Section - Dark Gray */
-.features-section {
-  background: #1a1a1a !important;
-  padding: 80px 20px;
-}
-
-/* Indicators Section - Black */
-.indicators,
-.indicators-section {
-  background: #0a0a0a !important;
-  padding: 80px 20px;
-}
-
-/* Trading Bot Section - Dark Gray */
-.trading-bot {
-  background: #1a1a1a !important;
-  padding: 80px 20px;
-}
-
-/* Pricing Section - Black */
-.pricing-section {
-  background: #0a0a0a !important;
-  padding: 80px 20px;
-}
-
-/* FAQ Section - Dark Gray */
-.faq {
-  background: #1a1a1a !important;
-  padding: 80px 20px;
-}
-
-/* Footer - Black */
-.footer {
-  background: #0a0a0a !important;
-}
 }

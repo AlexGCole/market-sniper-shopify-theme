@@ -12,10 +12,11 @@
       <span class="logo-text">{{ section.settings.logo_text | default: shop.name }}</span>
     </a>
     
-    <ul class="nav-links">
+<ul class="nav-links">
   <li><a href="/#features">Features</a></li>
   <li><a href="/#pricing">Pricing</a></li>
   <li><a href="/#faq">FAQ</a></li>
+  <li><a href="/pages/contact">Contact</a></li>
   
   <!-- Login/Account Icon -->
   {% if customer %}
@@ -52,13 +53,12 @@
 <!-- Mobile Menu Overlay - OUTSIDE navbar -->
 <div class="mobile-menu-overlay"></div>
 
-<!-- Mobile Menu - OUTSIDE navbar -->
-<!-- Mobile Menu - OUTSIDE navbar -->
 <div class="mobile-menu">
   <ul class="mobile-nav-links">
     <li><a href="/#features">Features</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#faq">FAQ</a></li>
+    <li><a href="/pages/contact">Contact</a></li>
     
     {% if customer %}
       <li>

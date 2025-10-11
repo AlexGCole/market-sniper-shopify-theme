@@ -290,235 +290,47 @@ section {
     z-index: 100001 !important;
   }
 
- /* Section Backgrounds - Alternating Pattern */
-/* Hero stays default (has its own gradient) */
+ /* Section Backgrounds - Alternating Black and Gray Pattern */
+/* Hero stays default (has its own gradient with green) */
 
 /* How It Works Section - Black */
 .how-it-works {
-  background: #0a0a0a;
+  background: #0a0a0a !important;
   padding: 80px 20px;
 }
 
-/* Features Section - Green */
+/* Features Section - Dark Gray */
 .features-section {
-  background: #0f1e0f;
+  background: #1a1a1a !important;
   padding: 80px 20px;
 }
 
 /* Indicators Section - Black */
 .indicators,
 .indicators-section {
-  background: #0a0a0a;
+  background: #0a0a0a !important;
   padding: 80px 20px;
 }
 
-/* Trading Bot Section - Green */
+/* Trading Bot Section - Dark Gray */
 .trading-bot {
-  background: #0f1e0f;
+  background: #1a1a1a !important;
   padding: 80px 20px;
-}
-
-.bot-content {
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.bot-badge {
-  display: inline-block;
-  padding: 8px 20px;
-  background: rgba(0, 255, 65, 0.2);
-  border: 1px solid rgba(0, 255, 65, 0.4);
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #00ff41;
-}
-
-.trading-bot h2 {
-  font-size: 2.5rem;
-  color: white;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.bot-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 40px;
-}
-
-.bot-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-bottom: 40px;
-}
-
-.bot-feature {
-  background: rgba(0, 255, 65, 0.03);
-  border: 1px solid rgba(0, 255, 65, 0.2);
-  border-radius: 15px;
-  padding: 30px;
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.bot-feature:hover {
-  border-color: rgba(0, 255, 65, 0.4);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
-}
-
-.bot-feature-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
-}
-
-.bot-feature h3 {
-  color: #00ff41;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.bot-feature p {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.bot-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  background: rgba(0, 255, 65, 0.1);
-  border: 1px solid rgba(0, 255, 65, 0.3);
-  border-radius: 15px;
-  padding: 30px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.bot-stat-number {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #00ff41;
-}
-
-.bot-stat-label {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Pricing Section - Black */
 .pricing-section {
-  background: #0a0a0a;
+  background: #0a0a0a !important;
   padding: 80px 20px;
 }
 
-/* FAQ Section - Green */
+/* FAQ Section - Dark Gray */
 .faq {
-  background: #0f1e0f;
+  background: #1a1a1a !important;
   padding: 80px 20px;
-}
-
-.faq .container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.faq-item {
-  background: rgba(0, 255, 65, 0.03);
-  border: 1px solid rgba(0, 255, 65, 0.2);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.faq-item:hover {
-  border-color: rgba(0, 255, 65, 0.4);
-}
-
-.faq-question {
-  width: 100%;
-  padding: 25px 30px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.faq-question:hover {
-  color: #00ff41;
-}
-
-.faq-icon {
-  font-size: 1.5rem;
-  color: #00ff41;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-  margin-left: 20px;
-}
-
-.faq-item.active .faq-icon {
-  transform: rotate(45deg);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.faq-answer p {
-  padding: 0 30px 25px 30px;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.faq-item.active .faq-answer {
-  max-height: 500px;
 }
 
 /* Footer - Black */
 .footer {
-  background: #0a0a0a;
-}
-
-@media (max-width: 640px) {
-  .trading-bot h2 {
-    font-size: 2rem;
-  }
-
-  .bot-features {
-    grid-template-columns: 1fr;
-  }
-
-  .faq-question {
-    padding: 20px;
-    font-size: 1rem;
-  }
-
-  .faq-answer p {
-    padding: 0 20px 20px 20px;
-  }
+  background: #0a0a0a !important;
 }

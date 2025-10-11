@@ -1,5 +1,12 @@
 <section class="indicators">
   <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.section_subtitle }}</p>
+    </div>
+
+    <!-- Indicators -->
     {% for block in section.blocks %}
       <div class="indicator-item {% if forloop.index == 2 %}reverse{% endif %}">
         <div class="indicator-content">
@@ -30,6 +37,13 @@
 </section>
 
 <style>
+  .indicators {
+    padding: 80px 20px;
+    background: #050807;
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+  }
+
   .indicator-visual-container {
     background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(0, 255, 65, 0.01) 100%);
     padding: 20px;
@@ -50,18 +64,25 @@
     object-fit: cover;
     border-radius: 16px;
   }
-
-.indicators-section {
-  padding: 80px 20px;
-  background: #050807;
-  border-top: 1px solid rgba(0, 255, 65, 0.2);
-  border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-}
 </style>
 
 {% schema %}
 {
   "name": "Indicators",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Professional Trading Indicators"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Advanced tools to identify high-probability trading opportunities"
+    }
+  ],
   "blocks": [
     {
       "type": "indicator",

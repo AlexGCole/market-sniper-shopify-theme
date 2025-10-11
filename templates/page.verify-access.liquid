@@ -11,6 +11,8 @@ const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/22532737/u55g4h
 const urlParams = new URLSearchParams(window.location.search);
 const token = urlParams.get('token');
 
+console.log('Token from URL:', token);
+
 if (!token) {
   document.getElementById('status').innerHTML = '❌ No token provided. Please check your email for the correct link.';
 } else {
@@ -18,8 +20,13 @@ if (!token) {
 }
 
 async function verifyToken(token) {
+  console.log('Attempting to verify token:', token);
+  
   try {
     // Send token to Zapier webhook
+    console.log('Sending POST to:', ZAPIER_WEBHOOK_URL);
+    console.log('With data:', JSON.stringify({ token: token }));
+    
     const response = await fetch(ZAPIER_WEBHOOK_URL, {
       method: 'POST',
       headers: {
@@ -30,7 +37,11 @@ async function verifyToken(token) {
       })
     });
     
+    console.log('Response status:', response.status);
+    console.log('Response headers:', response.headers);
+    
     const data = await response.json();
+    console.log('Response data:', data);
     
     if (data.success) {
       // Show success with Discord invite
@@ -46,7 +57,8 @@ async function verifyToken(token) {
     }
     
   } catch (error) {
-    document.getElementById('status').innerHTML = '❌ Error verifying token. Please try again or contact support.';
+    console.error('Error caught:', error);
+    document.getElementById('status').innerHTML = '❌ Error verifying token. Please try again or contact support. Error: ' + error.message;
   }
 }
 </script>

@@ -1,11 +1,13 @@
-<div id="discord-container">
-  <h2>Verifying your access...</h2>
-  <p id="status">Please wait...</p>
+<div class="container" style="padding: 6rem 0;">
+  <div id="discord-container">
+    <h2>Verifying your access...</h2>
+    <p id="status">Please wait...</p>
+  </div>
 </div>
 
 <script>
 // Configuration - ONLY the webhook URL
-const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/22532737/u55g4hf/';
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/22532737/YOUR_NEW_WEBHOOK_ID/';
 
 // Get token from URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -23,9 +25,7 @@ async function verifyToken(token) {
   console.log('Attempting to verify token:', token);
   
   try {
-    // Send token to Zapier webhook
     console.log('Sending POST to:', ZAPIER_WEBHOOK_URL);
-    console.log('With data:', JSON.stringify({ token: token }));
     
     const response = await fetch(ZAPIER_WEBHOOK_URL, {
       method: 'POST',
@@ -38,27 +38,23 @@ async function verifyToken(token) {
     });
     
     console.log('Response status:', response.status);
-    console.log('Response headers:', response.headers);
-    
     const data = await response.json();
     console.log('Response data:', data);
     
     if (data.success) {
-      // Show success with Discord invite
-      document.getElementById('discord-container').innerHTML = `
+      document.getElementById('discord-container').innerHTML = \`
         <h2>✅ Access Granted!</h2>
         <p>Your token is valid. Click the button below to join our Discord community:</p>
-        <a href="${data.discord_invite}" target="_blank" style="display: inline-block; padding: 15px 30px; background: #5865F2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Join Discord Server</a>
+        <a href="\${data.discord_invite}" target="_blank" style="display: inline-block; padding: 15px 30px; background: #5865F2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Join Discord Server</a>
         <p style="margin-top: 20px; color: #666;">Once you join, please message our bot with your email address to get your role.</p>
-      `;
+      \`;
     } else {
-      // Show error
       document.getElementById('status').innerHTML = '❌ ' + (data.message || 'Invalid or already used token.');
     }
     
   } catch (error) {
-    console.error('Error caught:', error);
-    document.getElementById('status').innerHTML = '❌ Error verifying token. Please try again or contact support. Error: ' + error.message;
+    console.error('Error:', error);
+    document.getElementById('status').innerHTML = '❌ Error verifying token: ' + error.message;
   }
 }
 </script>

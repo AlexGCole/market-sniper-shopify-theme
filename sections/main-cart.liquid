@@ -13,50 +13,49 @@
         <div class="cart-items">
           {% for item in cart.items %}
             <div class="cart-item" data-line="{{ forloop.index }}">
-              <div class="item-image">
-                {% if item.image %}
-                  <img src="{{ item.image | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-                {% else %}
-                  <img src="{{ 'trading-bot-suite.jpg' | asset_url }}" alt="{{ item.title | escape }}">
-                {% endif %}
-              </div>
+  <div class="item-image">
+    {% if item.image %}
+      <img src="{{ item.image | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+    {% else %}
+      <img src="{{ 'trading-bot-suite.jpg' | asset_url }}" alt="{{ item.title | escape }}">
+    {% endif %}
+  </div>
 
-              <div class="item-details">
-                <h3 class="item-title">{{ item.product.title }}</h3>
-                {% if item.variant.title != 'Default Title' %}
-                  <p class="item-variant">{{ item.variant.title }}</p>
-                {% endif %}
-                
-                {% if item.selling_plan_allocation %}
-                  <div class="subscription-info">
-                    <span class="subscription-badge">📅 Subscription</span>
-                    <p class="subscription-name">{{ item.selling_plan_allocation.selling_plan.name }}</p>
-                  </div>
-                {% endif %}
+  <div class="item-details">
+    <h3 class="item-title">{{ item.product.title }}</h3>
+    {% if item.variant.title != 'Default Title' %}
+      <p class="item-variant">{{ item.variant.title }}</p>
+    {% endif %}
+    
+    {% if item.selling_plan_allocation %}
+      <div class="subscription-info">
+        <span class="subscription-badge">📅 Subscription</span>
+        <p class="subscription-name">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+      </div>
+    {% endif %}
 
-                <p class="item-price">{{ item.final_line_price | money }}</p>
-              </div>
+    <p class="item-price">{{ item.final_line_price | money }}</p>
+  </div>
 
-              <div class="item-quantity">
-                <label for="quantity-{{ forloop.index }}">Quantity:</label>
-                <input 
-                  type="number" 
-                  id="quantity-{{ forloop.index }}"
-                  class="quantity-input"
-                  value="{{ item.quantity }}" 
-                  min="1"
-                  data-line="{{ forloop.index }}"
-                >
-              </div>
+  <div class="item-quantity">
+    <label for="quantity-{{ forloop.index }}">Quantity:</label>
+    <input 
+      type="number" 
+      id="quantity-{{ forloop.index }}"
+      class="quantity-input"
+      value="{{ item.quantity }}" 
+      min="1"
+      data-line="{{ forloop.index }}"
+    >
+  </div>
 
-              <div class="item-remove">
-                <button class="remove-btn" data-line="{{ forloop.index }}" aria-label="Remove item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 6L6 18M6 6l12 12"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
+  <!-- Remove button positioned absolutely -->
+  <button class="remove-btn" data-line="{{ forloop.index }}" aria-label="Remove item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
+  </button>
+</div>
           {% endfor %}
         </div>
 
@@ -138,16 +137,18 @@
     gap: 20px;
   }
 
-  .cart-item {
-    background: rgba(0, 255, 65, 0.03);
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    border-radius: 15px;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 100px 1fr auto auto;
-    gap: 20px;
-    align-items: center;
-  }
+.cart-item {
+  background: rgba(0, 255, 65, 0.03);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  padding-top: 50px; /* Add space for button */
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  position: relative;
+}
 
   .item-image img {
     width: 100px;
@@ -229,11 +230,11 @@
   height: 36px;
 }
 
-  .remove-btn:hover {
-    background: rgba(255, 65, 65, 0.1);
-    border-color: #ff4141;
-    color: #ff4141;
-  }
+.remove-btn:hover {
+  background: rgba(255, 65, 65, 0.1);
+  border-color: #ff4141;
+  color: #ff4141;
+}
 
   .cart-summary {
     background: rgba(0, 255, 65, 0.03);

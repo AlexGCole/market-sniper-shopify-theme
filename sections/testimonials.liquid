@@ -1,0 +1,237 @@
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>What Do Our Subscribers Think?</h2>
+    </div>
+
+    <div class="testimonials-slider">
+      <button class="slider-arrow prev" aria-label="Previous testimonial">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="testimonials-track">
+        <div class="testimonial active">
+          <p class="testimonial-text">Before I met Jesse, I was copy trading. Now I can fully execute trades on my own and he really changed my view on trading completely.</p>
+          <p class="testimonial-author">— @JulianDeFi</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">I just wanted to say thank you for all your help with trading. I've already made 20% on my portfolio and I couldn't have done it without you. 🙌</p>
+          <p class="testimonial-author">— @onedegreebetter</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">There is so much noise in the crypto space - filtering through it is one of the most important factors to success. Jesse's approach to the market is consistent, precise and unbiased.</p>
+          <p class="testimonial-author">— @CharlesChopin</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">If you're looking to truly learn the art of trading, I would recommend you look into Market Sniper.</p>
+          <p class="testimonial-author">— @granmatterson</p>
+        </div>
+      </div>
+
+      <button class="slider-arrow next" aria-label="Next testimonial">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="slider-dots"></div>
+  </div>
+</section>
+
+<style>
+.testimonials-section {
+  padding: 80px 20px;
+  background: #1a1a1a;
+  border-top: 1px solid rgba(0, 255, 65, 0.2);
+  border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.testimonials-slider {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.testimonials-track {
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.testimonial {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.5s ease;
+}
+
+.testimonial.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.testimonial-text {
+  font-size: 1.5rem;
+  color: #00ff41;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonial-author {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: normal;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  color: #00ff41;
+}
+
+.slider-arrow:hover {
+  background: rgba(0, 255, 65, 0.2);
+  border-color: #00ff41;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-arrow.prev {
+  left: 0;
+}
+
+.slider-arrow.next {
+  right: 0;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(0, 255, 65, 0.2);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  background: #00ff41;
+  transform: scale(1.2);
+}
+
+@media (max-width: 968px) {
+  .testimonials-slider {
+    padding: 0 50px;
+  }
+
+  .testimonial-text {
+    font-size: 1.2rem;
+  }
+
+  .slider-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonials-slider {
+    padding: 0 40px;
+  }
+
+  .testimonial-text {
+    font-size: 1.1rem;
+  }
+
+  .testimonial {
+    padding: 30px 10px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const testimonials = document.querySelectorAll('.testimonial');
+  const dotsContainer = document.querySelector('.slider-dots');
+  const prevBtn = document.querySelector('.slider-arrow.prev');
+  const nextBtn = document.querySelector('.slider-arrow.next');
+  
+  let currentIndex = 0;
+
+  // Create dots
+  testimonials.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'slider-dot' + (index === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Go to testimonial ${index + 1}`);
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.slider-dot');
+
+  function goToSlide(index) {
+    testimonials[currentIndex].classList.remove('active');
+    dots[currentIndex].classList.remove('active');
+    
+    currentIndex = index;
+    
+    testimonials[currentIndex].classList.add('active');
+    dots[currentIndex].classList.add('active');
+  }
+
+  function nextSlide() {
+    const next = (currentIndex + 1) % testimonials.length;
+    goToSlide(next);
+  }
+
+  function prevSlide() {
+    const prev = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    goToSlide(prev);
+  }
+
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+
+  // Auto-advance every 5 seconds
+  setInterval(nextSlide, 5000);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": []
+}
+{% endschema %}

@@ -157,7 +157,10 @@
         "indicator-1",
         "indicator-2"
       ],
-      "settings": {}
+      "settings": {
+        "section_title": "Professional Trading Indicators",
+        "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
+      }
     },
     "trading-bot": {
       "type": "trading-bot",
@@ -286,6 +289,10 @@
         "section_subtitle": "Flexible pricing options to match your trading needs"
       }
     },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {}
+    },
     "faq": {
       "type": "faq",
       "blocks": {
@@ -361,6 +368,7 @@
     "indicators",
     "trading-bot",
     "pricing",
+    "testimonials",
     "faq",
     "footer"
   ]

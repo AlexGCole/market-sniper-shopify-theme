@@ -229,10 +229,17 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentIndex = 0;
   let isAnimating = false;
 
-  // Initialize - show first slide
-  testimonials[0].classList.add('active');
-  testimonials[0].style.transform = 'translateX(0)';
-  testimonials[0].style.opacity = '1';
+  // Initialize all slides off-screen to the right
+  testimonials.forEach((testimonial, index) => {
+    if (index === 0) {
+      testimonial.classList.add('active');
+      testimonial.style.transform = 'translateX(0)';
+      testimonial.style.opacity = '1';
+    } else {
+      testimonial.style.transform = 'translateX(100%)';
+      testimonial.style.opacity = '0';
+    }
+  });
 
   // Create dots
   testimonials.forEach((_, index) => {
@@ -250,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const dots = document.querySelectorAll('.slider-dot');
 
-  function goToSlide(index, direction = 'next') {
+  function goToSlide(index, direction) {
     if (isAnimating || index === currentIndex) return;
     
     isAnimating = true;
@@ -261,39 +268,51 @@ document.addEventListener('DOMContentLoaded', function() {
     dots[currentIndex].classList.remove('active');
     dots[index].classList.add('active');
     
-    // Position next slide off-screen
+    // Set starting position based on direction
     if (direction === 'next') {
+      // Next slide starts from right
+      next.style.transition = 'none';
       next.style.transform = 'translateX(100%)';
-      next.style.opacity = '1';
+      next.style.opacity = '0';
       next.classList.add('active');
       
-      // Animate both
+      // Force reflow
+      next.offsetHeight;
+      
+      // Re-enable transition and animate
+      next.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
       setTimeout(() => {
         current.style.transform = 'translateX(-100%)';
         current.style.opacity = '0';
         next.style.transform = 'translateX(0)';
+        next.style.opacity = '1';
       }, 10);
     } else {
+      // Previous slide starts from left
+      next.style.transition = 'none';
       next.style.transform = 'translateX(-100%)';
-      next.style.opacity = '1';
+      next.style.opacity = '0';
       next.classList.add('active');
       
-      // Animate both
+      // Force reflow
+      next.offsetHeight;
+      
+      // Re-enable transition and animate
+      next.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
       setTimeout(() => {
         current.style.transform = 'translateX(100%)';
         current.style.opacity = '0';
         next.style.transform = 'translateX(0)';
+        next.style.opacity = '1';
       }, 10);
     }
     
     // Clean up after animation
     setTimeout(() => {
       current.classList.remove('active');
-      current.style.transform = 'translateX(100%)';
-      current.style.opacity = '0';
       currentIndex = index;
       isAnimating = false;
-    }, 600);
+    }, 650);
   }
 
   function nextSlide() {

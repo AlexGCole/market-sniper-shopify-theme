@@ -11,7 +11,7 @@
         "badge_text": "🎯 Professional Trading Tools",
         "hero_title_line1": "Precision Trading",
         "hero_title_line2": "Made Simple",
-        "hero_subtitle": "Advanced indicators, automated alerts, and expert coaching to elevate your trading game",
+        "hero_subtitle": "Automated trading bot with proven strategies synced directly to your TradingView",
         "primary_button_text": "Start Trading Smarter",
         "primary_button_link": "#pricing",
         "show_stats": true
@@ -23,36 +23,45 @@
         "step-1": {
           "type": "step",
           "settings": {
-            "icon": "📊",
+            "icon": "📋",
             "title": "Choose Your Plan",
-            "description": "Select the subscription that matches your trading style and goals"
+            "description": "Select the Bot Suite subscription that matches your trading goals"
           }
         },
         "step-2": {
           "type": "step",
           "settings": {
-            "icon": "📥",
-            "title": "Get Instant Access",
-            "description": "Download our indicators and join the private Discord community immediately"
+            "icon": "💬",
+            "title": "Join Discord Community",
+            "description": "Get instant access to our private Discord with traders and bot discussions"
           }
         },
         "step-3": {
           "type": "step",
           "settings": {
+            "icon": "📊",
+            "title": "Receive TradingView Setup",
+            "description": "Bot strategies and indicators automatically shared to your TradingView account"
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
             "icon": "🚀",
             "title": "Start Trading",
-            "description": "Follow along with 60+ hours of coaching and real-time trading signals"
+            "description": "Deploy your automated bot and follow real-time signals in Discord"
           }
         }
       },
       "block_order": [
         "step-1",
         "step-2",
-        "step-3"
+        "step-3",
+        "step-4"
       ],
       "settings": {
         "section_title": "Your Path to Trading Success",
-        "section_subtitle": "Get started in minutes with our proven 3-step system"
+        "section_subtitle": "Get started in minutes with our proven 4-step system"
       }
     },
     "features": {
@@ -61,49 +70,49 @@
         "feature-1": {
           "type": "feature",
           "settings": {
-            "icon": "📈",
-            "title": "Advanced Indicators",
-            "description": "Sharp Shooter Candles 4.2 and RSI 2.0 with precise buy/sell signals"
+            "icon": "🤖",
+            "title": "Automated Trading Bot",
+            "description": "Fully automated bot that executes trades 24/7 based on proven strategies"
           }
         },
         "feature-2": {
           "type": "feature",
           "settings": {
-            "icon": "🤖",
-            "title": "Sniper Bot Alerts",
-            "description": "Automated trading signals delivered in real-time to your Discord"
+            "icon": "📊",
+            "title": "TradingView Indicators",
+            "description": "Sharp Shooter Candles and RSI indicators shared directly to your TradingView"
           }
         },
         "feature-3": {
           "type": "feature",
           "settings": {
-            "icon": "🎓",
-            "title": "60+ Hours of Training",
-            "description": "Comprehensive video courses from beginner to advanced strategies"
+            "icon": "📈",
+            "title": "Proven Trading Strategies",
+            "description": "Bot strategies automatically synced to your TradingView for seamless execution"
           }
         },
         "feature-4": {
           "type": "feature",
           "settings": {
             "icon": "💬",
-            "title": "Private Community",
-            "description": "Exclusive Discord access with fellow traders and mentors"
+            "title": "Private Discord Community",
+            "description": "Exclusive access to bot discussion channels and fellow traders"
           }
         },
         "feature-5": {
           "type": "feature",
           "settings": {
-            "icon": "🔔",
-            "title": "Real-Time Alerts",
-            "description": "Never miss a trading opportunity with instant notifications"
+            "icon": "⚙️",
+            "title": "Bot Configuration & Setup",
+            "description": "Complete setup assistance with personalized bot configuration"
           }
         },
         "feature-6": {
           "type": "feature",
           "settings": {
-            "icon": "📊",
-            "title": "Multiple Timeframes",
-            "description": "Works on all timeframes from scalping to swing trading"
+            "icon": "🎯",
+            "title": "Priority Support",
+            "description": "Dedicated support for bot optimization and strategy questions"
           }
         }
       },
@@ -117,7 +126,7 @@
       ],
       "settings": {
         "section_title": "Everything You Need to Succeed",
-        "section_subtitle": "Comprehensive tools and support for every trader"
+        "section_subtitle": "Complete automated trading solution with strategies and support"
       }
     },
     "indicators": {
@@ -257,7 +266,7 @@
             "period": "yr",
             "setup_fee": "249",
             "savings_text": "Save $98",
-            "is_popular": false,
+            "is_popular": true,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support\n✓ Annual Strategy Review",
             "button_link": "shopify://products/trading-bot-suite-490-annual",
             "button_text": "Buy Now"
@@ -283,8 +292,8 @@
         "faq-1": {
           "type": "faq_item",
           "settings": {
-            "question": "What trading platforms do the indicators work on?",
-            "answer": "Our indicators are designed for TradingView, the industry-standard charting platform used by millions of traders worldwide."
+            "question": "What trading platforms do the bot and indicators work on?",
+            "answer": "Our automated bot and indicators are designed for TradingView, the industry-standard charting platform used by millions of traders worldwide."
           }
         },
         "faq-2": {
@@ -304,22 +313,22 @@
         "faq-4": {
           "type": "faq_item",
           "settings": {
-            "question": "Do I need trading experience to use these tools?",
-            "answer": "No! Our 60+ hours of coaching videos cover everything from beginner basics to advanced strategies. However, we recommend paper trading first to build confidence."
+            "question": "Do I need trading experience to use the bot?",
+            "answer": "No! Our bot comes with proven strategies already configured. However, we recommend understanding basic trading concepts and starting with paper trading to build confidence before using real capital."
           }
         },
         "faq-5": {
           "type": "faq_item",
           "settings": {
             "question": "How does the automated trading bot work?",
-            "answer": "Our trading bot executes trades automatically based on the signals from our Sharp Shooter indicators. It includes risk management features like stop losses and take profits. The $249 setup fee covers personalized configuration for your account and risk tolerance."
+            "answer": "Our trading bot executes trades automatically on TradingView based on proven strategies. It includes risk management features like stop losses and take profits. The $249 setup fee covers personalized configuration for your account and risk tolerance."
           }
         },
         "faq-6": {
           "type": "faq_item",
           "settings": {
             "question": "What's included in the Discord community?",
-            "answer": "You'll get access to our private Discord server with real-time trading alerts, strategy discussions, coaching Q&A sessions, and a community of like-minded traders. Bot subscribers also get access to an exclusive bot discussion channel."
+            "answer": "You'll get access to our private Discord server with real-time bot alerts, strategy discussions, and a community of like-minded traders. Bot subscribers also get access to an exclusive bot discussion channel with dedicated support."
           }
         }
       },
@@ -333,7 +342,7 @@
       ],
       "settings": {
         "section_title": "Frequently Asked Questions",
-        "section_subtitle": "Everything you need to know about Market Sniper Pro"
+        "section_subtitle": "Everything you need to know about Market Sniper Bot Suite"
       }
     },
     "footer": {

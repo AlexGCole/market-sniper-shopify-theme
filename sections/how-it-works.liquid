@@ -1,21 +1,145 @@
-<section class="how-it-works">
+{% comment %}
+  sections/how-it-works.liquid
+  Step-by-step process section
+{% endcomment %}
+
+<section class="how-it-works" id="how-it-works">
   <div class="container">
     <div class="section-header">
       <h2>{{ section.settings.section_title }}</h2>
       <p>{{ section.settings.section_subtitle }}</p>
     </div>
-    <div class="steps">
+
+    <div class="steps-grid">
       {% for block in section.blocks %}
-        <div class="step">
-          <div class="step-number">{{ forloop.index }}</div>
+        <div class="step-card" {{ block.shopify_attributes }}>
           <div class="step-icon">{{ block.settings.icon }}</div>
-          <h3>{{ block.settings.title }}</h3>
-          <p>{{ block.settings.description }}</p>
+          <h3 class="step-title">{{ block.settings.title }}</h3>
+          <p class="step-description">{{ block.settings.description }}</p>
         </div>
       {% endfor %}
     </div>
   </div>
 </section>
+
+<style>
+  .how-it-works {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      rgba(0, 255, 65, 0.3) 0%, 
+      rgba(0, 255, 65, 0.6) 50%, 
+      rgba(0, 255, 65, 0.3) 100%
+    );
+    z-index: 0;
+  }
+
+  .step-card {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
+    padding: 40px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-card:hover {
+    transform: translateY(-10px);
+    border-color: #00ff41;
+    box-shadow: 0 15px 35px rgba(0, 255, 65, 0.2);
+    background: rgba(0, 255, 65, 0.06);
+  }
+
+  .step-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    background: rgba(0, 255, 65, 0.1);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    border: 2px solid rgba(0, 255, 65, 0.3);
+  }
+
+  .step-title {
+    font-size: 1.4rem;
+    color: #00ff41;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .step-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 1200px) {
+    .steps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid::before {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .step-icon {
+      width: 100px;
+      height: 100px;
+      font-size: 3rem;
+    }
+  }
+</style>
 
 {% schema %}
 {
@@ -25,13 +149,13 @@
       "type": "text",
       "id": "section_title",
       "label": "Section Title",
-      "default": "What Happens After Purchase"
+      "default": "Your Path to Trading Success"
     },
     {
       "type": "text",
       "id": "section_subtitle",
       "label": "Section Subtitle",
-      "default": "Get started in minutes with our streamlined onboarding process"
+      "default": "Get started in minutes with our proven 4-step system"
     }
   ],
   "blocks": [
@@ -42,20 +166,20 @@
         {
           "type": "text",
           "id": "icon",
-          "label": "Icon (Emoji)",
-          "default": "💳"
+          "label": "Icon (emoji)",
+          "default": "📊"
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Step Title",
-          "default": "Step Name"
+          "label": "Title",
+          "default": "Step Title"
         },
         {
-          "type": "text",
+          "type": "textarea",
           "id": "description",
-          "label": "Step Description",
-          "default": "Description"
+          "label": "Description",
+          "default": "Step description goes here"
         }
       ]
     }
@@ -65,36 +189,7 @@
       "name": "How It Works",
       "blocks": [
         {
-          "type": "step",
-          "settings": {
-            "icon": "💳",
-            "title": "Complete Payment",
-            "description": "Secure checkout with instant access"
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "icon": "🔗",
-            "title": "Get Discord Link",
-            "description": "Private community access on thank you page"
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "icon": "📝",
-            "title": "Fill Out Form",
-            "description": "Submit billing email, Discord & TradingView names"
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "icon": "🚀",
-            "title": "Start Trading",
-            "description": "Access indicators and coaching instantly"
-          }
+          "type": "step"
         }
       ]
     }

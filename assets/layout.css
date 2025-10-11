@@ -289,4 +289,22 @@ section {
   .logo {
     z-index: 100001 !important;
   }
+
+  /* Make sections fill viewport height */
+.how-it-works,
+.features-section,
+.indicators,
+.trading-bot,
+.pricing-section,
+.testimonials-section,
+.faq {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Override for hero which already handles this */
+.hero {
+  min-height: 100vh;
+}
 }

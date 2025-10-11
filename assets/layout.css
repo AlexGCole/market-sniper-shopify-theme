@@ -378,4 +378,136 @@ section {
     padding: 0 20px 20px 20px;
   }
 }
+
+/* Trading Bot Section */
+.trading-bot {
+  background: #0f1e0f;
+  padding: 80px 20px;
+}
+
+.bot-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bot-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(0, 255, 65, 0.2);
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #00ff41;
+}
+
+.trading-bot h2 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.bot-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+}
+
+.bot-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.bot-feature {
+  background: rgba(0, 255, 65, 0.03);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.bot-feature:hover {
+  border-color: rgba(0, 255, 65, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+}
+
+.bot-feature-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.bot-feature h3 {
+  color: #00ff41;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.bot-feature p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bot-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.bot-stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #00ff41;
+}
+
+.bot-stat-label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 640px) {
+  .trading-bot h2 {
+    font-size: 2rem;
+  }
+
+  .bot-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Indicators Section */
+.indicators,
+.indicators-section {
+  background: #0a0a0a;
+  padding: 80px 20px;
+}
+
+/* Features Section */
+.features-section {
+  background: #0f1e0f !important;
+  padding: 80px 20px;
+}
+
+/* How It Works Section */
+.how-it-works {
+  background: #0a0a0a !important;
+  padding: 80px 20px;
+}
 }

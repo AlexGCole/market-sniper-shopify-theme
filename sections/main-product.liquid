@@ -74,22 +74,33 @@
         {% endif %}
 
         <!-- Product Form -->
-        {% form 'product', product, id: 'product-form' %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
-          
-          <!-- Quantity -->
-          <div class="quantity-selector">
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" id="quantity" value="1" min="1">
-          </div>
+{% form 'product', product, id: 'product-form' %}
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
+  
+  <!-- Hidden selling plan (auto-select first one if exists) -->
+  {% if product.selling_plan_groups.size > 0 %}
+    {% for selling_plan_group in product.selling_plan_groups %}
+      {% for selling_plan in selling_plan_group.selling_plans %}
+        {% if forloop.first %}
+          <input type="hidden" name="selling_plan" value="{{ selling_plan.id }}">
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+  
+  <!-- Quantity -->
+  <div class="quantity-selector">
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" id="quantity" value="1" min="1">
+  </div>
 
-          <!-- Add to Cart Button -->
-          <button type="submit" name="add" class="add-to-cart-btn" id="add-to-cart">
-            <span class="btn-text">Add to Cart</span>
-          </button>
+  <!-- Add to Cart Button -->
+  <button type="submit" name="add" class="add-to-cart-btn" id="add-to-cart">
+    <span class="btn-text">Add to Cart</span>
+  </button>
 
-          <div id="cart-message" class="cart-message" style="display: none;"></div>
-        {% endform %}
+  <div id="cart-message" class="cart-message" style="display: none;"></div>
+{% endform %}
       </div>
     </div>
   </div>

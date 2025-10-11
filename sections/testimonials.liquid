@@ -241,24 +241,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const dots = document.querySelectorAll('.slider-dot');
 
-  function goToSlide(index) {
-    testimonials[currentIndex].classList.remove('active');
+  function goToSlide(index, direction = 'next') {
+    const current = testimonials[currentIndex];
+    const next = testimonials[index];
+    
+    // Remove active from current
+    current.classList.remove('active');
     dots[currentIndex].classList.remove('active');
     
+    // Set exit direction for current slide
+    if (direction === 'next') {
+      current.style.transform = 'translateX(-100%)';
+      next.style.transform = 'translateX(100%)';
+    } else {
+      current.style.transform = 'translateX(100%)';
+      next.style.transform = 'translateX(-100%)';
+    }
+    
+    // Update index
     currentIndex = index;
     
-    testimonials[currentIndex].classList.add('active');
+    // Show next slide
+    setTimeout(() => {
+      next.classList.add('active');
+      setTimeout(() => {
+        next.style.transform = 'translateX(0)';
+      }, 10);
+    }, 10);
+    
+    // Update dots
     dots[currentIndex].classList.add('active');
   }
 
   function nextSlide() {
     const next = (currentIndex + 1) % testimonials.length;
-    goToSlide(next);
+    goToSlide(next, 'next');
   }
 
   function prevSlide() {
     const prev = (currentIndex - 1 + testimonials.length) % testimonials.length;
-    goToSlide(prev);
+    goToSlide(prev, 'prev');
   }
 
   prevBtn.addEventListener('click', prevSlide);

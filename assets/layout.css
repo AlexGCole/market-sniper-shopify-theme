@@ -307,4 +307,15 @@ section {
 .hero {
   min-height: 100vh;
 }
+
+/* Smooth scrolling and proper offset for fixed navbar */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Additional offset for sections to account for navbar */
+section[id] {
+  scroll-margin-top: 20px;
+}
 }

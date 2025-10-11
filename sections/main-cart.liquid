@@ -603,26 +603,41 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Prevent setup fee removal
-  function protectSetupFee() {
-    const removeButtons = document.querySelectorAll('.remove-btn');
-    
-    removeButtons.forEach(button => {
-      const line = button.dataset.line;
-      const cartItem = document.querySelector(`.cart-item[data-line="${line}"]`);
-      const itemTitle = cartItem?.querySelector('.item-title')?.textContent || '';
+function protectSetupFee() {
+  // Get all cart items from the page
+  fetch('/cart.js')
+    .then(r => r.json())
+    .then(cart => {
+      const removeButtons = document.querySelectorAll('.remove-btn');
       
-      // Check if this is the setup fee item
-      if (itemTitle.toLowerCase().includes('setup fee')) {
-        // Override the click event
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
+      removeButtons.forEach(button => {
+        const line = parseInt(button.dataset.line);
+        const cartItem = cart.items[line - 1]; // Array is 0-indexed, line is 1-indexed
+        
+        // Check if this is the setup fee item by variant ID
+        if (cartItem && cartItem.variant_id === SETUP_FEE) {
+          console.log('Found setup fee button, protecting it');
           
-          showToast('Setup fee is required with Bot Suite subscription and cannot be removed separately', true);
-        }, true);
-      }
-    });
-  }
+          // Clone the button to remove all existing event listeners
+          const newButton = button.cloneNode(true);
+          button.parentNode.replaceChild(newButton, button);
+          
+          // Add new protected click event
+          newButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            
+            console.log('Setup fee removal prevented');
+            showToast('Setup fee is required with Bot Suite subscription and cannot be removed separately', true);
+            
+            return false;
+          }, { capture: true });
+        }
+      });
+    })
+    .catch(err => console.error('Error protecting setup fee:', err));
+}
   
   function checkCart() {
     console.log('Checking cart...');

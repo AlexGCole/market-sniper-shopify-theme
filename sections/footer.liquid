@@ -75,7 +75,7 @@
 
       <div class="footer-ninjatrader">
         <div class="nt-header">
-          <img src="https://ninjatrader.com/images/logos/nt-logo-white.svg" alt="NinjaTrader" class="nt-logo">
+          <img src="{{ 'NT-Logo.jpg' | asset_url }}" alt="NinjaTrader" class="nt-logo">
           <strong>Broker Disclosure</strong>
         </div>
         <p>Market Sniper is a third-party vendor and is not affiliated with NinjaTrader Brokerage or NinjaTrader Group, LLC. NinjaTrader Brokerage is an NFA registered introducing broker (NFA #0339976) providing brokerage services to traders of futures and foreign exchange products. Futures, foreign currency and options trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing ones' financial security or life style. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
@@ -216,8 +216,8 @@
   }
 
   .footer-ninjatrader {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    background: linear-gradient(135deg, #1a0f00 0%, #0a0a0a 100%);
+    border: 1px solid #ff5722;
     border-radius: 12px;
     padding: 20px 25px;
   }
@@ -230,18 +230,18 @@
   }
 
   .nt-logo {
-    height: 24px;
+    height: 20px;
     width: auto;
   }
 
   .nt-header strong {
-    color: #ffffff;
+    color: #ff5722;
     font-weight: 700;
     font-size: 0.95rem;
   }
 
   .footer-ninjatrader p {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.85rem;
     line-height: 1.6;
     margin: 0;
@@ -268,6 +268,11 @@
     .footer-links {
       grid-template-columns: 1fr;
       gap: 30px;
+    }
+
+    .footer-disclosures {
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
   }
 

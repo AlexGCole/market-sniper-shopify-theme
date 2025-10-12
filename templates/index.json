@@ -8,7 +8,6 @@
       "type": "hero",
       "settings": {
         "show_badge": true,
-        "badge_text": "🎯 Professional Trading Tools",
         "hero_title_line1": "Precision Trading",
         "hero_title_line2": "Made Simple",
         "hero_subtitle": "Automated trading bot with proven strategies synced directly to your TradingView",

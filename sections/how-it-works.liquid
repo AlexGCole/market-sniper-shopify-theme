@@ -1,52 +1,67 @@
 {% comment %}
-  sections/how-it-works.liquid
-  How it works section with modern SVG icons
+  sections/features.liquid
+  Features section with clean SVG icons
 {% endcomment %}
 
-<section class="how-it-works" id="how-it-works">
+<section class="features-section" id="features">
   <div class="container">
     <div class="section-header">
       <h2>{{ section.settings.section_title }}</h2>
       <p>{{ section.settings.section_subtitle }}</p>
     </div>
 
-    <div class="steps-grid">
+    <div class="features-grid">
       {% for block in section.blocks %}
-        <div class="step-card" {{ block.shopify_attributes }}>
-          <div class="step-icon">
-            {% if block.settings.title contains "Choose" or block.settings.title contains "Plan" %}
-              <!-- Clipboard/Plan Icon -->
+        <div class="feature-card" {{ block.shopify_attributes }}>
+          <div class="feature-icon">
+            {% if block.settings.title contains "Bot" and block.settings.title contains "Automated" or block.settings.title contains "Trading Bot" %}
+              <!-- Bot Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"></path>
-                <rect x="9" y="3" width="6" height="4" rx="1"></rect>
-                <path d="M9 12h6"></path>
-                <path d="M9 16h6"></path>
+                <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                <path d="M8 6h8"></path>
+                <path d="M12 4v2"></path>
+                <circle cx="8.5" cy="13.5" r="1.5"></circle>
+                <circle cx="15.5" cy="13.5" r="1.5"></circle>
+                <path d="M9 17h6"></path>
+              </svg>
+            {% elsif block.settings.title contains "Indicator" or block.settings.title contains "TradingView" %}
+              <!-- Chart/Indicator Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            {% elsif block.settings.title contains "Strateg" %}
+              <!-- Strategy/Trending Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
               </svg>
             {% elsif block.settings.title contains "Discord" or block.settings.title contains "Community" %}
-              <!-- Discord/Community Icon -->
+              <!-- Community Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 010 7.75"></path>
               </svg>
-            {% elsif block.settings.title contains "TradingView" or block.settings.title contains "Setup" %}
-              <!-- Chart/TradingView Icon -->
+            {% elsif block.settings.title contains "Configuration" or block.settings.title contains "Setup" %}
+              <!-- Settings/Configuration Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
               </svg>
-            {% elsif block.settings.title contains "Start" or block.settings.title contains "Trading" %}
-              <!-- Rocket/Start Icon -->
+            {% elsif block.settings.title contains "Support" or block.settings.title contains "Priority" %}
+              <!-- Support Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                <path d="M2 17l10 5 10-5"></path>
-                <path d="M2 12l10 5 10-5"></path>
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
               </svg>
             {% else %}
               <!-- Default Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
+                <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             {% endif %}
           </div>
@@ -59,9 +74,9 @@
 </section>
 
 <style>
-  .how-it-works {
+  .features-section {
     padding: 80px 20px;
-    background: #050807;
+    background: #0A0A0A;
     border-top: 1px solid rgba(0, 255, 65, 0.2);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
   }
@@ -71,13 +86,13 @@
     margin: 0 auto;
   }
 
-  .steps-grid {
+  .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
   }
 
-  .step-card {
+  .feature-card {
     background: rgba(0, 255, 65, 0.03);
     border: 1px solid rgba(0, 255, 65, 0.2);
     border-radius: 20px;
@@ -86,14 +101,14 @@
     transition: all 0.3s ease;
   }
 
-  .step-card:hover {
+  .feature-card:hover {
     transform: translateY(-5px);
     border-color: rgba(0, 255, 65, 0.5);
     background: rgba(0, 255, 65, 0.05);
     box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
   }
 
-  .step-icon {
+  .feature-icon {
     width: 80px;
     height: 80px;
     margin: 0 auto 25px;
@@ -106,46 +121,46 @@
     transition: all 0.3s ease;
   }
 
-  .step-card:hover .step-icon {
+  .feature-card:hover .feature-icon {
     background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1));
     border-color: #00ff41;
     transform: scale(1.05);
     box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
   }
 
-  .step-icon svg {
+  .feature-icon svg {
     width: 40px;
     height: 40px;
     color: #00ff41;
     stroke-width: 2;
   }
 
-  .step-card h3 {
+  .feature-card h3 {
     color: white;
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 15px;
   }
 
-  .step-card p {
+  .feature-card p {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
     font-size: 1rem;
   }
 
   @media (max-width: 968px) {
-    .steps-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .features-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
-    .step-card {
+    .feature-card {
       padding: 30px 20px;
     }
   }
 
   @media (max-width: 640px) {
-    .steps-grid {
+    .features-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -153,44 +168,44 @@
 
 {% schema %}
 {
-  "name": "How It Works",
+  "name": "Features",
   "settings": [
     {
       "type": "text",
       "id": "section_title",
       "label": "Section Title",
-      "default": "Your Path to Trading Success"
+      "default": "Everything You Need to Succeed"
     },
     {
       "type": "text",
       "id": "section_subtitle",
       "label": "Section Subtitle",
-      "default": "Get started in minutes with our proven 4-step system"
+      "default": "Complete automated trading solution with strategies and support"
     }
   ],
   "blocks": [
     {
-      "type": "step",
-      "name": "Step",
+      "type": "feature",
+      "name": "Feature",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Step Title",
-          "default": "Step Title"
+          "label": "Feature Title",
+          "default": "Feature Title"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Step Description",
-          "default": "Step description goes here"
+          "label": "Feature Description",
+          "default": "Feature description goes here"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "How It Works"
+      "name": "Features"
     }
   ]
 }

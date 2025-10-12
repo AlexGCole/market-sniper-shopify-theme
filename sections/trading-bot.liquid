@@ -1,39 +1,219 @@
-<section class="trading-bot">
+{% comment %}
+  sections/trading-bot.liquid
+  Trading bot showcase section
+{% endcomment %}
+
+<section class="trading-bot" id="trading-bot">
   <div class="container">
-    <div class="bot-content">
-      <div class="bot-badge">{{ section.settings.badge_text }}</div>
+    <div class="bot-header">
+      {% if section.settings.badge_text != blank %}
+        <span class="bot-badge">{{ section.settings.badge_text }}</span>
+      {% endif %}
       <h2>{{ section.settings.title }}</h2>
       <p class="bot-subtitle">{{ section.settings.subtitle }}</p>
-      
-      <div class="bot-features">
-        {% for block in section.blocks %}
-          <div class="bot-feature">
-            <div class="bot-feature-icon">{{ block.settings.icon }}</div>
-            <div>
-              <h3>{{ block.settings.title }}</h3>
-              <p>{{ block.settings.description }}</p>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-      
-      {% if section.settings.show_stat %}
-        <div class="bot-stat">
-          <span class="bot-stat-number">{{ section.settings.stat_number }}</span>
-          <span class="bot-stat-label">{{ section.settings.stat_label }}</span>
-        </div>
-      {% endif %}
     </div>
+
+    <div class="bot-features">
+      {% for block in section.blocks %}
+        <div class="bot-feature-card" {{ block.shopify_attributes }}>
+          <div class="bot-feature-icon">
+            {% if block.settings.title contains "Automated" or block.settings.title contains "100%" %}
+              <!-- Lightning/Automated Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            {% elsif block.settings.title contains "Optimization" or block.settings.title contains "Endless" %}
+              <!-- Settings/Optimization Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+              </svg>
+            {% elsif block.settings.title contains "Support" or block.settings.title contains "Priority" %}
+              <!-- Target/Support Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            {% else %}
+              <!-- Default Checkmark Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            {% endif %}
+          </div>
+          <div class="bot-feature-content">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_stat %}
+      <div class="bot-stat">
+        <div class="stat-number">{{ section.settings.stat_number }}</div>
+        <div class="stat-label">{{ section.settings.stat_label }}</div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
 <style>
-.trading-bot {
-  background: #0A0A0A;
-  padding: 80px 20px;
-  border-top: 1px solid rgba(0, 255, 65, 0.2);
-  border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-}
+  .trading-bot {
+    background: #0A0A0A;
+    padding: 80px 20px;
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .bot-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .bot-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50px;
+    color: #00ff41;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .bot-header h2 {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .bot-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .bot-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+
+  .bot-feature-card {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .bot-feature-card:hover {
+    transform: translateX(10px);
+    border-color: rgba(0, 255, 65, 0.5);
+    background: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+  }
+
+  .bot-feature-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 255, 65, 0.05));
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .bot-feature-card:hover .bot-feature-icon {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1));
+    border-color: #00ff41;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+  }
+
+  .bot-feature-icon svg {
+    width: 30px;
+    height: 30px;
+    color: #00ff41;
+    stroke-width: 2;
+  }
+
+  .bot-feature-content h3 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .bot-feature-content p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .bot-stat {
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .stat-number {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .bot-header h2 {
+      font-size: 2rem;
+    }
+
+    .bot-feature-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .bot-feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+    }
+  }
 </style>
 
 {% schema %}
@@ -44,24 +224,24 @@
       "type": "text",
       "id": "badge_text",
       "label": "Badge Text",
-      "default": "🤖 Coming Soon"
+      "default": "🤖 Now Available"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Section Title",
-      "default": "Trading Bot Waitlist"
+      "default": "Automated Trading Bot"
     },
     {
       "type": "textarea",
       "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Join the 5% of traders who win consistently with our fully automated trading solution"
+      "label": "Section Subtitle",
+      "default": "Trade smarter with our fully automated trading bot solution"
     },
     {
       "type": "checkbox",
       "id": "show_stat",
-      "label": "Show Statistic",
+      "label": "Show Stat",
       "default": true
     },
     {
@@ -84,54 +264,22 @@
       "settings": [
         {
           "type": "text",
-          "id": "icon",
-          "label": "Icon (Emoji)",
-          "default": "⚡"
-        },
-        {
-          "type": "text",
           "id": "title",
           "label": "Feature Title",
-          "default": "Feature Name"
+          "default": "Feature Title"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description",
-          "default": "Feature description"
+          "label": "Feature Description",
+          "default": "Feature description goes here"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Trading Bot",
-      "blocks": [
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "⚡",
-            "title": "100% Automated",
-            "description": "Long and short positions with intelligent take-profit and stop losses"
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "⚙️",
-            "title": "Endless Optimization",
-            "description": "Fine-tune settings and use our proven configurations"
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "🎯",
-            "title": "Subscriber Priority",
-            "description": "Available exclusively to Market Sniper members"
-          }
-        }
-      ]
+      "name": "Trading Bot"
     }
   ]
 }

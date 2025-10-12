@@ -70,7 +70,11 @@
 
     <div class="footer-disclosures">
       <div class="footer-disclaimer">
-        <div class="risk-header">RISK DISCLOSURE</div>
+        <div class="risk-header">
+          <svg class="risk-logo" viewBox="0 0 800 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="75" font-family="Arial, sans-serif" font-size="90" font-weight="900" fill="#ff4444" letter-spacing="-2">RISK DISCLOSURE</text>
+          </svg>
+        </div>
         <p>Futures and forex trading involves significant risk and is not suitable for all investors. You may lose more than your initial investment. Only trade with risk capital you can afford to lose. Past performance does not guarantee future results. Testimonials appearing on this website may not be representative of other clients or customers and is not a guarantee of future performance or success.</p>
       </div>
 
@@ -206,11 +210,14 @@
   }
 
   .risk-header {
-    color: #ff4444;
-    font-weight: 900;
-    font-size: 1.5rem;
+    display: block;
+  }
+
+  .risk-logo {
+    height: 22px;
+    width: auto;
+    flex-shrink: 0;
     margin-bottom: 15px;
-    letter-spacing: 1px;
   }
 
   .footer-disclaimer p {

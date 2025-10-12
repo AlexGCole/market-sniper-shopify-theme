@@ -307,19 +307,19 @@
   }
 
   /* Mobile Menu - MAXIMUM z-index */
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100%;
-    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
-    border-left: 1px solid rgba(0, 255, 65, 0.2);
-    z-index: 999999;
-    padding: 70px 30px 30px;
-    transition: right 0.3s ease;
-    overflow-y: auto;
-  }
+.mobile-menu {
+  position: fixed;
+  top: 70px;  /* Position it right below the navbar */
+  right: -100%;
+  width: 280px;
+  height: calc(100% - 70px);  /* Subtract navbar height */
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+  border-left: 1px solid rgba(0, 255, 65, 0.2);
+  z-index: 999999;
+  padding: 20px 30px 30px;  /* Less top padding */
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
 
   .mobile-menu.active {
     right: 0;

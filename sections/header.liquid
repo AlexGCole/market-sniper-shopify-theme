@@ -19,6 +19,20 @@
   <li><a href="/#faq">FAQ</a></li>
   <li><a href="/pages/contact">Contact</a></li>
   
+  <!-- Cart Icon -->
+  <li>
+    <a href="/cart" class="cart-icon" title="View Cart">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      {% if cart.item_count > 0 %}
+        <span class="cart-count">{{ cart.item_count }}</span>
+      {% endif %}
+    </a>
+  </li>
+  
   <!-- Login/Account Icon -->
   {% if customer %}
     <li>
@@ -61,6 +75,18 @@
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#faq">FAQ</a></li>
     <li><a href="/pages/contact">Contact</a></li>
+    
+    <!-- Cart in Mobile Menu -->
+    <li>
+      <a href="/cart" class="mobile-cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        Cart ({{ cart.item_count }})
+      </a>
+    </li>
     
     {% if customer %}
       <li>
@@ -174,6 +200,28 @@
 
   .nav-links a:hover {
     color: #00ff41;
+  }
+
+  /* Cart Icon */
+  .cart-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #00ff41;
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
   }
 
   .account-icon {
@@ -299,6 +347,7 @@
     padding-left: 10px;
   }
 
+  .mobile-cart,
   .mobile-account,
   .mobile-login {
     display: flex;

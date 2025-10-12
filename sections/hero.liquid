@@ -1,9 +1,6 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      {% if section.settings.show_badge %}
-        <div class="hero-badge">{{ section.settings.badge_text }}</div>
-      {% endif %}
       
       <h1 class="hero-title">
         {{ section.settings.hero_title_line1 }}<br>
@@ -53,18 +50,6 @@
 {
   "name": "Hero Section",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_badge",
-      "label": "Show Badge",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "badge_text",
-      "label": "Badge Text",
-      "default": "🎯 Professional Trading Tools"
-    },
     {
       "type": "text",
       "id": "hero_title_line1",

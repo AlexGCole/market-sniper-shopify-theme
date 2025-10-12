@@ -307,26 +307,19 @@
   }
 
   /* Mobile Menu - MAXIMUM z-index */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 280px;
-  height: 100%;
-  background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
-  border-left: 1px solid rgba(0, 255, 65, 0.2);
-  z-index: 999999;
-  padding: 85px 30px 30px;  /* Exactly navbar height + 15px */
-  transition: right 0.3s ease;
-  overflow-y: auto;
-}
-
-.mobile-nav-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  padding-top: 0;  /* Ensure no extra padding */
-}
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+    border-left: 1px solid rgba(0, 255, 65, 0.2);
+    z-index: 999999;
+    padding: 85px 30px 30px;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+  }
 
   .mobile-menu.active {
     right: 0;
@@ -359,38 +352,38 @@
     padding-left: 10px;
   }
 
-.mobile-cart {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+  .mobile-cart {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-.mobile-cart-icon {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+  .mobile-cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
 
-.mobile-cart-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #00ff41;
-  color: #000;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 10px;
-  min-width: 18px;
-  text-align: center;
-}
+  .mobile-cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #00ff41;
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+  }
 
-.mobile-account,
-.mobile-login {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+  .mobile-account,
+  .mobile-login {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
   .mobile-logout {
     color: #ff4141 !important;
@@ -415,20 +408,6 @@
       width: 100%;
     }
   }
-
-  /* Scroll offset for anchor links to account for fixed header */
-section[id],
-div[id] {
-  scroll-margin-top: 85px; /* navbar height (70px) + 15px buffer */
-}
-
-/* Alternative: if your sections use specific IDs */
-#how-it-works,
-#features,
-#pricing,
-#faq {
-  scroll-margin-top: 85px;
-}
 </style>
 
 <script>
@@ -454,6 +433,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
   }
 
+  // Smooth scroll to anchor with navbar offset
+  function smoothScrollToAnchor(targetId) {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const navbarHeight = 70;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+
   // Open/close menu
   if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
@@ -464,16 +457,35 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileMenuOverlay.addEventListener('click', closeMobileMenu);
   }
 
-  // Close menu when nav link clicked
+  // Handle mobile nav link clicks
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
       // Check if it's a hash link (anchor on same page)
-      if (this.getAttribute('href').startsWith('/#')) {
+      if (href.startsWith('/#')) {
+        e.preventDefault();
         closeMobileMenu();
+        
+        // Wait for menu to close, then scroll
+        setTimeout(() => {
+          const targetId = href.substring(2);
+          smoothScrollToAnchor(targetId);
+        }, 300);
       } else {
         // For external links, close immediately
         closeMobileMenu();
       }
+    });
+  });
+
+  // Handle desktop nav anchor links
+  const desktopNavLinks = document.querySelectorAll('.nav-links a[href^="/#"]');
+  desktopNavLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(2);
+      smoothScrollToAnchor(targetId);
     });
   });
 

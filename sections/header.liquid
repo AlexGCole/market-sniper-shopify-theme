@@ -339,9 +339,7 @@
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: block;
     padding: 12px 0;
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(0, 255, 65, 0.1);
@@ -350,6 +348,14 @@
   .mobile-nav-links a:hover {
     color: #00ff41;
     padding-left: 10px;
+  }
+
+  .mobile-cart,
+  .mobile-account,
+  .mobile-login {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
   }
 
   .mobile-cart {

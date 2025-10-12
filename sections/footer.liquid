@@ -75,12 +75,9 @@
 
       <div class="footer-ninjatrader">
         <div class="nt-header">
-          <svg class="nt-logo" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M86.4 247.2H225.6V521.6H86.4V247.2Z" fill="#FF5722"/>
-            <path d="M362.4 247.2L225.6 384V521.6H497.6L634.4 384.8V247.2H362.4Z" fill="#FF5722"/>
-            <path d="M634.4 247.2H773.6V384.8H634.4V247.2Z" fill="#FF5722"/>
+          <svg class="nt-logo" viewBox="0 0 800 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="75" font-family="Arial, sans-serif" font-size="90" font-weight="900" fill="#FF5722" letter-spacing="-2">NINJATRADER</text>
           </svg>
-          <strong>Broker Disclosure</strong>
         </div>
         <p>Market Sniper is a third-party vendor and is not affiliated with NinjaTrader Brokerage or NinjaTrader Group, LLC. NinjaTrader Brokerage is an NFA registered introducing broker (NFA #0339976) providing brokerage services to traders of futures and foreign exchange products. Futures, foreign currency and options trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing ones' financial security or life style. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
       </div>
@@ -207,16 +204,20 @@
     padding: 20px 25px;
   }
 
+  .footer-disclaimer .disclaimer-header {
+    color: #ff6b6b;
+    font-weight: 900;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
   .footer-disclaimer p {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.85rem;
     line-height: 1.6;
     margin: 0;
-  }
-
-  .footer-disclaimer strong {
-    color: #ff6b6b;
-    font-weight: 700;
   }
 
   .footer-ninjatrader {
@@ -227,22 +228,22 @@
   }
 
   .nt-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
+    display: block;
   }
 
   .nt-logo {
     height: 22px;
-    width: 22px;
+    width: auto;
     flex-shrink: 0;
+    margin-bottom: 12px;
   }
 
   .nt-header strong {
     color: #ff5722;
-    font-weight: 700;
+    font-weight: 900;
     font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .footer-ninjatrader p {

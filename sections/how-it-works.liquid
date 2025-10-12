@@ -1,6 +1,6 @@
 {% comment %}
   sections/how-it-works.liquid
-  Step-by-step process section
+  How it works section with modern SVG icons
 {% endcomment %}
 
 <section class="how-it-works" id="how-it-works">
@@ -13,9 +13,45 @@
     <div class="steps-grid">
       {% for block in section.blocks %}
         <div class="step-card" {{ block.shopify_attributes }}>
-          <div class="step-icon">{{ block.settings.icon }}</div>
-          <h3 class="step-title">{{ block.settings.title }}</h3>
-          <p class="step-description">{{ block.settings.description }}</p>
+          <div class="step-icon">
+            {% if block.settings.title contains "Choose" or block.settings.title contains "Plan" %}
+              <!-- Clipboard/Plan Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"></path>
+                <rect x="9" y="3" width="6" height="4" rx="1"></rect>
+                <path d="M9 12h6"></path>
+                <path d="M9 16h6"></path>
+              </svg>
+            {% elsif block.settings.title contains "Discord" or block.settings.title contains "Community" %}
+              <!-- Discord/Community Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 010 7.75"></path>
+              </svg>
+            {% elsif block.settings.title contains "TradingView" or block.settings.title contains "Setup" %}
+              <!-- Chart/TradingView Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            {% elsif block.settings.title contains "Start" or block.settings.title contains "Trading" %}
+              <!-- Rocket/Start Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            {% else %}
+              <!-- Default Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            {% endif %}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
         </div>
       {% endfor %}
     </div>
@@ -24,102 +60,93 @@
 
 <style>
   .how-it-works {
-  padding: 80px 20px;
-  background: #050807;
-  border-top: 1px solid rgba(0, 255, 65, 0.2);
-  border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-}
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 60px;
+    padding: 80px 20px;
+    background: #050807;
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
   }
 
-  .section-header h2 {
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 15px;
-    font-weight: 700;
-  }
-
-  .section-header p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .steps-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
   }
 
   .step-card {
     background: rgba(0, 255, 65, 0.03);
     border: 1px solid rgba(0, 255, 65, 0.2);
     border-radius: 20px;
-    padding: 40px 25px;
+    padding: 40px 30px;
     text-align: center;
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
   }
 
   .step-card:hover {
-    transform: translateY(-10px);
-    border-color: #00ff41;
-    box-shadow: 0 15px 35px rgba(0, 255, 65, 0.2);
-    background: rgba(0, 255, 65, 0.06);
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 65, 0.5);
+    background: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
   }
 
   .step-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    background: rgba(0, 255, 65, 0.1);
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 255, 65, 0.05));
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    margin: 0 auto 25px;
-    border: 2px solid rgba(0, 255, 65, 0.3);
+    transition: all 0.3s ease;
   }
 
-  .step-title {
-    font-size: 1.4rem;
+  .step-card:hover .step-icon {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1));
+    border-color: #00ff41;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+  }
+
+  .step-icon svg {
+    width: 40px;
+    height: 40px;
     color: #00ff41;
-    margin-bottom: 15px;
-    font-weight: 700;
+    stroke-width: 2;
   }
 
-  .step-description {
-    color: rgba(255, 255, 255, 0.8);
+  .step-card h3 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .step-card p {
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
     font-size: 1rem;
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 968px) {
     .steps-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .step-card {
+      padding: 30px 20px;
     }
   }
 
   @media (max-width: 640px) {
     .steps-grid {
       grid-template-columns: 1fr;
-    }
-
-    .section-header h2 {
-      font-size: 2rem;
-    }
-
-    .step-icon {
-      width: 100px;
-      height: 100px;
-      font-size: 3rem;
     }
   }
 </style>
@@ -148,20 +175,14 @@
       "settings": [
         {
           "type": "text",
-          "id": "icon",
-          "label": "Icon (emoji)",
-          "default": "📊"
-        },
-        {
-          "type": "text",
           "id": "title",
-          "label": "Title",
+          "label": "Step Title",
           "default": "Step Title"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description",
+          "label": "Step Description",
           "default": "Step description goes here"
         }
       ]
@@ -169,12 +190,7 @@
   ],
   "presets": [
     {
-      "name": "How It Works",
-      "blocks": [
-        {
-          "type": "step"
-        }
-      ]
+      "name": "How It Works"
     }
   ]
 }

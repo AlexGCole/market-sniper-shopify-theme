@@ -52,6 +52,74 @@
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
   }
 
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .indicator-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .indicator-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .indicator-item.reverse {
+    direction: rtl;
+  }
+
+  .indicator-item.reverse > * {
+    direction: ltr;
+  }
+
+  .indicator-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50px;
+    color: #00ff41;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .indicator-content h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .indicator-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+
+  .indicator-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .indicator-features li {
+    padding: 12px 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  }
+
+  .indicator-features li:last-child {
+    border-bottom: none;
+  }
+
   .indicator-visual-container {
     background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(0, 255, 65, 0.01) 100%);
     padding: 20px;
@@ -72,6 +140,26 @@
     height: 100%;
     object-fit: cover;
     border-radius: 16px;
+  }
+
+  @media (max-width: 968px) {
+    .indicator-item {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .indicator-item.reverse {
+      direction: ltr;
+    }
+
+    .indicator-content h2 {
+      font-size: 2rem;
+    }
+
+    .indicator-visual-container {
+      height: 300px;
+    }
   }
 </style>
 
@@ -152,6 +240,7 @@
             "title": "Sharp Shooter Candles",
             "description": "Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.",
             "features": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Bearish/Bullish Crossover\n✓ MACD Above/Below Zero Line\n✓ Trending Dots\n✓ Multiple Customization Options",
+            "video_file": "sharp-shooter-candles.mp4",
             "fallback_image": "sharp-shooter-candles.jpg"
           }
         },
@@ -162,6 +251,7 @@
             "title": "Sharp Shooter RSI",
             "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
             "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style\n✓ Real-time Alerts",
+            "video_file": "sharp-shooter-rsi.mp4",
             "fallback_image": "sharp-shooter-rsi.jpg"
           }
         }

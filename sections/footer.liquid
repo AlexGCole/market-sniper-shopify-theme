@@ -72,6 +72,10 @@
       <p><strong>Risk Disclosure:</strong> Futures and forex trading involves significant risk and is not suitable for all investors. You may lose more than your initial investment. Only trade with risk capital you can afford to lose. Past performance does not guarantee future results. Testimonials appearing on this website may not be representative of other clients or customers and is not a guarantee of future performance or success.</p>
     </div>
 
+    <div class="footer-ninjatrader">
+      <p><strong>NinjaTrader Broker Disclosure:</strong> Market Sniper is a third-party vendor and is not affiliated with NinjaTrader Brokerage or NinjaTrader Group, LLC. NinjaTrader Brokerage is an NFA registered introducing broker (NFA #0339976) providing brokerage services to traders of futures and foreign exchange products. Futures, foreign currency and options trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing ones' financial security or life style. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+    </div>
+
     <div class="footer-bottom">
       <p>&copy; {{ 'now' | date: "%Y" }} Market Sniper. All rights reserved.</p>
     </div>
@@ -184,7 +188,7 @@
     border: 1px solid rgba(255, 65, 65, 0.3);
     border-radius: 12px;
     padding: 20px 25px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .footer-disclaimer p {
@@ -196,6 +200,26 @@
 
   .footer-disclaimer strong {
     color: #ff6b6b;
+    font-weight: 700;
+  }
+
+  .footer-ninjatrader {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+  }
+
+  .footer-ninjatrader p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer-ninjatrader strong {
+    color: #00ff41;
     font-weight: 700;
   }
 
@@ -232,7 +256,8 @@
       font-size: 1.3rem;
     }
 
-    .footer-disclaimer {
+    .footer-disclaimer,
+    .footer-ninjatrader {
       padding: 15px 20px;
     }
   }

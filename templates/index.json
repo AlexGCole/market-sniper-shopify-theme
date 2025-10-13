@@ -196,7 +196,7 @@
         "bot-feature-3"
       ],
       "settings": {
-        "badge_text": "🤖 Now Available",
+        "badge_text": "",
         "title": "Automated Trading Bot",
         "subtitle": "Trade smarter with our fully automated trading bot solution",
         "show_stat": true,

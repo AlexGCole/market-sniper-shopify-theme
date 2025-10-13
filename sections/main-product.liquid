@@ -121,8 +121,7 @@
   padding: 100px 20px 100px;
   background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
   min-height: 80vh;
-  align-items: start !important; /* Override the center alignment */
-  display: block !important; /* Override flex display */
+  display: block !important;
 }
 
   .container {
@@ -135,7 +134,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: start !important;
   }
   
   /* Single column centered for setup product */
@@ -158,6 +157,7 @@
 
   .product-info {
     padding-top: 0;
+    margin-top: 0;
   }
 
   .product-title {
@@ -257,11 +257,11 @@
     border: none;
     border-radius: 20px;
     padding: 0;
-    position: -webkit-sticky;
     position: sticky;
     top: 120px;
-    align-self: flex-start;
+    align-self: start;
     height: fit-content;
+    margin-top: 0;
   }
 
   .plan-selector {

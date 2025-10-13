@@ -12,44 +12,55 @@
         <!-- Cart Items -->
         <div class="cart-items">
           {% for item in cart.items %}
-            <div class="cart-item" data-line="{{ forloop.index }}">
-  <div class="item-image">
-    {% if item.image %}
-      <img src="{{ item.image | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-    {% else %}
-      <img src="{{ 'trading-bot-suite.jpg' | asset_url }}" alt="{{ item.title | escape }}">
-    {% endif %}
-  </div>
+            {% assign is_setup = false %}
+            {% if item.product.title contains 'Setup' or item.product.title contains 'Professional' %}
+              {% assign is_setup = true %}
+            {% endif %}
+            
+            <div class="cart-item {% if is_setup %}setup-item{% endif %}" data-line="{{ forloop.index }}">
+              <div class="item-image">
+                {% if item.image %}
+                  <img src="{{ item.image | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                {% elsif is_setup %}
+                  <img src="{{ 'professional-setup.png' | asset_url }}" alt="{{ item.title | escape }}">
+                {% elsif item.product.handle contains 'annual' or item.product.handle contains '490' %}
+                  <img src="{{ 'bot-suite-annual.png' | asset_url }}" alt="{{ item.title | escape }}">
+                {% elsif item.product.handle contains 'monthly' or item.product.handle contains '49' %}
+                  <img src="{{ 'bot-suite-monthly.png' | asset_url }}" alt="{{ item.title | escape }}">
+                {% else %}
+                  <img src="{{ 'trading-bot-suite.jpg' | asset_url }}" alt="{{ item.title | escape }}">
+                {% endif %}
+              </div>
 
-  <div class="item-details">
-    {% if item.product.title contains 'Setup' or item.product.title contains 'Professional' %}
-      <span class="optional-badge">Optional Add-On</span>
-    {% endif %}
-    
-    <h3 class="item-title">{{ item.product.title }}</h3>
-    {% if item.variant.title != 'Default Title' %}
-      <p class="item-variant">{{ item.variant.title }}</p>
-    {% endif %}
-    
-    {% if item.selling_plan_allocation %}
-      <div class="subscription-info">
-        <span class="subscription-badge">📅 Subscription</span>
-        <p class="subscription-name">{{ item.selling_plan_allocation.selling_plan.name }}</p>
-      </div>
-    {% else %}
-      <p class="item-variant">one-time</p>
-    {% endif %}
+              <div class="item-details">
+                {% if is_setup %}
+                  <span class="optional-badge">Optional Add-On</span>
+                {% endif %}
+                
+                <h3 class="item-title">{{ item.product.title }}</h3>
+                {% if item.variant.title != 'Default Title' %}
+                  <p class="item-variant">{{ item.variant.title }}</p>
+                {% endif %}
+                
+                {% if item.selling_plan_allocation %}
+                  <div class="subscription-info">
+                    <span class="subscription-badge">📅 Subscription</span>
+                    <p class="subscription-name">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                  </div>
+                {% else %}
+                  <p class="item-variant">one-time</p>
+                {% endif %}
 
-    <p class="item-price">{{ item.final_line_price | money }}</p>
-  </div>
+                <p class="item-price">{{ item.final_line_price | money }}</p>
+              </div>
 
-  <!-- Remove button positioned absolutely -->
-  <button class="remove-btn" data-line="{{ forloop.index }}" aria-label="Remove item">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M18 6L6 18M6 6l12 12"/>
-    </svg>
-  </button>
-</div>
+              <!-- Remove button positioned absolutely -->
+              <button class="remove-btn" data-line="{{ forloop.index }}" aria-label="Remove item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
           {% endfor %}
         </div>
 
@@ -131,18 +142,24 @@
     gap: 20px;
   }
 
-.cart-item {
-  background: rgba(0, 255, 65, 0.03);
-  border: 1px solid rgba(0, 255, 65, 0.2);
-  border-radius: 15px;
-  padding: 20px;
-  padding-top: 50px;
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 20px;
-  align-items: center;
-  position: relative;
-}
+  .cart-item {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+  }
+
+  .cart-item.setup-item {
+    background: rgba(255, 165, 0, 0.05);
+    border: 2px solid #FFA500;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+  }
 
   .item-image img {
     width: 100px;
@@ -213,29 +230,29 @@
     margin-bottom: 10px;
   }
 
-.remove-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 65, 65, 0.5);
-  color: rgba(255, 65, 65, 0.8);
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 36px;
-  height: 36px;
-}
+  .remove-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 65, 65, 0.5);
+    color: rgba(255, 65, 65, 0.8);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+  }
 
-.remove-btn:hover {
-  background: rgba(255, 65, 65, 0.1);
-  border-color: #ff4141;
-  color: #ff4141;
-}
+  .remove-btn:hover {
+    background: rgba(255, 65, 65, 0.1);
+    border-color: #ff4141;
+    color: #ff4141;
+  }
 
   .cart-summary {
     background: rgba(0, 255, 65, 0.03);
@@ -411,15 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
       toast.classList.remove('show');
     }, 2000);
   }
-
-  // Apply orange styling to setup items
-  const cartItems = document.querySelectorAll('.cart-item');
-  cartItems.forEach(item => {
-    const title = item.querySelector('.item-title').textContent.toLowerCase();
-    if (title.includes('setup') || title.includes('professional')) {
-      item.classList.add('setup-item');
-    }
-  });
 
   // Remove item
   const removeButtons = document.querySelectorAll('.remove-btn');

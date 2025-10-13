@@ -59,7 +59,7 @@
       </div>
 
       <!-- Right Column: Form -->
-      <div class="product-form-section" style="position: sticky !important; top: 20px !important; z-index: 100 !important;">
+      <div class="product-form-section">
         <!-- Plan Selector for Bot Suite Products (not for setup fee) -->
         {% if product.handle == 'trading-bot-suite-49' or product.handle == 'trading-bot-suite-490-annual' %}
           <div class="plan-selector">
@@ -251,33 +251,15 @@
 
   /* Right column form section - STICKY by default for bot products */
   .product-form-section {
-    background: rgba(255, 0, 0, 0.1) !important; /* Temporary red tint to see it */
-    border: 2px solid red !important; /* Temporary border */
+    background: transparent;
+    border: none;
     border-radius: 20px;
     padding: 0;
-    position: sticky !important;
-    top: 0px !important; /* Try 0 to eliminate top offset */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
     align-self: flex-start;
     height: fit-content;
-    z-index: 10;
-  }
-  
-  /* Force sticky to work by ensuring parent has proper overflow */
-  .product-grid {
-    overflow: visible !important;
-  }
-  
-  .container {
-    overflow: visible !important;
-  }
-  
-  .product-page {
-    overflow: visible !important;
-  }
-  
-  /* Ensure left column has enough content to trigger sticky */
-  .product-info {
-    min-height: calc(100vh + 200px);
   }
 
   .plan-selector {
@@ -462,45 +444,6 @@
     .product-form-section {
       padding: 0;
     }
-  }
-  
-  /* FORCE STICKY - Must be at the end to override everything */
-  /* Override any flex from layout.css */
-  .product-page {
-    display: block !important;
-    overflow: visible !important;
-    transform: none !important;
-  }
-  
-  .container {
-    overflow: visible !important;
-    transform: none !important;
-  }
-  
-  .product-grid {
-    overflow: visible !important;
-    transform: none !important;
-  }
-  
-  .product-form-section {
-    position: sticky !important;
-    top: 100px !important;
-    z-index: 100 !important;
-  }
-  
-  [data-product-handle="trading-bot-suite-49"] .product-form-section,
-  [data-product-handle="trading-bot-suite-490-annual"] .product-form-section {
-    position: sticky !important;
-    top: 100px !important;
-    z-index: 100 !important;
-  }
-  
-  /* Reset any layout.css interference */
-  [data-product-handle="trading-bot-suite-49"],
-  [data-product-handle="trading-bot-suite-490-annual"] {
-    min-height: auto !important;
-    display: block !important;
-    align-items: initial !important;
   }
 </style>
 

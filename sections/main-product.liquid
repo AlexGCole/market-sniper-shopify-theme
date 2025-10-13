@@ -251,12 +251,15 @@
     border: none;
     border-radius: 20px;
     padding: 0;
+    position: -webkit-sticky;
     position: sticky;
-    top: 100px;
+    top: 120px;
+    align-self: flex-start;
+    height: fit-content;
   }
   
   /* Remove sticky for setup product */
-  body:has([data-product-handle*="setup"]) .product-form-section {
+  [data-product-handle*="setup"] .product-form-section {
     position: static;
     max-width: 100%;
     top: auto;

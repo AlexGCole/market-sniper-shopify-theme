@@ -37,18 +37,6 @@
     <p class="item-price">{{ item.final_line_price | money }}</p>
   </div>
 
-  <div class="item-quantity">
-    <label for="quantity-{{ forloop.index }}">Quantity:</label>
-    <input 
-      type="number" 
-      id="quantity-{{ forloop.index }}"
-      class="quantity-input"
-      value="{{ item.quantity }}" 
-      min="1"
-      data-line="{{ forloop.index }}"
-    >
-  </div>
-
   <!-- Remove button positioned absolutely -->
   <button class="remove-btn" data-line="{{ forloop.index }}" aria-label="Remove item">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -144,7 +132,7 @@
   padding: 20px;
   padding-top: 50px;
   display: grid;
-  grid-template-columns: 100px 1fr auto;
+  grid-template-columns: 100px 1fr;
   gap: 20px;
   align-items: center;
   position: relative;
@@ -193,23 +181,6 @@
     font-size: 1.2rem;
     font-weight: 700;
     margin-top: 10px;
-  }
-
-  .item-quantity label {
-    display: block;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-  }
-
-  .quantity-input {
-    width: 70px;
-    padding: 8px;
-    background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.3);
-    border-radius: 8px;
-    color: white;
-    text-align: center;
   }
 
 .remove-btn {
@@ -382,21 +353,8 @@
       position: static;
     }
 
-.cart-item {
-  background: rgba(0, 255, 65, 0.03);
-  border: 1px solid rgba(0, 255, 65, 0.2);
-  border-radius: 15px;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 100px 1fr auto;
-  gap: 20px;
-  align-items: center;
-  position: relative;
-}
-
-    .item-quantity,
-    .item-remove {
-      grid-column: 2;
+    .cart-item {
+      grid-template-columns: 100px 1fr;
     }
 
     .cart-toast {
@@ -423,35 +381,6 @@ document.addEventListener('DOMContentLoaded', function() {
       toast.classList.remove('show');
     }, 2000);
   }
-
-  // Quantity update
-  const quantityInputs = document.querySelectorAll('.quantity-input');
-  quantityInputs.forEach(input => {
-    input.addEventListener('change', function() {
-      const line = this.dataset.line;
-      const quantity = this.value;
-      
-      fetch('/cart/change.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          line: line,
-          quantity: quantity
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        showToast('Cart updated');
-        setTimeout(() => location.reload(), 500);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        showToast('Error updating quantity', true);
-      });
-    });
-  });
 
   // Remove item
   const removeButtons = document.querySelectorAll('.remove-btn');

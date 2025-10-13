@@ -379,7 +379,17 @@
     }
   }
 
-  /* Remove any unwanted hiding rules here if needed */
+  /* Hide Coaching and Indicators sections */
+  .pricing-category-header:nth-of-type(2),
+  .pricing-category-header:nth-of-type(3) {
+    display: none !important;
+  }
+  
+  /* Hide pricing cards that belong to coaching/indicators sections */
+  /* Adjust these nth-child numbers based on your actual card order */
+  .pricing-wrapper > .pricing-card:nth-of-type(n+5) {
+    display: none !important;
+  }
 </style>
 
 {% schema %}

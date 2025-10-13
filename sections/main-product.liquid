@@ -139,13 +139,13 @@
   }
   
   /* Single column centered for setup product */
-  body:has([data-product-handle*="setup"]) .product-grid {
+  [data-product-handle*="setup"] .product-grid {
     grid-template-columns: 1fr;
     max-width: 800px;
     margin: 0 auto;
   }
   
-  body:has([data-product-handle*="setup"]) .product-form-section {
+  [data-product-handle*="setup"] .product-form-section {
     position: static;
     max-width: 100%;
   }
@@ -253,6 +253,13 @@
     padding: 0;
     position: sticky;
     top: 100px;
+  }
+  
+  /* Remove sticky for setup product */
+  body:has([data-product-handle*="setup"]) .product-form-section {
+    position: static;
+    max-width: 100%;
+    top: auto;
   }
 
   .plan-selector {

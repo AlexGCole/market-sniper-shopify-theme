@@ -379,19 +379,31 @@
     }
   }
 
-  /* Hide Coaching & Indicators section completely */
-  /* Hide the first category header (Coaching & Indicators) */
-  .pricing-category-header:nth-of-type(1) {
+  /* HIDE COACHING & INDICATORS SECTION - Maximum specificity */
+  .pricing-section .pricing-wrapper > *:nth-child(1),
+  .pricing-section .pricing-wrapper > *:nth-child(2),
+  .pricing-section .pricing-wrapper > *:nth-child(3),
+  section.pricing-section .pricing-wrapper > *:nth-child(1),
+  section.pricing-section .pricing-wrapper > *:nth-child(2),
+  section.pricing-section .pricing-wrapper > *:nth-child(3),
+  #pricing .pricing-wrapper > *:nth-child(1),
+  #pricing .pricing-wrapper > *:nth-child(2),
+  #pricing .pricing-wrapper > *:nth-child(3) {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -99999px !important;
+    pointer-events: none !important;
+    z-index: -9999 !important;
   }
-  
-  /* Hide the first two pricing cards (Coaching Monthly & Annual) */
-  .pricing-card:nth-of-type(1),
-  .pricing-card:nth-of-type(2) {
-    display: none !important;
-  }
-  
-  /* Bot Suite section and its cards will now be visible */
 </style>
 
 {% schema %}

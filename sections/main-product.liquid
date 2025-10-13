@@ -3,16 +3,25 @@
   Product page with add to cart functionality - No quantity selector
 {% endcomment %}
 
-<section class="product-page" data-product-handle="{{ product.handle }}">
+{% assign is_setup_product = false %}
+{% if product.handle == 'trading-bot-suite-setup' or product.handle contains 'setup-fee' or product.handle == 'professional-setup' %}
+  {% assign is_setup_product = true %}
+{% endif %}
+
+<section class="product-page {% if is_setup_product %}setup-product-page{% endif %}" data-product-handle="{{ product.handle }}">
   <div class="container">
     <div class="product-grid">
       <!-- Left Column: Product Info -->
       <div class="product-info">
+        {% if is_setup_product %}
+          <span class="optional-badge">Optional Add-On</span>
+        {% endif %}
+        
         <h1 class="product-title">{{ product.title }}</h1>
         
         <div class="product-price">
           <span class="price">{{ product.selected_or_first_available_variant.price | money }}</span>
-          {% if product.handle == 'trading-bot-suite-setup' or product.handle contains 'setup-fee' or product.handle == 'professional-setup' %}
+          {% if is_setup_product %}
             <span class="period">one-time</span>
           {% else %}
             <span class="period">/mo</span>
@@ -39,7 +48,7 @@
           <div class="product-description">
             <h3>What's Included:</h3>
             <ul class="feature-list">
-              {% if product.handle == 'trading-bot-suite-setup' or product.handle contains 'setup-fee' or product.handle == 'professional-setup' %}
+              {% if is_setup_product %}
                 <li>✓ Professional Bot Installation</li>
                 <li>✓ Custom Configuration</li>
                 <li>✓ Initial Optimization</li>
@@ -106,7 +115,7 @@
 
           <!-- Add to Cart Button -->
           <button type="submit" name="add" class="add-to-cart-btn" id="add-to-cart">
-            <span class="btn-text">Add to Cart</span>
+            <span class="btn-text">{% if is_setup_product %}Add Setup{% else %}Add to Cart{% endif %}</span>
           </button>
 
           <div id="cart-message" class="cart-message" style="display: none;"></div>
@@ -160,12 +169,31 @@
     margin-top: 0;
   }
 
+  /* Orange badge for setup products */
+  .optional-badge {
+    display: inline-block;
+    background: #FFA500;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
   .product-title {
     font-size: 2.8rem;
     color: #00ff41;
     margin-bottom: 25px;
     font-weight: 700;
     line-height: 1.2;
+  }
+
+  /* Orange title for setup products */
+  .setup-product-page .product-title {
+    color: #FFA500;
   }
 
   .product-price {
@@ -181,9 +209,19 @@
     font-weight: 800;
   }
 
+  /* Orange price for setup products */
+  .setup-product-page .price {
+    color: #FFA500;
+  }
+
   .period {
     font-size: 1.3rem;
     color: rgba(0, 255, 65, 0.7);
+  }
+
+  /* Orange period for setup products */
+  .setup-product-page .period {
+    color: rgba(255, 165, 0, 0.7);
   }
 
   .compare-price {
@@ -377,9 +415,19 @@
     box-shadow: 0 4px 15px rgba(0, 255, 65, 0.4);
   }
 
+  /* Orange button for setup products */
+  .setup-product-page .add-to-cart-btn {
+    background: linear-gradient(135deg, #FFA500, #FF8C00);
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+  }
+
   .add-to-cart-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
+  }
+
+  .setup-product-page .add-to-cart-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.6);
   }
 
   .add-to-cart-btn:active {

@@ -1,6 +1,6 @@
 {% comment %}
   sections/pricing.liquid
-  Pricing section with green theme
+  Pricing section with green theme - Setup fee as separate optional product
 {% endcomment %}
 
 <section class="pricing-section" id="pricing">
@@ -28,13 +28,6 @@
             <div class="plan-header">
               <h3 class="plan-name">{{ block.settings.plan_name }}</h3>
               
-              {% if block.settings.setup_fee != blank and block.settings.setup_fee != '0' %}
-                <div class="setup-fee-badge">
-                  <span class="fee-amount">${{ block.settings.setup_fee }}</span>
-                  <span class="fee-label">one-time setup</span>
-                </div>
-              {% endif %}
-              
               <div class="plan-price">
                 <span class="price-amount">${{ block.settings.price }}</span>
                 <span class="price-period">/{{ block.settings.period }}</span>
@@ -61,6 +54,40 @@
             {% else %}
               <a href="#" class="cta-button secondary" onclick="alert('Please configure product link'); return false;">
                 {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if block.type == 'setup_fee_addon' %}
+          <div class="pricing-card setup-addon" {{ block.shopify_attributes }}>
+            <span class="addon-badge">Optional Add-on</span>
+            
+            <div class="plan-header">
+              <h3 class="plan-name">{{ block.settings.addon_name }}</h3>
+              
+              <div class="plan-price">
+                <span class="price-amount">${{ block.settings.addon_price }}</span>
+                <span class="price-period">one-time</span>
+              </div>
+            </div>
+
+            <ul class="feature-list">
+              {% assign features = block.settings.addon_features | newline_to_br | split: '<br />' %}
+              {% for feature in features %}
+                {% if feature != blank %}
+                  <li>{{ feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+
+            {% if block.settings.addon_button_link != blank %}
+              <a href="{{ block.settings.addon_button_link }}" class="cta-button secondary">
+                {{ block.settings.addon_button_text }}
+              </a>
+            {% else %}
+              <a href="#" class="cta-button secondary" onclick="alert('Please configure product link'); return false;">
+                {{ block.settings.addon_button_text }}
               </a>
             {% endif %}
           </div>
@@ -160,12 +187,58 @@
     transform: scale(1.05) translateY(-10px);
   }
 
+  .pricing-card.setup-addon {
+    background: rgba(255, 165, 0, 0.03);
+    border-color: rgba(255, 165, 0, 0.3);
+  }
+
+  .pricing-card.setup-addon:hover {
+    border-color: #ffa500;
+    box-shadow: 0 20px 40px rgba(255, 165, 0, 0.25);
+  }
+
+  .pricing-card.setup-addon .plan-name {
+    color: #ffa500;
+  }
+
+  .pricing-card.setup-addon .price-amount {
+    color: #ffa500;
+  }
+
+  .pricing-card.setup-addon .price-period {
+    color: rgba(255, 165, 0, 0.7);
+  }
+
+  .pricing-card.setup-addon .cta-button.secondary {
+    border-color: #ffa500;
+    color: #ffa500;
+  }
+
+  .pricing-card.setup-addon .cta-button.secondary:hover {
+    background: rgba(255, 165, 0, 0.1);
+  }
+
   .popular-badge {
     position: absolute;
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .addon-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
     color: #000;
     padding: 8px 20px;
     border-radius: 20px;
@@ -185,31 +258,6 @@
     color: #00ff41;
     margin-bottom: 20px;
     font-weight: 700;
-  }
-
-  .setup-fee-badge {
-    display: inline-block;
-    background: rgba(0, 255, 65, 0.15);
-    border: 1px solid rgba(0, 255, 65, 0.4);
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin-bottom: 15px;
-  }
-
-  .fee-amount {
-    display: block;
-    font-size: 1.3rem;
-    color: #00ff41;
-    font-weight: 700;
-  }
-
-  .fee-label {
-    display: block;
-    font-size: 0.8rem;
-    color: rgba(0, 255, 65, 0.8);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 2px;
   }
 
   .plan-price {
@@ -258,6 +306,10 @@
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
     border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  }
+
+  .pricing-card.setup-addon .feature-list li {
+    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
   }
 
   .feature-list li:last-child {
@@ -389,12 +441,6 @@
         },
         {
           "type": "text",
-          "id": "setup_fee",
-          "label": "One-time Setup Fee (optional, numbers only)",
-          "info": "Leave blank or 0 for no setup fee"
-        },
-        {
-          "type": "text",
           "id": "savings_text",
           "label": "Savings Text (optional)",
           "info": "e.g., Save $98"
@@ -424,6 +470,42 @@
           "default": "Buy Now"
         }
       ]
+    },
+    {
+      "type": "setup_fee_addon",
+      "name": "Setup Fee Add-on",
+      "settings": [
+        {
+          "type": "text",
+          "id": "addon_name",
+          "label": "Add-on Name",
+          "default": "Professional Setup"
+        },
+        {
+          "type": "text",
+          "id": "addon_price",
+          "label": "Add-on Price (numbers only)",
+          "default": "249"
+        },
+        {
+          "type": "textarea",
+          "id": "addon_features",
+          "label": "Add-on Features (one per line)",
+          "default": "✓ Professional installation\n✓ Custom configuration\n✓ Priority support"
+        },
+        {
+          "type": "url",
+          "id": "addon_button_link",
+          "label": "Add-on Product Page Link",
+          "info": "e.g., /products/setup-fee"
+        },
+        {
+          "type": "text",
+          "id": "addon_button_text",
+          "label": "Button Text",
+          "default": "Add Setup"
+        }
+      ]
     }
   ],
   "presets": [
@@ -435,6 +517,9 @@
         },
         {
           "type": "pricing_plan"
+        },
+        {
+          "type": "setup_fee_addon"
         }
       ]
     }

@@ -1,6 +1,6 @@
 {% comment %}
   sections/main-product.liquid
-  Product page with add to cart functionality
+  Product page with add to cart functionality - Setup fee is optional
 {% endcomment %}
 
 <section class="product-page">
@@ -12,16 +12,19 @@
         
         <div class="product-price">
           <span class="price">{{ product.selected_or_first_available_variant.price | money }}</span>
-          <span class="period">/mo</span>
+          {% unless product.title contains 'Setup' %}
+            <span class="period">/mo</span>
+          {% endunless %}
           {% if product.compare_at_price > product.price %}
             <span class="compare-price">{{ product.compare_at_price | money }}</span>
           {% endif %}
         </div>
 
-        <!-- Setup Fee Notice -->
+        <!-- Setup Fee Info (for bot products only) -->
         {% if product.title contains 'Bot' %}
-          <div class="setup-fee-notice">
-            <strong>$249</strong> one-time setup fee
+          <div class="setup-fee-info">
+            <p><strong>Optional:</strong> Professional Setup Service available separately for <strong>$249</strong> one-time</p>
+            <a href="/#pricing" class="view-setup-link">View Setup Service →</a>
           </div>
         {% endif %}
 
@@ -34,12 +37,20 @@
           <div class="product-description">
             <h3>What's Included:</h3>
             <ul class="feature-list">
-              <li>✓ Private Discord Access</li>
-              <li>✓ Private Sniper Bot Discussion Channel</li>
-              <li>✓ Automated Bot</li>
-              <li>✓ Bot Configuration & Setup</li>
-              <li>✓ Ongoing Bot Optimization</li>
-              <li>✓ Priority Bot Support</li>
+              {% if product.title contains 'Setup' %}
+                <li>✓ Professional Bot Installation</li>
+                <li>✓ Custom Configuration</li>
+                <li>✓ Initial Optimization</li>
+                <li>✓ Priority Support Setup</li>
+                <li>✓ One-on-One Onboarding</li>
+              {% else %}
+                <li>✓ Private Discord Access</li>
+                <li>✓ Private Sniper Bot Discussion Channel</li>
+                <li>✓ Automated Bot</li>
+                <li>✓ Bot Configuration & Setup</li>
+                <li>✓ Ongoing Bot Optimization</li>
+                <li>✓ Priority Bot Support</li>
+              {% endif %}
             </ul>
           </div>
         {% endif %}
@@ -47,31 +58,33 @@
 
       <!-- Right Column: Form -->
       <div class="product-form-section">
-        <!-- Plan Selector for Bot Suite Products -->
-        {% if product.title contains 'Bot' or product.title contains 'bot' %}
-          <div class="plan-selector">
-            <label>Choose Your Plan:</label>
-            <div class="plan-options">
-              <div class="plan-option monthly-option">
-                <input type="radio" name="plan_choice" id="monthly-plan" value="monthly" 
-                  {% if product.title contains 'Monthly' or product.title contains '49' %}checked{% endif %}>
-                <label for="monthly-plan">
-                  <strong>Monthly</strong>
-                  <span class="plan-price">$49/mo</span>
-                </label>
-              </div>
-              <div class="plan-option annual-option">
-                <input type="radio" name="plan_choice" id="annual-plan" value="annual"
-                  {% if product.title contains 'Annual' or product.title contains '490' %}checked{% endif %}>
-                <label for="annual-plan">
-                  <strong>Annual</strong>
-                  <span class="plan-price">$490/yr</span>
-                  <span class="plan-savings">Save $98</span>
-                </label>
+        <!-- Plan Selector for Bot Suite Products (not for setup fee) -->
+        {% unless product.title contains 'Setup' %}
+          {% if product.title contains 'Bot' or product.title contains 'bot' %}
+            <div class="plan-selector">
+              <label>Choose Your Plan:</label>
+              <div class="plan-options">
+                <div class="plan-option monthly-option">
+                  <input type="radio" name="plan_choice" id="monthly-plan" value="monthly" 
+                    {% if product.title contains 'Monthly' or product.title contains '49' %}checked{% endif %}>
+                  <label for="monthly-plan">
+                    <strong>Monthly</strong>
+                    <span class="plan-price">$49/mo</span>
+                  </label>
+                </div>
+                <div class="plan-option annual-option">
+                  <input type="radio" name="plan_choice" id="annual-plan" value="annual"
+                    {% if product.title contains 'Annual' or product.title contains '490' %}checked{% endif %}>
+                  <label for="annual-plan">
+                    <strong>Annual</strong>
+                    <span class="plan-price">$490/yr</span>
+                    <span class="plan-savings">Save $98</span>
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %}
+          {% endif %}
+        {% endunless %}
 
         <!-- Product Form -->
 {% form 'product', product, id: 'product-form' %}
@@ -163,19 +176,32 @@
     margin-left: 15px;
   }
 
-  .setup-fee-notice {
-    background: rgba(0, 255, 65, 0.15);
-    border: 1px solid rgba(0, 255, 65, 0.4);
+  .setup-fee-info {
+    background: rgba(255, 165, 0, 0.1);
+    border: 1px solid rgba(255, 165, 0, 0.3);
     border-radius: 12px;
     padding: 15px 20px;
     margin-bottom: 25px;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
-  .setup-fee-notice strong {
-    color: #00ff41;
-    font-size: 1.3rem;
+  .setup-fee-info strong {
+    color: #ffa500;
+  }
+
+  .view-setup-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffa500;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .view-setup-link:hover {
+    color: #ff8c00;
+    text-decoration: underline;
   }
 
   .product-description {
@@ -426,11 +452,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Bot variant IDs
-  const BOT_MONTHLY = 44060337504436;
-  const BOT_ANNUAL = 44060346876084;
-  const SETUP_FEE = 44060845605044;
-  
   // Plan switcher
   const monthlyOption = document.querySelector('.monthly-option');
   const annualOption = document.querySelector('.annual-option');
@@ -447,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Add to cart functionality
+  // Standard add to cart functionality
   const form = document.getElementById('product-form');
   const addButton = document.getElementById('add-to-cart');
   const btnText = addButton ? addButton.querySelector('.btn-text') : null;
@@ -458,133 +479,53 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       
       const formData = new FormData(this);
-      const variantId = parseInt(formData.get('id'));
-      
-      console.log('Add to cart clicked for variant:', variantId);
       
       // Disable button
       addButton.disabled = true;
       btnText.textContent = 'Adding...';
       
-      // Check if this is a bot subscription product
-      const isBotProduct = (variantId === BOT_MONTHLY || variantId === BOT_ANNUAL);
-      
-      if (isBotProduct) {
-        console.log('🤖 Bot product detected - adding bundle (subscription + setup fee)');
+      // Add product to cart
+      fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to add to cart');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('✅ Item added successfully');
         
-        // First, add the bot subscription using the regular form data
-        fetch('/cart/add.js', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to add bot subscription');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('✅ Bot subscription added:', data);
-          
-          // Now add the setup fee
-          return fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              items: [
-                {
-                  id: SETUP_FEE,
-                  quantity: 1,
-                  properties: {
-                    '_Bundle': 'Bot Plan Setup Fee'
-                  }
-                }
-              ]
-            })
-          });
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to add setup fee');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('✅ Setup fee added:', data);
-          console.log('✅ Bundle complete!');
-          
-          // Success!
-          btnText.textContent = '✓ Added to Cart!';
-          addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
-          
-          messageDiv.textContent = 'Bot subscription + Setup fee added to cart!';
-          messageDiv.className = 'cart-message success';
-          messageDiv.style.display = 'block';
-          
-          // Redirect to cart
-          setTimeout(() => {
-            window.location.href = '/cart';
-          }, 800);
-        })
-        .catch(error => {
-          console.error('❌ Error adding bundle:', error);
-          
-          // Show error
-          btnText.textContent = 'Add to Cart';
-          addButton.disabled = false;
-          
-          messageDiv.textContent = 'Error adding to cart. Please try again.';
-          messageDiv.className = 'cart-message error';
-          messageDiv.style.display = 'block';
-          
-          setTimeout(() => {
-            messageDiv.style.display = 'none';
-          }, 3000);
-        });
+        // Success!
+        btnText.textContent = '✓ Added!';
+        addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
         
-      } else {
-        console.log('📦 Regular product - adding single item');
+        messageDiv.textContent = 'Item added to cart successfully!';
+        messageDiv.className = 'cart-message success';
+        messageDiv.style.display = 'block';
         
-        // Regular product - add normally
-        fetch('/cart/add.js', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('✅ Item added successfully');
-          
-          // Success!
-          btnText.textContent = '✓ Added!';
-          addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
-          
-          messageDiv.textContent = 'Item added to cart successfully!';
-          messageDiv.className = 'cart-message success';
-          messageDiv.style.display = 'block';
-          
-          // Redirect to cart
-          setTimeout(() => {
-            window.location.href = '/cart';
-          }, 800);
-        })
-        .catch(error => {
-          console.error('❌ Error:', error);
-          
-          // Show error
-          btnText.textContent = 'Add to Cart';
-          addButton.disabled = false;
-          
-          messageDiv.textContent = 'Error adding to cart. Please try again.';
-          messageDiv.className = 'cart-message error';
-          messageDiv.style.display = 'block';
-          
-          setTimeout(() => {
-            messageDiv.style.display = 'none';
-          }, 3000);
-        });
-      }
+        // Redirect to cart
+        setTimeout(() => {
+          window.location.href = '/cart';
+        }, 800);
+      })
+      .catch(error => {
+        console.error('❌ Error:', error);
+        
+        // Show error
+        btnText.textContent = 'Add to Cart';
+        addButton.disabled = false;
+        
+        messageDiv.textContent = 'Error adding to cart. Please try again.';
+        messageDiv.className = 'cart-message error';
+        messageDiv.style.display = 'block';
+        
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 3000);
+      });
     });
   }
 });

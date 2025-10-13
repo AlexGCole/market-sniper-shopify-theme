@@ -1,6 +1,6 @@
 {% comment %}
   sections/main-cart.liquid
-  Shopping cart page
+  Shopping cart page - Setup fee as optional product
 {% endcomment %}
 
 <section class="cart-page">
@@ -142,7 +142,7 @@
   border: 1px solid rgba(0, 255, 65, 0.2);
   border-radius: 15px;
   padding: 20px;
-  padding-top: 50px; /* Add space for button */
+  padding-top: 50px;
   display: grid;
   grid-template-columns: 100px 1fr auto;
   gap: 20px;
@@ -388,7 +388,7 @@
   border-radius: 15px;
   padding: 20px;
   display: grid;
-  grid-template-columns: 100px 1fr auto;  /* Changed from: 100px 1fr auto auto */
+  grid-template-columns: 100px 1fr auto;
   gap: 20px;
   align-items: center;
   position: relative;
@@ -481,230 +481,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-</script>
-
-<script>
-(function() {
-  console.log('Bot bundle script loaded');
-  
-  // CORRECT Variant IDs
-  const BOT_MONTHLY = 44060337504436;
-  const BOT_ANNUAL = 44060346876084;
-  const SETUP_FEE = 44060845605044;
-  
-  const toast = document.getElementById('cart-toast');
-
-  function showToast(message, isError = false) {
-    toast.textContent = message;
-    toast.classList.remove('error');
-    if (isError) {
-      toast.classList.add('error');
-    }
-    toast.classList.add('show');
-    
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3500);
-  }
-  
-  function addSetupFee() {
-    console.log('Attempting to add setup fee...');
-    
-    return fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        items: [{ id: SETUP_FEE, quantity: 1 }]
-      })
-    })
-    .then(r => r.json())
-    .then(data => {
-      console.log('Setup fee added successfully');
-      window.location.reload();
-    })
-    .catch(err => console.error('Error adding setup fee:', err));
-  }
-  
-  function removeSetupFee(itemKey) {
-    console.log('Removing setup fee...');
-    
-    return fetch('/cart/change.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: itemKey, quantity: 0 })
-    })
-    .then(r => r.json())
-    .then(() => {
-      console.log('Setup fee removed');
-      window.location.reload();
-    })
-    .catch(err => console.error('Error removing setup fee:', err));
-  }
-  
-  function blockCheckout(message) {
-    const checkoutButtons = document.querySelectorAll('[name="checkout"], button[type="submit"], a[href*="checkout"]');
-    
-    checkoutButtons.forEach(button => {
-      button.style.opacity = '0.5';
-      button.style.cursor = 'not-allowed';
-      button.disabled = true;
-      
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showToast(message, true);
-        return false;
-      }, true);
-    });
-    
-    showWarningMessage(message);
-  }
-  
-  function enableCheckout() {
-    const checkoutButtons = document.querySelectorAll('[name="checkout"], button[type="submit"], a[href*="checkout"]');
-    
-    checkoutButtons.forEach(button => {
-      button.style.opacity = '1';
-      button.style.cursor = 'pointer';
-      button.disabled = false;
-    });
-    
-    removeWarningMessage();
-  }
-  
-  function showWarningMessage(message) {
-    removeWarningMessage();
-    
-    const warning = document.createElement('div');
-    warning.id = 'bundle-warning';
-    warning.style.cssText = `
-      background: #ff4444;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 10px;
-      margin: 20px 0;
-      font-weight: bold;
-      text-align: center;
-      border: 2px solid #cc0000;
-    `;
-    warning.textContent = message;
-    
-    const cartForm = document.querySelector('form[action="/cart"]') || document.querySelector('.cart');
-    if (cartForm) {
-      cartForm.insertBefore(warning, cartForm.firstChild);
-    }
-  }
-  
-  function removeWarningMessage() {
-    const existing = document.getElementById('bundle-warning');
-    if (existing) {
-      existing.remove();
-    }
-  }
-
-  // Prevent setup fee removal
-function protectSetupFee() {
-  // Get all cart items from the page
-  fetch('/cart.js')
-    .then(r => r.json())
-    .then(cart => {
-      const removeButtons = document.querySelectorAll('.remove-btn');
-      
-      removeButtons.forEach(button => {
-        const line = parseInt(button.dataset.line);
-        const cartItem = cart.items[line - 1]; // Array is 0-indexed, line is 1-indexed
-        
-        // Check if this is the setup fee item by variant ID
-        if (cartItem && cartItem.variant_id === SETUP_FEE) {
-          console.log('Found setup fee button, protecting it');
-          
-          // Clone the button to remove all existing event listeners
-          const newButton = button.cloneNode(true);
-          button.parentNode.replaceChild(newButton, button);
-          
-          // Add new protected click event
-          newButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            
-            console.log('Setup fee removal prevented');
-            showToast('Setup fee is required with Bot Suite subscription and cannot be removed separately', true);
-            
-            return false;
-          }, { capture: true });
-        }
-      });
-    })
-    .catch(err => console.error('Error protecting setup fee:', err));
-}
-  
-  function checkCart() {
-    console.log('Checking cart...');
-    
-    fetch('/cart.js')
-      .then(r => r.json())
-      .then(cart => {
-        console.log('Cart has', cart.items.length, 'items');
-        
-        cart.items.forEach(item => {
-          console.log('- Item:', item.product_title, 'Variant ID:', item.variant_id);
-        });
-        
-        const hasBotMonthly = cart.items.some(item => item.variant_id === BOT_MONTHLY);
-        const hasBotAnnual = cart.items.some(item => item.variant_id === BOT_ANNUAL);
-        const setupFeeItem = cart.items.find(item => item.variant_id === SETUP_FEE);
-        const hasSetupFee = !!setupFeeItem;
-        
-        console.log('Bot Monthly:', hasBotMonthly);
-        console.log('Bot Annual:', hasBotAnnual);
-        console.log('Setup Fee:', hasSetupFee);
-        
-        const hasBotSubscription = hasBotMonthly || hasBotAnnual;
-        
-        if (hasBotSubscription && !hasSetupFee) {
-          console.log('✅ Bot subscription found, setup fee missing - adding now');
-          blockCheckout('Please wait while we add the required setup fee to your cart...');
-          addSetupFee();
-        } else if (!hasBotSubscription && hasSetupFee) {
-          console.log('❌ Setup fee found but no bot subscription - removing');
-          removeSetupFee(setupFeeItem.key);
-        } else if (hasBotSubscription && hasSetupFee) {
-          console.log('✅ Bundle complete - both items in cart');
-          enableCheckout();
-          protectSetupFee(); // Protect the setup fee from removal
-        } else {
-          console.log('ℹ️ No bot subscription in cart');
-          enableCheckout();
-        }
-      })
-      .catch(err => console.error('Error checking cart:', err));
-  }
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkCart);
-  } else {
-    checkCart();
-  }
-  
-  document.addEventListener('cart:updated', checkCart);
-  
-  window.addEventListener('beforeunload', function(e) {
-    fetch('/cart.js')
-      .then(r => r.json())
-      .then(cart => {
-        const hasBotMonthly = cart.items.some(item => item.variant_id === BOT_MONTHLY);
-        const hasBotAnnual = cart.items.some(item => item.variant_id === BOT_ANNUAL);
-        const hasSetupFee = cart.items.some(item => item.variant_id === SETUP_FEE);
-        
-        if ((hasBotMonthly || hasBotAnnual) && !hasSetupFee) {
-          e.preventDefault();
-          e.returnValue = 'Your cart is missing the required setup fee. Please wait for it to be added.';
-          return e.returnValue;
-        }
-      });
-  });
-})();
 </script>
 
 {% schema %}

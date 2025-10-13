@@ -1,6 +1,6 @@
 {% comment %}
   sections/main-product.liquid
-  Product page with add to cart functionality - Setup fee is optional
+  Product page with add to cart functionality - No quantity selector
 {% endcomment %}
 
 <section class="product-page" data-product-handle="{{ product.handle }}">
@@ -12,7 +12,7 @@
         
         <div class="product-price">
           <span class="price">{{ product.selected_or_first_available_variant.price | money }}</span>
-          {% unless product.title contains 'Setup' %}
+          {% unless product.handle contains 'setup' %}
             <span class="period">/mo</span>
           {% endunless %}
           {% if product.compare_at_price > product.price %}
@@ -39,7 +39,7 @@
           <div class="product-description">
             <h3>What's Included:</h3>
             <ul class="feature-list">
-              {% if product.title contains 'Setup' %}
+              {% if product.handle contains 'setup' %}
                 <li>✓ Professional Bot Installation</li>
                 <li>✓ Custom Configuration</li>
                 <li>✓ Initial Optimization</li>
@@ -61,7 +61,7 @@
       <!-- Right Column: Form -->
       <div class="product-form-section">
         <!-- Plan Selector for Bot Suite Products (not for setup fee) -->
-        {% unless product.title contains 'Setup' %}
+        {% unless product.handle contains 'setup' %}
           {% if product.title contains 'Bot' or product.title contains 'bot' %}
             <div class="plan-selector">
               <label>Choose Your Plan:</label>
@@ -89,33 +89,30 @@
         {% endunless %}
 
         <!-- Product Form -->
-{% form 'product', product, id: 'product-form' %}
-  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
-  
-  <!-- Hidden selling plan (auto-select first one if exists) -->
-  {% if product.selling_plan_groups.size > 0 %}
-    {% for selling_plan_group in product.selling_plan_groups %}
-      {% for selling_plan in selling_plan_group.selling_plans %}
-        {% if forloop.first %}
-          <input type="hidden" name="selling_plan" value="{{ selling_plan.id }}">
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  {% endif %}
-  
-  <!-- Quantity -->
-  <div class="quantity-selector">
-    <label for="quantity">Quantity:</label>
-    <input type="number" name="quantity" id="quantity" value="1" min="1">
-  </div>
+        {% form 'product', product, id: 'product-form' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
+          
+          <!-- Hidden selling plan (auto-select first one if exists) -->
+          {% if product.selling_plan_groups.size > 0 %}
+            {% for selling_plan_group in product.selling_plan_groups %}
+              {% for selling_plan in selling_plan_group.selling_plans %}
+                {% if forloop.first %}
+                  <input type="hidden" name="selling_plan" value="{{ selling_plan.id }}">
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+          
+          <!-- Hidden quantity, always 1 -->
+          <input type="hidden" name="quantity" value="1">
 
-  <!-- Add to Cart Button -->
-  <button type="submit" name="add" class="add-to-cart-btn" id="add-to-cart">
-    <span class="btn-text">Add to Cart</span>
-  </button>
+          <!-- Add to Cart Button -->
+          <button type="submit" name="add" class="add-to-cart-btn" id="add-to-cart">
+            <span class="btn-text">Add to Cart</span>
+          </button>
 
-  <div id="cart-message" class="cart-message" style="display: none;"></div>
-{% endform %}
+          <div id="cart-message" class="cart-message" style="display: none;"></div>
+        {% endform %}
       </div>
     </div>
   </div>
@@ -248,15 +245,15 @@
     border-bottom: none;
   }
 
-/* Right column form section */
-.product-form-section {
-  background: transparent;
-  border: none;
-  border-radius: 20px;
-  padding: 0;
-  position: sticky;
-  top: 100px;
-}
+  /* Right column form section */
+  .product-form-section {
+    background: transparent;
+    border: none;
+    border-radius: 20px;
+    padding: 0;
+    position: sticky;
+    top: 100px;
+  }
 
   .plan-selector {
     background: rgba(0, 255, 65, 0.05);
@@ -354,27 +351,6 @@
     font-size: 0.85rem;
     font-weight: 600;
     margin-top: 5px;
-  }
-
-  .quantity-selector {
-    margin-bottom: 30px;
-  }
-
-  .quantity-selector label {
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 10px;
-    font-size: 1rem;
-  }
-
-  .quantity-selector input {
-    width: 100%;
-    padding: 12px;
-    background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.3);
-    border-radius: 8px;
-    color: white;
-    font-size: 1rem;
   }
 
   .add-to-cart-btn {

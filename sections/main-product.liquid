@@ -519,6 +519,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const addButton = document.getElementById('add-to-cart');
   const btnText = addButton ? addButton.querySelector('.btn-text') : null;
   const messageDiv = document.getElementById('cart-message');
+  const isSetupProduct = document.querySelector('.setup-product-page') !== null;
 
   if (form && addButton) {
     form.addEventListener('submit', function(e) {
@@ -546,10 +547,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Success!
         btnText.textContent = '✓ Added!';
-        addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
+        
+        // Use orange for setup products, green for others
+        if (isSetupProduct) {
+          addButton.style.background = 'linear-gradient(135deg, #FFA500, #FF8C00)';
+        } else {
+          addButton.style.background = 'linear-gradient(135deg, #00ff41, #00dd3a)';
+        }
         
         messageDiv.textContent = 'Item added to cart successfully!';
         messageDiv.className = 'cart-message success';
+        
+        // Override success message color for setup products
+        if (isSetupProduct) {
+          messageDiv.style.background = 'rgba(255, 165, 0, 0.2)';
+          messageDiv.style.borderColor = '#FFA500';
+          messageDiv.style.color = '#FFA500';
+        }
+        
         messageDiv.style.display = 'block';
         
         // Redirect to cart
@@ -561,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('❌ Error:', error);
         
         // Show error
-        btnText.textContent = 'Add to Cart';
+        btnText.textContent = isSetupProduct ? 'Add Setup' : 'Add to Cart';
         addButton.disabled = false;
         
         messageDiv.textContent = 'Error adding to cart. Please try again.';

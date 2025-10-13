@@ -20,13 +20,15 @@
           {% endif %}
         </div>
 
-        <!-- Setup Fee Info (for bot products only) -->
-        {% if product.title contains 'Bot' %}
-          <div class="setup-fee-info">
-            <p><strong>Optional:</strong> Professional Setup Service available separately for <strong>$249</strong> one-time</p>
-            <a href="/#pricing" class="view-setup-link">View Setup Service →</a>
-          </div>
-        {% endif %}
+        <!-- Setup Fee Info (for bot products only, NOT for setup product itself) -->
+        {% unless product.handle contains 'setup' %}
+          {% if product.title contains 'Bot' %}
+            <div class="setup-fee-info">
+              <p><strong>Optional:</strong> Professional Setup Service available separately for <strong>$249</strong> one-time</p>
+              <a href="/#pricing" class="view-setup-link">View Setup Service →</a>
+            </div>
+          {% endif %}
+        {% endunless %}
 
         {% if product.description != blank %}
           <div class="product-description">
@@ -131,12 +133,32 @@
     margin: 0 auto;
   }
 
-  /* 2 column layout */
+  /* 2 column layout - centered for setup product */
   .product-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: start;
+  }
+  
+  /* Center layout for setup fee product */
+  body.template-product .product-grid {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  /* Single column centered for setup product */
+  .product-page:has(.product-title:contains("Setup")) .product-grid,
+  .product-page:has(.setup-fee-info) .product-grid {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .product-page:has(.product-title:contains("Setup")) .product-form-section {
+    position: static;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .product-info {

@@ -22,7 +22,7 @@
                 {% if item.image %}
                   <img src="{{ item.image | img_url: 'medium' }}" alt="{{ item.title | escape }}">
                 {% elsif is_setup %}
-                  <img src="{{ 'professional-setup.jpg' | asset_url }}" alt="{{ item.title | escape }}">
+                  <img src="{{ 'bot-suite-setup.jpg' | asset_url }}" alt="{{ item.title | escape }}">
                 {% elsif item.product.handle contains 'annual' or item.product.handle contains '490' %}
                   <img src="{{ 'bot-suite-annual.jpg' | asset_url }}" alt="{{ item.title | escape }}">
                 {% elsif item.product.handle contains 'monthly' or item.product.handle contains '49' %}

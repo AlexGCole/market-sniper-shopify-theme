@@ -138,16 +138,22 @@
     align-items: start;
   }
   
-  /* Single column centered for setup product */
-  [data-product-handle*="setup"] .product-grid {
+  /* Single column centered ONLY for the standalone setup fee product */
+  [data-product-handle="professional-setup"] .product-grid,
+  [data-product-handle="setup-fee"] .product-grid,
+  [data-product-handle="bot-setup"] .product-grid {
     grid-template-columns: 1fr;
     max-width: 800px;
     margin: 0 auto;
   }
   
-  [data-product-handle*="setup"] .product-form-section {
+  /* Remove sticky ONLY for the standalone setup fee product */
+  [data-product-handle="professional-setup"] .product-form-section,
+  [data-product-handle="setup-fee"] .product-form-section,
+  [data-product-handle="bot-setup"] .product-form-section {
     position: static;
     max-width: 100%;
+    top: auto;
   }
 
   .product-info {
@@ -245,7 +251,7 @@
     border-bottom: none;
   }
 
-  /* Right column form section */
+  /* Right column form section - STICKY BY DEFAULT */
   .product-form-section {
     background: transparent;
     border: none;
@@ -256,13 +262,6 @@
     top: 120px;
     align-self: flex-start;
     height: fit-content;
-  }
-  
-  /* Remove sticky for setup product */
-  [data-product-handle*="setup"] .product-form-section {
-    position: static;
-    max-width: 100%;
-    top: auto;
   }
 
   .plan-selector {

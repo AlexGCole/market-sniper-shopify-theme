@@ -137,23 +137,19 @@
     align-items: start !important;
   }
   
-  /* Single column centered for setup product AND bot products */
+  /* Single column centered for setup product only */
   [data-product-handle="trading-bot-suite-setup"] .product-grid,
   [data-product-handle="professional-setup"] .product-grid,
-  [data-product-handle="setup-fee"] .product-grid,
-  [data-product-handle="trading-bot-suite-49"] .product-grid,
-  [data-product-handle="trading-bot-suite-490-annual"] .product-grid {
+  [data-product-handle="setup-fee"] .product-grid {
     grid-template-columns: 1fr;
     max-width: 800px;
     margin: 0 auto;
   }
   
-  /* Remove sticky and center button for all products */
+  /* Remove sticky and center button for setup product only */
   [data-product-handle="trading-bot-suite-setup"] .product-form-section,
   [data-product-handle="professional-setup"] .product-form-section,
-  [data-product-handle="setup-fee"] .product-form-section,
-  [data-product-handle="trading-bot-suite-49"] .product-form-section,
-  [data-product-handle="trading-bot-suite-490-annual"] .product-form-section {
+  [data-product-handle="setup-fee"] .product-form-section {
     position: static !important;
     max-width: 100%;
     margin-top: 40px;
@@ -255,7 +251,7 @@
     border-bottom: none;
   }
 
-  /* Right column form section - NO sticky, just aligned at top */
+  /* Right column form section - NO sticky needed now */
   .product-form-section {
     background: transparent;
     border: none;
@@ -285,7 +281,7 @@
 
   .plan-options {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 15px;
   }
 

@@ -12,23 +12,23 @@
         
         <div class="product-price">
           <span class="price">{{ product.selected_or_first_available_variant.price | money }}</span>
-          {% unless product.handle contains 'setup' %}
+          {% if product.handle == 'trading-bot-suite-setup' or product.handle contains 'setup-fee' or product.handle == 'professional-setup' %}
+            <span class="period">one-time</span>
+          {% else %}
             <span class="period">/mo</span>
-          {% endunless %}
+          {% endif %}
           {% if product.compare_at_price > product.price %}
             <span class="compare-price">{{ product.compare_at_price | money }}</span>
           {% endif %}
         </div>
 
         <!-- Setup Fee Info (for bot products only, NOT for setup product itself) -->
-        {% unless product.handle contains 'setup' %}
-          {% if product.title contains 'Bot' %}
-            <div class="setup-fee-info">
-              <p><strong>Optional:</strong> Professional Setup Service available separately for <strong>$249</strong> one-time</p>
-              <a href="/#pricing" class="view-setup-link">View Setup Service →</a>
-            </div>
-          {% endif %}
-        {% endunless %}
+        {% if product.handle == 'trading-bot-suite-49' or product.handle == 'trading-bot-suite-490-annual' %}
+          <div class="setup-fee-info">
+            <p><strong>Optional:</strong> Professional Setup Service available separately for <strong>$249</strong> one-time</p>
+            <a href="/#pricing" class="view-setup-link">View Setup Service →</a>
+          </div>
+        {% endif %}
 
         {% if product.description != blank %}
           <div class="product-description">
@@ -39,7 +39,7 @@
           <div class="product-description">
             <h3>What's Included:</h3>
             <ul class="feature-list">
-              {% if product.handle contains 'setup' %}
+              {% if product.handle == 'trading-bot-suite-setup' or product.handle contains 'setup-fee' or product.handle == 'professional-setup' %}
                 <li>✓ Professional Bot Installation</li>
                 <li>✓ Custom Configuration</li>
                 <li>✓ Initial Optimization</li>
@@ -61,32 +61,30 @@
       <!-- Right Column: Form -->
       <div class="product-form-section">
         <!-- Plan Selector for Bot Suite Products (not for setup fee) -->
-        {% unless product.handle contains 'setup' %}
-          {% if product.title contains 'Bot' or product.title contains 'bot' %}
-            <div class="plan-selector">
-              <label>Choose Your Plan:</label>
-              <div class="plan-options">
-                <div class="plan-option monthly-option">
-                  <input type="radio" name="plan_choice" id="monthly-plan" value="monthly" 
-                    {% if product.title contains 'Monthly' or product.title contains '49' %}checked{% endif %}>
-                  <label for="monthly-plan">
-                    <strong>Monthly</strong>
-                    <span class="plan-price">$49/mo</span>
-                  </label>
-                </div>
-                <div class="plan-option annual-option">
-                  <input type="radio" name="plan_choice" id="annual-plan" value="annual"
-                    {% if product.title contains 'Annual' or product.title contains '490' %}checked{% endif %}>
-                  <label for="annual-plan">
-                    <strong>Annual</strong>
-                    <span class="plan-price">$490/yr</span>
-                    <span class="plan-savings">Save $98</span>
-                  </label>
-                </div>
+        {% if product.handle == 'trading-bot-suite-49' or product.handle == 'trading-bot-suite-490-annual' %}
+          <div class="plan-selector">
+            <label>Choose Your Plan:</label>
+            <div class="plan-options">
+              <div class="plan-option monthly-option">
+                <input type="radio" name="plan_choice" id="monthly-plan" value="monthly" 
+                  {% if product.handle == 'trading-bot-suite-49' %}checked{% endif %}>
+                <label for="monthly-plan">
+                  <strong>Monthly</strong>
+                  <span class="plan-price">$49/mo</span>
+                </label>
+              </div>
+              <div class="plan-option annual-option">
+                <input type="radio" name="plan_choice" id="annual-plan" value="annual"
+                  {% if product.handle == 'trading-bot-suite-490-annual' %}checked{% endif %}>
+                <label for="annual-plan">
+                  <strong>Annual</strong>
+                  <span class="plan-price">$490/yr</span>
+                  <span class="plan-savings">Save $98</span>
+                </label>
               </div>
             </div>
-          {% endif %}
-        {% endunless %}
+          </div>
+        {% endif %}
 
         <!-- Product Form -->
         {% form 'product', product, id: 'product-form' %}
@@ -130,7 +128,7 @@
     margin: 0 auto;
   }
 
-  /* 2 column layout */
+  /* 2 column layout by default */
   .product-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -138,22 +136,22 @@
     align-items: start;
   }
   
-  /* Single column centered ONLY for the standalone setup fee product */
+  /* Single column centered for setup product */
+  [data-product-handle="trading-bot-suite-setup"] .product-grid,
   [data-product-handle="professional-setup"] .product-grid,
-  [data-product-handle="setup-fee"] .product-grid,
-  [data-product-handle="bot-setup"] .product-grid {
+  [data-product-handle="setup-fee"] .product-grid {
     grid-template-columns: 1fr;
     max-width: 800px;
     margin: 0 auto;
   }
   
-  /* Remove sticky ONLY for the standalone setup fee product */
+  /* Remove sticky and center button for setup product */
+  [data-product-handle="trading-bot-suite-setup"] .product-form-section,
   [data-product-handle="professional-setup"] .product-form-section,
-  [data-product-handle="setup-fee"] .product-form-section,
-  [data-product-handle="bot-setup"] .product-form-section {
-    position: static;
+  [data-product-handle="setup-fee"] .product-form-section {
+    position: static !important;
     max-width: 100%;
-    top: auto;
+    margin-top: 40px;
   }
 
   .product-info {
@@ -251,7 +249,7 @@
     border-bottom: none;
   }
 
-  /* Right column form section - STICKY BY DEFAULT */
+  /* Right column form section - STICKY by default for bot products */
   .product-form-section {
     background: transparent;
     border: none;
@@ -414,7 +412,7 @@
     }
 
     .product-form-section {
-      position: static;
+      position: static !important;
     }
 
     .product-title {
@@ -444,7 +442,7 @@
     }
 
     .product-form-section {
-      padding: 25px;
+      padding: 0;
     }
   }
 </style>

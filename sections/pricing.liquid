@@ -381,23 +381,17 @@
 
   /* Hide Coaching & Indicators section completely */
   /* Hide the first category header (Coaching & Indicators) */
-  .pricing-category-header:first-of-type {
+  .pricing-category-header:nth-of-type(1) {
     display: none !important;
   }
   
   /* Hide the first two pricing cards (Coaching Monthly & Annual) */
-  .pricing-wrapper > .pricing-card:nth-of-type(1),
-  .pricing-wrapper > .pricing-card:nth-of-type(2) {
+  .pricing-card:nth-of-type(1),
+  .pricing-card:nth-of-type(2) {
     display: none !important;
   }
   
   /* Bot Suite section and its cards will now be visible */
-  /* Make sure you have these blocks in order after Coaching cards:
-     1. Pricing Header - "Bot Suite"
-     2. Pricing Plan - Bot Monthly
-     3. Pricing Plan - Bot Annual  
-     4. Setup Fee Add-on - $249 Setup
-  */
 </style>
 
 {% schema %}

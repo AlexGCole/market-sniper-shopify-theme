@@ -64,6 +64,22 @@
           {% endfor %}
         </div>
 
+        <!-- TradingView Username Field -->
+        <div class="tradingview-field-container">
+          <h3 class="tradingview-title">📊 TradingView Account Information</h3>
+          <p class="tradingview-description">Please enter your TradingView username to link your subscription</p>
+          <input 
+            type="text" 
+            id="cart-note" 
+            name="note" 
+            placeholder="Enter your TradingView username"
+            value="{{ cart.note }}"
+            class="tradingview-input"
+            required
+          >
+          <p class="tradingview-note">* Required for service activation</p>
+        </div>
+
         <!-- Cart Summary -->
         <div class="cart-summary">
           <h2>Order Summary</h2>
@@ -89,7 +105,7 @@
 
           <p class="tax-note">Taxes and shipping calculated at checkout</p>
 
-          <button type="button" class="checkout-btn" onclick="window.location.href='/checkout'">
+          <button type="button" class="checkout-btn" onclick="validateAndCheckout()">
             Proceed to Checkout
           </button>
 
@@ -391,6 +407,57 @@
     color: white;
   }
 
+  /* TradingView Username Field */
+  .tradingview-field-container {
+    background: rgba(0, 255, 65, 0.05);
+    border: 2px solid #00ff41;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  }
+
+  .tradingview-title {
+    color: #00ff41;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .tradingview-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+  }
+
+  .tradingview-input {
+    width: 100%;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .tradingview-input:focus {
+    outline: none;
+    border-color: #00ff41;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+  }
+
+  .tradingview-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .tradingview-note {
+    color: #00ff41;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
   @media (max-width: 968px) {
     .cart-content {
       grid-template-columns: 1fr;
@@ -408,6 +475,10 @@
       bottom: 20px;
       right: 20px;
       left: 20px;
+    }
+
+    .tradingview-field-container {
+      margin-bottom: 20px;
     }
   }
 </style>
@@ -456,6 +527,37 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+
+  // Validate TradingView username before checkout
+  window.validateAndCheckout = function() {
+    const tradingViewInput = document.getElementById('cart-note');
+    const username = tradingViewInput.value.trim();
+    
+    if (!username) {
+      showToast('Please enter your TradingView username', true);
+      tradingViewInput.focus();
+      return;
+    }
+    
+    // Save the note to cart
+    fetch('/cart/update.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        note: username
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      window.location.href = '/checkout';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      showToast('Error saving username', true);
+    });
+  }
 });
 </script>
 

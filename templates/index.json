@@ -274,7 +274,7 @@
         "setup-addon": {
           "type": "setup_fee_addon",
           "settings": {
-            "addon_name": "Professional Setup",
+            "addon_name": "Setup",
             "addon_price": "249",
             "addon_features": "✓ Professional Bot Installation\n✓ Custom Configuration\n✓ Initial Optimization\n✓ Priority Support Setup\n✓ One-on-One Onboarding",
             "addon_button_link": "shopify://products/trading-bot-suite-setup",
@@ -335,7 +335,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How does the automated trading bot work?",
-            "answer": "Our trading bot executes trades automatically on TradingView based on proven strategies. It includes risk management features like stop losses and take profits. Optional professional setup service available for personalized configuration."
+            "answer": "Our trading bot executes trades automatically on TradingView based on proven strategies. It includes risk management features like stop losses and take profits. Optional setup service available for personalized configuration."
           }
         },
         "faq-6": {

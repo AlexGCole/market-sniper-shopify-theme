@@ -379,23 +379,25 @@
     }
   }
 
-  /* Show only Bot Suite section - hide all other sections */
-  /* This assumes Bot Suite is the FIRST section in your block order */
-  
-  /* Hide the 2nd and 3rd category headers (Coaching & Indicators) */
-  .pricing-category-header:nth-of-type(2),
-  .pricing-category-header:nth-of-type(3) {
+  /* Hide Coaching & Indicators section completely */
+  /* Hide the first category header (Coaching & Indicators) */
+  .pricing-category-header:first-of-type {
     display: none !important;
   }
   
-  /* To properly hide pricing cards from other sections, */
-  /* you may need to adjust based on how many Bot Suite cards you have */
-  /* If you have 3 Bot Suite cards (Monthly, Annual, Setup), then hide cards 4+ */
-  /* Uncomment and adjust the number below if needed: */
-  
-  /* .pricing-wrapper > .pricing-card:nth-of-type(n+4) {
+  /* Hide the first two pricing cards (Coaching Monthly & Annual) */
+  .pricing-wrapper > .pricing-card:nth-of-type(1),
+  .pricing-wrapper > .pricing-card:nth-of-type(2) {
     display: none !important;
-  } */
+  }
+  
+  /* Bot Suite section and its cards will now be visible */
+  /* Make sure you have these blocks in order after Coaching cards:
+     1. Pricing Header - "Bot Suite"
+     2. Pricing Plan - Bot Monthly
+     3. Pricing Plan - Bot Annual  
+     4. Setup Fee Add-on - $249 Setup
+  */
 </style>
 
 {% schema %}

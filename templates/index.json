@@ -219,7 +219,6 @@
             "plan_name": "Monthly",
             "price": "79",
             "period": "mo",
-            "setup_fee": "",
             "savings_text": "",
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group",
@@ -233,7 +232,6 @@
             "plan_name": "Annual",
             "price": "660",
             "period": "yr",
-            "setup_fee": "",
             "savings_text": "Save 30%",
             "is_popular": true,
             "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Priority Support",
@@ -253,7 +251,6 @@
             "plan_name": "Monthly",
             "price": "49",
             "period": "mo",
-            "setup_fee": "249",
             "savings_text": "",
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support",
@@ -267,12 +264,21 @@
             "plan_name": "Annual",
             "price": "490",
             "period": "yr",
-            "setup_fee": "249",
             "savings_text": "Save $98",
             "is_popular": true,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support\n✓ Annual Strategy Review",
             "button_link": "shopify://products/trading-bot-suite-490-annual",
             "button_text": "Buy Now"
+          }
+        },
+        "setup-addon": {
+          "type": "setup_fee_addon",
+          "settings": {
+            "addon_name": "Professional Setup",
+            "addon_price": "249",
+            "addon_features": "✓ Professional Bot Installation\n✓ Custom Configuration\n✓ Initial Optimization\n✓ Priority Support Setup\n✓ One-on-One Onboarding",
+            "addon_button_link": "shopify://products/bot-setup-fee",
+            "addon_button_text": "Add Setup"
           }
         }
       },
@@ -282,7 +288,8 @@
         "pricing-2",
         "bot-header",
         "pricing-3",
-        "pricing-4"
+        "pricing-4",
+        "setup-addon"
       ],
       "settings": {
         "section_title": "Choose Your Plan",
@@ -328,7 +335,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How does the automated trading bot work?",
-            "answer": "Our trading bot executes trades automatically on TradingView based on proven strategies. It includes risk management features like stop losses and take profits. The $249 setup fee covers personalized configuration for your account and risk tolerance."
+            "answer": "Our trading bot executes trades automatically on TradingView based on proven strategies. It includes risk management features like stop losses and take profits. Optional professional setup service available for personalized configuration."
           }
         },
         "faq-6": {

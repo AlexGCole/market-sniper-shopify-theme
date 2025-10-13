@@ -133,7 +133,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: flex-start;
+  }
+  
+  /* Ensure left column can scroll naturally */
+  .product-info {
+    min-height: 100vh;
   }
   
   /* Single column centered for setup product */

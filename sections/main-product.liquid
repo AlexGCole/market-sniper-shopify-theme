@@ -3,7 +3,7 @@
   Product page with add to cart functionality - Setup fee is optional
 {% endcomment %}
 
-<section class="product-page">
+<section class="product-page" data-product-handle="{{ product.handle }}">
   <div class="container">
     <div class="product-grid">
       <!-- Left Column: Product Info -->
@@ -133,7 +133,7 @@
     margin: 0 auto;
   }
 
-  /* 2 column layout - centered for setup product */
+  /* 2 column layout */
   .product-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -141,24 +141,16 @@
     align-items: start;
   }
   
-  /* Center layout for setup fee product */
-  body.template-product .product-grid {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
   /* Single column centered for setup product */
-  .product-page:has(.product-title:contains("Setup")) .product-grid,
-  .product-page:has(.setup-fee-info) .product-grid {
+  body:has([data-product-handle*="setup"]) .product-grid {
     grid-template-columns: 1fr;
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
   }
   
-  .product-page:has(.product-title:contains("Setup")) .product-form-section {
+  body:has([data-product-handle*="setup"]) .product-form-section {
     position: static;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 100%;
   }
 
   .product-info {

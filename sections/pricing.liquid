@@ -392,6 +392,7 @@
     .pricing-card {
       flex: 1 1 100%;
       max-width: 100%;
+      min-height: auto;
     }
 
     .pricing-card.featured {
@@ -408,6 +409,17 @@
 
     .price-amount {
       font-size: 2.5rem;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .pricing-wrapper {
+      flex-wrap: nowrap;
+    }
+    
+    .pricing-card {
+      flex: 1 1 0;
+      max-width: 380px;
     }
   }
 

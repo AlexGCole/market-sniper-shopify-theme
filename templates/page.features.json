@@ -9,11 +9,11 @@
       "settings": {
         "show_badge": true,
         "badge_text": "Two Powerful Options",
-        "hero_title_line1": "Bot Suite & Coaching",
-        "hero_title_line2": "Which Is Right For You?",
-        "hero_subtitle": "Automated trading with professional tools or comprehensive education - or get both for the complete trading experience",
-        "primary_button_text": "Compare Products",
-        "primary_button_link": "#comparison",
+        "hero_title_line1": "Bot Suite",
+        "hero_title_line2": "Professional Trading Tools",
+        "hero_subtitle": "Automated trading with professional indicators and strategies - everything you need to trade smarter",
+        "primary_button_text": "View Plans",
+        "primary_button_link": "#bot-suite-features",
         "show_stats": false
       }
     },
@@ -91,104 +91,6 @@
         "button_link": "/pages/products"
       }
     },
-    "coaching-features": {
-      "type": "features",
-      "blocks": {
-        "coaching-1": {
-          "type": "feature",
-          "settings": {
-            "title": "60+ Hours Video Coaching",
-            "description": "Comprehensive trading education covering strategies, risk management, technical analysis, and psychology"
-          }
-        },
-        "coaching-2": {
-          "type": "feature",
-          "settings": {
-            "title": "Trading Strategy Education",
-            "description": "Learn proven strategies step-by-step and develop your own approach to the markets"
-          }
-        },
-        "coaching-3": {
-          "type": "feature",
-          "settings": {
-            "title": "Asset-Specific Bot Alerts",
-            "description": "Receive bot alerts on specific assets in the coaching Discord channel to learn from real examples"
-          }
-        },
-        "coaching-4": {
-          "type": "feature",
-          "settings": {
-            "title": "Private Discord Community",
-            "description": "Engage with fellow traders, share insights, and discuss strategies in a supportive environment"
-          }
-        },
-        "coaching-5": {
-          "type": "feature",
-          "settings": {
-            "title": "Weekly Market Analysis",
-            "description": "Stay updated with regular market reviews, trend analysis, and trading opportunities"
-          }
-        },
-        "coaching-6": {
-          "type": "feature",
-          "settings": {
-            "title": "Live Trading Examples",
-            "description": "Follow along with real trades and understand the decision-making process behind each setup"
-          }
-        }
-      },
-      "block_order": [
-        "coaching-1",
-        "coaching-2",
-        "coaching-3",
-        "coaching-4",
-        "coaching-5",
-        "coaching-6"
-      ],
-      "settings": {
-        "section_title": "Coaching - $79/mo",
-        "section_subtitle": "Learn to trade without the bot or indicators",
-        "button_text": "View Coaching Plans",
-        "button_link": "/pages/products"
-      }
-    },
-    "comparison": {
-      "type": "features",
-      "blocks": {
-        "compare-1": {
-          "type": "feature",
-          "settings": {
-            "title": "Bot Suite - Tools & Automation",
-            "description": "Includes: Trading bot with TradingView alerts, Sharp Shooter Candles 4.2, Sharp Shooter RSI 2.0, strategies, bot Discord channel, priority support"
-          }
-        },
-        "compare-2": {
-          "type": "feature",
-          "settings": {
-            "title": "Coaching - Education & Learning",
-            "description": "Includes: 60+ hours video education, strategy training, asset-specific bot alerts in coaching channel, community Discord, weekly analysis. Does NOT include bot or indicators"
-          }
-        },
-        "compare-3": {
-          "type": "feature",
-          "settings": {
-            "title": "Get Both - Complete Package",
-            "description": "Combine automated trading tools with comprehensive education to trade smarter and understand the 'why' behind every decision"
-          }
-        }
-      },
-      "block_order": [
-        "compare-1",
-        "compare-2",
-        "compare-3"
-      ],
-      "settings": {
-        "section_title": "What's the Difference?",
-        "section_subtitle": "Understand what each product includes",
-        "button_text": "",
-        "button_link": ""
-      }
-    },
     "footer": {
       "type": "footer",
       "settings": {}
@@ -199,8 +101,6 @@
     "features-hero",
     "bot-suite-features",
     "bot-cta-button",
-    "coaching-features",
-    "comparison",
     "footer"
   ]
 }

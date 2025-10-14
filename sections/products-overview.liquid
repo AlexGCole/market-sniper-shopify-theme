@@ -178,7 +178,7 @@
   }
 
   .coaching-section {
-    background: #0A0A0A;
+    background: #050807;
     padding: 80px 20px;
     border-top: 1px solid rgba(0, 255, 65, 0.2);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
@@ -374,6 +374,107 @@
 
   .plan-features li:last-child {
     border-bottom: none;
+  }
+
+  .pricing-option.featured .plan-features li {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  }
+
+  .pricing-option.addon .plan-features li {
+    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+  }
+
+  .pricing-option .btn {
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .pricing-option.addon .btn-secondary {
+    border: 2px solid #ffa500;
+    color: #ffa500;
+    font-weight: 700;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 140, 0, 0.05));
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
+  }
+
+  .pricing-option.addon .btn-secondary:hover {
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.15));
+    border-color: #ff8c00;
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-disabled {
+    background: rgba(128, 128, 128, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+    box-shadow: none;
+    border: 2px solid rgba(128, 128, 128, 0.3);
+  }
+
+  .btn-disabled:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .product-pricing {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pricing-option {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+
+    .pricing-option.featured {
+      transform: scale(1);
+    }
+
+    .pricing-option.featured:hover {
+      transform: translateY(-10px);
+    }
+
+    .products-hero h1 {
+      font-size: 2rem;
+    }
+
+    .product-header h2 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .products-hero {
+      padding: 100px 20px 40px;
+    }
+
+    .product-showcase {
+      padding: 60px 20px;
+    }
+
+    .price .amount {
+      font-size: 2.5rem;
+    }
+
+    .products-hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .product-header h2 {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Products Page",
+  "settings": []
+}
+{% endschema %}border-bottom: none;
   }
 
   .pricing-option.featured .plan-features li {

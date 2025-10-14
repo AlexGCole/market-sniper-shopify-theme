@@ -162,10 +162,10 @@
             "plan_name": "Monthly",
             "price": "49",
             "period": "mo",
-            "setup_fee": "",
+            "setup_fee": "249",
             "savings_text": "",
             "is_popular": false,
-            "features": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support",
+            "features": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support\n✓ Optional Setup Service ($249)",
             "button_link": "/products/bot-suite-monthly",
             "button_text": "Get Started"
           }
@@ -176,10 +176,10 @@
             "plan_name": "Annual",
             "price": "490",
             "period": "yr",
-            "setup_fee": "",
+            "setup_fee": "249",
             "savings_text": "Save $98/year",
             "is_popular": true,
-            "features": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support\n✓ 2 Months Free",
+            "features": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support\n✓ 2 Months Free\n✓ Optional Setup Service ($249)",
             "button_link": "/products/bot-suite-annual",
             "button_text": "Get Started"
           }

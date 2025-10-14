@@ -1,50 +1,4 @@
-"trading-bot": {
-      "type": "trading-bot",
-      "blocks": {
-        "bot-feature-1": {
-          "type": "feature",
-          "settings": {
-            "title": "Automated Bot Execution",
-            "description": "The bot can execute long and short positions automatically with intelligent take-profit and stop losses - 24/7"
-          }
-        },
-        "bot-feature-2": {
-          "type": "feature",
-          "settings": {
-            "title": "Sharp Shooter Indicators Included",
-            "description": "Professional TradingView indicators (Candles 4.2 & RSI 2.0) automatically shared to your account"
-          }
-        },
-        "bot-feature-3": {
-          "type": "feature",
-          "settings": {
-            "title": "Proven Strategies Included",
-            "description": "Battle-tested trading strategies ready to deploy with the bot or use manually"
-          }
-        },
-        "bot-feature-4": {
-          "type": "feature",
-          "settings": {
-            "title": "Priority Support",
-            "description": "Dedicated assistance with bot configuration, strategy questions, and optimization"
-          }
-        }
-      },
-      "block_order": [
-        "bot-feature-1",
-        "bot-feature-2",
-        "bot-feature-3",
-        "bot-feature-4"
-      ],
-      "settings": {
-        "badge_text": "",
-        "title": "Bot Suite - Automate Your Trading",
-        "subtitle": "Trade smarter with our bot - you decide when to automate",
-        "show_stat": true,
-        "stat_number": "2+",
-        "stat_label": "Years of Optimization"
-      }
-    },{
+{
   "sections": {
     "header": {
       "type": "header",
@@ -112,29 +66,37 @@
         "bot-feature-1": {
           "type": "feature",
           "settings": {
-            "title": "100% Automated",
-            "description": "Long and short positions with intelligent take-profit and stop losses"
+            "title": "Automated Bot Execution",
+            "description": "The bot can execute long and short positions automatically with intelligent take-profit and stop losses - 24/7"
           }
         },
         "bot-feature-2": {
           "type": "feature",
           "settings": {
-            "title": "Proven Strategies Included",
-            "description": "Battle-tested configurations ready to use or customize to your style"
+            "title": "Sharp Shooter Indicators Included",
+            "description": "Professional TradingView indicators (Candles 4.2 & RSI 2.0) automatically shared to your account"
           }
         },
         "bot-feature-3": {
           "type": "feature",
           "settings": {
+            "title": "Proven Strategies Included",
+            "description": "Battle-tested trading strategies ready to deploy with the bot or use manually"
+          }
+        },
+        "bot-feature-4": {
+          "type": "feature",
+          "settings": {
             "title": "Priority Support",
-            "description": "Dedicated assistance with bot setup, optimization, and strategy questions"
+            "description": "Dedicated assistance with bot configuration, strategy questions, and optimization"
           }
         }
       },
       "block_order": [
         "bot-feature-1",
         "bot-feature-2",
-        "bot-feature-3"
+        "bot-feature-3",
+        "bot-feature-4"
       ],
       "settings": {
         "badge_text": "",

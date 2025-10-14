@@ -66,19 +66,19 @@
 
         <!-- TradingView Username Field -->
         <div class="tradingview-field-container">
-          <h3 class="tradingview-title">📊 TradingView Account Information</h3>
-          <p class="tradingview-description">Please enter your TradingView username to link your subscription</p>
-          <input 
-            type="text" 
-            id="cart-note" 
-            name="note" 
-            placeholder="Enter your TradingView username"
-            value="{{ cart.note }}"
-            class="tradingview-input"
-            required
-          >
-          <p class="tradingview-note">* Required for service activation</p>
-        </div>
+  <h3 class="tradingview-title">📊 TradingView Account Information</h3>
+  <p class="tradingview-description">Please enter your TradingView username exactly as it appears on your account. Username is case-sensitive (e.g., "Username" is different from "username").</p>
+  <input 
+    type="text" 
+    id="cart-note" 
+    name="note" 
+    placeholder="Enter your TradingView username (case-sensitive)"
+    value="{{ cart.note }}"
+    class="tradingview-input"
+    required
+  >
+  <p class="tradingview-note">* Required for service activation - must match exactly</p>
+</div>
 
         <!-- Cart Summary -->
         <div class="cart-summary">

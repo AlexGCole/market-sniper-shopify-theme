@@ -4,115 +4,101 @@
       "type": "header",
       "settings": {}
     },
-    "hero": {
+    "products-hero": {
       "type": "hero",
       "settings": {
         "show_badge": true,
-        "badge_text": "🎯 Professional Trading Tools",
-        "hero_title_line1": "Precision Trading",
-        "hero_title_line2": "Made Simple",
-        "hero_subtitle": "Automated trading bot with proven strategies synced directly to your TradingView",
-        "primary_button_text": "Start Trading Smarter",
-        "primary_button_link": "#pricing",
-        "show_stats": true
+        "badge_text": "🎯 Choose Your Path",
+        "hero_title_line1": "Find the Perfect",
+        "hero_title_line2": "Trading Solution",
+        "hero_subtitle": "From automated bot trading to professional indicators and coaching - we have everything you need to succeed",
+        "primary_button_text": "View All Pricing",
+        "primary_button_link": "#all-pricing",
+        "show_stats": false
       }
     },
-    "how-it-works": {
-      "type": "how-it-works",
+    "bot-suite-showcase": {
+      "type": "trading-bot",
       "blocks": {
-        "step-1": {
-          "type": "step",
+        "bot-feature-1": {
+          "type": "feature",
           "settings": {
-            "icon": "📋",
-            "title": "Choose Your Plan",
-            "description": "Select the Bot Suite subscription that matches your trading goals"
+            "title": "Fully Automated Bot",
+            "description": "Execute trades 24/7 with proven strategies synced to TradingView"
           }
         },
-        "step-2": {
-          "type": "step",
+        "bot-feature-2": {
+          "type": "feature",
           "settings": {
-            "icon": "💬",
-            "title": "Join Discord Community",
-            "description": "Get instant access to our private Discord with traders and bot discussions"
+            "title": "Private Bot Channel",
+            "description": "Exclusive Discord channel for bot configuration and optimization support"
           }
         },
-        "step-3": {
-          "type": "step",
+        "bot-feature-3": {
+          "type": "feature",
           "settings": {
-            "icon": "📊",
-            "title": "Receive TradingView Setup",
-            "description": "Bot strategies and indicators automatically shared to your TradingView account"
-          }
-        },
-        "step-4": {
-          "type": "step",
-          "settings": {
-            "icon": "🚀",
-            "title": "Start Trading",
-            "description": "Deploy your automated bot and follow real-time signals in Discord"
+            "title": "Ongoing Optimization",
+            "description": "Continuous updates and refinements to keep strategies performing at their best"
           }
         }
       },
       "block_order": [
-        "step-1",
-        "step-2",
-        "step-3",
-        "step-4"
+        "bot-feature-1",
+        "bot-feature-2",
+        "bot-feature-3"
       ],
       "settings": {
-        "section_title": "Your Path to Trading Success",
-        "section_subtitle": "Get started in minutes with our proven 4-step system"
+        "badge_text": "🤖 Most Popular",
+        "title": "Bot Suite",
+        "subtitle": "Automated trading with proven strategies and dedicated support",
+        "show_stat": true,
+        "stat_number": "$49",
+        "stat_label": "per month"
       }
     },
-    "features": {
+    "coaching-showcase": {
       "type": "features",
       "blocks": {
         "feature-1": {
           "type": "feature",
           "settings": {
-            "icon": "🤖",
-            "title": "Automated Trading Bot",
-            "description": "Fully automated bot that executes trades 24/7 based on proven strategies"
+            "title": "Sharp Shooter Candles 4.2",
+            "description": "Advanced candlestick indicator with buy/sell signals, MACD integration, and reversal detection"
           }
         },
         "feature-2": {
           "type": "feature",
           "settings": {
-            "icon": "📊",
-            "title": "TradingView Indicators",
-            "description": "Sharp Shooter Candles and RSI indicators shared directly to your TradingView"
+            "title": "Sharp Shooter RSI 2.0",
+            "description": "RSI divergence detection with early signals and trend identification"
           }
         },
         "feature-3": {
           "type": "feature",
           "settings": {
-            "icon": "📈",
-            "title": "Proven Trading Strategies",
-            "description": "Bot strategies automatically synced to your TradingView for seamless execution"
+            "title": "60+ Hours Video Coaching",
+            "description": "Comprehensive trading education covering strategies, risk management, and market analysis"
           }
         },
         "feature-4": {
           "type": "feature",
           "settings": {
-            "icon": "💬",
-            "title": "Private Discord Community",
-            "description": "Exclusive access to bot discussion channels and fellow traders"
+            "title": "Private Discord Access",
+            "description": "Join the community for strategy discussions and real-time market insights"
           }
         },
         "feature-5": {
           "type": "feature",
           "settings": {
-            "icon": "⚙️",
-            "title": "Bot Configuration & Setup",
-            "description": "Complete setup assistance with personalized bot configuration"
+            "title": "Bot Trade Alerts",
+            "description": "Follow along with Sniper Bot signals and alerts in real-time"
           }
         },
         "feature-6": {
           "type": "feature",
           "settings": {
-            "icon": "🎯",
-            "title": "Priority Support",
-            "description": "Dedicated support for bot optimization and strategy questions"
+            "title": "Discussion Group",
+            "description": "Engage with fellow traders and share insights in a supportive environment"
           }
         }
       },
@@ -125,127 +111,20 @@
         "feature-6"
       ],
       "settings": {
-        "section_title": "Everything You Need to Succeed",
-        "section_subtitle": "Complete automated trading solution with strategies and support"
+        "section_title": "Coaching & Indicators",
+        "section_subtitle": "Learn to trade with professional tools and comprehensive education"
       }
     },
-    "indicators": {
-      "type": "indicators",
-      "blocks": {
-        "indicator-1": {
-          "type": "indicator",
-          "settings": {
-            "version": "Version 4.2",
-            "title": "Sharp Shooter Candles",
-            "description": "Revolutionary candlestick indicator that identifies high-probability setups with precise entry and exit points.",
-            "features": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Bearish/Bullish Crossover\n✓ MACD Above/Below Zero Line\n✓ Trending Dots\n✓ Multiple Customization Options",
-            "fallback_image": "sharp-shooter-candles.jpg"
-          }
-        },
-        "indicator-2": {
-          "type": "indicator",
-          "settings": {
-            "version": "Version 2.0",
-            "title": "Sharp Shooter RSI",
-            "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
-            "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style\n✓ Real-time Alerts",
-            "fallback_image": "sharp-shooter-rsi.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "indicator-1",
-        "indicator-2"
-      ],
-      "settings": {
-        "section_title": "Professional Trading Indicators",
-        "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
-      }
-    },
-    "trading-bot": {
-      "type": "trading-bot",
-      "blocks": {
-        "bot-feature-1": {
-          "type": "feature",
-          "settings": {
-            "icon": "⚡",
-            "title": "100% Automated",
-            "description": "Long and short positions with intelligent take-profit and stop losses"
-          }
-        },
-        "bot-feature-2": {
-          "type": "feature",
-          "settings": {
-            "icon": "⚙️",
-            "title": "Endless Optimization",
-            "description": "Fine-tune settings and use our proven configurations"
-          }
-        },
-        "bot-feature-3": {
-          "type": "feature",
-          "settings": {
-            "icon": "🎯",
-            "title": "Priority Support",
-            "description": "Get dedicated assistance with bot setup and optimization"
-          }
-        }
-      },
-      "block_order": [
-        "bot-feature-1",
-        "bot-feature-2",
-        "bot-feature-3"
-      ],
-      "settings": {
-        "badge_text": "",
-        "title": "Automated Trading Bot",
-        "subtitle": "Trade smarter with our fully automated trading bot solution",
-        "show_stat": true,
-        "stat_number": "2+",
-        "stat_label": "Years of Optimization"
-      }
-    },
-    "pricing": {
+    "all-pricing": {
       "type": "pricing",
       "blocks": {
-        "coaching-header": {
-          "type": "pricing_header",
-          "settings": {
-            "header_text": "Coaching & Indicators"
-          }
-        },
-        "pricing-1": {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Monthly",
-            "price": "79",
-            "period": "mo",
-            "savings_text": "",
-            "is_popular": false,
-            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group",
-            "button_link": "",
-            "button_text": "Buy Now"
-          }
-        },
-        "pricing-2": {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Annual",
-            "price": "660",
-            "period": "yr",
-            "savings_text": "Save 30%",
-            "is_popular": true,
-            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 3.1\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Priority Support",
-            "button_link": "",
-            "button_text": "Buy Now"
-          }
-        },
         "bot-header": {
           "type": "pricing_header",
           "settings": {
-            "header_text": "Bot Suite"
+            "header_text": "Bot Suite - Automated Trading"
           }
         },
-        "pricing-3": {
+        "bot-monthly": {
           "type": "pricing_plan",
           "settings": {
             "plan_name": "Monthly",
@@ -255,10 +134,10 @@
             "is_popular": false,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support",
             "button_link": "shopify://products/trading-bot-suite-49",
-            "button_text": "Buy Now"
+            "button_text": "Get Started"
           }
         },
-        "pricing-4": {
+        "bot-annual": {
           "type": "pricing_plan",
           "settings": {
             "plan_name": "Annual",
@@ -268,37 +147,100 @@
             "is_popular": true,
             "features": "✓ Private Discord Access\n✓ Private Sniper Bot Discussion Channel\n✓ Automated Trading Bot\n✓ Bot Configuration & Setup\n✓ Ongoing Bot Optimization\n✓ Priority Bot Support\n✓ Annual Strategy Review",
             "button_link": "shopify://products/trading-bot-suite-490-annual",
-            "button_text": "Buy Now"
+            "button_text": "Best Value"
           }
         },
         "setup-addon": {
           "type": "setup_fee_addon",
           "settings": {
-            "addon_name": "Setup",
+            "addon_name": "Professional Setup",
             "addon_price": "249",
             "addon_features": "✓ Professional Bot Installation\n✓ Custom Configuration\n✓ Initial Optimization\n✓ Priority Support Setup\n✓ One-on-One Onboarding",
             "addon_button_link": "shopify://products/trading-bot-suite-setup",
             "addon_button_text": "Add Setup"
           }
+        },
+        "coaching-header": {
+          "type": "pricing_header",
+          "settings": {
+            "header_text": "Coaching & Indicators - Learn & Trade"
+          }
+        },
+        "coaching-monthly": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Monthly",
+            "price": "79",
+            "period": "mo",
+            "savings_text": "",
+            "is_popular": false,
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group",
+            "button_link": "",
+            "button_text": "Get Started"
+          }
+        },
+        "coaching-annual": {
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Annual",
+            "price": "660",
+            "period": "yr",
+            "savings_text": "Save 30%",
+            "is_popular": false,
+            "features": "✓ Private Discord Access\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Sniper Bot Alerts\n✓ 60+ Hours Coaching Videos\n✓ Private Discussion Group\n✓ Priority Support",
+            "button_link": "",
+            "button_text": "Best Value"
+          }
         }
       },
       "block_order": [
-        "coaching-header",
-        "pricing-1",
-        "pricing-2",
         "bot-header",
-        "pricing-3",
-        "pricing-4",
-        "setup-addon"
+        "bot-monthly",
+        "bot-annual",
+        "setup-addon",
+        "coaching-header",
+        "coaching-monthly",
+        "coaching-annual"
       ],
       "settings": {
-        "section_title": "Choose Your Plan",
-        "section_subtitle": "Flexible pricing options to match your trading needs"
+        "section_title": "All Products & Pricing",
+        "section_subtitle": "Choose the plan that fits your trading goals"
       }
     },
-    "testimonials": {
-      "type": "testimonials",
-      "settings": {}
+    "comparison-section": {
+      "type": "features",
+      "blocks": {
+        "compare-1": {
+          "type": "feature",
+          "settings": {
+            "title": "Bot Suite - Best For Active Traders",
+            "description": "Perfect if you want fully automated trading with proven strategies. Ideal for those who want to trade without constant monitoring."
+          }
+        },
+        "compare-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Coaching & Indicators - Best For Learners",
+            "description": "Perfect if you want to develop your trading skills with professional tools and education. Ideal for those who want to understand the 'why' behind trades."
+          }
+        },
+        "compare-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Both - Best For Serious Traders",
+            "description": "Get the full Market Sniper experience: automated trading, professional indicators, comprehensive education, and complete community access."
+          }
+        }
+      },
+      "block_order": [
+        "compare-1",
+        "compare-2",
+        "compare-3"
+      ],
+      "settings": {
+        "section_title": "Which Product Is Right For You?",
+        "section_subtitle": "Not sure which to choose? Here's a quick guide"
+      }
     },
     "faq": {
       "type": "faq",
@@ -306,43 +248,29 @@
         "faq-1": {
           "type": "faq_item",
           "settings": {
-            "question": "What trading platforms do the bot and indicators work on?",
-            "answer": "Our automated bot and indicators are designed for TradingView, the industry-standard charting platform used by millions of traders worldwide."
+            "question": "What's the difference between Bot Suite and Coaching & Indicators?",
+            "answer": "Bot Suite includes the automated trading bot that executes trades for you 24/7, plus bot-specific support. Coaching & Indicators includes professional TradingView indicators, 60+ hours of educational content, and access to bot trade alerts (but not the bot itself). Both include private Discord access."
           }
         },
         "faq-2": {
           "type": "faq_item",
           "settings": {
-            "question": "Can I cancel my subscription anytime?",
-            "answer": "Yes! You can cancel your subscription at any time. Your access will continue until the end of your current billing period."
+            "question": "Can I have both Bot Suite and Coaching & Indicators?",
+            "answer": "Absolutely! Many of our most successful members subscribe to both. You'll get the automated trading power of the bot plus the indicators and education to understand and optimize your trading strategy."
           }
         },
         "faq-3": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a money-back guarantee?",
-            "answer": "We offer a 30-day satisfaction guarantee. If you're not happy with your purchase, contact us for a full refund within 30 days."
+            "question": "Do I need the Professional Setup add-on?",
+            "answer": "The Professional Setup is optional. If you're comfortable with technology and want to configure the bot yourself, it's not necessary. However, if you want white-glove service with personalized configuration and one-on-one onboarding, the setup service is highly recommended."
           }
         },
         "faq-4": {
           "type": "faq_item",
           "settings": {
-            "question": "Do I need trading experience to use the bot?",
-            "answer": "No! Our bot comes with proven strategies already configured. However, we recommend understanding basic trading concepts and starting with paper trading to build confidence before using real capital."
-          }
-        },
-        "faq-5": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How does the automated trading bot work?",
-            "answer": "Our trading bot executes trades automatically on TradingView based on proven strategies. It includes risk management features like stop losses and take profits. Optional setup service available for personalized configuration."
-          }
-        },
-        "faq-6": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What's included in the Discord community?",
-            "answer": "You'll get access to our private Discord server with real-time bot alerts, strategy discussions, and a community of like-minded traders. Bot subscribers also get access to an exclusive bot discussion channel with dedicated support."
+            "question": "Can I switch between plans?",
+            "answer": "Yes! You can upgrade, downgrade, or switch between products at any time. Just email support@marketsniper.pro and we'll help you make the change."
           }
         }
       },
@@ -350,32 +278,25 @@
         "faq-1",
         "faq-2",
         "faq-3",
-        "faq-4",
-        "faq-5",
-        "faq-6"
+        "faq-4"
       ],
       "settings": {
-        "section_title": "Frequently Asked Questions",
-        "section_subtitle": "Everything you need to know about Market Sniper Bot Suite"
+        "section_title": "Product Questions",
+        "section_subtitle": "Common questions about our offerings"
       }
     },
     "footer": {
       "type": "footer",
-      "settings": {
-        "company_name": "Market Sniper",
-        "tagline": "Precision trading tools for professional traders"
-      }
+      "settings": {}
     }
   },
   "order": [
     "header",
-    "hero",
-    "how-it-works",
-    "features",
-    "indicators",
-    "trading-bot",
-    "pricing",
-    "testimonials",
+    "products-hero",
+    "bot-suite-showcase",
+    "coaching-showcase",
+    "all-pricing",
+    "comparison-section",
     "faq",
     "footer"
   ]

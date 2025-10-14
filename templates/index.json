@@ -8,7 +8,7 @@
       "type": "hero",
       "settings": {
         "show_badge": true,
-        "badge_text": "🤖 Automated Trading Made Simple",
+        "badge_text": "Automated Trading Made Simple",
         "hero_title_line1": "Let Our Bot",
         "hero_title_line2": "Trade For You",
         "hero_subtitle": "Automated trading bot with Sharp Shooter indicators and proven strategies included. Connect to TradingView and trade 24/7.",
@@ -99,7 +99,7 @@
         "bot-feature-4"
       ],
       "settings": {
-        "badge_text": "",
+        "badge_text": "Now Available",
         "title": "Bot Suite - Automate Your Trading",
         "subtitle": "Trade smarter with our bot - you decide when to automate",
         "show_stat": true,
@@ -116,7 +116,7 @@
             "header_text": "Bot Suite"
           }
         },
-        "pricing-3": {
+        "bot-monthly": {
           "type": "pricing_plan",
           "settings": {
             "plan_name": "Monthly",
@@ -129,7 +129,7 @@
             "button_text": "Get Started"
           }
         },
-        "pricing-4": {
+        "bot-annual": {
           "type": "pricing_plan",
           "settings": {
             "plan_name": "Annual",
@@ -142,7 +142,7 @@
             "button_text": "Best Value"
           }
         },
-        "setup-addon": {
+        "bot-setup-addon": {
           "type": "setup_fee_addon",
           "settings": {
             "addon_name": "Professional Setup",
@@ -155,9 +155,9 @@
       },
       "block_order": [
         "bot-header",
-        "pricing-3",
-        "pricing-4",
-        "setup-addon"
+        "bot-monthly",
+        "bot-annual",
+        "bot-setup-addon"
       ],
       "settings": {
         "section_title": "Choose Your Plan",

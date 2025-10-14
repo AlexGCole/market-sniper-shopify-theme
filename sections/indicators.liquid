@@ -1,6 +1,6 @@
 {% comment %}
   sections/indicators.liquid
-  Indicators showcase section with images
+  Indicators showcase section with images - UPDATED with fixed bullets
 {% endcomment %}
 
 <section class="indicators" id="indicators">
@@ -20,9 +20,12 @@
             
             {% if block.settings.features != blank %}
               <ul class="indicator-features">
-                {% assign features_list = block.settings.features | split: '\n' %}
+                {% assign features_list = block.settings.features | split: '
+' %}
                 {% for feature in features_list %}
-                  <li>{{ feature }}</li>
+                  {% if feature != blank %}
+                    <li>{{ feature | strip }}</li>
+                  {% endif %}
                 {% endfor %}
               </ul>
             {% endif %}
@@ -134,6 +137,7 @@
   .indicator-features {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   .indicator-features li {
@@ -141,6 +145,7 @@
     font-size: 1rem;
     padding: 8px 0;
     line-height: 1.6;
+    display: block;
   }
 
   .indicator-visual-container {

@@ -25,12 +25,12 @@
         <div class="product-info">
           <h3>What's Included:</h3>
           <ul class="feature-list">
-            <li>✓ Proven Trading Strategies</li>
-            <li>✓ Sharp Shooter Candles 4.2</li>
-            <li>✓ Sharp Shooter RSI 2.0</li>
-            <li>✓ Optional Bot Automation</li>
-            <li>✓ Private Discord Community</li>
-            <li>✓ Priority Support</li>
+            <li>Proven Trading Strategies</li>
+            <li>Sharp Shooter Candles 4.2</li>
+            <li>Sharp Shooter RSI 2.0</li>
+            <li>Optional Bot Automation</li>
+            <li>Private Discord Community</li>
+            <li>Priority Support</li>
           </ul>
         </div>
 
@@ -62,7 +62,7 @@
           <div class="pricing-option addon">
             <span class="popular-tag">Optional Add-on</span>
             <div class="price-header">
-              <h4>Professional Setup</h4>
+              <h4>Setup</h4>
               <div class="price">
                 <span class="amount">$249</span>
                 <span class="period">one-time</span>
@@ -189,12 +189,13 @@
 
   /* Product Content */
   .product-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 60px;
-    align-items: start;
     max-width: 1200px;
     margin: 0 auto;
+  }
+
+  .product-info {
+    margin-bottom: 60px;
+    text-align: center;
   }
 
   .product-info h3 {
@@ -206,20 +207,24 @@
   .feature-list {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   .feature-list li {
-    padding: 12px 0;
-    font-size: 1.1rem;
+    padding: 12px 24px;
+    font-size: 1rem;
     color: var(--light);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 8px;
   }
 
-  .feature-list li:last-child {
-    border-bottom: none;
-  }
-
-  /* Pricing Options */
+  /* Pricing Options - Horizontal Layout */
   .product-pricing {
     display: flex;
     flex-wrap: wrap;
@@ -428,12 +433,22 @@
   @media (max-width: 968px) {
     .product-content,
     .coming-soon-content {
-      grid-template-columns: 1fr;
       gap: 40px;
     }
 
     .product-pricing {
-      grid-template-columns: 1fr;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pricing-option {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+
+    .feature-list {
+      flex-direction: column;
+      align-items: center;
     }
 
     .products-hero h1 {

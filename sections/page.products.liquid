@@ -1,0 +1,385 @@
+{% comment %}
+  templates/page.products.liquid
+  Products page showcasing Bot Suite and Coaching
+{% endcomment %}
+
+<div class="products-page" data-section-id="{{ section.id }}" data-section-type="products-page">
+  <!-- Hero Section -->
+  <section class="products-hero">
+    <div class="container">
+      <h1>All Products</h1>
+      <p>Professional trading tools and education to elevate your trading</p>
+    </div>
+  </section>
+
+  <!-- Bot Suite Section -->
+  <section class="product-showcase bot-suite-section">
+    <div class="container">
+      <div class="product-header">
+        <span class="product-badge">Main Product</span>
+        <h2>Bot Suite</h2>
+        <p class="product-tagline">Proven strategies with optional automation - your choice</p>
+      </div>
+
+      <div class="product-content">
+        <div class="product-info">
+          <h3>What's Included:</h3>
+          <ul class="feature-list">
+            <li>✓ Proven Trading Strategies</li>
+            <li>✓ Sharp Shooter Candles 4.2</li>
+            <li>✓ Sharp Shooter RSI 2.0</li>
+            <li>✓ Optional Bot Automation</li>
+            <li>✓ Private Discord Community</li>
+            <li>✓ Priority Support</li>
+          </ul>
+        </div>
+
+        <div class="product-pricing">
+          <div class="pricing-option">
+            <div class="price-header">
+              <h4>Monthly</h4>
+              <div class="price">
+                <span class="amount">$49</span>
+                <span class="period">/mo</span>
+              </div>
+            </div>
+            <a href="/products/bot-suite-monthly" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <div class="pricing-option featured">
+            <span class="popular-tag">Most Popular</span>
+            <div class="price-header">
+              <h4>Annual</h4>
+              <div class="price">
+                <span class="amount">$490</span>
+                <span class="period">/yr</span>
+              </div>
+              <span class="savings">Save $98/year</span>
+            </div>
+            <a href="/products/bot-suite-annual" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <div class="pricing-option addon">
+            <div class="price-header">
+              <h4>Professional Setup</h4>
+              <div class="price">
+                <span class="amount">$249</span>
+                <span class="period">one-time</span>
+              </div>
+            </div>
+            <ul class="addon-features">
+              <li>Complete Bot Installation</li>
+              <li>TradingView Integration</li>
+              <li>1-on-1 Setup Support</li>
+            </ul>
+            <a href="/products/setup-service" class="btn btn-secondary">Add Setup</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recorded Coaching Section -->
+  <section class="product-showcase coaching-section">
+    <div class="container">
+      <div class="product-header">
+        <span class="product-badge coming-soon">Coming Soon</span>
+        <h2>Recorded Coaching</h2>
+        <p class="product-tagline">Comprehensive trading education at your own pace</p>
+      </div>
+
+      <div class="product-content coming-soon-content">
+        <div class="product-info">
+          <h3>What's Included:</h3>
+          <ul class="feature-list">
+            <li>✓ 60+ Hours Video Coaching</li>
+            <li>✓ Strategy Breakdowns</li>
+            <li>✓ Risk Management Training</li>
+            <li>✓ Market Analysis Techniques</li>
+            <li>✓ Live Trade Reviews</li>
+            <li>✓ Lifetime Access to Content</li>
+          </ul>
+        </div>
+
+        <div class="coming-soon-notice">
+          <div class="notice-icon">🎓</div>
+          <h3>Launching Soon</h3>
+          <p>Comprehensive recorded coaching sessions are in development. Join our Discord to be notified when they launch.</p>
+          <a href="/products/bot-suite-monthly" class="btn btn-outline">Join to Get Notified</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .products-page {
+    background: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* Hero Section */
+  .products-hero {
+    padding: 120px 20px 60px;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+  }
+
+  .products-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .products-hero p {
+    font-size: 1.25rem;
+    color: var(--gray-light);
+  }
+
+  /* Product Showcase Sections */
+  .product-showcase {
+    padding: 80px 20px;
+  }
+
+  .bot-suite-section {
+    background: #0a0a0a;
+  }
+
+  .coaching-section {
+    background: #0f1e0f;
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+  }
+
+  .product-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .product-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    background: rgba(0, 255, 65, 0.2);
+    color: var(--primary);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .product-badge.coming-soon {
+    background: rgba(255, 165, 0, 0.2);
+    color: #ffa500;
+  }
+
+  .product-header h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-tagline {
+    font-size: 1.25rem;
+    color: var(--gray-light);
+  }
+
+  /* Product Content */
+  .product-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-light);
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .feature-list li {
+    padding: 12px 0;
+    font-size: 1.1rem;
+    color: var(--light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Pricing Options */
+  .product-pricing {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+  }
+
+  .pricing-option {
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .pricing-option:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px rgba(0, 255, 65, 0.2);
+  }
+
+  .pricing-option.featured {
+    background: rgba(0, 255, 65, 0.05);
+    border-color: var(--primary);
+  }
+
+  .popular-tag {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-primary);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .price-header h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .price .amount {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .price .period {
+    font-size: 1.25rem;
+    color: var(--gray-light);
+    align-self: flex-end;
+    padding-bottom: 8px;
+  }
+
+  .savings {
+    display: block;
+    color: var(--success);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-option .btn {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  /* Addon Features */
+  .addon-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+  }
+
+  .addon-features li {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: var(--gray-light);
+  }
+
+  /* Coming Soon Content */
+  .coming-soon-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .coming-soon-notice {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 165, 0, 0.3);
+    border-radius: 16px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+
+  .notice-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .coming-soon-notice h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ffa500;
+  }
+
+  .coming-soon-notice p {
+    font-size: 1.1rem;
+    color: var(--gray-light);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .product-content,
+    .coming-soon-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .product-pricing {
+      grid-template-columns: 1fr;
+    }
+
+    .products-hero h1 {
+      font-size: 2rem;
+    }
+
+    .product-header h2 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .products-hero {
+      padding: 100px 20px 40px;
+    }
+
+    .product-showcase {
+      padding: 60px 20px;
+    }
+
+    .price .amount {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Products Page",
+  "settings": []
+}
+{% endschema %}

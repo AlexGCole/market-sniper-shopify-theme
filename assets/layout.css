@@ -318,4 +318,41 @@ html {
 section[id] {
   scroll-margin-top: 20px;
 }
+
+/* Hero Section - Dark base (already defined above, but ensuring consistency) */
+.hero {
+    position: relative;
+    z-index: 1;
+    background: #0a0a0a;
+}
+
+/* First section after hero - Slightly lighter dark gradient */
+.trading-bot {
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+/* Second section after hero - Dark with subtle green tint */
+.features-section {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(10, 10, 10, 1) 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* If you need more alternating sections, follow this pattern: */
+.pricing-section {
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+.testimonials-section {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(10, 10, 10, 1) 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.faq {
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.1);
+}
 }

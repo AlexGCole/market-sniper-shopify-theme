@@ -140,17 +140,6 @@
       "settings": {
         "section_title": "What You Get",
         "section_subtitle": "Complete trading solution with everything you need",
-        "button_text": "",
-        "button_link": ""
-      }
-    },
-    "bot-cta-button": {
-      "type": "features",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "section_title": "Ready to Start Trading Smarter?",
-        "section_subtitle": "Join traders who are already using our Bot Suite to automate their trading",
         "button_text": "View Bot Suite Plans",
         "button_link": "/pages/products"
       }
@@ -165,7 +154,6 @@
     "features-hero",
     "bot-suite-features",
     "what-you-get",
-    "bot-cta-button",
     "footer"
   ]
 }

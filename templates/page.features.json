@@ -75,7 +75,7 @@
         "bot-feature-6"
       ],
       "settings": {
-        "badge_text": "Bot Suite - $49/mo",
+        "badge_text": "",
         "title": "Automated Bot with Professional Indicators",
         "subtitle": "Everything you need for automated trading in one package",
         "show_stat": false,

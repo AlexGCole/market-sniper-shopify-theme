@@ -8,14 +8,17 @@
       "type": "hero",
       "settings": {
         "show_badge": true,
-        "badge_text": "Two Powerful Options",
+        "badge_text": "Professional Trading Tools",
         "hero_title_line1": "Bot Suite",
-        "hero_title_line2": "Professional Trading Tools",
+        "hero_title_line2": "Automated Trading Made Simple",
         "hero_subtitle": "Automated trading with professional indicators and strategies - everything you need to trade smarter",
         "primary_button_text": "View Plans",
-        "primary_button_link": "#bot-suite-features",
+        "primary_button_link": "/pages/products",
+        "secondary_button_text": "",
+        "secondary_button_link": "",
         "show_stats": false
-      }
+      },
+      "blocks": {}
     },
     "bot-suite-features": {
       "type": "trading-bot",
@@ -80,13 +83,74 @@
         "stat_label": ""
       }
     },
+    "what-you-get": {
+      "type": "features",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "TradingView Integration",
+            "description": "Indicators and strategies delivered directly to your TradingView account for seamless trading"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Automated Alerts",
+            "description": "Real-time notifications when trading opportunities arise based on your configured strategies"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Bot Configuration Support",
+            "description": "Expert guidance on setting up and optimizing your trading bot for maximum performance"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Library",
+            "description": "Access to proven trading strategies tested across multiple market conditions"
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "title": "Exclusive Discord Community",
+            "description": "Connect with other traders and get real-time support from our team"
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "title": "Regular Updates",
+            "description": "Continuous improvements to indicators, strategies, and bot functionality"
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4",
+        "feature-5",
+        "feature-6"
+      ],
+      "settings": {
+        "section_title": "What You Get",
+        "section_subtitle": "Complete trading solution with everything you need",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
     "bot-cta-button": {
       "type": "features",
       "blocks": {},
       "block_order": [],
       "settings": {
-        "section_title": "",
-        "section_subtitle": "",
+        "section_title": "Ready to Start Trading Smarter?",
+        "section_subtitle": "Join traders who are already using our Bot Suite to automate their trading",
         "button_text": "View Bot Suite Plans",
         "button_link": "/pages/products"
       }
@@ -100,6 +164,7 @@
     "header",
     "features-hero",
     "bot-suite-features",
+    "what-you-get",
     "bot-cta-button",
     "footer"
   ]

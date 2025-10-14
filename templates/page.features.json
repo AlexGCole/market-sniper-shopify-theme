@@ -8,12 +8,12 @@
       "type": "hero",
       "settings": {
         "show_badge": true,
-        "badge_text": "Explore Our Tools",
-        "hero_title_line1": "Professional Trading",
-        "hero_title_line2": "Tools & Education",
-        "hero_subtitle": "Discover everything Market Sniper has to offer - from automated bot trading to comprehensive coaching",
-        "primary_button_text": "View All Products",
-        "primary_button_link": "/pages/products",
+        "badge_text": "Two Powerful Options",
+        "hero_title_line1": "Bot Suite & Coaching",
+        "hero_title_line2": "Which Is Right For You?",
+        "hero_subtitle": "Automated trading with professional tools or comprehensive education - or get both for the complete trading experience",
+        "primary_button_text": "Compare Products",
+        "primary_button_link": "#comparison",
         "show_stats": false
       }
     },
@@ -72,24 +72,31 @@
         "bot-feature-6"
       ],
       "settings": {
-        "badge_text": "Bot Suite",
+        "badge_text": "Bot Suite - $49/mo",
         "title": "Automated Bot with Professional Indicators",
         "subtitle": "Everything you need for automated trading in one package",
-        "show_stat": true,
-        "stat_number": "$49",
-        "stat_label": "per month"
+        "show_stat": false,
+        "stat_number": "",
+        "stat_label": ""
       }
     },
-    "bot-cta": {
-      "type": "hero",
+    "bot-cta-simple": {
+      "type": "features",
+      "blocks": {
+        "bot-cta-block": {
+          "type": "feature",
+          "settings": {
+            "title": "Get Bot Suite",
+            "description": "Trading bot + Sharp Shooter indicators + Strategies. Monthly ($49) or Annual ($490 - Save $98). Optional Professional Setup available for $249."
+          }
+        }
+      },
+      "block_order": [
+        "bot-cta-block"
+      ],
       "settings": {
-        "show_badge": false,
-        "hero_title_line1": "Ready to Automate",
-        "hero_title_line2": "Your Trading?",
-        "hero_subtitle": "Get the bot, indicators, and strategies all in one package",
-        "primary_button_text": "View Bot Suite Plans",
-        "primary_button_link": "/pages/products#bot-suite",
-        "show_stats": false
+        "section_title": "Ready for Bot Suite?",
+        "section_subtitle": "View plans and get started today"
       }
     },
     "coaching-features": {
@@ -147,20 +154,27 @@
         "coaching-6"
       ],
       "settings": {
-        "section_title": "Coaching - Learn to Trade",
-        "section_subtitle": "Comprehensive education without the bot or indicators"
+        "section_title": "Coaching - $79/mo",
+        "section_subtitle": "Learn to trade without the bot or indicators"
       }
     },
-    "coaching-cta": {
-      "type": "hero",
+    "coaching-cta-simple": {
+      "type": "features",
+      "blocks": {
+        "coaching-cta-block": {
+          "type": "feature",
+          "settings": {
+            "title": "Get Coaching",
+            "description": "60+ hours education + Asset-specific alerts + Community. Monthly ($79) or Annual ($660 - Save 30%). Does NOT include bot or indicators."
+          }
+        }
+      },
+      "block_order": [
+        "coaching-cta-block"
+      ],
       "settings": {
-        "show_badge": false,
-        "hero_title_line1": "Want to Learn",
-        "hero_title_line2": "The Fundamentals?",
-        "hero_subtitle": "60+ hours of trading education to build your foundation",
-        "primary_button_text": "View Coaching Plans",
-        "primary_button_link": "/pages/products#coaching",
-        "show_stats": false
+        "section_title": "Ready for Coaching?",
+        "section_subtitle": "View plans and start learning today"
       }
     },
     "comparison": {
@@ -198,18 +212,6 @@
         "section_subtitle": "Understand what each product includes"
       }
     },
-    "final-cta": {
-      "type": "hero",
-      "settings": {
-        "show_badge": false,
-        "hero_title_line1": "Choose Your",
-        "hero_title_line2": "Trading Path",
-        "hero_subtitle": "Ready to get started? View all products and pricing",
-        "primary_button_text": "View All Products & Pricing",
-        "primary_button_link": "/pages/products",
-        "show_stats": false
-      }
-    },
     "footer": {
       "type": "footer",
       "settings": {}
@@ -219,11 +221,10 @@
     "header",
     "features-hero",
     "bot-suite-features",
-    "bot-cta",
+    "bot-cta-simple",
     "coaching-features",
-    "coaching-cta",
+    "coaching-cta-simple",
     "comparison",
-    "final-cta",
     "footer"
   ]
 }

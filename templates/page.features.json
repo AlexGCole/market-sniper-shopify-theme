@@ -83,6 +83,39 @@
         "stat_label": ""
       }
     },
+    "indicators-showcase": {
+      "type": "indicators",
+      "blocks": {
+        "candles": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 4.2",
+            "title": "Sharp Shooter Candles",
+            "description": "Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.",
+            "features": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Bearish/Bullish Crossover\n✓ MACD Above/Below Zero Line\n✓ Trending Dots\n✓ Multiple Customization Options",
+            "fallback_image": "sharp-shooter-candles.jpg"
+          }
+        },
+        "rsi": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 2.0",
+            "title": "Sharp Shooter RSI",
+            "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
+            "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style\n✓ Real-time Alerts",
+            "fallback_image": "sharp-shooter-rsi.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "candles",
+        "rsi"
+      ],
+      "settings": {
+        "section_title": "Professional Trading Indicators",
+        "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
+      }
+    },
     "what-you-get": {
       "type": "features",
       "blocks": {
@@ -153,6 +186,7 @@
     "header",
     "features-hero",
     "bot-suite-features",
+    "indicators-showcase",
     "what-you-get",
     "footer"
   ]

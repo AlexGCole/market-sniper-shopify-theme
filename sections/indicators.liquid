@@ -1,69 +1,200 @@
-<section class="indicators">
+{% comment %}
+  sections/indicators.liquid
+  Indicators showcase section with images
+{% endcomment %}
+
+<section class="indicators" id="indicators">
   <div class="container">
-    <!-- Section Header -->
     <div class="section-header">
       <h2>{{ section.settings.section_title }}</h2>
       <p>{{ section.settings.section_subtitle }}</p>
     </div>
 
-    <!-- Indicators -->
-    {% for block in section.blocks %}
-      <div class="indicator-item {% if forloop.index == 2 %}reverse{% endif %}">
-        <div class="indicator-content">
-          <div class="indicator-badge">{{ block.settings.version }}</div>
-          <h2>{{ block.settings.title }}</h2>
-          <p class="indicator-description">{{ block.settings.description }}</p>
-          <ul class="indicator-features">
-            {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
-            {% for feature in features %}
-              {% if feature != blank %}
-                <li>{{ feature }}</li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="indicator-visual">
-          <div class="indicator-visual-container">
-            {% if block.settings.image != blank %}
-              <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title }}">
-            {% else %}
-              <img src="{{ block.settings.fallback_image | asset_url }}" alt="{{ block.settings.title }}">
+    <div class="indicators-grid">
+      {% for block in section.blocks %}
+        <div class="indicator-item {% cycle 'normal', 'reverse' %}" {{ block.shopify_attributes }}>
+          <div class="indicator-content">
+            <span class="indicator-badge">{{ block.settings.version }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p class="indicator-description">{{ block.settings.description }}</p>
+            
+            {% if block.settings.features != blank %}
+              <ul class="indicator-features">
+                {% assign features_list = block.settings.features | split: '\n' %}
+                {% for feature in features_list %}
+                  <li>{{ feature }}</li>
+                {% endfor %}
+              </ul>
             {% endif %}
           </div>
+
+          <div class="indicator-visual">
+            <div class="indicator-visual-container">
+              {% if block.settings.image %}
+                {{ block.settings.image | image_url: width: 800 | image_tag }}
+              {% elsif block.settings.fallback_image != blank %}
+                <img 
+                  src="{{ block.settings.fallback_image | asset_url }}" 
+                  alt="{{ block.settings.title }}"
+                >
+              {% endif %}
+            </div>
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 </section>
 
 <style>
   .indicators {
     padding: 80px 20px;
-    background: #050807;
-    border-top: 1px solid rgba(0, 255, 65, 0.2);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+    background: #0A0A0A;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-header h2 {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .indicators-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .indicator-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .indicator-item.reverse {
+    direction: rtl;
+  }
+
+  .indicator-item.reverse > * {
+    direction: ltr;
+  }
+
+  .indicator-content {
+    padding: 20px 0;
+  }
+
+  .indicator-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50px;
+    color: #00ff41;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .indicator-content h3 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .indicator-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+
+  .indicator-features {
+    list-style: none;
+    padding: 0;
+  }
+
+  .indicator-features li {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    padding: 8px 0;
+    line-height: 1.6;
   }
 
   .indicator-visual-container {
-    background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(0, 255, 65, 0.01) 100%);
-    padding: 20px;
-    border-radius: 24px;
-    border: 2px solid rgba(0, 255, 65, 0.3);
-    box-shadow: inset 0 0 30px rgba(0, 255, 65, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
-    height: 400px;
+    background: linear-gradient(180deg, #1a2332 0%, #0f1419 100%);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 16px;
+    padding: 0;
+    aspect-ratio: 16/9;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 255, 65, 0.1);
   }
 
   .indicator-visual-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left center;
     border-radius: 16px;
+  }
+
+  @media (max-width: 1024px) {
+    .indicator-item {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .indicator-item.reverse {
+      direction: ltr;
+    }
+
+    .indicator-content {
+      text-align: center;
+    }
+
+    .indicator-content h3 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .indicator-content h3 {
+      font-size: 1.8rem;
+    }
+
+    .indicators-grid {
+      gap: 60px;
+    }
   }
 </style>
 
@@ -120,37 +251,16 @@
         {
           "type": "text",
           "id": "fallback_image",
-          "label": "Fallback Image (from assets)",
-          "default": "sharp-shooter-candles.jpg"
+          "label": "Fallback Image Filename (from assets folder)",
+          "default": "sharp-shooter-candles.jpg",
+          "info": "Used if no image is uploaded above"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Indicators",
-      "blocks": [
-        {
-          "type": "indicator",
-          "settings": {
-            "version": "Version 3.1",
-            "title": "Sharp Shooter Candles",
-            "description": "Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.",
-            "features": "✓ Buy/Sell Signals\n✓ Reversal Candles\n✓ MACD Bearish/Bullish Crossover\n✓ MACD Above/Below Zero Line\n✓ Trending Dots\n✓ Multiple Customization Options",
-            "fallback_image": "sharp-shooter-candles.jpg"
-          }
-        },
-        {
-          "type": "indicator",
-          "settings": {
-            "version": "Version 2.0",
-            "title": "Sharp Shooter RSI",
-            "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
-            "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style\n✓ Real-time Alerts",
-            "fallback_image": "sharp-shooter-rsi.jpg"
-          }
-        }
-      ]
+      "name": "Indicators"
     }
   ]
 }

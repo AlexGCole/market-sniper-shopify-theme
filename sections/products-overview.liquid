@@ -60,6 +60,7 @@
           </div>
 
           <div class="pricing-option addon">
+            <span class="popular-tag">Optional Add-on</span>
             <div class="price-header">
               <h4>Professional Setup</h4>
               <div class="price">
@@ -70,9 +71,11 @@
             <ul class="addon-features">
               <li>Complete Bot Installation</li>
               <li>TradingView Integration</li>
+              <li>Strategy Configuration</li>
+              <li>Alert Setup & Testing</li>
               <li>1-on-1 Setup Support</li>
             </ul>
-            <a href="/products/setup-service" class="btn btn-secondary">Add Setup</a>
+            <a href="/products/setup-service" class="btn btn-secondary">Add Setup Service</a>
           </div>
         </div>
       </div>
@@ -102,7 +105,6 @@
         </div>
 
         <div class="coming-soon-notice">
-          <div class="notice-icon">🎓</div>
           <h3>Launching Soon</h3>
           <p>Comprehensive recorded coaching sessions are in development. Join our Discord to be notified when they launch.</p>
           <a href="/products/bot-suite-monthly" class="btn btn-outline">Join to Get Notified</a>
@@ -213,61 +215,113 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
+  .feature-list li:last-child {
+    border-bottom: none;
+  }
+
   /* Pricing Options */
   .product-pricing {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
     gap: 24px;
   }
 
   .pricing-option {
+    flex: 0 1 320px;
+    max-width: 380px;
     background: rgba(255, 255, 255, 0.02);
     border: 2px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 32px;
+    border-radius: 20px;
+    padding: 40px 30px;
     text-align: center;
     transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   .pricing-option:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
     border-color: var(--primary);
-    box-shadow: 0 10px 40px rgba(0, 255, 65, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 255, 65, 0.25);
   }
 
   .pricing-option.featured {
     background: rgba(0, 255, 65, 0.05);
     border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+    transform: scale(1.05);
+  }
+
+  .pricing-option.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+  }
+
+  .pricing-option.addon {
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 140, 0, 0.05) 100%);
+    border: 2px solid rgba(255, 165, 0, 0.4);
+  }
+
+  .pricing-option.addon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .pricing-option.addon:hover {
+    border-color: #ffa500;
+    box-shadow: 0 20px 40px rgba(255, 165, 0, 0.25);
   }
 
   .popular-tag {
     position: absolute;
-    top: -12px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--gradient-primary);
-    padding: 6px 20px;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #000;
+    padding: 8px 20px;
     border-radius: 20px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .pricing-option.addon .popular-tag {
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
   }
 
   .price-header h4 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .pricing-option.addon .price-header h4 {
+    color: #ffa500;
   }
 
   .price {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    gap: 4px;
-    margin-bottom: 8px;
+    gap: 5px;
+    margin: 15px 0;
   }
 
   .price .amount {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
     line-height: 1;
     background: var(--gradient-primary);
@@ -276,38 +330,72 @@
     -webkit-text-fill-color: transparent;
   }
 
+  .pricing-option.addon .price .amount {
+    color: #ffa500;
+    background: none;
+    -webkit-text-fill-color: #ffa500;
+  }
+
   .price .period {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--gray-light);
     align-self: flex-end;
     padding-bottom: 8px;
   }
 
+  .pricing-option.addon .price .period {
+    color: rgba(255, 165, 0, 0.7);
+  }
+
   .savings {
-    display: block;
+    display: inline-block;
+    background: rgba(0, 255, 65, 0.2);
     color: var(--success);
+    padding: 5px 15px;
+    border-radius: 15px;
     font-weight: 600;
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    margin-top: 10px;
   }
 
   .pricing-option .btn {
     width: 100%;
-    margin-top: 24px;
+    margin-top: auto;
+  }
+
+  .pricing-option.addon .btn-secondary {
+    border: 2px solid #ffa500;
+    color: #ffa500;
+    font-weight: 700;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 140, 0, 0.05));
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
+  }
+
+  .pricing-option.addon .btn-secondary:hover {
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.15));
+    border-color: #ff8c00;
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+    transform: translateY(-2px);
   }
 
   /* Addon Features */
   .addon-features {
     list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin: 30px 0;
     text-align: left;
+    flex-grow: 1;
   }
 
   .addon-features li {
-    padding: 8px 0;
+    padding: 12px 0;
     font-size: 0.95rem;
-    color: var(--gray-light);
+    color: var(--light);
+    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+  }
+
+  .addon-features li:last-child {
+    border-bottom: none;
   }
 
   /* Coming Soon Content */
@@ -321,11 +409,6 @@
     border-radius: 16px;
     padding: 48px 32px;
     text-align: center;
-  }
-
-  .notice-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
   }
 
   .coming-soon-notice h3 {

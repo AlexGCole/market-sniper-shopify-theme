@@ -358,11 +358,16 @@ section {
     border-top: 1px solid rgba(0, 255, 65, 0.1);
 }
 
-/* FAQ - Dark with green tint */
+/* FAQ - Slightly lighter gradient */
 .faq {
+    background: linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+/* Footer - Dark with green tint */
+.footer {
     background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(5, 8, 7, 1) 100%);
     border-top: 1px solid rgba(0, 255, 65, 0.2);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
 }
 
 /* Features Page Sections */

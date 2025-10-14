@@ -80,23 +80,15 @@
         "stat_label": ""
       }
     },
-    "bot-cta-simple": {
+    "bot-cta-button": {
       "type": "features",
-      "blocks": {
-        "bot-cta-block": {
-          "type": "feature",
-          "settings": {
-            "title": "Get Bot Suite",
-            "description": "Trading bot + Sharp Shooter indicators + Strategies. Monthly ($49) or Annual ($490 - Save $98). Optional Professional Setup available for $249."
-          }
-        }
-      },
-      "block_order": [
-        "bot-cta-block"
-      ],
+      "blocks": {},
+      "block_order": [],
       "settings": {
-        "section_title": "Ready for Bot Suite?",
-        "section_subtitle": "View plans and get started today"
+        "section_title": "",
+        "section_subtitle": "",
+        "button_text": "View Bot Suite Plans",
+        "button_link": "/pages/products"
       }
     },
     "coaching-features": {
@@ -155,26 +147,9 @@
       ],
       "settings": {
         "section_title": "Coaching - $79/mo",
-        "section_subtitle": "Learn to trade without the bot or indicators"
-      }
-    },
-    "coaching-cta-simple": {
-      "type": "features",
-      "blocks": {
-        "coaching-cta-block": {
-          "type": "feature",
-          "settings": {
-            "title": "Get Coaching",
-            "description": "60+ hours education + Asset-specific alerts + Community. Monthly ($79) or Annual ($660 - Save 30%). Does NOT include bot or indicators."
-          }
-        }
-      },
-      "block_order": [
-        "coaching-cta-block"
-      ],
-      "settings": {
-        "section_title": "Ready for Coaching?",
-        "section_subtitle": "View plans and start learning today"
+        "section_subtitle": "Learn to trade without the bot or indicators",
+        "button_text": "View Coaching Plans",
+        "button_link": "/pages/products"
       }
     },
     "comparison": {
@@ -209,7 +184,9 @@
       ],
       "settings": {
         "section_title": "What's the Difference?",
-        "section_subtitle": "Understand what each product includes"
+        "section_subtitle": "Understand what each product includes",
+        "button_text": "",
+        "button_link": ""
       }
     },
     "footer": {
@@ -221,9 +198,8 @@
     "header",
     "features-hero",
     "bot-suite-features",
-    "bot-cta-simple",
+    "bot-cta-button",
     "coaching-features",
-    "coaching-cta-simple",
     "comparison",
     "footer"
   ]

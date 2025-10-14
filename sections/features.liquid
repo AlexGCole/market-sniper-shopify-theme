@@ -68,6 +68,14 @@
                 <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 010 7.75"></path>
               </svg>
+            {% elsif block.settings.title contains "Channel" or block.settings.title contains "Discussion" %}
+              <!-- Community/Channel Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 010 7.75"></path>
+              </svg>
             {% elsif block.settings.title contains "Configuration" or block.settings.title contains "Setup" or block.settings.title contains "Support" %}
               <!-- Settings/Configuration Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -106,7 +114,7 @@
       {% endfor %}
     </div>
 
-    {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+    {% if section.settings.button_text != blank %}
       <div class="features-cta">
         <a href="{{ section.settings.button_link }}" class="btn btn-primary">
           {{ section.settings.button_text }}

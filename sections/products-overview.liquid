@@ -21,10 +21,16 @@
         <p class="product-tagline">Proven strategies with optional automation - your choice</p>
       </div>
 
-      <div class="product-content">
-        <div class="product-info">
-          <h3>What's Included:</h3>
-          <ul class="feature-list">
+      <div class="product-pricing">
+        <div class="pricing-option">
+          <div class="price-header">
+            <h4>Monthly</h4>
+            <div class="price">
+              <span class="amount">$49</span>
+              <span class="period">/mo</span>
+            </div>
+          </div>
+          <ul class="plan-features">
             <li>Proven Trading Strategies</li>
             <li>Sharp Shooter Candles 4.2</li>
             <li>Sharp Shooter RSI 2.0</li>
@@ -32,51 +38,47 @@
             <li>Private Discord Community</li>
             <li>Priority Support</li>
           </ul>
+          <a href="/products/bot-suite-monthly" class="btn btn-primary">Get Started</a>
         </div>
 
-        <div class="product-pricing">
-          <div class="pricing-option">
-            <div class="price-header">
-              <h4>Monthly</h4>
-              <div class="price">
-                <span class="amount">$49</span>
-                <span class="period">/mo</span>
-              </div>
+        <div class="pricing-option featured">
+          <span class="popular-tag">Most Popular</span>
+          <div class="price-header">
+            <h4>Annual</h4>
+            <div class="price">
+              <span class="amount">$490</span>
+              <span class="period">/yr</span>
             </div>
-            <a href="/products/bot-suite-monthly" class="btn btn-primary">Get Started</a>
+            <span class="savings">Save $98/year</span>
           </div>
+          <ul class="plan-features">
+            <li>Proven Trading Strategies</li>
+            <li>Sharp Shooter Candles 4.2</li>
+            <li>Sharp Shooter RSI 2.0</li>
+            <li>Optional Bot Automation</li>
+            <li>Private Discord Community</li>
+            <li>Priority Support</li>
+          </ul>
+          <a href="/products/bot-suite-annual" class="btn btn-primary">Get Started</a>
+        </div>
 
-          <div class="pricing-option featured">
-            <span class="popular-tag">Most Popular</span>
-            <div class="price-header">
-              <h4>Annual</h4>
-              <div class="price">
-                <span class="amount">$490</span>
-                <span class="period">/yr</span>
-              </div>
-              <span class="savings">Save $98/year</span>
+        <div class="pricing-option addon">
+          <span class="popular-tag">Optional Add-on</span>
+          <div class="price-header">
+            <h4>Setup</h4>
+            <div class="price">
+              <span class="amount">$249</span>
+              <span class="period">one-time</span>
             </div>
-            <a href="/products/bot-suite-annual" class="btn btn-primary">Get Started</a>
           </div>
-
-          <div class="pricing-option addon">
-            <span class="popular-tag">Optional Add-on</span>
-            <div class="price-header">
-              <h4>Setup</h4>
-              <div class="price">
-                <span class="amount">$249</span>
-                <span class="period">one-time</span>
-              </div>
-            </div>
-            <ul class="addon-features">
-              <li>Complete Bot Installation</li>
-              <li>TradingView Integration</li>
-              <li>Strategy Configuration</li>
-              <li>Alert Setup & Testing</li>
-              <li>1-on-1 Setup Support</li>
-            </ul>
-            <a href="/products/setup-service" class="btn btn-secondary">Add Setup Service</a>
-          </div>
+          <ul class="plan-features">
+            <li>Complete Bot Installation</li>
+            <li>TradingView Integration</li>
+            <li>Strategy Configuration</li>
+            <li>Alert Setup & Testing</li>
+            <li>1-on-1 Setup Support</li>
+          </ul>
+          <a href="/products/setup-service" class="btn btn-secondary">Add Setup Service</a>
         </div>
       </div>
     </div>
@@ -91,23 +93,24 @@
         <p class="product-tagline">Comprehensive trading education at your own pace</p>
       </div>
 
-      <div class="product-content">
-        <div class="product-info">
-          <h3>What's Included:</h3>
-          <ul class="feature-list">
-            <li>✓ 60+ Hours Video Coaching</li>
-            <li>✓ Strategy Breakdowns</li>
-            <li>✓ Risk Management Training</li>
-            <li>✓ Market Analysis Techniques</li>
-            <li>✓ Live Trade Reviews</li>
-            <li>✓ Lifetime Access to Content</li>
+      <div class="product-pricing">
+        <div class="pricing-option coaching-card">
+          <div class="price-header">
+            <h4>Lifetime Access</h4>
+            <div class="price">
+              <span class="amount">$997</span>
+              <span class="period">one-time</span>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li>60+ Hours Video Coaching</li>
+            <li>Strategy Breakdowns</li>
+            <li>Risk Management Training</li>
+            <li>Market Analysis Techniques</li>
+            <li>Live Trade Reviews</li>
+            <li>Lifetime Access to Content</li>
           </ul>
-        </div>
-
-        <div class="coming-soon-notice">
-          <h3>Launching Soon</h3>
-          <p>Comprehensive recorded coaching sessions are in development. Join our Discord to be notified when they launch.</p>
-          <a href="/products/bot-suite-monthly" class="btn btn-outline">Join to Get Notified</a>
+          <button class="btn btn-disabled" disabled>Coming Soon</button>
         </div>
       </div>
     </div>
@@ -152,8 +155,10 @@
   }
 
   .coaching-section {
-    background: #0f1e0f;
+    background: #0A0A0A;
+    padding: 80px 20px;
     border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
   }
 
   .product-header {
@@ -185,46 +190,6 @@
   .product-tagline {
     font-size: 1.25rem;
     color: var(--gray-light);
-  }
-
-  /* Product Content */
-  .product-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .product-info {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .product-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: var(--primary-light);
-  }
-
-  .feature-list {
-    list-style: none;
-    padding: 0;
-    display: inline-block;
-    text-align: left;
-  }
-
-  .feature-list li {
-    padding: 10px 0;
-    font-size: 1.1rem;
-    color: var(--light);
-  }
-
-  .feature-list li::before {
-    content: "✓ ";
-    color: var(--primary);
-    font-weight: bold;
-    margin-right: 10px;
   }
 
   /* Pricing Options */
@@ -293,6 +258,17 @@
     box-shadow: 0 20px 40px rgba(255, 165, 0, 0.25);
   }
 
+  .pricing-option.coaching-card {
+    background: rgba(0, 255, 65, 0.03);
+    border: 2px solid rgba(0, 255, 65, 0.2);
+    max-width: 420px;
+  }
+
+  .pricing-option.coaching-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 255, 65, 0.25);
+  }
+
   .popular-tag {
     position: absolute;
     top: -15px;
@@ -322,6 +298,10 @@
     color: #ffa500;
   }
 
+  .pricing-option.coaching-card .price-header h4 {
+    color: var(--light);
+  }
+
   .price {
     display: flex;
     align-items: center;
@@ -346,6 +326,13 @@
     -webkit-text-fill-color: #ffa500;
   }
 
+  .pricing-option.coaching-card .price .amount {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .price .period {
     font-size: 1.2rem;
     color: var(--gray-light);
@@ -357,6 +344,10 @@
     color: rgba(255, 165, 0, 0.7);
   }
 
+  .pricing-option.coaching-card .price .period {
+    color: var(--gray-light);
+  }
+
   .savings {
     display: inline-block;
     background: rgba(0, 255, 65, 0.2);
@@ -366,6 +357,38 @@
     font-weight: 600;
     font-size: 0.9rem;
     margin-top: 10px;
+  }
+
+  /* Plan Features inside cards */
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  .plan-features li {
+    padding: 12px 0;
+    font-size: 0.95rem;
+    color: var(--light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .plan-features li:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-option.featured .plan-features li {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  }
+
+  .pricing-option.addon .plan-features li {
+    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+  }
+
+  .pricing-option.coaching-card .plan-features li {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
   }
 
   .pricing-option .btn {
@@ -388,48 +411,17 @@
     transform: translateY(-2px);
   }
 
-  /* Addon Features */
-  .addon-features {
-    list-style: none;
-    padding: 0;
-    margin: 30px 0;
-    text-align: left;
-    flex-grow: 1;
+  .btn-disabled {
+    background: rgba(128, 128, 128, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+    box-shadow: none;
+    border: 2px solid rgba(128, 128, 128, 0.3);
   }
 
-  .addon-features li {
-    padding: 12px 0;
-    font-size: 0.95rem;
-    color: var(--light);
-    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
-  }
-
-  .addon-features li:last-child {
-    border-bottom: none;
-  }
-
-  /* Coming Soon Notice */
-  .coming-soon-notice {
-    background: rgba(255, 255, 255, 0.03);
-    border: 2px solid rgba(255, 165, 0, 0.3);
-    border-radius: 16px;
-    padding: 48px 32px;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .coming-soon-notice h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #ffa500;
-  }
-
-  .coming-soon-notice p {
-    font-size: 1.1rem;
-    color: var(--gray-light);
-    line-height: 1.6;
-    margin-bottom: 2rem;
+  .btn-disabled:hover {
+    transform: none;
+    box-shadow: none;
   }
 
   /* Responsive */

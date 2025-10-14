@@ -222,13 +222,64 @@
     border-bottom: 1px solid rgba(255, 165, 0, 0.1);
   }
 
+  .pricing-option {
+    flex: 0 1 320px;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-option:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 255, 65, 0.25);
+  }
+
+  .pricing-option.featured {
+    background: rgba(0, 255, 65, 0.05);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+    transform: scale(1.05);
+  }
+
+  .pricing-option.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+  }
+
+  .pricing-option.addon {
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 140, 0, 0.05) 100%);
+    border: 2px solid rgba(255, 165, 0, 0.4);
+  }
+
+  .pricing-option.addon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .pricing-option.addon:hover {
+    border-color: #ffa500;
+    box-shadow: 0 20px 40px rgba(255, 165, 0, 0.25);
+  }
+
   .pricing-option.coaching-card {
     background: rgba(0, 255, 65, 0.03);
     border: 2px solid rgba(0, 255, 65, 0.2);
-  }
-
-  .pricing-option.coaching-card::before {
-    display: none;
   }
 
   .pricing-option.coaching-card:hover {

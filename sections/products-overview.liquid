@@ -310,6 +310,10 @@
     color: #ffa500;
   }
 
+  .pricing-option.coaching-card .price-header h4 {
+    color: var(--light);
+  }
+
   .price {
     display: flex;
     align-items: center;
@@ -334,6 +338,13 @@
     -webkit-text-fill-color: #ffa500;
   }
 
+  .pricing-option.coaching-card .price .amount {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .price .period {
     font-size: 1.2rem;
     color: var(--gray-light);
@@ -343,6 +354,10 @@
 
   .pricing-option.addon .price .period {
     color: rgba(255, 165, 0, 0.7);
+  }
+
+  .pricing-option.coaching-card .price .period {
+    color: var(--gray-light);
   }
 
   .savings {
@@ -382,6 +397,10 @@
 
   .pricing-option.addon .plan-features li {
     border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+  }
+
+  .pricing-option.coaching-card .plan-features li {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
   }
 
   .pricing-option .btn {

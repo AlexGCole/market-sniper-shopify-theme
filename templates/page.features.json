@@ -8,58 +8,58 @@
       "type": "hero",
       "settings": {
         "show_badge": true,
-        "badge_text": "Complete Trading Suite",
-        "hero_title_line1": "Everything You Need",
-        "hero_title_line2": "To Trade Like a Pro",
-        "hero_subtitle": "Discover the full power of Market Sniper Bot Suite with automated bot, professional indicators, and expert support",
-        "primary_button_text": "Get Bot Suite - $49/mo",
-        "primary_button_link": "/#pricing",
+        "badge_text": "Explore Our Tools",
+        "hero_title_line1": "Professional Trading",
+        "hero_title_line2": "Tools & Education",
+        "hero_subtitle": "Discover everything Market Sniper has to offer - from automated bot trading to comprehensive coaching",
+        "primary_button_text": "View All Products",
+        "primary_button_link": "/pages/products",
         "show_stats": false
       }
     },
-    "bot-suite-main": {
+    "bot-suite-features": {
       "type": "trading-bot",
       "blocks": {
         "bot-feature-1": {
           "type": "feature",
           "settings": {
             "title": "Automated Trading Bot",
-            "description": "Bot executes trades based on strategies with intelligent risk management. You control when automation is active."
+            "description": "Bot sends automated alerts to your TradingView account for execution. You control when automation is active."
           }
         },
         "bot-feature-2": {
           "type": "feature",
           "settings": {
             "title": "Sharp Shooter Candles 4.2",
-            "description": "Advanced candlestick indicator with buy/sell signals, MACD integration, and reversal detection included with Bot Suite."
+            "description": "Advanced candlestick indicator with buy/sell signals, MACD integration, and reversal detection."
           }
         },
         "bot-feature-3": {
           "type": "feature",
           "settings": {
             "title": "Sharp Shooter RSI 2.0",
-            "description": "RSI divergence detection with early signals and trend identification included with Bot Suite."
+            "description": "RSI divergence detection with early trend change signals and overbought/oversold zones."
           }
         },
         "bot-feature-4": {
           "type": "feature",
           "settings": {
             "title": "Proven Trading Strategies",
-            "description": "Battle-tested strategies automatically synced to your TradingView account ready to deploy."
+            "description": "Battle-tested strategies automatically synced to your TradingView account."
           }
         },
         "bot-feature-5": {
           "type": "feature",
           "settings": {
             "title": "Private Bot Discussion Channel",
-            "description": "Exclusive Discord channel for bot configuration, optimization tips, and dedicated support."
+            "description": "Exclusive Discord channel for bot configuration, optimization, and dedicated support."
           }
         },
         "bot-feature-6": {
           "type": "feature",
           "settings": {
-            "title": "Real-Time Trade Alerts",
-            "description": "Get instant Discord notifications for every trade execution, entry, and exit."
+            "title": "Priority Support",
+            "description": "Direct access to our team for bot questions, strategy optimization, and technical assistance."
           }
         }
       },
@@ -73,113 +73,68 @@
       ],
       "settings": {
         "badge_text": "Bot Suite",
-        "title": "Automated Trading with Professional Tools",
-        "subtitle": "Bot, indicators, and strategies all included - $49/mo",
+        "title": "Automated Bot with Professional Indicators",
+        "subtitle": "Everything you need for automated trading in one package",
         "show_stat": true,
-        "stat_number": "2+",
-        "stat_label": "Years of Bot Development"
+        "stat_number": "$49",
+        "stat_label": "per month"
       }
     },
-    "bot-pricing-cta": {
-      "type": "pricing",
-      "blocks": {
-        "bot-header": {
-          "type": "pricing_header",
-          "settings": {
-            "header_text": "Bot Suite Pricing"
-          }
-        },
-        "bot-monthly": {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Monthly",
-            "price": "49",
-            "period": "mo",
-            "savings_text": "",
-            "is_popular": false,
-            "features": "✓ Trading Bot Access\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Proven Strategies\n✓ Private Discord Access\n✓ Bot Discussion Channel\n✓ Priority Bot Support",
-            "button_link": "shopify://products/trading-bot-suite-49",
-            "button_text": "Get Started"
-          }
-        },
-        "bot-annual": {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Annual",
-            "price": "490",
-            "period": "yr",
-            "savings_text": "Save $98",
-            "is_popular": true,
-            "features": "✓ Trading Bot Access\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Proven Strategies\n✓ Private Discord Access\n✓ Bot Discussion Channel\n✓ Priority Bot Support\n✓ Annual Strategy Review",
-            "button_link": "shopify://products/trading-bot-suite-490-annual",
-            "button_text": "Best Value"
-          }
-        },
-        "setup-addon": {
-          "type": "setup_fee_addon",
-          "settings": {
-            "addon_name": "Professional Setup",
-            "addon_price": "249",
-            "addon_features": "✓ Professional Bot Installation\n✓ Custom Configuration\n✓ Initial Optimization\n✓ Priority Support Setup\n✓ One-on-One Onboarding",
-            "addon_button_link": "shopify://products/trading-bot-suite-setup",
-            "addon_button_text": "Add Setup"
-          }
-        }
-      },
-      "block_order": [
-        "bot-header",
-        "bot-monthly",
-        "bot-annual",
-        "setup-addon"
-      ],
+    "bot-cta": {
+      "type": "hero",
       "settings": {
-        "section_title": "Get Bot Suite Today",
-        "section_subtitle": "Automated trading with indicators and strategies"
+        "show_badge": false,
+        "hero_title_line1": "Ready to Automate",
+        "hero_title_line2": "Your Trading?",
+        "hero_subtitle": "Get the bot, indicators, and strategies all in one package",
+        "primary_button_text": "View Bot Suite Plans",
+        "primary_button_link": "/pages/products#bot-suite",
+        "show_stats": false
       }
     },
-    "coaching-section": {
+    "coaching-features": {
       "type": "features",
       "blocks": {
         "coaching-1": {
           "type": "feature",
           "settings": {
             "title": "60+ Hours Video Coaching",
-            "description": "Comprehensive trading education covering strategies, risk management, technical analysis, and market psychology"
+            "description": "Comprehensive trading education covering strategies, risk management, technical analysis, and psychology"
           }
         },
         "coaching-2": {
           "type": "feature",
           "settings": {
             "title": "Trading Strategy Education",
-            "description": "Learn proven strategies and develop your own trading approach with detailed explanations"
+            "description": "Learn proven strategies step-by-step and develop your own approach to the markets"
           }
         },
         "coaching-3": {
           "type": "feature",
           "settings": {
-            "title": "Private Discord Community",
-            "description": "Join discussions, share insights, and learn from other traders"
+            "title": "Asset-Specific Bot Alerts",
+            "description": "Receive bot alerts on specific assets in the coaching Discord channel to learn from real examples"
           }
         },
         "coaching-4": {
           "type": "feature",
           "settings": {
-            "title": "Bot Trade Alerts (Educational)",
-            "description": "Follow along with bot signals to learn how trades are executed"
+            "title": "Private Discord Community",
+            "description": "Engage with fellow traders, share insights, and discuss strategies in a supportive environment"
           }
         },
         "coaching-5": {
           "type": "feature",
           "settings": {
             "title": "Weekly Market Analysis",
-            "description": "Stay updated with regular market reviews and trading opportunities"
+            "description": "Stay updated with regular market reviews, trend analysis, and trading opportunities"
           }
         },
         "coaching-6": {
           "type": "feature",
           "settings": {
-            "title": "Community Support",
-            "description": "Engage in a supportive learning environment with fellow traders"
+            "title": "Live Trading Examples",
+            "description": "Follow along with real trades and understand the decision-making process behind each setup"
           }
         }
       },
@@ -193,53 +148,19 @@
       ],
       "settings": {
         "section_title": "Coaching - Learn to Trade",
-        "section_subtitle": "Comprehensive education without bot or indicators - $79/mo"
+        "section_subtitle": "Comprehensive education without the bot or indicators"
       }
     },
-    "coaching-pricing": {
-      "type": "pricing",
-      "blocks": {
-        "coaching-header": {
-          "type": "pricing_header",
-          "settings": {
-            "header_text": "Coaching Pricing"
-          }
-        },
-        "coaching-monthly": {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Monthly",
-            "price": "79",
-            "period": "mo",
-            "savings_text": "",
-            "is_popular": false,
-            "features": "✓ 60+ Hours Coaching Videos\n✓ Trading Strategy Education\n✓ Private Discord Access\n✓ Bot Trade Alerts (educational)\n✓ Weekly Market Analysis\n✓ Community Support",
-            "button_link": "",
-            "button_text": "Get Coaching"
-          }
-        },
-        "coaching-annual": {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Annual",
-            "price": "660",
-            "period": "yr",
-            "savings_text": "Save 30%",
-            "is_popular": false,
-            "features": "✓ 60+ Hours Coaching Videos\n✓ Trading Strategy Education\n✓ Private Discord Access\n✓ Bot Trade Alerts (educational)\n✓ Weekly Market Analysis\n✓ Community Support\n✓ Priority Support",
-            "button_link": "",
-            "button_text": "Best Value"
-          }
-        }
-      },
-      "block_order": [
-        "coaching-header",
-        "coaching-monthly",
-        "coaching-annual"
-      ],
+    "coaching-cta": {
+      "type": "hero",
       "settings": {
-        "section_title": "Get Coaching",
-        "section_subtitle": "Education-focused subscription"
+        "show_badge": false,
+        "hero_title_line1": "Want to Learn",
+        "hero_title_line2": "The Fundamentals?",
+        "hero_subtitle": "60+ hours of trading education to build your foundation",
+        "primary_button_text": "View Coaching Plans",
+        "primary_button_link": "/pages/products#coaching",
+        "show_stats": false
       }
     },
     "comparison": {
@@ -248,22 +169,22 @@
         "compare-1": {
           "type": "feature",
           "settings": {
-            "title": "Bot Suite Includes",
-            "description": "Trading bot, Sharp Shooter Candles 4.2, Sharp Shooter RSI 2.0, proven strategies, bot Discord channel, and priority support - $49/mo"
+            "title": "Bot Suite - Tools & Automation",
+            "description": "Includes: Trading bot with TradingView alerts, Sharp Shooter Candles 4.2, Sharp Shooter RSI 2.0, strategies, bot Discord channel, priority support"
           }
         },
         "compare-2": {
           "type": "feature",
           "settings": {
-            "title": "Coaching Includes",
-            "description": "60+ hours video education, strategy training, community Discord, bot alerts for learning, and weekly analysis - NO bot or indicators - $79/mo"
+            "title": "Coaching - Education & Learning",
+            "description": "Includes: 60+ hours video education, strategy training, asset-specific bot alerts in coaching channel, community Discord, weekly analysis. Does NOT include bot or indicators"
           }
         },
         "compare-3": {
           "type": "feature",
           "settings": {
-            "title": "Get Both for Complete Package",
-            "description": "Automated bot with indicators PLUS comprehensive education to understand and master your trading - the ultimate combination"
+            "title": "Get Both - Complete Package",
+            "description": "Combine automated trading tools with comprehensive education to trade smarter and understand the 'why' behind every decision"
           }
         }
       },
@@ -273,8 +194,20 @@
         "compare-3"
       ],
       "settings": {
-        "section_title": "Quick Comparison",
+        "section_title": "What's the Difference?",
         "section_subtitle": "Understand what each product includes"
+      }
+    },
+    "final-cta": {
+      "type": "hero",
+      "settings": {
+        "show_badge": false,
+        "hero_title_line1": "Choose Your",
+        "hero_title_line2": "Trading Path",
+        "hero_subtitle": "Ready to get started? View all products and pricing",
+        "primary_button_text": "View All Products & Pricing",
+        "primary_button_link": "/pages/products",
+        "show_stats": false
       }
     },
     "footer": {
@@ -285,11 +218,12 @@
   "order": [
     "header",
     "features-hero",
-    "bot-suite-main",
-    "bot-pricing-cta",
-    "coaching-section",
-    "coaching-pricing",
+    "bot-suite-features",
+    "bot-cta",
+    "coaching-features",
+    "coaching-cta",
     "comparison",
+    "final-cta",
     "footer"
   ]
 }

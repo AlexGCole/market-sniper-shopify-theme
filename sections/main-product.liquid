@@ -1,6 +1,6 @@
 {% comment %}
   sections/main-product.liquid
-  Product page with vertical layout - Setup products in orange
+  Product page with vertical layout - Updated features to match pricing
 {% endcomment %}
 
 {% assign is_setup_product = false %}
@@ -31,6 +31,11 @@
           {% endif %}
         </div>
 
+        <!-- Automation Requirements Notice (for ALL products) -->
+        <div class="automation-notice">
+          <p><strong>Note:</strong> Full automation requires additional third-party subscription and may require higher TradingView subscription</p>
+        </div>
+
         <!-- Setup Fee Info (for bot products only, NOT for setup product itself) -->
         {% if product.handle == 'trading-bot-suite-49' or product.handle == 'trading-bot-suite-490-annual' %}
           <div class="setup-fee-info">
@@ -49,18 +54,18 @@
             <h3>What's Included:</h3>
             <ul class="feature-list">
               {% if is_setup_product %}
-                <li>✓ Professional Bot Installation</li>
-                <li>✓ Custom Configuration</li>
-                <li>✓ Initial Optimization</li>
-                <li>✓ Priority Support Setup</li>
-                <li>✓ One-on-One Onboarding</li>
+                <li>✓ Complete Automation Setup</li>
+                <li>✓ TradingView Integration</li>
+                <li>✓ Strategy Configuration</li>
+                <li>✓ Alert Setup & Testing</li>
+                <li>✓ 1-on-1 Setup Support</li>
               {% else %}
-                <li>✓ Private Discord Access</li>
-                <li>✓ Private Sniper Bot Discussion Channel</li>
-                <li>✓ Automated Bot</li>
-                <li>✓ Bot Configuration & Setup</li>
-                <li>✓ Ongoing Bot Optimization</li>
-                <li>✓ Priority Bot Support</li>
+                <li>✓ Proven Trading Strategies</li>
+                <li>✓ Sharp Shooter Candles 4.2</li>
+                <li>✓ Sharp Shooter RSI 2.0</li>
+                <li>✓ Automation-Ready Strategies</li>
+                <li>✓ Private Discord Community</li>
+                <li>✓ Priority Support</li>
               {% endif %}
             </ul>
           </div>
@@ -221,6 +226,25 @@
   margin-bottom: 25px;
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.95rem;
+}
+
+.automation-notice {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+}
+
+.automation-notice strong {
+  color: #ffc107;
+}
+
+.automation-notice p {
+  margin: 0;
+  line-height: 1.6;
 }
 
 .setup-fee-info strong {

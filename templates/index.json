@@ -37,7 +37,7 @@
           "type": "stat",
           "settings": {
             "stat_number": "100+",
-            "stat_label": "Active Traders"
+            "stat_label": "Discord Members"
           }
         }
       },

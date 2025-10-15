@@ -34,7 +34,7 @@
 
               <div class="item-details">
                 {% if is_setup %}
-                  <span class="optional-badge">Optional Add-On</span>
+                  <span class="optional-badge">Optional<br>Add-On</span>
                 {% endif %}
                 
                 <h3 class="item-title">{{ item.product.title }}</h3>
@@ -244,6 +244,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 10px;
+    line-height: 1.4;
   }
 
   .remove-btn {
@@ -479,6 +480,14 @@
 
     .tradingview-field-container {
       margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .optional-badge {
+      font-size: 0.7rem;
+      padding: 5px 12px;
+      line-height: 1.3;
     }
   }
 </style>

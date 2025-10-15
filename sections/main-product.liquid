@@ -4,7 +4,7 @@
 {% endcomment %}
 
 {% assign is_setup_product = false %}
-{% if product.handle == 'trading-bot-suite-setup' or product.handle contains 'setup-fee' or product.handle == 'professional-setup' %}
+{% if product.handle == 'bot-suite-setup' or product.handle == 'trading-bot-suite-setup' or product.handle contains 'setup-fee' or product.handle == 'professional-setup' %}
   {% assign is_setup_product = true %}
 {% endif %}
 

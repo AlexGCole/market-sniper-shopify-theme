@@ -6,9 +6,36 @@
 <div class="products-page" data-section-id="{{ section.id }}" data-section-type="products-overview">
   <!-- Hero Section -->
   <section class="products-hero">
+    <div class="hero-bg-overlay"></div>
     <div class="container">
-      <h1>All Products</h1>
-      <p>Professional trading tools and education to elevate your trading</p>
+      <div class="hero-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
+        Complete Trading Toolkit
+      </div>
+      <h1>
+        Choose Your <span class="gradient-text">Trading Path</span>
+      </h1>
+      <p>Professional strategies, automation, and education designed to transform your trading</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">2+</div>
+          <div class="stat-label">Years Optimized</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Discord Members</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Support & Alerts</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -78,7 +105,7 @@
             <li>Alert Setup & Testing</li>
             <li>1-on-1 Setup Support</li>
           </ul>
-          <a href="/products/setup-service" class="btn btn-secondary">Add Setup Service</a>
+          <a href="/products/bot-suite-setup" class="btn btn-secondary">Add Setup Service</a>
         </div>
       </div>
     </div>
@@ -146,17 +173,59 @@
     min-height: 100vh;
   }
 
-  /* Hero Section */
+  /* Enhanced Hero Section */
   .products-hero {
-    padding: 120px 20px 60px;
+    position: relative;
+    padding: 140px 20px 80px;
     text-align: center;
-    background: linear-gradient(135deg, #0a0a0a 0%, #0d1b0d 100%);
+    background: #0a0a0a;
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+    overflow: hidden;
+  }
+
+  .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(0, 255, 65, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0, 255, 65, 0.1) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  .products-hero .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 24px;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .hero-badge svg {
+    width: 18px;
+    height: 18px;
   }
 
   .products-hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease-out 0.1s backwards;
+  }
+
+  .gradient-text {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
@@ -166,6 +235,59 @@
   .products-hero p {
     font-size: 1.25rem;
     color: var(--gray-light);
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+    animation: fadeInUp 0.6s ease-out 0.2s backwards;
+  }
+
+  /* Hero Stats */
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease-out 0.3s backwards;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(0, 255, 65, 0.3);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* Product Showcase Sections */
@@ -444,11 +566,19 @@
     .product-header h2 {
       font-size: 2rem;
     }
+
+    .hero-stats {
+      gap: 30px;
+    }
+
+    .stat-divider {
+      display: none;
+    }
   }
 
   @media (max-width: 640px) {
     .products-hero {
-      padding: 100px 20px 40px;
+      padding: 120px 20px 60px;
     }
 
     .product-showcase {
@@ -466,106 +596,13 @@
     .product-header h2 {
       font-size: 1.75rem;
     }
-  }
-</style>
 
-{% schema %}
-{
-  "name": "Products Page",
-  "settings": []
-}
-{% endschema %}border-bottom: none;
-  }
-
-  .pricing-option.featured .plan-features li {
-    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
-  }
-
-  .pricing-option.addon .plan-features li {
-    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
-  }
-
-  .pricing-option .btn {
-    width: 100%;
-    margin-top: auto;
-  }
-
-  .pricing-option.addon .btn-secondary {
-    border: 2px solid #ffa500;
-    color: #ffa500;
-    font-weight: 700;
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 140, 0, 0.05));
-    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
-  }
-
-  .pricing-option.addon .btn-secondary:hover {
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.15));
-    border-color: #ff8c00;
-    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .btn-disabled {
-    background: rgba(128, 128, 128, 0.3);
-    color: rgba(255, 255, 255, 0.5);
-    cursor: not-allowed;
-    box-shadow: none;
-    border: 2px solid rgba(128, 128, 128, 0.3);
-  }
-
-  .btn-disabled:hover {
-    transform: none;
-    box-shadow: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 968px) {
-    .product-pricing {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .pricing-option {
-      flex: 1 1 100%;
-      max-width: 100%;
-    }
-
-    .pricing-option.featured {
-      transform: scale(1);
-    }
-
-    .pricing-option.featured:hover {
-      transform: translateY(-10px);
-    }
-
-    .products-hero h1 {
+    .stat-number {
       font-size: 2rem;
     }
 
-    .product-header h2 {
-      font-size: 2rem;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .products-hero {
-      padding: 100px 20px 40px;
-    }
-
-    .product-showcase {
-      padding: 60px 20px;
-    }
-
-    .price .amount {
-      font-size: 2.5rem;
-    }
-
-    .products-hero h1 {
-      font-size: 1.75rem;
-    }
-
-    .product-header h2 {
-      font-size: 1.75rem;
+    .hero-stats {
+      gap: 24px;
     }
   }
 </style>

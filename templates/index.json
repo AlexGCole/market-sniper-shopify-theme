@@ -36,7 +36,7 @@
         "stat-3": {
           "type": "stat",
           "settings": {
-            "stat_number": "100+",
+            "stat_number": "200+",
             "stat_label": "Discord Members"
           }
         }

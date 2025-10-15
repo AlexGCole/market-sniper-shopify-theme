@@ -61,6 +61,7 @@
       ];
       
       let alternateIndex = 0;
+      let lastBackground = null;
       
       sections.forEach((section, index) => {
         const className = section.className;
@@ -74,6 +75,7 @@
           if (heroBg) {
             heroBg.style.setProperty('background', 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)', 'important');
           }
+          lastBackground = '#0a0a0a';
           return;
         }
         
@@ -97,28 +99,32 @@
             container.style.position = 'relative';
             container.style.zIndex = '10';
           }
+          lastBackground = '#0a0a0a';
           return;
         }
         
-        // Footer - always use opposite of what it would normally get
+        // Footer - always OPPOSITE of previous section
         if (section.classList.contains('footer')) {
-          console.log('  → Setting FOOTER background (forced opposite)');
-          // Check what the last non-footer section got
-          const bgIndex = (alternateIndex % 2 === 0) ? 1 : 0; // Opposite of what it would get
-          section.style.setProperty('background', backgrounds[bgIndex], 'important');
+          console.log('  → Setting FOOTER background (opposite of previous)');
+          // Use opposite of what the last section got
+          const footerBg = (lastBackground === backgrounds[0]) ? backgrounds[1] : backgrounds[0];
+          section.style.setProperty('background', footerBg, 'important');
           section.style.setProperty('border-top', '1px solid rgba(0, 255, 65, 0.2)', 'important');
-          return; // Don't increment alternateIndex
+          console.log('  → Footer gets: ' + footerBg + ' (last was: ' + lastBackground + ')');
+          return;
         }
         
         // All other sections alternate
         const bgIndex = alternateIndex % 2;
-        console.log('  → Setting background ' + backgrounds[bgIndex]);
-        section.style.setProperty('background', backgrounds[bgIndex], 'important');
+        const currentBg = backgrounds[bgIndex];
+        console.log('  → Setting background ' + currentBg);
+        section.style.setProperty('background', currentBg, 'important');
         section.style.setProperty('border-top', borders[bgIndex].top, 'important');
         if (borders[bgIndex].bottom !== 'none') {
           section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important');
         }
         
+        lastBackground = currentBg;
         alternateIndex++;
       });
       

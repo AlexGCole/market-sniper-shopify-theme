@@ -1,6 +1,6 @@
 {% comment %}
   sections/pricing.liquid
-  Pricing section with green theme - Setup fee as separate optional product
+  Pricing section with styling matching products-overview.liquid
 {% endcomment %}
 
 <section class="pricing-section" id="pricing">
@@ -12,33 +12,26 @@
 
     <div class="pricing-wrapper">
       {% for block in section.blocks %}
-        {% if block.type == 'pricing_header' %}
-          <div class="pricing-category-header" {{ block.shopify_attributes }}>
-            <h3 class="category-title">{{ block.settings.header_text }}</h3>
-            <div class="category-divider"></div>
-          </div>
-        {% endif %}
-
         {% if block.type == 'pricing_plan' %}
-          <div class="pricing-card {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
+          <div class="pricing-option {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
             {% if block.settings.is_popular %}
-              <span class="popular-badge">Most Popular</span>
+              <span class="popular-tag">Most Popular</span>
             {% endif %}
             
-            <div class="plan-header">
-              <h3 class="plan-name">{{ block.settings.plan_name }}</h3>
+            <div class="price-header">
+              <h4>{{ block.settings.plan_name }}</h4>
               
-              <div class="plan-price">
-                <span class="price-amount">${{ block.settings.price }}</span>
-                <span class="price-period">/{{ block.settings.period }}</span>
+              <div class="price">
+                <span class="amount">${{ block.settings.price }}</span>
+                <span class="period">/{{ block.settings.period }}</span>
               </div>
               
               {% if block.settings.savings_text != blank %}
-                <div class="savings-badge">{{ block.settings.savings_text }}</div>
+                <span class="savings">{{ block.settings.savings_text }}</span>
               {% endif %}
             </div>
 
-            <ul class="feature-list">
+            <ul class="plan-features">
               {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
               {% for feature in features %}
                 {% if feature != blank %}
@@ -48,11 +41,11 @@
             </ul>
 
             {% if block.settings.button_link != blank %}
-              <a href="{{ block.settings.button_link }}" class="cta-button {% if block.settings.is_popular %}primary{% else %}secondary{% endif %}">
+              <a href="{{ block.settings.button_link }}" class="btn btn-primary">
                 {{ block.settings.button_text }}
               </a>
             {% else %}
-              <a href="#" class="cta-button secondary" onclick="alert('Please configure product link'); return false;">
+              <a href="#" class="btn btn-primary" onclick="alert('Please configure product link'); return false;">
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
@@ -60,19 +53,19 @@
         {% endif %}
 
         {% if block.type == 'setup_fee_addon' %}
-          <div class="pricing-card setup-addon" {{ block.shopify_attributes }}>
-            <span class="addon-badge">Optional Add-on</span>
+          <div class="pricing-option addon" {{ block.shopify_attributes }}>
+            <span class="popular-tag">Optional Add-on</span>
             
-            <div class="plan-header">
-              <h3 class="plan-name">{{ block.settings.addon_name }}</h3>
+            <div class="price-header">
+              <h4>{{ block.settings.addon_name }}</h4>
               
-              <div class="plan-price">
-                <span class="price-amount">${{ block.settings.addon_price }}</span>
-                <span class="price-period">one-time</span>
+              <div class="price">
+                <span class="amount">${{ block.settings.addon_price }}</span>
+                <span class="period">one-time</span>
               </div>
             </div>
 
-            <ul class="feature-list">
+            <ul class="plan-features">
               {% assign features = block.settings.addon_features | newline_to_br | split: '<br />' %}
               {% for feature in features %}
                 {% if feature != blank %}
@@ -82,11 +75,11 @@
             </ul>
 
             {% if block.settings.addon_button_link != blank %}
-              <a href="{{ block.settings.addon_button_link }}" class="cta-button secondary">
+              <a href="{{ block.settings.addon_button_link }}" class="btn btn-secondary">
                 {{ block.settings.addon_button_text }}
               </a>
             {% else %}
-              <a href="#" class="cta-button secondary" onclick="alert('Please configure product link'); return false;">
+              <a href="#" class="btn btn-secondary" onclick="alert('Please configure product link'); return false;">
                 {{ block.settings.addon_button_text }}
               </a>
             {% endif %}
@@ -105,348 +98,273 @@
   border-bottom: 1px solid rgba(0, 255, 65, 0.2);
 }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 60px;
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #00ff41, #00cc33);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pricing-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-option {
+  flex: 0 1 320px;
+  max-width: 380px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-option:hover {
+  transform: translateY(-10px);
+  border-color: #00ff41;
+  box-shadow: 0 20px 40px rgba(0, 255, 65, 0.25);
+}
+
+.pricing-option.featured {
+  background: rgba(0, 255, 65, 0.05);
+  border-color: #00ff41;
+  box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+  transform: scale(1.05);
+}
+
+.pricing-option.featured:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+.pricing-option.addon {
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 140, 0, 0.05) 100%);
+  border: 2px solid rgba(255, 165, 0, 0.4);
+}
+
+.pricing-option.addon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, #ffa500, #ff8c00);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.pricing-option.addon:hover {
+  border-color: #ffa500;
+  box-shadow: 0 20px 40px rgba(255, 165, 0, 0.25);
+}
+
+.popular-tag {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #00ff41, #00cc33);
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pricing-option.addon .popular-tag {
+  background: linear-gradient(135deg, #ffa500, #ff8c00);
+}
+
+.price-header h4 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pricing-option.addon .price-header h4 {
+  color: #ffa500;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 15px 0;
+}
+
+.price .amount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, #00ff41, #00cc33);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pricing-option.addon .price .amount {
+  color: #ffa500;
+  background: none;
+  -webkit-text-fill-color: #ffa500;
+}
+
+.price .period {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  align-self: flex-end;
+  padding-bottom: 8px;
+}
+
+.pricing-option.addon .price .period {
+  color: rgba(255, 165, 0, 0.7);
+}
+
+.savings {
+  display: inline-block;
+  background: rgba(0, 255, 65, 0.2);
+  color: #00ff41;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.plan-features li {
+  padding: 12px 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.pricing-option.featured .plan-features li {
+  border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+.pricing-option.addon .plan-features li {
+  border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+}
+
+.pricing-option .btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00ff41, #00cc33);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(0, 255, 65, 0.4);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
+}
+
+.btn-secondary {
+  border: 2px solid #ffa500;
+  color: #ffa500;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 140, 0, 0.05));
+  box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.15));
+  border-color: #ff8c00;
+  box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 968px) {
+  .pricing-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pricing-option {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .pricing-option.featured {
+    transform: scale(1);
+  }
+
+  .pricing-option.featured:hover {
+    transform: translateY(-10px);
   }
 
   .section-header h2 {
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 15px;
-  }
-
-  .section-header p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .pricing-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .pricing-category-header {
-    flex-basis: 100%;
-    width: 100%;
-    text-align: center;
-    margin: 40px 0 20px 0;
-    order: -1;
-  }
-
-  .pricing-category-header:first-of-type {
-    margin-top: 0;
-  }
-
-  .category-title {
     font-size: 2rem;
-    color: #00ff41;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing-section {
+    padding: 60px 20px;
   }
 
-  .category-divider {
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #00ff41, transparent);
-    margin: 0 auto;
+  .price .amount {
+    font-size: 2.5rem;
   }
 
-  .pricing-card {
-    flex: 0 1 320px;
-    max-width: 380px;
-    background: rgba(0, 255, 65, 0.03);
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    border-radius: 20px;
-    padding: 40px 30px;
-    position: relative;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
+  .section-header h2 {
+    font-size: 1.75rem;
   }
-
-  .pricing-card:hover {
-    transform: translateY(-10px);
-    border-color: #00ff41;
-    box-shadow: 0 20px 40px rgba(0, 255, 65, 0.25);
-  }
-
-  .pricing-card.featured {
-    border-color: #00ff41;
-    background: rgba(0, 255, 65, 0.06);
-    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
-    transform: scale(1.05);
-  }
-
-  .pricing-card.featured:hover {
-    transform: scale(1.05) translateY(-10px);
-  }
-
-  .pricing-card.setup-addon {
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 140, 0, 0.05) 100%);
-    border: 2px solid rgba(255, 165, 0, 0.4);
-    position: relative;
-  }
-  
-  .pricing-card.setup-addon::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    padding: 2px;
-    background: linear-gradient(135deg, #ffa500, #ff8c00);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.6;
-    pointer-events: none;
-  }
-
-  .pricing-card.setup-addon:hover {
-    border-color: #ffa500;
-    box-shadow: 0 20px 40px rgba(255, 165, 0, 0.25);
-  }
-
-  .pricing-card.setup-addon .plan-name {
-    color: #ffa500;
-  }
-
-  .pricing-card.setup-addon .price-amount {
-    color: #ffa500;
-  }
-
-  .pricing-card.setup-addon .price-period {
-    color: rgba(255, 165, 0, 0.7);
-  }
-
-  .pricing-card.setup-addon .cta-button.secondary {
-    border: 2px solid #ffa500;
-    color: #ffa500;
-    font-weight: 700;
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 140, 0, 0.05));
-    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
-  }
-
-  .pricing-card.setup-addon .cta-button.secondary:hover {
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.15));
-    border-color: #ff8c00;
-    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
-  }
-
-  .popular-badge {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #00ff41, #00cc33);
-    color: #000;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .addon-badge {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #ffa500, #ff8c00);
-    color: #000;
-    padding: 8px 24px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
-    animation: badgePulse 2s ease-in-out infinite;
-    white-space: nowrap;
-  }
-  
-  @keyframes badgePulse {
-    0%, 100% {
-      box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
-    }
-    50% {
-      box-shadow: 0 4px 25px rgba(255, 165, 0, 0.7);
-    }
-  }
-
-  .plan-header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .plan-name {
-    font-size: 1.5rem;
-    color: #00ff41;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-
-  .plan-price {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin: 15px 0;
-  }
-
-  .price-amount {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #00ff41;
-    line-height: 1;
-  }
-
-  .price-period {
-    font-size: 1.2rem;
-    color: rgba(0, 255, 65, 0.7);
-    align-self: flex-end;
-    margin-bottom: 10px;
-  }
-
-  .savings-badge {
-    display: inline-block;
-    background: rgba(0, 255, 65, 0.2);
-    color: #00ff41;
-    padding: 5px 15px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-top: 10px;
-  }
-
-  .feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 30px 0;
-    flex-grow: 1;
-  }
-
-  .feature-list li {
-    padding: 12px 0;
-    padding-left: 0;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.95rem;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
-  }
-
-  .pricing-card.setup-addon .feature-list li {
-    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
-  }
-
-  .feature-list li:last-child {
-    border-bottom: none;
-  }
-
-  .cta-button {
-    width: 100%;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: auto;
-  }
-
-  .cta-button.primary {
-    background: linear-gradient(135deg, #00ff41, #00cc33);
-    color: #000;
-    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.4);
-  }
-
-  .cta-button.primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
-    background: linear-gradient(135deg, #00ff41, #00dd3a);
-  }
-
-  .cta-button.secondary {
-    background: transparent;
-    border: 2px solid #00ff41;
-    color: #00ff41;
-  }
-
-  .cta-button.secondary:hover {
-    background: rgba(0, 255, 65, 0.1);
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    .pricing-card {
-      flex: 1 1 100%;
-      max-width: 100%;
-      min-height: auto;
-    }
-
-    .pricing-card.featured {
-      transform: scale(1);
-    }
-
-    .pricing-card.featured:hover {
-      transform: translateY(-10px);
-    }
-
-    .category-title {
-      font-size: 1.5rem;
-    }
-
-    .price-amount {
-      font-size: 2.5rem;
-    }
-  }
-  
-  @media (min-width: 769px) {
-    .pricing-wrapper {
-      align-items: flex-start;
-    }
-    
-    .pricing-card {
-      flex: 1 1 0;
-      max-width: 380px;
-    }
-  }
-
-  /* HIDE COACHING & INDICATORS SECTION - Maximum specificity */
-  .pricing-section .pricing-wrapper > *:nth-child(1),
-  .pricing-section .pricing-wrapper > *:nth-child(2),
-  section.pricing-section .pricing-wrapper > *:nth-child(1),
-  section.pricing-section .pricing-wrapper > *:nth-child(2),
-  #pricing .pricing-wrapper > *:nth-child(1),
-  #pricing .pricing-wrapper > *:nth-child(2), {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
-    min-height: 0 !important;
-    max-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    position: absolute !important;
-    left: -99999px !important;
-    pointer-events: none !important;
-    z-index: -9999 !important;
-  }
+}
 </style>
 
 {% schema %}
@@ -457,28 +375,16 @@
       "type": "text",
       "id": "section_title",
       "label": "Section Title",
-      "default": "Choose Your Plan"
+      "default": "Bot Suite"
     },
     {
       "type": "text",
       "id": "section_subtitle",
       "label": "Section Subtitle",
-      "default": "Flexible pricing options"
+      "default": "Choose the plan that works for you"
     }
   ],
   "blocks": [
-    {
-      "type": "pricing_header",
-      "name": "Section Header",
-      "settings": [
-        {
-          "type": "text",
-          "id": "header_text",
-          "label": "Header Text",
-          "default": "Bot Suite"
-        }
-      ]
-    },
     {
       "type": "pricing_plan",
       "name": "Pricing Plan",
@@ -493,7 +399,7 @@
           "type": "text",
           "id": "price",
           "label": "Price (numbers only)",
-          "default": "79"
+          "default": "49"
         },
         {
           "type": "text",
@@ -506,7 +412,7 @@
           "type": "text",
           "id": "savings_text",
           "label": "Savings Text (optional)",
-          "info": "e.g., Save $98"
+          "info": "e.g., Save $98/year"
         },
         {
           "type": "checkbox",
@@ -518,19 +424,19 @@
           "type": "textarea",
           "id": "features",
           "label": "Features (one per line)",
-          "default": "✓ Feature 1\n✓ Feature 2\n✓ Feature 3"
+          "default": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support"
         },
         {
           "type": "url",
           "id": "button_link",
           "label": "Product Page Link",
-          "info": "e.g., /products/your-product-handle"
+          "info": "e.g., /products/bot-suite-monthly"
         },
         {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
-          "default": "Buy Now"
+          "default": "Get Started"
         }
       ]
     },
@@ -554,19 +460,19 @@
           "type": "textarea",
           "id": "addon_features",
           "label": "Add-on Features (one per line)",
-          "default": "✓ Professional installation\n✓ Custom configuration\n✓ Priority support"
+          "default": "✓ Complete Bot Installation\n✓ TradingView Integration\n✓ Strategy Configuration\n✓ Alert Setup & Testing\n✓ 1-on-1 Setup Support"
         },
         {
           "type": "url",
           "id": "addon_button_link",
           "label": "Add-on Product Page Link",
-          "info": "e.g., /products/setup-fee"
+          "info": "e.g., /products/setup-service"
         },
         {
           "type": "text",
           "id": "addon_button_text",
           "label": "Button Text",
-          "default": "Add Setup"
+          "default": "Add Setup Service"
         }
       ]
     }
@@ -576,10 +482,22 @@
       "name": "Pricing",
       "blocks": [
         {
-          "type": "pricing_header"
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Monthly",
+            "price": "49",
+            "period": "mo"
+          }
         },
         {
-          "type": "pricing_plan"
+          "type": "pricing_plan",
+          "settings": {
+            "plan_name": "Annual",
+            "price": "490",
+            "period": "yr",
+            "savings_text": "Save $98/year",
+            "is_popular": true
+          }
         },
         {
           "type": "setup_fee_addon"

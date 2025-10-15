@@ -10,7 +10,7 @@
         <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name }}">
       </span>
       <span class="logo-text">
-        <span class="logo-market">Market</span> <span class="logo-sniper">Sniper</span>
+        <span class="logo-market">Market</span><span class="logo-sniper">Sniper</span>
       </span>
     </a>
     
@@ -200,7 +200,7 @@
 
   .logo-text {
     display: flex;
-    gap: 0.3em;
+    gap: 0;
   }
 
   .logo-market {
@@ -209,6 +209,7 @@
 
   .logo-sniper {
     color: white;
+    margin-left: 0.3em;
   }
 
   .nav-links {

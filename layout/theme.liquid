@@ -45,29 +45,68 @@
   <script src="{{ 'animations.js' | asset_url }}" defer></script>
   <script src="{{ 'main.js' | asset_url }}" defer></script>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section:not(.header):not(.navbar)');
-    
-    const backgrounds = ['#050807', '#0A0A0A'];
-    const borders = [
-      { top: '1px solid rgba(0, 255, 65, 0.2)', bottom: '1px solid rgba(0, 255, 65, 0.2)' },
-      { top: '1px solid rgba(0, 255, 65, 0.1)', bottom: 'none' }
-    ];
-    
-    sections.forEach((section, index) => {
-      if (section.classList.contains('hero')) {
-        section.style.background = '#0a0a0a';
-        return;
+// Alternating Section Backgrounds Script
+// Add this to your theme's main JavaScript file or in a <script> tag in theme.liquid
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all sections, excluding header and navbar
+  const sections = document.querySelectorAll('section:not(.header):not(.navbar)');
+  
+  // Define the two background colors
+  const backgrounds = [
+    '#050807', // Darker green tint
+    '#0A0A0A'  // Pure dark
+  ];
+  
+  const borders = [
+    { top: '1px solid rgba(0, 255, 65, 0.2)', bottom: '1px solid rgba(0, 255, 65, 0.2)' },
+    { top: '1px solid rgba(0, 255, 65, 0.1)', bottom: 'none' }
+  ];
+  
+  let alternateIndex = 0;
+  
+  sections.forEach((section, index) => {
+    // Hero - keep custom gradient background with green overlay
+    if (section.classList.contains('hero')) {
+      section.style.background = '#0a0a0a';
+      const heroBg = section.querySelector('.hero-bg');
+      if (heroBg) {
+        heroBg.style.background = 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)';
       }
+      return;
+    }
+    
+    // Products hero compact - same green gradient as hero
+    if (section.classList.contains('products-hero-compact')) {
+      section.style.background = '#0a0a0a';
+      section.style.position = 'relative';
+      section.style.borderBottom = '1px solid rgba(0, 255, 65, 0.2)';
       
-      // All sections INCLUDING footer alternate
-      const bgIndex = index % 2;
-      section.style.background = backgrounds[bgIndex];
-      section.style.borderTop = borders[bgIndex].top;
-      section.style.borderBottom = borders[bgIndex].bottom;
-    });
+      // Add gradient overlay if it doesn't exist
+      let gradientOverlay = section.querySelector('.hero-bg-overlay');
+      if (!gradientOverlay) {
+        gradientOverlay = document.createElement('div');
+        gradientOverlay.className = 'hero-bg-overlay';
+        gradientOverlay.style.position = 'absolute';
+        gradientOverlay.style.inset = '0';
+        gradientOverlay.style.background = 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)';
+        gradientOverlay.style.zIndex = '-1';
+        gradientOverlay.style.pointerEvents = 'none';
+        section.appendChild(gradientOverlay);
+      }
+      return;
+    }
+    
+    // All other sections alternate
+    const bgIndex = alternateIndex % 2;
+    section.style.background = backgrounds[bgIndex];
+    section.style.borderTop = borders[bgIndex].top;
+    section.style.borderBottom = borders[bgIndex].bottom;
+    
+    alternateIndex++;
   });
-  </script>
+  
+  console.log('✅ Alternating backgrounds applied to', sections.length, 'sections');
+});
 </body>
 </html>

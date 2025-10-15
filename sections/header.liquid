@@ -9,9 +9,7 @@
       <span class="logo-icon">
         <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name }}">
       </span>
-      <span class="logo-text">
-        <span class="logo-market">Market</span><span class="logo-sniper">Sniper</span>
-      </span>
+      <span class="logo-text">{{ section.settings.logo_text | default: shop.name }}</span>
     </a>
     
     <ul class="nav-links">
@@ -184,6 +182,7 @@
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 700;
+    color: white;
     transition: opacity 0.3s ease;
   }
 
@@ -198,18 +197,8 @@
     object-fit: cover;
   }
 
-  .logo .logo-text {
-    display: inline-flex;
-    color: transparent;
-  }
-
-  .logo .logo-text .logo-market {
-    color: #00ff41 !important;
-  }
-
-  .logo .logo-text .logo-sniper {
-    color: #ffffff !important;
-    margin-left: 0.3em;
+  .logo-text {
+    color: #00ff41;
   }
 
   .nav-links {

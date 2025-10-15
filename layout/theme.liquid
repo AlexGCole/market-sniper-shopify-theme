@@ -46,33 +46,28 @@
   <script src="{{ 'main.js' | asset_url }}" defer></script>
 
   <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('section:not(.header):not(.navbar)');
-  
-  const backgrounds = ['#050807', '#0A0A0A'];
-  const borders = [
-    { top: '1px solid rgba(0, 255, 65, 0.2)', bottom: '1px solid rgba(0, 255, 65, 0.2)' },
-    { top: '1px solid rgba(0, 255, 65, 0.1)', bottom: 'none' }
-  ];
-  
-  sections.forEach((section, index) => {
-    if (section.classList.contains('hero')) {
-      section.style.background = '#0a0a0a';
-      return;
-    }
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section:not(.header):not(.navbar)');
     
-    if (section.classList.contains('footer')) {
-      section.style.background = '#050807';
-      section.style.borderTop = '1px solid rgba(0, 255, 65, 0.2)';
-      return;
-    }
+    const backgrounds = ['#050807', '#0A0A0A'];
+    const borders = [
+      { top: '1px solid rgba(0, 255, 65, 0.2)', bottom: '1px solid rgba(0, 255, 65, 0.2)' },
+      { top: '1px solid rgba(0, 255, 65, 0.1)', bottom: 'none' }
+    ];
     
-    const bgIndex = index % 2;
-    section.style.background = backgrounds[bgIndex];
-    section.style.borderTop = borders[bgIndex].top;
-    section.style.borderBottom = borders[bgIndex].bottom;
+    sections.forEach((section, index) => {
+      if (section.classList.contains('hero')) {
+        section.style.background = '#0a0a0a';
+        return;
+      }
+      
+      // All sections INCLUDING footer alternate
+      const bgIndex = index % 2;
+      section.style.background = backgrounds[bgIndex];
+      section.style.borderTop = borders[bgIndex].top;
+      section.style.borderBottom = borders[bgIndex].bottom;
+    });
   });
-});
-</script>
+  </script>
 </body>
 </html>

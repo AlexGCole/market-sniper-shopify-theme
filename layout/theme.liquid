@@ -45,83 +45,103 @@
   <script src="{{ 'animations.js' | asset_url }}" defer></script>
   <script src="{{ 'main.js' | asset_url }}" defer></script>
 
-// Alternating Section Backgrounds Script
+// Alternating Section Backgrounds Script with Debugging
 // Add this to your theme's main JavaScript file or in a <script> tag in theme.liquid
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Get all sections, excluding header and navbar
-  const sections = document.querySelectorAll('section:not(.header):not(.navbar)');
+  console.log('🔍 Starting background alternation script...');
   
-  // Define the two background colors
-  const backgrounds = [
-    '#050807', // Darker green tint
-    '#0A0A0A'  // Pure dark
-  ];
-  
-  const borders = [
-    { top: '1px solid rgba(0, 255, 65, 0.2)', bottom: '1px solid rgba(0, 255, 65, 0.2)' },
-    { top: '1px solid rgba(0, 255, 65, 0.1)', bottom: 'none' }
-  ];
-  
-  let alternateIndex = 0;
-  
-  sections.forEach((section, index) => {
-    // Hero - keep custom gradient background with green overlay
-    if (section.classList.contains('hero')) {
-      section.style.setProperty('background', '#0a0a0a', 'important');
-      const heroBg = section.querySelector('.hero-bg');
-      if (heroBg) {
-        heroBg.style.setProperty('background', 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)', 'important');
-      }
-      return;
-    }
+  // Wait a moment for all styles to load
+  setTimeout(function() {
+    const sections = document.querySelectorAll('section:not(.header):not(.navbar)');
     
-    // Products hero compact - same green gradient as hero
-    if (section.classList.contains('products-hero-compact')) {
-      section.style.setProperty('background', '#0a0a0a', 'important');
-      section.style.setProperty('position', 'relative', 'important');
-      section.style.setProperty('border-bottom', '1px solid rgba(0, 255, 65, 0.2)', 'important');
+    console.log('📊 Found', sections.length, 'sections');
+    
+    const backgrounds = ['#050807', '#0A0A0A'];
+    const borders = [
+      { top: '1px solid rgba(0, 255, 65, 0.2)', bottom: '1px solid rgba(0, 255, 65, 0.2)' },
+      { top: '1px solid rgba(0, 255, 65, 0.1)', bottom: 'none' }
+    ];
+    
+    let alternateIndex = 0;
+    
+    sections.forEach((section, index) => {
+      const className = section.className;
+      console.log(`Section ${index}:`, className);
       
-      // Add gradient overlay if it doesn't exist
-      let gradientOverlay = section.querySelector('.hero-bg-overlay');
-      if (!gradientOverlay) {
-        gradientOverlay = document.createElement('div');
+      // Hero - keep custom gradient background
+      if (section.classList.contains('hero')) {
+        console.log('  → Setting HERO background with gradient');
+        section.style.setProperty('background', '#0a0a0a', 'important');
+        const heroBg = section.querySelector('.hero-bg');
+        if (heroBg) {
+          heroBg.style.setProperty('background', 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)', 'important');
+          heroBg.style.setProperty('position', 'absolute', 'important');
+          heroBg.style.setProperty('inset', '0', 'important');
+          heroBg.style.setProperty('z-index', '-1', 'important');
+        }
+        return;
+      }
+      
+      // Products hero compact - same green gradient as hero
+      if (section.classList.contains('products-hero-compact')) {
+        console.log('  → Setting PRODUCTS HERO background with gradient');
+        section.style.setProperty('background', '#0a0a0a', 'important');
+        section.style.setProperty('position', 'relative', 'important');
+        section.style.setProperty('border-bottom', '1px solid rgba(0, 255, 65, 0.2)', 'important');
+        section.style.setProperty('overflow', 'hidden', 'important');
+        
+        // Remove any existing overlay first
+        const existingOverlay = section.querySelector('.hero-bg-overlay');
+        if (existingOverlay) {
+          existingOverlay.remove();
+        }
+        
+        // Add gradient overlay
+        const gradientOverlay = document.createElement('div');
         gradientOverlay.className = 'hero-bg-overlay';
         gradientOverlay.style.cssText = `
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%);
-          z-index: 0;
-          pointer-events: none;
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          background: radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%) !important;
+          z-index: 0 !important;
+          pointer-events: none !important;
         `;
-        section.style.zIndex = '1';
         section.insertBefore(gradientOverlay, section.firstChild);
         
         // Make sure content is above overlay
         const container = section.querySelector('.container');
         if (container) {
           container.style.position = 'relative';
-          container.style.zIndex = '2';
+          container.style.zIndex = '10';
         }
+        
+        console.log('  → Products hero gradient overlay added');
+        return;
       }
-      return;
-    }
+      
+      // All other sections alternate
+      const bgIndex = alternateIndex % 2;
+      console.log(`  → Setting background ${backgrounds[bgIndex]}`);
+      section.style.setProperty('background', backgrounds[bgIndex], 'important');
+      section.style.setProperty('border-top', borders[bgIndex].top, 'important');
+      if (borders[bgIndex].bottom !== 'none') {
+        section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important');
+      } else {
+        section.style.removeProperty('border-bottom');
+      }
+      
+      alternateIndex++;
+    });
     
-    // All other sections alternate
-    const bgIndex = alternateIndex % 2;
-    section.style.setProperty('background', backgrounds[bgIndex], 'important');
-    section.style.setProperty('border-top', borders[bgIndex].top, 'important');
-    if (borders[bgIndex].bottom !== 'none') {
-      section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important');
-    }
-    
-    alternateIndex++;
-  });
-  
-  console.log('✅ Alternating backgrounds applied to', sections.length, 'sections');
+    console.log('✅ Alternating backgrounds applied successfully!');
+    console.log('📍 Total alternating sections:', alternateIndex);
+  }, 100); // Wait 100ms for styles to load
 });
 </body>
 </html>

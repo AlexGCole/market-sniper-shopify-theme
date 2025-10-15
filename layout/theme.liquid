@@ -51,8 +51,9 @@
     console.log('🔍 Starting background alternation script...');
     
     setTimeout(function() {
-      const sections = document.querySelectorAll('section:not(.header):not(.navbar)');
-      console.log('📊 Found', sections.length, 'sections');
+      // Get all sections AND footer
+      const allSections = document.querySelectorAll('section:not(.header):not(.navbar), footer');
+      console.log('📊 Found', allSections.length, 'sections/footer elements');
       
       const backgrounds = ['#050807', '#0A0A0A'];
       const borders = [
@@ -63,9 +64,10 @@
       let alternateIndex = 0;
       let lastBackground = null;
       
-      sections.forEach((section, index) => {
+      allSections.forEach((section, index) => {
         const className = section.className;
-        console.log('Section ' + index + ':', className);
+        const tagName = section.tagName.toLowerCase();
+        console.log('Section ' + index + ' (' + tagName + '):', className);
         
         // Hero
         if (section.classList.contains('hero')) {
@@ -103,8 +105,8 @@
           return;
         }
         
-        // Footer - FORCE opposite
-        if (section.classList.contains('footer')) {
+        // Footer - FORCE opposite (check both class and tag)
+        if (section.classList.contains('footer') || tagName === 'footer') {
           console.log('  → FOOTER DETECTED!');
           console.log('  → Last background was:', lastBackground);
           

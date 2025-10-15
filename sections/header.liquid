@@ -198,18 +198,21 @@
     object-fit: cover;
   }
 
-  .logo .logo-text {
+  /* Override layout.css logo-text color */
+  .navbar .logo .logo-text {
     display: inline-flex;
-    color: transparent;
+    color: transparent !important;
   }
 
-  .logo .logo-text .logo-market {
+  .navbar .logo .logo-text .logo-market {
     color: #00ff41 !important;
+    display: inline-block;
   }
 
-  .logo .logo-text .logo-sniper {
+  .navbar .logo .logo-text .logo-sniper {
     color: #ffffff !important;
     margin-left: 0.3em;
+    display: inline-block;
   }
 
   .nav-links {
@@ -497,6 +500,19 @@
     .mobile-menu {
       width: 100%;
     }
+  }
+
+  /* CRITICAL: Override layout.css - Must be at the end */
+  .navbar .container .logo .logo-text {
+    color: transparent !important;
+  }
+
+  .navbar .container .logo .logo-text .logo-market {
+    color: #00ff41 !important;
+  }
+
+  .navbar .container .logo .logo-text .logo-sniper {
+    color: #ffffff !important;
   }
 </style>
 

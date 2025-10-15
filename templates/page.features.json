@@ -117,7 +117,7 @@
       }
     },
     "what-you-get": {
-      "type": "features",
+      "type": "what-you-get",
       "blocks": {
         "feature-1": {
           "type": "feature",

@@ -163,7 +163,7 @@
             "price": "49",
             "period": "mo",
             "savings_text": "",
-            "is_popular": false,
+            "is_popular": true,
             "features": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support",
             "button_link": "/products/bot-suite-monthly",
             "button_text": "Get Started"
@@ -176,7 +176,7 @@
             "price": "490",
             "period": "yr",
             "savings_text": "Save $98/year",
-            "is_popular": true,
+            "is_popular": false,
             "features": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support\n✓ 2 Months Free",
             "button_link": "/products/bot-suite-annual",
             "button_text": "Get Started"

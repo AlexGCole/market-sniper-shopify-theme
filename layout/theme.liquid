@@ -51,8 +51,8 @@
     console.log('🔍 Starting background alternation script...');
     
     setTimeout(function() {
-      // Get all sections AND footer
-      const allSections = document.querySelectorAll('section:not(.header):not(.navbar), footer');
+      // Get all sections AND footer (exclude coaching section)
+      const allSections = document.querySelectorAll('section:not(.header):not(.navbar):not(.coaching-section), footer');
       console.log('📊 Found', allSections.length, 'sections/footer elements');
       
       const backgrounds = ['#050807', '#0A0A0A'];

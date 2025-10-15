@@ -66,6 +66,7 @@
         const className = section.className;
         console.log('Section ' + index + ':', className);
         
+        // Hero - keep custom gradient background
         if (section.classList.contains('hero')) {
           console.log('  → Setting HERO background');
           section.style.setProperty('background', '#0a0a0a', 'important');
@@ -76,6 +77,7 @@
           return;
         }
         
+        // Products hero compact - same green gradient as hero
         if (section.classList.contains('products-hero-compact')) {
           console.log('  → Setting PRODUCTS HERO background');
           section.style.setProperty('background', '#0a0a0a', 'important');
@@ -98,6 +100,17 @@
           return;
         }
         
+        // Footer - always use opposite of what it would normally get
+        if (section.classList.contains('footer')) {
+          console.log('  → Setting FOOTER background (forced opposite)');
+          // Check what the last non-footer section got
+          const bgIndex = (alternateIndex % 2 === 0) ? 1 : 0; // Opposite of what it would get
+          section.style.setProperty('background', backgrounds[bgIndex], 'important');
+          section.style.setProperty('border-top', '1px solid rgba(0, 255, 65, 0.2)', 'important');
+          return; // Don't increment alternateIndex
+        }
+        
+        // All other sections alternate
         const bgIndex = alternateIndex % 2;
         console.log('  → Setting background ' + backgrounds[bgIndex]);
         section.style.setProperty('background', backgrounds[bgIndex], 'important');

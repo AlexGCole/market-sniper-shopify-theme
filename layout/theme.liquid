@@ -68,40 +68,55 @@ document.addEventListener('DOMContentLoaded', function() {
   sections.forEach((section, index) => {
     // Hero - keep custom gradient background with green overlay
     if (section.classList.contains('hero')) {
-      section.style.background = '#0a0a0a';
+      section.style.setProperty('background', '#0a0a0a', 'important');
       const heroBg = section.querySelector('.hero-bg');
       if (heroBg) {
-        heroBg.style.background = 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)';
+        heroBg.style.setProperty('background', 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)', 'important');
       }
       return;
     }
     
     // Products hero compact - same green gradient as hero
     if (section.classList.contains('products-hero-compact')) {
-      section.style.background = '#0a0a0a';
-      section.style.position = 'relative';
-      section.style.borderBottom = '1px solid rgba(0, 255, 65, 0.2)';
+      section.style.setProperty('background', '#0a0a0a', 'important');
+      section.style.setProperty('position', 'relative', 'important');
+      section.style.setProperty('border-bottom', '1px solid rgba(0, 255, 65, 0.2)', 'important');
       
       // Add gradient overlay if it doesn't exist
       let gradientOverlay = section.querySelector('.hero-bg-overlay');
       if (!gradientOverlay) {
         gradientOverlay = document.createElement('div');
         gradientOverlay.className = 'hero-bg-overlay';
-        gradientOverlay.style.position = 'absolute';
-        gradientOverlay.style.inset = '0';
-        gradientOverlay.style.background = 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)';
-        gradientOverlay.style.zIndex = '-1';
-        gradientOverlay.style.pointerEvents = 'none';
-        section.appendChild(gradientOverlay);
+        gradientOverlay.style.cssText = `
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%);
+          z-index: 0;
+          pointer-events: none;
+        `;
+        section.style.zIndex = '1';
+        section.insertBefore(gradientOverlay, section.firstChild);
+        
+        // Make sure content is above overlay
+        const container = section.querySelector('.container');
+        if (container) {
+          container.style.position = 'relative';
+          container.style.zIndex = '2';
+        }
       }
       return;
     }
     
     // All other sections alternate
     const bgIndex = alternateIndex % 2;
-    section.style.background = backgrounds[bgIndex];
-    section.style.borderTop = borders[bgIndex].top;
-    section.style.borderBottom = borders[bgIndex].bottom;
+    section.style.setProperty('background', backgrounds[bgIndex], 'important');
+    section.style.setProperty('border-top', borders[bgIndex].top, 'important');
+    if (borders[bgIndex].bottom !== 'none') {
+      section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important');
+    }
     
     alternateIndex++;
   });

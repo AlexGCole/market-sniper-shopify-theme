@@ -34,9 +34,13 @@
 </head>
 <body class="template-{{ template.name | handle }}">
 
+  {% section 'header' %}
+
   <main id="MainContent" role="main">
     {{ content_for_layout }}
   </main>
+
+  {% section 'footer' %}
 
   <!-- JavaScript Files -->
   <script src="{{ 'utils.js' | asset_url }}" defer></script>

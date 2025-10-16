@@ -1,11 +1,21 @@
 {
   "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
     "cart-items": {
       "type": "main-cart",
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
       "settings": {}
     }
   },
   "order": [
-    "cart-items"
+    "header",
+    "cart-items",
+    "footer"
   ]
 }

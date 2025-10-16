@@ -92,7 +92,7 @@
             "version": "Version 4.2",
             "title": "Sharp Shooter Candles",
             "description": "Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.",
-            "features": "✓ Buy/Sell Signals\n✓ Reversal Detection\n✓ MACD Settings\n✓ Position Management\n✓ Trending Dots\n✓ Multiple Customization Options",
+            "features": "Buy/Sell Signals\nReversal Detection\nMACD Settings\nPosition Management\nTrending Dots\nMultiple Customization Options",
             "fallback_image": "sharp-shooter-candles.jpg"
           }
         },
@@ -102,7 +102,7 @@
             "version": "Version 2.0",
             "title": "Sharp Shooter RSI",
             "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
-            "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style\n✓ Real-time Alerts",
+            "features": "RSI Divergences\nEarly Buy/Sell Signals\nEMA Trend Identification\nCustomizable Length & Style\nReal-time Alerts",
             "fallback_image": "sharp-shooter-rsi.jpg"
           }
         }

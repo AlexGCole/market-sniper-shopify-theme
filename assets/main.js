@@ -30,7 +30,8 @@ function initSmoothScroll() {
                 const navLinks = document.querySelector('.nav-links');
                 if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    document.querySelector('.mobile-menu-btn').classList.remove('active');
+                    const btn = document.querySelector('.mobile-menu-btn');
+                    if (btn) btn.classList.remove('active');
                 }
             }
         });
@@ -46,14 +47,8 @@ function initFAQ() {
         
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
-            // Close all FAQ items
             faqItems.forEach(faq => faq.classList.remove('active'));
-            
-            // Toggle current item
-            if (!isActive) {
-                item.classList.add('active');
-            }
+            if (!isActive) { item.classList.add('active'); }
         });
     });
 }
@@ -61,45 +56,35 @@ function initFAQ() {
 // Navbar Background on Scroll
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-    
     const handleScroll = () => {
         if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(10, 10, 10, 0.95)';  // Pure black
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
             navbar.style.backdropFilter = 'blur(10px)';
             navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.background = 'rgba(10, 10, 10, 0.95)';  // Keep it black at top too
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
             navbar.style.backdropFilter = 'blur(10px)';
             navbar.style.boxShadow = 'none';
         }
     };
-    
     window.addEventListener('scroll', throttle(handleScroll, 100));
 }
 
 // Initialize CTA Button Interactions
 function initCTAButtons() {
     const ctaButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
-    
     ctaButtons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'translateY(-2px) scale(1.02)';
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'translateY(0) scale(1)';
-        });
+        button.addEventListener('mouseenter', () => { button.style.transform = 'translateY(-2px) scale(1.02)'; });
+        button.addEventListener('mouseleave', () => { button.style.transform = 'translateY(0) scale(1)'; });
     });
 }
 
-// Form Handling (if you add a contact form later)
+// Form Handling (placeholder)
 function initFormHandling() {
     const forms = document.querySelectorAll('form');
-    
     forms.forEach(form => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Add your form submission logic here
             console.log('Form submitted');
         });
     });
@@ -113,12 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
     initCTAButtons();
     initFormHandling();
-    
     console.log('Market Sniper Pro - Initialized');
 });
 
 // Handle window resize
 window.addEventListener('resize', debounce(() => {
-    // Add responsive adjustments here if needed
     console.log('Window resized');
 }, 250));
+
+

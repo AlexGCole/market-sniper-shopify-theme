@@ -37,60 +37,7 @@
   <div class="hero-bg"></div>
 </section>
 
-<style>
-/* Hero section - ensure it stays below navigation but doesn't glitch */
-  .hero {
-    position: relative;
-    z-index: 1;
-    background: #0a0a0a;
-  }
 
-  /* Ensure hero content is centered */
-  .hero .hero-content {
-    text-align: center !important;
-  }
-
-  /* Ensure CTA buttons are centered */
-  .hero .hero-cta {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  /* Completely remove ALL orange styling from secondary button */
-  .hero .btn-secondary,
-  .hero-cta .btn-secondary,
-  .btn.btn-secondary {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: #ffffff !important;
-    padding: 12px 32px !important;
-    border-radius: 9999px !important;
-    font-weight: 600 !important;
-    transition: all 0.3s ease !important;
-    box-shadow: none !important;
-  }
-
-  .hero .btn-secondary:hover,
-  .hero-cta .btn-secondary:hover,
-  .btn.btn-secondary:hover {
-    background: rgba(0, 255, 65, 0.1) !important;
-    background-color: rgba(0, 255, 65, 0.1) !important;
-    background-image: none !important;
-    border-color: rgba(0, 255, 65, 0.4) !important;
-    color: #ffffff !important;
-    transform: translateY(-2px) !important;
-    box-shadow: none !important;
-  }
-
-  /* Remove any gradient or background effects */
-  .hero .btn-secondary::before,
-  .hero .btn-secondary::after {
-    display: none !important;
-  }
-</style>
 
 {% schema %}
 {

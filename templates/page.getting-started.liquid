@@ -3,7 +3,7 @@
   Assign this template to your page in: Pages → [Page] → Template
 {% endcomment %}
 
-<section class="hero" style="min-height: 60vh">
+<section class="hero hero-compact">
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge">🎉 Welcome to Market Sniper!</div>
@@ -31,14 +31,14 @@
         <div class="step-icon">🔗</div>
         <h3>Join Our Discord</h3>
         <p>Access your private Discord community for support, updates, and live trading discussions</p>
-        <a href="{{ settings.social_discord }}" class="btn btn-primary" style="margin-top: 1rem">Join Discord Server</a>
+        <a href="{{ settings.social_discord }}" class="btn btn-primary mt-4">Join Discord Server</a>
       </div>
       <div class="step">
         <div class="step-number">2</div>
         <div class="step-icon">📝</div>
         <h3>Complete Your Profile</h3>
         <p>Fill out the onboarding form with your billing email, Discord username, and TradingView username</p>
-        <a href="#" class="btn btn-secondary" style="margin-top: 1rem">Fill Out Form</a>
+        <a href="#" class="btn btn-secondary mt-4">Fill Out Form</a>
       </div>
       <div class="step">
         <div class="step-number">3</div>
@@ -56,7 +56,7 @@
   </div>
 </section>
 
-<section class="features" style="background: rgba(255, 255, 255, 0.02)">
+<section class="features features-soft-bg">
   <div class="container">
     <div class="section-header">
       <h2>Your Resources</h2>
@@ -104,24 +104,24 @@
       <h2>Important Information</h2>
     </div>
 
-    <div style="max-width: 800px; margin: 0 auto">
-      <div class="feature-card" style="margin-bottom: 2rem">
-        <h3 style="color: var(--primary); margin-bottom: 1rem">⏰ Access Timeline</h3>
-        <ul style="list-style: none; padding: 0">
-          <li style="margin-bottom: 0.75rem">✓ Discord access: Immediate</li>
-          <li style="margin-bottom: 0.75rem">✓ Indicator licenses: Within 24 hours of form submission</li>
-          <li style="margin-bottom: 0.75rem">✓ Training videos: Immediate via Discord</li>
-          <li style="margin-bottom: 0.75rem">✓ Bot alerts: Setup guide sent after indicator access</li>
+    <div class="max-w-800">
+      <div class="feature-card note-card">
+        <h3 class="link-primary mb-3">⏰ Access Timeline</h3>
+        <ul class="list-unstyled">
+          <li class="mb-3">✓ Discord access: Immediate</li>
+          <li class="mb-3">✓ Indicator licenses: Within 24 hours of form submission</li>
+          <li class="mb-3">✓ Training videos: Immediate via Discord</li>
+          <li class="mb-3">✓ Bot alerts: Setup guide sent after indicator access</li>
         </ul>
       </div>
 
-      <div class="feature-card" style="margin-bottom: 2rem">
-        <h3 style="color: var(--primary); margin-bottom: 1rem">🔧 Need Help?</h3>
-        <p style="margin-bottom: 1rem">If you have any questions or issues:</p>
-        <ul style="list-style: none; padding: 0">
-          <li style="margin-bottom: 0.75rem">• Post in the #support channel on Discord</li>
-          <li style="margin-bottom: 0.75rem">• Email: <a href="mailto:{{ settings.contact_email }}" style="color: var(--primary)">{{ settings.contact_email }}</a></li>
-          <li style="margin-bottom: 0.75rem">• Response time: Within 24 hours</li>
+      <div class="feature-card note-card">
+        <h3 class="link-primary mb-3">🔧 Need Help?</h3>
+        <p class="mb-3">If you have any questions or issues:</p>
+        <ul class="list-unstyled">
+          <li class="mb-3">• Post in the #support channel on Discord</li>
+          <li class="mb-3">• Email: <a class="link-primary" href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a></li>
+          <li class="mb-3">• Response time: Within 24 hours</li>
         </ul>
       </div>
     </div>

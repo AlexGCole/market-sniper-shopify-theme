@@ -54,3 +54,5 @@ function getScrollPercentage() {
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     return (scrollTop / scrollHeight) * 100;
 }
+
+

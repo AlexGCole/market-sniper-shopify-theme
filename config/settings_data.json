@@ -9,7 +9,21 @@
     "colors_background_1": "#FFFFFF",
     "colors_background_2": "#F3F3F3",
     "type_header_font": "assistant_n4",
-    "type_body_font": "assistant_n4"
+    "type_body_font": "assistant_n4",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "Market Sniper",
+          "cta_text": "Get Started",
+          "cta_link": "/pages/products"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    }
   },
   "presets": {
     "Default": {

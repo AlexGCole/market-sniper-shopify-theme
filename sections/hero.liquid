@@ -1,6 +1,9 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
+      {% if section.settings.show_badge and section.settings.badge_text != blank %}
+        <span class="hero-badge">{{ section.settings.badge_text }}</span>
+      {% endif %}
       
       <h1 class="hero-title">
         {{ section.settings.hero_title_line1 }}<br>
@@ -43,6 +46,18 @@
 {
   "name": "Hero Section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show Badge",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "New"
+    },
     {
       "type": "text",
       "id": "hero_title_line1",

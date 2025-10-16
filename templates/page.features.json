@@ -1,23 +1,68 @@
 {
   "sections": {
-    "hero": {
-      "type": "hero",
-      "settings": {
-        "show_badge": true,
-        "badge_text": "Test Badge",
-        "hero_title_line1": "Test Features Page",
-        "hero_title_line2": "This Should Work",
-        "hero_subtitle": "If you see this, the JSON template is working!",
-        "primary_button_text": "Test Button",
-        "primary_button_link": "/pages/products",
-        "secondary_button_text": "",
-        "secondary_button_link": "",
-        "show_stats": false
+    "features-main": {
+      "type": "features",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "Proven Trading Strategies",
+            "description": "Battle-tested strategies automatically synced to your TradingView account"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Sharp Shooter Candles 4.2",
+            "description": "Advanced candlestick indicator with buy/sell signals and MACD integration"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Sharp Shooter RSI 2.0",
+            "description": "RSI divergence detection with early trend change signals"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Optional Bot Automation",
+            "description": "Connect your TradingView alerts to enable automated execution"
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "title": "Private Discord Community",
+            "description": "Exclusive Discord channel with 200+ active traders"
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "title": "Priority Support",
+            "description": "Direct access to our team for questions and technical assistance"
+          }
+        }
       },
-      "blocks": {}
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4",
+        "feature-5",
+        "feature-6"
+      ],
+      "settings": {
+        "section_title": "Everything You Need to Succeed",
+        "section_subtitle": "Complete trading solution with proven strategies and automation capabilities",
+        "button_text": "Get Started - $49/mo",
+        "button_link": "/pages/products"
+      }
     }
   },
   "order": [
-    "hero"
+    "features-main"
   ]
 }

@@ -49,13 +49,9 @@
   </div>
 </section>
 
-
-
 <style>
   .indicators {
     padding: 80px 20px;
-    background: rgba(10, 10, 10, 0.5);
-    min-height: 400px;
   }
 
   .container {
@@ -65,25 +61,31 @@
 
   .section-header {
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto 60px;
+    margin-bottom: 60px;
   }
 
   .section-header h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 16px;
+    font-size: 3rem;
     color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .section-header p {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .indicators-grid {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 80px;
   }
 
   .indicator-item {
@@ -101,28 +103,34 @@
     direction: ltr;
   }
 
+  .indicator-content {
+    padding: 20px 0;
+  }
+
   .indicator-badge {
     display: inline-block;
-    padding: 8px 20px;
-    background: rgba(0, 255, 65, 0.2);
+    padding: 6px 16px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50px;
     color: #00ff41;
-    border-radius: 30px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .indicator-content h3 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    margin-bottom: 16px;
+    font-size: 2.5rem;
     color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
   }
 
   .indicator-description {
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 24px;
-    line-height: 1.8;
     font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 25px;
   }
 
   .indicator-features {
@@ -132,41 +140,32 @@
   }
 
   .indicator-features li {
-    padding: 12px 0;
     color: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
+    padding: 8px 0;
     line-height: 1.6;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
-  }
-
-  .indicator-features li:last-child {
-    border-bottom: none;
-  }
-
-  .indicator-visual {
-    position: relative;
+    display: block;
   }
 
   .indicator-visual-container {
+    background: linear-gradient(180deg, #1a2332 0%, #0f1419 100%);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 16px;
+    padding: 0;
+    width: 100%;
     position: relative;
-    border-radius: 15px;
     overflow: hidden;
-    border: 2px solid rgba(0, 255, 65, 0.3);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    background: rgba(10, 10, 10, 0.8);
+    box-shadow: 0 10px 40px rgba(0, 255, 65, 0.1);
   }
 
   .indicator-visual-container img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 16px;
   }
 
   @media (max-width: 1024px) {
-    .indicators {
-      padding: 60px 15px;
-    }
-
     .indicator-item {
       grid-template-columns: 1fr;
       gap: 40px;
@@ -175,19 +174,111 @@
     .indicator-item.reverse {
       direction: ltr;
     }
+
+    .indicator-content {
+      text-align: center;
+    }
+
+    .indicator-content h3 {
+      font-size: 2rem;
+    }
+
+    .indicator-visual-container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .indicator-visual-container img {
+      width: 100%;
+      height: auto;
+    }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
+    .indicators {
+      padding: 60px 15px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 0 15px;
+      max-width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .indicator-content h3 {
+      font-size: 1.8rem;
+    }
+
+    .indicator-content {
+      padding: 20px 0;
+    }
+
+    .indicator-features li {
+      font-size: 0.95rem;
+      padding: 6px 0;
+    }
+
+    .indicators-grid {
+      gap: 50px;
+      padding: 0;
+    }
+
+    .indicator-item {
+      padding: 0;
+      margin: 0;
+    }
+
+    .indicator-visual-container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .indicator-visual-container img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+    }
+  }
+
+  @media (max-width: 480px) {
     .indicators {
       padding: 50px 10px;
     }
 
-    .indicators-grid {
-      gap: 40px;
+    .container {
+      padding: 0 10px;
     }
 
-    .indicator-item {
-      gap: 30px;
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+    }
+
+    .indicator-content h3 {
+      font-size: 1.5rem;
+    }
+
+    .indicator-badge {
+      font-size: 0.8rem;
+      padding: 5px 12px;
+    }
+
+    .indicator-description {
+      font-size: 1rem;
+    }
+
+    .indicator-visual-container img {
+      width: 100%;
+      height: auto;
     }
   }
 </style>

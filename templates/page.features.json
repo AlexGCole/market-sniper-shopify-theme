@@ -1,0 +1,194 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
+    "features-hero": {
+      "type": "hero",
+      "settings": {
+        "show_badge": true,
+        "badge_text": "Professional Trading Tools",
+        "hero_title_line1": "Bot Suite",
+        "hero_title_line2": "Automated Trading Made Simple",
+        "hero_subtitle": "Automated trading with professional indicators and strategies - everything you need to trade smarter",
+        "primary_button_text": "View Plans",
+        "primary_button_link": "/pages/products",
+        "secondary_button_text": "",
+        "secondary_button_link": "",
+        "show_stats": false
+      },
+      "blocks": {}
+    },
+    "bot-suite-features": {
+      "type": "trading-bot",
+      "blocks": {
+        "bot-feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "Automated Trading Bot",
+            "description": "Bot sends automated alerts to your TradingView account for execution. You control when automation is active."
+          }
+        },
+        "bot-feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Sharp Shooter Candles 4.2",
+            "description": "Advanced candlestick indicator with buy/sell signals, MACD integration, and reversal detection."
+          }
+        },
+        "bot-feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Sharp Shooter RSI 2.0",
+            "description": "RSI divergence detection with early trend change signals and overbought/oversold zones."
+          }
+        },
+        "bot-feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Proven Trading Strategies",
+            "description": "Battle-tested strategies automatically synced to your TradingView account."
+          }
+        },
+        "bot-feature-5": {
+          "type": "feature",
+          "settings": {
+            "title": "Private Bot Discussion Channel",
+            "description": "Exclusive Discord channel for bot configuration, optimization, and dedicated support."
+          }
+        },
+        "bot-feature-6": {
+          "type": "feature",
+          "settings": {
+            "title": "Priority Support",
+            "description": "Direct access to our team for bot questions, strategy optimization, and technical assistance."
+          }
+        }
+      },
+      "block_order": [
+        "bot-feature-1",
+        "bot-feature-2",
+        "bot-feature-3",
+        "bot-feature-4",
+        "bot-feature-5",
+        "bot-feature-6"
+      ],
+      "settings": {
+        "badge_text": "",
+        "title": "Automated Bot with Professional Indicators",
+        "subtitle": "Everything you need for automated trading in one package",
+        "show_stat": false,
+        "stat_number": "",
+        "stat_label": ""
+      }
+    },
+    "indicators-showcase": {
+      "type": "indicators",
+      "blocks": {
+        "candles": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 4.2",
+            "title": "Sharp Shooter Candles",
+            "description": "Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.",
+            "features": "Buy/Sell Signals\nReversal Detection\nMACD Settings\nPosition Management\nTrending Dots\nMultiple Customization Options",
+            "fallback_image": "sharp-shooter-candles.jpg"
+          }
+        },
+        "rsi": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 2.0",
+            "title": "Sharp Shooter RSI",
+            "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
+            "features": "RSI Divergences\nEarly Buy/Sell Signals\nEMA Trend Identification\nCustomizable Length & Style\nReal-time Alerts",
+            "fallback_image": "sharp-shooter-rsi.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "candles",
+        "rsi"
+      ],
+      "settings": {
+        "section_title": "Professional Trading Indicators",
+        "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
+      }
+    },
+    "what-you-get": {
+      "type": "what-you-get",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "TradingView Integration",
+            "description": "Indicators and strategies delivered directly to your TradingView account for seamless trading"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Automated Alerts",
+            "description": "Real-time notifications when trading opportunities arise based on your configured strategies"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Bot Configuration Support",
+            "description": "Expert guidance on setting up and optimizing your trading bot for maximum performance"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Library",
+            "description": "Access to proven trading strategies tested across multiple market conditions"
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "title": "Exclusive Discord Community",
+            "description": "Connect with other traders and get real-time support from our team"
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "title": "Regular Updates",
+            "description": "Continuous improvements to indicators, strategies, and bot functionality"
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4",
+        "feature-5",
+        "feature-6"
+      ],
+      "settings": {
+        "section_title": "What You Get",
+        "section_subtitle": "Complete trading solution with everything you need",
+        "button_text": "View Bot Suite Plans",
+        "button_link": "/pages/products"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "header",
+    "features-hero",
+    "bot-suite-features",
+    "indicators-showcase",
+    "what-you-get",
+    "footer"
+  ]
+}
+

@@ -1,5 +1,9 @@
 {
   "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
     "features-hero": {
       "type": "hero",
       "settings": {
@@ -172,12 +176,18 @@
         "button_text": "View Bot Suite Plans",
         "button_link": "/pages/products"
       }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
+    "header",
     "features-hero",
     "bot-suite-features",
     "indicators-showcase",
-    "what-you-get"
+    "what-you-get",
+    "footer"
   ]
 }

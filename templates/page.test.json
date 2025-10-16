@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "test": {
+      "type": "test-section"
+    }
+  },
+  "order": [
+    "test"
+  ]
+}
+

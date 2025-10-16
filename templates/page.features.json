@@ -1,6 +1,6 @@
 {
   "sections": {
-    "features-hero": {
+    "hero": {
       "type": "hero",
       "settings": {
         "show_badge": true,
@@ -16,7 +16,7 @@
       },
       "blocks": {}
     },
-    "bot-suite-features": {
+    "trading-bot": {
       "type": "trading-bot",
       "blocks": {
         "bot-feature-1": {
@@ -79,7 +79,7 @@
         "stat_label": ""
       }
     },
-    "indicators-showcase": {
+    "indicators": {
       "type": "indicators",
       "blocks": {
         "candles": {
@@ -175,9 +175,9 @@
     }
   },
   "order": [
-    "features-hero",
-    "bot-suite-features",
-    "indicators-showcase",
+    "hero",
+    "trading-bot",
+    "indicators",
     "what-you-get"
   ]
 }

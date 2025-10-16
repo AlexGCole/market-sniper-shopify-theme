@@ -76,6 +76,138 @@
 
 
 
+<style>
+  .trading-bot { 
+    padding: 80px 20px;
+    background: rgba(10, 10, 10, 0.5);
+    border-top: 1px solid rgba(0, 255, 65, 0.2); 
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2); 
+  }
+
+  .bot-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+
+  .bot-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    background: rgba(0, 255, 65, 0.2);
+    color: #00ff41;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .bot-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 16px;
+    color: white;
+  }
+
+  .bot-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .bot-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .bot-feature-card {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .bot-feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 65, 0.5);
+    background: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+  }
+
+  .bot-feature-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 255, 65, 0.05));
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50%;
+  }
+
+  .bot-feature-icon svg {
+    width: 32px;
+    height: 32px;
+    color: #00ff41;
+  }
+
+  .bot-feature-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  .bot-feature-content p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+  }
+
+  .bot-stat {
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stat-number {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-label {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (max-width: 968px) {
+    .trading-bot {
+      padding: 60px 15px;
+    }
+
+    .bot-features {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .bot-feature-card {
+      padding: 25px;
+    }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Trading Bot",

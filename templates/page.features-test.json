@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "test-hero": {
+      "type": "hero",
+      "settings": {
+        "show_badge": true,
+        "badge_text": "TEST - If you see this, hero works!",
+        "hero_title_line1": "Test Page",
+        "hero_title_line2": "Debugging Features",
+        "hero_subtitle": "This is a test to verify sections are loading",
+        "primary_button_text": "Test Button",
+        "primary_button_link": "/",
+        "secondary_button_text": "",
+        "secondary_button_link": "",
+        "show_stats": false
+      },
+      "blocks": {}
+    }
+  },
+  "order": [
+    "test-hero"
+  ]
+}
+

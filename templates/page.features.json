@@ -1,68 +1,347 @@
-{
-  "sections": {
-    "features-main": {
-      "type": "features",
-      "blocks": {
-        "feature-1": {
-          "type": "feature",
-          "settings": {
-            "title": "Proven Trading Strategies",
-            "description": "Battle-tested strategies automatically synced to your TradingView account"
-          }
-        },
-        "feature-2": {
-          "type": "feature",
-          "settings": {
-            "title": "Sharp Shooter Candles 4.2",
-            "description": "Advanced candlestick indicator with buy/sell signals and MACD integration"
-          }
-        },
-        "feature-3": {
-          "type": "feature",
-          "settings": {
-            "title": "Sharp Shooter RSI 2.0",
-            "description": "RSI divergence detection with early trend change signals"
-          }
-        },
-        "feature-4": {
-          "type": "feature",
-          "settings": {
-            "title": "Optional Bot Automation",
-            "description": "Connect your TradingView alerts to enable automated execution"
-          }
-        },
-        "feature-5": {
-          "type": "feature",
-          "settings": {
-            "title": "Private Discord Community",
-            "description": "Exclusive Discord channel with 200+ active traders"
-          }
-        },
-        "feature-6": {
-          "type": "feature",
-          "settings": {
-            "title": "Priority Support",
-            "description": "Direct access to our team for questions and technical assistance"
-          }
-        }
-      },
-      "block_order": [
-        "feature-1",
-        "feature-2",
-        "feature-3",
-        "feature-4",
-        "feature-5",
-        "feature-6"
-      ],
-      "settings": {
-        "section_title": "Everything You Need to Succeed",
-        "section_subtitle": "Complete trading solution with proven strategies and automation capabilities",
-        "button_text": "Get Started - $49/mo",
-        "button_link": "/pages/products"
-      }
+{% comment %}
+  sections/features.liquid
+  Features section with updated SVG icons and button
+{% endcomment %}
+
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.section_subtitle }}</p>
+    </div>
+
+    <div class="features-grid">
+      {% for block in section.blocks %}
+        <div class="feature-card" {{ block.shopify_attributes }}>
+          <div class="feature-icon">
+            {% if block.settings.title contains "Video" or block.settings.title contains "Hour" or block.settings.title contains "Coaching" %}
+              <!-- Video/Education Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+              </svg>
+            {% elsif block.settings.title contains "Alert" %}
+              <!-- Alert/Bell Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            {% elsif block.settings.title contains "Analysis" or block.settings.title contains "Market" or block.settings.title contains "Weekly" %}
+              <!-- Analysis/Graph Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            {% elsif block.settings.title contains "Example" or block.settings.title contains "Live" or block.settings.title contains "Trading" %}
+              <!-- Live/Activity Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            {% elsif block.settings.title contains "Automat" or block.settings.title contains "Trading Strategy" or block.settings.title contains "Strategy Automation" %}
+              <!-- Automation Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                <path d="M8 6h8"></path>
+                <path d="M12 4v2"></path>
+                <circle cx="8.5" cy="13.5" r="1.5"></circle>
+                <circle cx="15.5" cy="13.5" r="1.5"></circle>
+                <path d="M9 17h6"></path>
+              </svg>
+            {% elsif block.settings.title contains "Indicator" or block.settings.title contains "TradingView" or block.settings.title contains "Integration" %}
+              <!-- Chart/Indicator Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            {% elsif block.settings.title contains "Strateg" or block.settings.title contains "Library" %}
+              <!-- Strategy/Target Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            {% elsif block.settings.title contains "Discord" or block.settings.title contains "Community" or block.settings.title contains "Discussion" or block.settings.title contains "Exclusive" %}
+              <!-- Community Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 010 7.75"></path>
+              </svg>
+            {% elsif block.settings.title contains "Channel" or block.settings.title contains "Discussion" %}
+              <!-- Community/Channel Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 010 7.75"></path>
+              </svg>
+            {% elsif block.settings.title contains "Configuration" or block.settings.title contains "Setup" or block.settings.title contains "Support" %}
+              <!-- Settings/Configuration Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            {% elsif block.settings.title contains "Priority" %}
+              <!-- Support/Headset Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+              </svg>
+            {% elsif block.settings.title contains "Education" or block.settings.title contains "Learn" %}
+              <!-- Book/Education Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            {% elsif block.settings.title contains "Update" or block.settings.title contains "Regular" %}
+              <!-- Update/Refresh Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+            {% else %}
+              <!-- Default Checkmark Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            {% endif %}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.button_text != blank %}
+      <div class="features-cta">
+        <a href="{{ section.settings.button_link }}" class="btn btn-primary">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .features-section {
+    padding: 80px 20px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  .feature-card {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 65, 0.5);
+    background: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+  }
+
+  .feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 255, 65, 0.05));
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover .feature-icon {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1));
+    border-color: #00ff41;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+  }
+
+  .feature-icon svg {
+    width: 40px;
+    height: 40px;
+    color: #00ff41;
+    stroke-width: 2;
+  }
+
+  .feature-card h3 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .feature-card p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  .features-cta {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 18px 50px;
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #000;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.4);
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
+    background: linear-gradient(135deg, #00ff41, #00dd3a);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    color: #000;
+  }
+
+  @media (max-width: 968px) {
+    .features-section {
+      padding: 60px 15px;
+      overflow-x: hidden;
     }
-  },
-  "order": [
-    "features-main"
+
+    .container {
+      padding: 0 15px;
+      max-width: 100%;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 30px 20px;
+    }
+
+    .features-cta {
+      padding: 0 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 100%;
+      padding: 16px 30px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .features-section {
+      padding: 50px 10px;
+    }
+
+    .container {
+      padding: 0 10px;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .features-cta {
+      padding: 0 10px;
+    }
+
+    .btn {
+      padding: 16px 40px;
+      font-size: 1rem;
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Everything You Need to Succeed"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Complete trading solution with proven strategies and automation capabilities"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text (optional)",
+      "default": ""
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link (optional)",
+      "default": ""
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description",
+          "default": "Feature description goes here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features"
+    }
   ]
 }
+{% endschema %}

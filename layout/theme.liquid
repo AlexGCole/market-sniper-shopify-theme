@@ -34,13 +34,13 @@
 </head>
 <body class="template-{{ template.name | handle }}">
 
-  {% render 'header' %}
+  {% section 'header' %}
 
   <main id="MainContent" role="main">
     {{ content_for_layout }}
   </main>
 
-  {% render 'footer' %}
+  {% section 'footer' %}
 
   <!-- JavaScript Files -->
   <script src="{{ 'utils.js' | asset_url }}" defer></script>

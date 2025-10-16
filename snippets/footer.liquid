@@ -1,0 +1,98 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon">
+            <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name }}">
+          </span>
+          <span class="logo-text">Market Sniper</span>
+        </div>
+        <p class="tagline">Precision trading tools for professional traders. Automated bot, proven strategies, and expert support.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/pages/features">Features</a></li>
+            <li><a href="/pages/products">All Products</a></li>
+            <li><a href="/#pricing">Pricing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/pages/contact">Contact Us</a></li>
+            <li class="email-info">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>support@marketsniper.pro</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <ul class="social-links">
+            <li>
+              <a href="https://www.youtube.com/channel/UCtuoqGiIHBGMRmTGeXVrf9g" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                YouTube
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/marketsniperpro" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                @marketsniperpro
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/jesseolson" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                @jesseolson
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-disclosures">
+      <div class="footer-disclaimer">
+        <div class="risk-header">
+          <svg class="risk-logo" viewBox="0 0 1200 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="75" font-family="Arial, sans-serif" font-size="90" font-weight="900" fill="#ff4444" letter-spacing="-2">RISK DISCLOSURE</text>
+          </svg>
+        </div>
+        <p>Futures and forex trading involves significant risk and is not suitable for all investors. You may lose more than your initial investment. Only trade with risk capital you can afford to lose. Past performance does not guarantee future results. Testimonials appearing on this website may not be representative of other clients or customers and is not a guarantee of future performance or success.</p>
+      </div>
+
+      <div class="footer-ninjatrader">
+        <div class="nt-header">
+          <svg class="nt-logo" viewBox="0 0 800 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="75" font-family="Arial, sans-serif" font-size="90" font-weight="900" fill="#FF5722" letter-spacing="-2">NINJATRADER</text>
+          </svg>
+        </div>
+        <p>Market Sniper is a third-party vendor and is not affiliated with NinjaTrader Brokerage or NinjaTrader Group, LLC. NinjaTrader Brokerage is an NFA registered introducing broker (NFA #0339976) providing brokerage services to traders of futures and foreign exchange products. Futures, foreign currency and options trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing ones' financial security or life style. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: "%Y" }} Market Sniper. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">

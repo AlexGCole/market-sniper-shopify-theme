@@ -1,19 +1,11 @@
 {
   "sections": {
-    "header": {
-      "type": "header"
-    },
     "main": {
       "type": "main-product",
       "settings": {}
-    },
-    "footer": {
-      "type": "footer"
     }
   },
   "order": [
-    "header",
-    "main",
-    "footer"
+    "main"
   ]
 }

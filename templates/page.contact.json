@@ -1,21 +1,11 @@
 {
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
-    },
     "contact-form": {
       "type": "contact-form",
-      "settings": {}
-    },
-    "footer": {
-      "type": "footer",
       "settings": {}
     }
   },
   "order": [
-    "header",
-    "contact-form",
-    "footer"
+    "contact-form"
   ]
 }

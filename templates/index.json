@@ -1,9 +1,5 @@
 {
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
-    },
     "hero": {
       "type": "hero",
       "settings": {
@@ -261,19 +257,13 @@
         "section_title": "Frequently Asked Questions",
         "section_subtitle": "Everything you need to know"
       }
-    },
-    "footer": {
-      "type": "footer",
-      "settings": {}
     }
   },
   "order": [
-    "header",
     "hero",
     "how-it-works",
     "trading-bot",
     "pricing",
-    "faq",
-    "footer"
+    "faq"
   ]
 }

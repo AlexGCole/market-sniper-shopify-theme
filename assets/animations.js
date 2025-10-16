@@ -73,27 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.getComputedStyle(section).display === 'none') { return; }
             const tagName = section.tagName.toLowerCase();
             if (section.classList.contains('hero')) {
-                section.style.setProperty('background', '#0a0a0a', 'important');
+                section.style.setProperty('background', 'linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 204, 51, 0.12) 30%, rgba(0, 255, 65, 0.05) 70%, rgba(10, 26, 15, 0.95) 100%)', 'important');
                 const heroBg = section.querySelector('.hero-bg');
                 if (heroBg) {
-                    heroBg.style.setProperty('background', 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)', 'important');
+                    heroBg.style.setProperty('background', 'radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.05) 0%, transparent 30%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.03) 0%, transparent 30%)', 'important');
                 }
-                lastBackground = '#0a0a0a';
+                lastBackground = 'linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 204, 51, 0.12) 30%, rgba(0, 255, 65, 0.05) 70%, rgba(10, 26, 15, 0.95) 100%)';
                 return;
             }
             if (section.classList.contains('products-hero-compact')) {
-                section.style.setProperty('background', '#0a0a0a', 'important');
+                section.style.setProperty('background', 'linear-gradient(135deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 204, 51, 0.08) 50%, rgba(10, 26, 15, 0.9) 100%)', 'important');
                 section.style.setProperty('position', 'relative', 'important');
                 section.style.setProperty('border-bottom', '1px solid rgba(0, 255, 65, 0.2)', 'important');
                 const existingOverlay = section.querySelector('.hero-bg-overlay');
                 if (existingOverlay) existingOverlay.remove();
-                const gradientOverlay = document.createElement('div');
-                gradientOverlay.className = 'hero-bg-overlay';
-                gradientOverlay.style.cssText = 'position:absolute!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;height:100%!important;background:radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 0%, transparent 50%)!important;z-index:0!important;pointer-events:none!important;';
-                section.insertBefore(gradientOverlay, section.firstChild);
-                const container = section.querySelector('.container');
-                if (container) { container.style.position = 'relative'; container.style.zIndex = '10'; }
-                lastBackground = '#0a0a0a';
+                lastBackground = 'linear-gradient(135deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 204, 51, 0.08) 50%, rgba(10, 26, 15, 0.9) 100%)';
                 return;
             }
             if (section.classList.contains('footer') || tagName === 'footer') {

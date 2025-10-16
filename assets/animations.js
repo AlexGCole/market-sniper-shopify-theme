@@ -39,6 +39,13 @@ function animateStats() {
 function animateValue(element) {
     const text = element.textContent;
     const hasPlus = text.includes('+');
+    const hasSlash = text.includes('/');
+    
+    // Don't animate if it contains a slash (like "24/7")
+    if (hasSlash) {
+        return;
+    }
+    
     const number = parseInt(text.replace(/\D/g, ''));
     if (isNaN(number)) return;
     const duration = 2000;

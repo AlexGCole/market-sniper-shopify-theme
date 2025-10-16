@@ -460,7 +460,12 @@ section {
 .rsi-signal.sell { background: #ff4444; color: #fff; box-shadow: 0 0 15px rgba(255, 68, 68, 0.6); }
 
 /* Trading Bot */
-.trading-bot { border-top: 1px solid rgba(0, 255, 65, 0.2); border-bottom: 1px solid rgba(0, 255, 65, 0.2); }
+.trading-bot { 
+    padding: 80px 20px;
+    background: rgba(10, 10, 10, 0.5);
+    border-top: 1px solid rgba(0, 255, 65, 0.2); 
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2); 
+}
 .bot-content { text-align: center; max-width: 800px; margin: 0 auto; }
 .bot-badge { display: inline-block; padding: var(--spacing-xs) var(--spacing-lg); background: rgba(0, 255, 65, 0.2); border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--spacing-md); }
 .bot-content h2 { font-size: var(--text-5xl); margin-bottom: var(--spacing-md); }
@@ -493,6 +498,10 @@ section {
 .pricing-card .btn { width: 100%; }
 
 /* FAQ */
+.faq {
+    padding: 80px 20px;
+    background: rgba(10, 10, 10, 0.5);
+}
 .faq-list { max-width: 800px; margin: 0 auto; }
 .faq-item { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-lg) 0; text-align: left; font-size: var(--text-lg); font-weight: 600; color: var(--light); cursor: pointer; transition: color var(--transition-base); }
@@ -540,7 +549,12 @@ section {
 .hero .btn-secondary:hover { background: rgba(0, 255, 65, 0.1); border-color: rgba(0, 255, 65, 0.4); color: #ffffff; transform: translateY(-2px); }
 
 /* How it works - steps grid/cards */
-.how-it-works { padding: 80px 20px; border-top: 1px solid rgba(0, 255, 65, 0.2); border-bottom: 1px solid rgba(0, 255, 65, 0.2); }
+.how-it-works { 
+    padding: 80px 20px; 
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, rgba(0, 204, 51, 0.03) 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.2); 
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2); 
+}
 .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
 .step-card { background: rgba(0, 255, 65, 0.03); border: 1px solid rgba(0, 255, 65, 0.2); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; }
 .step-card:hover { transform: translateY(-5px); border-color: rgba(0, 255, 65, 0.5); background: rgba(0, 255, 65, 0.05); box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2); }
@@ -553,7 +567,10 @@ section {
 @media (max-width: 640px) { .steps-grid { grid-template-columns: 1fr; } }
 
 /* Pricing wrapper styles */
-.pricing-section { padding: 80px 20px; }
+.pricing-section { 
+    padding: 80px 20px;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(0, 204, 51, 0.02) 100%);
+}
 .pricing-wrapper { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 24px; max-width: 1200px; margin: 0 auto; }
 .pricing-option { flex: 0 1 320px; max-width: 380px; background: rgba(255, 255, 255, 0.02); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }
 .pricing-option:hover { transform: translateY(-10px); border-color: #00ff41; box-shadow: 0 20px 40px rgba(0, 255, 65, 0.25); }
@@ -583,7 +600,6 @@ section {
 .link-primary { color: var(--primary); }
 
 /* Trading Bot section styles (migrated from inline) */
-.trading-bot { padding: 80px 20px; }
 .bot-header { text-align: center; margin-bottom: 60px; }
 .bot-badge { display: inline-block; padding: 8px 20px; background: rgba(0, 255, 65, 0.1); border: 1px solid rgba(0, 255, 65, 0.3); border-radius: 50px; color: #00ff41; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
 .bot-header h2 { font-size: 3rem; color: white; margin-bottom: 15px; font-weight: 700; }

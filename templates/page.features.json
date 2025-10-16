@@ -1,4 +1,3 @@
-cat > templates/page.features.json << 'EOF'
 {
   "sections": {
     "features-hero": {
@@ -182,4 +181,3 @@ cat > templates/page.features.json << 'EOF'
     "what-you-get"
   ]
 }
-EOF

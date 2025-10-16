@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Market Sniper",
+    "theme_version": "1.0.0",
+    "theme_author": "Market Sniper",
+    "theme_documentation_url": "https://marketsniper.pro",
+    "theme_support_url": "https://marketsniper.pro/pages/contact"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Theme Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Color",
+        "default": "#007bff"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary Color",
+        "default": "#6c757d"
+      }
+    ]
+  }
+]

@@ -25,7 +25,7 @@
         "stat-2": {
           "type": "stat",
           "settings": {
-            "stat_number": "24-7",
+            "stat_number": "24/7",
             "stat_label": "Trading Alerts"
           }
         },

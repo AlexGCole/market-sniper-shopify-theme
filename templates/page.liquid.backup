@@ -1,0 +1,12 @@
+{% comment %}
+  Check if this page has a JSON template - if so, don't render anything here
+  The JSON template will handle the sections automatically
+{% endcomment %}
+{% unless template contains '.json' %}
+  <div class="container page-content">
+    <h1>{{ page.title }}</h1>
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  </div>
+{% endunless %}

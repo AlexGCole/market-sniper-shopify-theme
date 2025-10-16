@@ -280,6 +280,7 @@ section {
     display: flex;
     gap: var(--spacing-md);
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     margin-bottom: var(--spacing-2xl);
     animation: fadeInUp 0.6s ease-out 0.3s backwards;
@@ -526,7 +527,7 @@ section {
 /* Responsive tweaks from components.css */
 @media (max-width: 1024px) { .indicator-item { grid-template-columns: 1fr; } .indicator-item.reverse { direction: ltr; } }
 @media (max-width: 768px) {
-    .hero-cta { flex-direction: column; }
+    .hero-cta { flex-direction: column; align-items: center; }
     .hero-stats { gap: var(--spacing-xl); }
     .pricing-cards { grid-template-columns: 1fr; }
     .pricing-card.featured { transform: scale(1); }
@@ -543,8 +544,9 @@ section {
 .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
 .step-card { background: rgba(0, 255, 65, 0.03); border: 1px solid rgba(0, 255, 65, 0.2); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; }
 .step-card:hover { transform: translateY(-5px); border-color: rgba(0, 255, 65, 0.5); background: rgba(0, 255, 65, 0.05); box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2); }
-.step-card .step-icon { width: 80px; height: 80px; margin: 0 auto 25px; background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 255, 65, 0.05)); border: 2px solid rgba(0, 255, 65, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-.step-card:hover .step-icon { background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1)); border-color: #00ff41; transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 65, 0.4); }
+.step-card .step-icon { width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 255, 65, 0.05)); border: 2px solid rgba(0, 255, 65, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+.step-card .step-icon svg { width: 28px; height: 28px; color: #00ff41; }
+.step-card:hover .step-icon { background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1)); border-color: #00ff41; transform: scale(1.1); box-shadow: 0 0 20px rgba(0, 255, 65, 0.3); }
 .step-card h3 { color: #fff; font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
 .step-card p { color: rgba(255, 255, 255, 0.7); line-height: 1.6; font-size: 1rem; }
 @media (max-width: 968px) { .steps-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; } .step-card { padding: 30px 20px; } }

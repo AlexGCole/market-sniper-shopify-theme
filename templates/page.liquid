@@ -1,12 +1,11 @@
 {% comment %}
-  This template handles both regular pages and JSON template pages
-  For JSON templates, content_for_layout will contain the sections
-  For regular pages, we show the basic page content
+  For pages with JSON templates, content_for_layout should contain the sections
+  For regular pages, show basic content
 {% endcomment %}
 
-{% if content_for_layout contains 'shopify-section' %}
-  {{ content_for_layout }}
-{% else %}
+{{ content_for_layout }}
+
+{% if content_for_layout == blank %}
   <div class="container page-content">
     <h1>{{ page.title }}</h1>
     <div class="rte">

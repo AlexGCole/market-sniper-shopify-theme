@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "features-hero": {
+      "type": "hero",
+      "settings": {
+        "show_badge": true,
+        "badge_text": "Professional Trading Tools",
+        "hero_title_line1": "Bot Suite",
+        "hero_title_line2": "Automated Trading Made Simple",
+        "hero_subtitle": "Automated trading with professional indicators and strategies - everything you need to trade smarter",
+        "primary_button_text": "View Plans",
+        "primary_button_link": "/pages/products",
+        "secondary_button_text": "",
+        "secondary_button_link": "",
+        "show_stats": false
+      },
+      "blocks": {}
+    },
+    "features-test": {
+      "type": "features",
+      "settings": {
+        "section_title": "Test Features Section",
+        "section_subtitle": "This is a test to see if sections are working"
+      },
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "Test Feature 1",
+            "description": "This is a test feature to verify sections are loading"
+          }
+        }
+      },
+      "block_order": ["feature-1"]
+    }
+  },
+  "order": [
+    "features-hero",
+    "features-test"
+  ]
+}

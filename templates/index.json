@@ -1,23 +1,22 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "Market Sniper"
+      }
     },
     "hero": {
       "type": "hero",
-      "settings": {
-        "show_badge": false,
-        "badge_text": "Strategies & Automation",
-        "hero_title_line1": "Professional Strategies",
-        "hero_title_line2": "Automated or Manual",
-        "hero_subtitle": "Access proven trading strategies with Sharp Shooter indicators. Trade manually or let a bot automate execution for you - your choice.",
-        "primary_button_text": "Get Started - $49/mo",
-        "primary_button_link": "/pages/products",
-        "secondary_button_text": "View Features",
-        "secondary_button_link": "/pages/features",
-        "show_stats": true
-      },
       "blocks": {
         "stat-1": {
           "type": "stat",
@@ -45,7 +44,19 @@
         "stat-1",
         "stat-2",
         "stat-3"
-      ]
+      ],
+      "settings": {
+        "show_badge": false,
+        "badge_text": "Strategies & Automation",
+        "hero_title_line1": "Empowering Traders",
+        "hero_title_line2": "to Achieve Financial Independence",
+        "hero_subtitle": "Crypto. Stocks. Futures. Forex. Join The Market Sniper community and master the art of identifying high-probability trades, managing risk, and maximizing results in both rising and falling markets.",
+        "primary_button_text": "Get Started - $49/mo",
+        "primary_button_link": "/pages/products",
+        "secondary_button_text": "View Features",
+        "secondary_button_link": "/pages/features",
+        "show_stats": true
+      }
     },
     "how-it-works": {
       "type": "how-it-works",
@@ -54,28 +65,28 @@
           "type": "step",
           "settings": {
             "title": "Choose Your Plan",
-            "description": "Select monthly ($49) or annual ($490) to access our complete trading toolkit"
+            "description": "Access our complete trading toolkit for $49 per month, or save nearly $100 with an annual plan for $490."
           }
         },
         "step-2": {
           "type": "step",
           "settings": {
             "title": "Join Discord Community",
-            "description": "Get instant access to our private Discord with strategy discussions and real-time support"
+            "description": "Get instant access to our private Discord with strategy discussions and real-time support."
           }
         },
         "step-3": {
           "type": "step",
           "settings": {
-            "title": "Receive Strategies & Bot",
-            "description": "Proven strategies, indicators, and optional bot automation shared to your TradingView account"
+            "title": "Get Strategies and Bot Automation",
+            "description": "Proven strategies, indicators, and optional bot automation delivered directly to your TradingView account."
           }
         },
         "step-4": {
           "type": "step",
           "settings": {
             "title": "Start Trading Your Way",
-            "description": "Trade manually with our proven setups or enable bot automation for hands-free execution"
+            "description": "Trade manually using our proven setups, or activate bot automation for fully hands-free execution."
           }
         }
       },
@@ -87,7 +98,7 @@
       ],
       "settings": {
         "section_title": "Get Started in 4 Simple Steps",
-        "section_subtitle": "From signup to trading - with or without automation"
+        "section_subtitle": ""
       }
     },
     "pricing": {
@@ -137,7 +148,7 @@
       ],
       "settings": {
         "section_title": "Bot Suite",
-        "section_subtitle": "Choose the plan that works for you"
+        "section_subtitle": "Choose the plan that works for you."
       }
     },
     "faq": {
@@ -196,7 +207,7 @@
       ],
       "settings": {
         "section_title": "Frequently Asked Questions",
-        "section_subtitle": "Everything you need to know"
+        "section_subtitle": ""
       }
     },
     "footer": {

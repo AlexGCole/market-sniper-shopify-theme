@@ -169,9 +169,26 @@
     border-top: 1px solid rgba(0, 255, 65, 0.2);
     border-bottom: 1px solid rgba(0, 255, 65, 0.2);
   }
+  .what-you-get-section .steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
   .features-cta {
     text-align: center;
     margin-top: 40px;
+  }
+  
+  @media (max-width: 968px) {
+    .what-you-get-section .steps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .what-you-get-section .steps-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 

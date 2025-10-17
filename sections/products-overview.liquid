@@ -164,6 +164,14 @@
       
       if (!title) return;
       
+      // Check if title is initially in view and add visible class immediately
+      const rect = title.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        title.classList.add('visible');
+        title.style.transition = 'none';
+        setTimeout(() => title.style.transition = '', 50);
+      }
+      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {

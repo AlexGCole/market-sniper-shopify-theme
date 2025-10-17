@@ -188,18 +188,18 @@
   /* Indicator bidirectional animations */
   .animate-indicator {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateX(-50px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
 
   .animate-indicator.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .animate-indicator.hidden {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateX(-50px);
   }
 
   /* CTA button bidirectional animation */
@@ -616,6 +616,16 @@
         '.animate-section-header, .animate-slide-up-title, .animate-slide-up-tagline, ' +
         '.animate-slide-up-subtitle, .animate-slide-up-cta, .animate-slide-in-card'
       );
+      
+      // Check if elements are initially in view and add visible class immediately
+      oneWayElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('visible');
+          el.style.transition = 'none';
+          setTimeout(() => el.style.transition = '', 50);
+        }
+      });
       
       const oneWayObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

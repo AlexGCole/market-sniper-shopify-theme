@@ -4,21 +4,258 @@
   Features page template
 {% endcomment %}
 
-<section class="hero">
+<section class="hero features-hero">
   <div class="container">
-    <div class="hero-content">
-      <h1 class="hero-title">
+    <div class="hero-content features-hero-content">
+      <h1 class="hero-title features-hero-title">
         Bot Suite<br>
-        <span class="gradient-text">Automated Trading Made Simple</span>
+        <span class="gradient-text animated-gradient">Automated Trading Made Simple</span>
       </h1>
-      <p class="hero-subtitle">Automated trading with professional indicators and strategies - everything you need to trade smarter</p>
-      <div class="hero-cta">
-        <a href="/pages/products" class="btn btn-primary">View Plans</a>
+      <p class="hero-subtitle features-hero-subtitle">Automated trading with professional indicators and strategies - everything you need to trade smarter</p>
+      <div class="hero-cta features-hero-cta">
+        <a href="/pages/products" class="btn btn-primary pulse-button">View Plans</a>
       </div>
     </div>
+    <div class="floating-elements">
+      <div class="float-element element-1"></div>
+      <div class="float-element element-2"></div>
+      <div class="float-element element-3"></div>
+      <div class="float-element element-4"></div>
+    </div>
   </div>
-  <div class="hero-bg"></div>
+  <div class="hero-bg features-hero-bg"></div>
 </section>
+
+<style>
+  /* Animated gradient for text */
+  .features-hero .animated-gradient {
+    background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88, #00ff41);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Animated background */
+  .features-hero-bg {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 204, 51, 0.05) 50%, rgba(0, 255, 136, 0.1) 100%);
+    background-size: 200% 200%;
+    animation: bgShift 8s ease infinite;
+  }
+
+  @keyframes bgShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Floating elements */
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .float-element {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 204, 51, 0.1));
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .float-element.element-1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: 10%;
+    animation-delay: 0s;
+  }
+
+  .float-element.element-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    left: 15%;
+    animation-delay: 2s;
+  }
+
+  .float-element.element-3 {
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    right: -125px;
+    animation-delay: 4s;
+  }
+
+  .float-element.element-4 {
+    width: 180px;
+    height: 180px;
+    top: 20%;
+    left: 5%;
+    animation-delay: 6s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.3;
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+      opacity: 0.5;
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+      opacity: 0.4;
+    }
+  }
+
+  /* Content animations */
+  .features-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .features-hero-title {
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .features-hero-subtitle {
+    animation: fadeInUp 1s ease-out 0.2s backwards;
+  }
+
+  .features-hero-cta {
+    animation: fadeInUp 1s ease-out 0.4s backwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Pulsing button */
+  .pulse-button {
+    position: relative;
+    animation: buttonPulse 2s ease-in-out infinite;
+  }
+
+  .pulse-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 65, 0.3);
+    border-radius: 8px;
+    transform: translate(-50%, -50%);
+    animation: pulseRing 2s ease-out infinite;
+  }
+
+  @keyframes buttonPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(0, 255, 65, 0);
+    }
+  }
+
+  @keyframes pulseRing {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  /* Hover effect enhancement */
+  .pulse-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  /* Add shimmer effect on title */
+  .features-hero-title {
+    position: relative;
+  }
+
+  .features-hero-title::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .float-element {
+      filter: blur(40px);
+    }
+
+    .float-element.element-1 {
+      width: 200px;
+      height: 200px;
+    }
+
+    .float-element.element-2 {
+      width: 150px;
+      height: 150px;
+    }
+
+    .float-element.element-3 {
+      width: 180px;
+      height: 180px;
+    }
+
+    .float-element.element-4 {
+      width: 120px;
+      height: 120px;
+    }
+  }
+</style>
 
 <section class="trading-bot" id="trading-bot">
   <div class="container">

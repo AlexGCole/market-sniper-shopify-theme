@@ -101,129 +101,6 @@
         "section_subtitle": ""
       }
     },
-    "trading-bot": {
-      "type": "trading-bot",
-      "blocks": {
-        "bot-feature-1": {
-          "type": "feature",
-          "settings": {
-            "title": "Automated Trading Bot",
-            "description": "Let our proven strategies trade for you 24/7 with fully automated execution"
-          }
-        },
-        "bot-feature-2": {
-          "type": "feature",
-          "settings": {
-            "title": "Sharp Shooter Candles",
-            "description": "Advanced candlestick pattern recognition for precise entry and exit signals"
-          }
-        },
-        "bot-feature-3": {
-          "type": "feature",
-          "settings": {
-            "title": "Sharp Shooter RSI",
-            "description": "Optimized RSI indicator with multi-timeframe analysis for trend confirmation"
-          }
-        },
-        "bot-feature-4": {
-          "type": "feature",
-          "settings": {
-            "title": "Proven Trading Strategies",
-            "description": "Battle-tested strategies refined over 2+ years of real market conditions"
-          }
-        },
-        "bot-feature-5": {
-          "type": "feature",
-          "settings": {
-            "title": "Private Bot Discussion Channel",
-            "description": "Exclusive Discord channel for bot users with strategy discussions and updates"
-          }
-        },
-        "bot-feature-6": {
-          "type": "feature",
-          "settings": {
-            "title": "Priority Support",
-            "description": "Get priority assistance for bot setup, configuration, and troubleshooting"
-          }
-        }
-      },
-      "block_order": [
-        "bot-feature-1",
-        "bot-feature-2",
-        "bot-feature-3",
-        "bot-feature-4",
-        "bot-feature-5",
-        "bot-feature-6"
-      ],
-      "settings": {
-        "title": "Complete Trading Bot Suite",
-        "subtitle": "Everything you need for automated trading success",
-        "show_stat": true,
-        "stat_number": "2+",
-        "stat_label": "Years of Optimization"
-      }
-    },
-    "what-you-get": {
-      "type": "what-you-get",
-      "blocks": {
-        "feature-1": {
-          "type": "feature",
-          "settings": {
-            "title": "Video Course & Coaching",
-            "description": "Comprehensive video tutorials and personalized coaching sessions"
-          }
-        },
-        "feature-2": {
-          "type": "feature",
-          "settings": {
-            "title": "Real-Time Trading Alerts",
-            "description": "Get instant notifications for high-probability trading setups"
-          }
-        },
-        "feature-3": {
-          "type": "feature",
-          "settings": {
-            "title": "Weekly Market Analysis",
-            "description": "In-depth market analysis and trading opportunities every week"
-          }
-        },
-        "feature-4": {
-          "type": "feature",
-          "settings": {
-            "title": "Strategy Automation",
-            "description": "Automate your trading strategies with our proven bot technology"
-          }
-        },
-        "feature-5": {
-          "type": "feature",
-          "settings": {
-            "title": "TradingView Integration",
-            "description": "Seamless integration with TradingView for powerful charting and alerts"
-          }
-        },
-        "feature-6": {
-          "type": "feature",
-          "settings": {
-            "title": "Exclusive Discord Community",
-            "description": "Join our private community of successful traders and get 24/7 support"
-          }
-        }
-      },
-      "block_order": [
-        "feature-1",
-        "feature-2",
-        "feature-3",
-        "feature-4",
-        "feature-5",
-        "feature-6"
-      ],
-      "settings": {
-        "section_title": "What You Get",
-        "section_subtitle": "Complete trading solution with everything you need to succeed",
-        "button_text": "",
-        "button_link": ""
-      }
-    },
     "pricing": {
       "type": "pricing",
       "blocks": {
@@ -258,7 +135,7 @@
           "settings": {
             "addon_name": "Setup",
             "addon_price": "249",
-            "addon_features": "✓ Complete Automation Setup\n✓ TradingView Integration\n✓ Strategy Configuration\n✓ Alert Setup & Testing\n✓ 1-on-1 Setup Support",
+            "addon_features": "✓ Complete Bot Installation\n✓ TradingView Integration\n✓ Strategy Configuration\n✓ Alert Setup & Testing\n✓ 1-on-1 Setup Support",
             "addon_button_link": "/products/bot-suite-setup",
             "addon_button_text": "Add Setup Service"
           }
@@ -342,8 +219,6 @@
     "header",
     "hero",
     "how-it-works",
-    "trading-bot",
-    "what-you-get",
     "pricing",
     "faq",
     "footer"

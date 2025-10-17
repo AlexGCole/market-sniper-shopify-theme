@@ -147,7 +147,7 @@
 
   .animate-slide-in-card {
     opacity: 0;
-    transform: translateX(-60px);
+    transform: translateX(60px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     transition-delay: 0.5s;
   }
@@ -155,6 +155,10 @@
   .animate-slide-in-card.visible {
     opacity: 1;
     transform: translateX(0);
+  }
+
+  .animate-slide-in-card.no-transition {
+    transition: none !important;
   }
 
   /* Section header animations - scroll triggered */

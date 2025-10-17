@@ -6,7 +6,7 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
     }, observerOptions);
-    const elementsToAnimate = document.querySelectorAll('.indicator-item, .pricing-card, .faq-item');
+    const elementsToAnimate = document.querySelectorAll('.indicator-item, .faq-item');
     elementsToAnimate.forEach(el => { el.classList.add('animate-on-scroll'); observer.observe(el); });
 }
 
@@ -53,8 +53,16 @@ function initBidirectionalAnimations() {
         observer.observe(el);
     });
     
+    // Target pricing cards with staggered delays
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    pricingCards.forEach((el, index) => {
+        el.classList.add('animate-scale');
+        el.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(el);
+    });
+    
     // Animate section headers
-    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header');
+    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing .section-header');
     headers.forEach(header => {
         header.classList.add('animate-on-scroll-bidirectional');
         observer.observe(header);

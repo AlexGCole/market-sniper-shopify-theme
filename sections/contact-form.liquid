@@ -1,11 +1,11 @@
 <section class="contact-section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header animate-contact-header">
       <h2>Contact Market Sniper</h2>
       <p>Have questions? We're here to help you succeed in your trading journey</p>
     </div>
 
-    <div class="contact-form-wrapper">
+    <div class="contact-form-wrapper animate-contact-form">
       {% form 'contact' %}
         {% if form.posted_successfully? %}
           <div class="form-success">
@@ -71,6 +71,64 @@
     </div>
   </div>
 </section>
+
+<style>
+  /* Contact page animations */
+  .animate-contact-header {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-contact-header.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .animate-contact-form {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 0.3s;
+  }
+
+  .animate-contact-form.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  // Contact page animation on scroll
+  (function() {
+    function initContactAnimations() {
+      const contactElements = document.querySelectorAll('.animate-contact-header, .animate-contact-form');
+      
+      if (contactElements.length === 0) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px'
+      });
+      
+      contactElements.forEach(el => observer.observe(el));
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initContactAnimations);
+    } else {
+      initContactAnimations();
+    }
+  })();
+</script>
 
 {% schema %}
 {

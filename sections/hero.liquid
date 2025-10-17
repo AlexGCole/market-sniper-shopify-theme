@@ -67,12 +67,30 @@
       
       if (heroElements.length === 0) return;
       
+      // On initial page load, set hero elements to visible state immediately
+      heroElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          // Set to final state immediately without animation
+          el.style.opacity = '1';
+          el.style.transform = 'translateX(0)';
+          el.classList.add('visible');
+          el.classList.add('no-initial-animation');
+        }
+      });
+      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
           } else {
             entry.target.classList.remove('visible');
+            // Remove inline styles when scrolling out so animations work on scroll back
+            if (entry.target.classList.contains('no-initial-animation')) {
+              entry.target.classList.remove('no-initial-animation');
+              entry.target.style.opacity = '';
+              entry.target.style.transform = '';
+            }
           }
         });
       }, {

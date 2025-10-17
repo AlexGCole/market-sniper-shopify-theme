@@ -202,6 +202,23 @@
     transform: translateY(40px);
   }
 
+  /* CTA button bidirectional animation */
+  .animate-cta-button {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-cta-button.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .animate-cta-button.hidden {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+
   .features-hero-alt .hero-subtitle {
     font-size: 18px;
     margin-bottom: 30px;
@@ -555,7 +572,7 @@
       </div>
     </div>
 
-    <div class="features-cta">
+    <div class="features-cta animate-cta-button">
       <a href="/pages/products" class="btn btn-primary">View Bot Suite Plans</a>
     </div>
   </div>
@@ -618,7 +635,7 @@
       oneWayElements.forEach(el => oneWayObserver.observe(el));
       
       // Bidirectional animations (animate on scroll up and down)
-      const bidirectionalElements = document.querySelectorAll('.animate-step-card, .animate-indicator');
+      const bidirectionalElements = document.querySelectorAll('.animate-step-card, .animate-indicator, .animate-cta-button');
       
       const bidirectionalObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

@@ -54,7 +54,7 @@ function initBidirectionalAnimations() {
     });
     
     // Target pricing cards with staggered delays
-    const pricingCards = document.querySelectorAll('.pricing-card');
+    const pricingCards = document.querySelectorAll('.pricing-option');
     pricingCards.forEach((el, index) => {
         el.classList.add('animate-scale');
         el.style.transitionDelay = `${index * 0.1}s`;
@@ -62,7 +62,7 @@ function initBidirectionalAnimations() {
     });
     
     // Animate section headers
-    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing .section-header');
+    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header');
     headers.forEach(header => {
         header.classList.add('animate-on-scroll-bidirectional');
         observer.observe(header);

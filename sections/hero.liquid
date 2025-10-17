@@ -40,19 +40,6 @@
   <div class="hero-bg"></div>
 </section>
 
-<script>
-  // Immediately set hero to visible on initial load
-  (function() {
-    const heroElements = document.querySelectorAll('.animate-hero-element');
-    heroElements.forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'translateX(0)';
-      el.classList.add('visible');
-      el.classList.add('initial-load');
-    });
-  })();
-</script>
-
 <style>
   /* Hero animation styles */
   .animate-hero-element {
@@ -71,6 +58,19 @@
   .animate-hero-element:nth-of-type(3) { transition-delay: 0.5s; }
   .animate-hero-element:nth-of-type(4) { transition-delay: 0.7s; }
 </style>
+
+<script>
+  // Immediately set hero to visible on initial load
+  (function() {
+    const heroElements = document.querySelectorAll('.animate-hero-element');
+    heroElements.forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateX(0)';
+      el.classList.add('visible');
+      el.classList.add('initial-load');
+    });
+  })();
+</script>
 
 <script>
   // Hero animation on scroll

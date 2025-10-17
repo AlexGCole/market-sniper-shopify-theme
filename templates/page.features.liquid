@@ -14,13 +14,13 @@
         <h2 class="features-hero-tagline animate-slide-up-tagline">
           <span class="gradient-text">Strategies & Support</span>
         </h2>
-        <p class="hero-subtitle">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
-        <div class="hero-cta">
+        <p class="hero-subtitle animate-slide-up-subtitle">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
+        <div class="hero-cta animate-slide-up-cta">
           <a href="/pages/products" class="btn btn-primary">Get Started Today</a>
         </div>
       </div>
       <div class="features-hero-visual">
-        <div class="features-stats-card">
+        <div class="features-stats-card animate-slide-in-card">
           <div class="stat-item">
             <div class="stat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -122,13 +122,25 @@
     margin-bottom: 20px;
   }
 
-  /* Slide up animation for title and tagline */
+  /* Slide up animation for hero elements */
   .animate-slide-up-title {
     animation: slideUpFade 0.8s ease-out 0.1s backwards;
   }
 
   .animate-slide-up-tagline {
     animation: slideUpFade 0.8s ease-out 0.4s backwards;
+  }
+
+  .animate-slide-up-subtitle {
+    animation: slideUpFade 0.8s ease-out 0.7s backwards;
+  }
+
+  .animate-slide-up-cta {
+    animation: slideUpFade 0.8s ease-out 1s backwards;
+  }
+
+  .animate-slide-in-card {
+    animation: slideInRight 1s ease-out 0.5s backwards;
   }
 
   @keyframes slideUpFade {
@@ -139,6 +151,17 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 

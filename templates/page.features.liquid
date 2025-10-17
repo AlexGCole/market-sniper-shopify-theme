@@ -122,13 +122,13 @@
     margin-bottom: 20px;
   }
 
-  /* Slide up animation for hero elements - scroll triggered */
+  /* Slide in from left animation for hero elements - scroll triggered */
   .animate-slide-up-title,
   .animate-slide-up-tagline,
   .animate-slide-up-subtitle,
   .animate-slide-up-cta {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateX(-50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
@@ -142,7 +142,7 @@
   .animate-slide-up-subtitle.visible,
   .animate-slide-up-cta.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .animate-slide-in-card {

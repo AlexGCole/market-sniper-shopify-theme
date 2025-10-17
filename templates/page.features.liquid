@@ -632,13 +632,15 @@
         '.animate-slide-up-subtitle, .animate-slide-up-cta, .animate-slide-in-card'
       );
       
-      // Check if elements are initially in view and add visible class immediately
+      // Check if elements are initially in view and set to final state immediately
       oneWayElements.forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
+          // Set final state directly to prevent any animation
+          el.style.opacity = '1';
+          el.style.transform = 'translateX(0)';
           el.classList.add('visible');
           el.classList.add('no-transition');
-          setTimeout(() => el.classList.remove('no-transition'), 100);
         }
       });
       
@@ -648,6 +650,12 @@
             entry.target.classList.add('visible');
           } else {
             entry.target.classList.remove('visible');
+            // Remove inline styles and no-transition when scrolling out
+            if (entry.target.classList.contains('no-transition')) {
+              entry.target.classList.remove('no-transition');
+              entry.target.style.opacity = '';
+              entry.target.style.transform = '';
+            }
           }
         });
       }, {

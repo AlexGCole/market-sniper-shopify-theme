@@ -165,6 +165,12 @@
     }
   }
 
+  /* Section header animations */
+  .animate-section-header {
+    opacity: 0;
+    animation: slideUpFade 0.8s ease-out 0.2s forwards;
+  }
+
   .features-hero-alt .hero-subtitle {
     font-size: 18px;
     margin-bottom: 30px;
@@ -292,7 +298,7 @@
 
 <section class="trading-bot" id="trading-bot">
   <div class="container">
-    <div class="bot-header">
+    <div class="bot-header animate-section-header">
       <h2>Automated Bot with Professional Indicators</h2>
       <p class="bot-subtitle">Everything you need for automated trading in one package</p>
     </div>
@@ -388,7 +394,7 @@
 
 <section class="indicators" id="indicators">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header animate-section-header">
       <h2>Professional Trading Indicators</h2>
       <p>Advanced tools to identify high-probability trading opportunities</p>
     </div>
@@ -440,7 +446,7 @@
 
 <section class="what-you-get-section" id="what-you-get">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header animate-section-header">
       <h2>What You Get</h2>
       <p>Complete trading solution with everything you need</p>
     </div>

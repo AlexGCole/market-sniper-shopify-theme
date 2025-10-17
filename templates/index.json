@@ -7,7 +7,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "show_badge": true,
+        "show_badge": false,
         "badge_text": "Strategies & Automation",
         "hero_title_line1": "Professional Strategies",
         "hero_title_line2": "Automated or Manual",

@@ -12,7 +12,7 @@
 
     <div class="indicators-grid">
       {% for block in section.blocks %}
-        <div class="indicator-item {% cycle 'normal', 'reverse' %} animate-on-scroll {% cycle 'fade-in-right', 'fade-in-left' %}" {{ block.shopify_attributes }}>
+        <div class="indicator-item {% cycle 'normal', 'reverse' %}" {{ block.shopify_attributes }}>
           <div class="indicator-content">
             <span class="indicator-badge">{{ block.settings.version }}</span>
             <h3>{{ block.settings.title }}</h3>

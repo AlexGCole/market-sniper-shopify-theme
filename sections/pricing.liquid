@@ -13,7 +13,7 @@
     <div class="pricing-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'pricing_plan' %}
-          <div class="pricing-option {% if block.settings.is_popular %}featured{% endif %} animate-on-scroll fade-in-up" {{ block.shopify_attributes }}>
+          <div class="pricing-option {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
             {% if block.settings.is_popular %}
               <span class="popular-tag">Most Popular</span>
             {% endif %}
@@ -53,7 +53,7 @@
         {% endif %}
 
         {% if block.type == 'setup_fee_addon' %}
-          <div class="pricing-option addon animate-on-scroll fade-in-up" {{ block.shopify_attributes }}>
+          <div class="pricing-option addon" {{ block.shopify_attributes }}>
             <span class="popular-tag">Optional Add-on</span>
             
             <div class="price-header">

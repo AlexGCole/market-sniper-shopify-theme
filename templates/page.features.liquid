@@ -165,10 +165,16 @@
     }
   }
 
-  /* Section header animations */
+  /* Section header animations - scroll triggered */
   .animate-section-header {
     opacity: 0;
-    animation: slideUpFade 0.8s ease-out 0.2s forwards;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-section-header.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .features-hero-alt .hero-subtitle {
@@ -560,5 +566,35 @@
     }
   }
 </style>
+
+<script>
+  // Scroll animation trigger for section headers
+  (function() {
+    function initScrollAnimations() {
+      const headers = document.querySelectorAll('.animate-section-header');
+      
+      if (headers.length === 0) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      headers.forEach(header => observer.observe(header));
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initScrollAnimations);
+    } else {
+      initScrollAnimations();
+    }
+  })();
+</script>
 
 {% section 'footer' %}

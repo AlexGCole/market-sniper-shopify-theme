@@ -7,7 +7,7 @@
   <!-- Compact Hero Section -->
   <section class="products-hero-compact">
     <div class="container">
-      <h1>Choose Your <span class="gradient-text">Trading Path</span></h1>
+      <h1 class="products-hero-title">Choose Your <span class="gradient-text">Trading Path</span></h1>
     </div>
   </section>
 
@@ -141,6 +141,24 @@
 {% endcomment %}
 
 </div>
+
+<style>
+  /* Products hero title animation */
+  .products-hero-title {
+    animation: slideUpFade 0.8s ease-out 0.2s backwards;
+  }
+
+  @keyframes slideUpFade {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
 
 {% schema %}
 {

@@ -29,10 +29,10 @@ function initBidirectionalAnimations() {
         });
     }, observerOptions);
     
-    // Target how-it-works step cards with staggered delays (alternating left/right)
+    // Target how-it-works step cards with staggered delays (all from left)
     const stepCards = document.querySelectorAll('.how-it-works .step-card');
     stepCards.forEach((el, index) => {
-        el.classList.add(index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right');
+        el.classList.add('animate-slide-left');
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
@@ -45,33 +45,33 @@ function initBidirectionalAnimations() {
         observer.observe(el);
     });
     
-    // Target what you get cards with staggered delays (alternating left/right)
+    // Target what you get cards with staggered delays (all from right)
     const whatYouGetCards = document.querySelectorAll('.what-you-get-section .feature-card');
     whatYouGetCards.forEach((el, index) => {
-        el.classList.add(index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right');
+        el.classList.add('animate-slide-right');
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
     
-    // Target pricing cards with staggered delays (alternating left/right)
+    // Target pricing cards with staggered delays (all from left)
     const pricingCards = document.querySelectorAll('.pricing-option');
     pricingCards.forEach((el, index) => {
-        el.classList.add(index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right');
+        el.classList.add('animate-slide-left');
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
     
-    // Animate section headers
+    // Animate section headers (all from left)
     const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header');
     headers.forEach(header => {
-        header.classList.add('animate-on-scroll-bidirectional');
+        header.classList.add('animate-slide-left');
         observer.observe(header);
     });
     
     // Animate bot stat
     const botStat = document.querySelector('.bot-stat');
     if (botStat) {
-        botStat.classList.add('animate-on-scroll-bidirectional');
+        botStat.classList.add('animate-slide-left');
         observer.observe(botStat);
     }
 }

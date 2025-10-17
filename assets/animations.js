@@ -61,10 +61,10 @@ function initBidirectionalAnimations() {
         observer.observe(el);
     });
     
-    // Target FAQ items with staggered delays (all from right)
+    // Target FAQ items with staggered delays (all from left)
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach((el, index) => {
-        el.classList.add('animate-slide-right');
+        el.classList.add('animate-slide-left');
         el.style.transitionDelay = `${index * 0.08}s`;
         observer.observe(el);
     });

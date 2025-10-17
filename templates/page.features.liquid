@@ -185,6 +185,23 @@
     transform: scale(0.95) translateY(20px);
   }
 
+  /* Indicator bidirectional animations */
+  .animate-indicator {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .animate-indicator.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate-indicator.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
   .features-hero-alt .hero-subtitle {
     font-size: 18px;
     margin-bottom: 30px;
@@ -414,7 +431,7 @@
     </div>
 
     <div class="indicators-grid">
-      <div class="indicator-item normal">
+      <div class="indicator-item normal animate-indicator">
         <div class="indicator-content">
           <span class="indicator-badge">Version 4.2</span>
           <h3>Sharp Shooter Candles</h3>
@@ -435,7 +452,7 @@
         </div>
       </div>
 
-      <div class="indicator-item reverse">
+      <div class="indicator-item reverse animate-indicator">
         <div class="indicator-content">
           <span class="indicator-badge">Version 2.0</span>
           <h3>Sharp Shooter RSI</h3>
@@ -601,7 +618,7 @@
       oneWayElements.forEach(el => oneWayObserver.observe(el));
       
       // Bidirectional animations (animate on scroll up and down)
-      const bidirectionalElements = document.querySelectorAll('.animate-step-card');
+      const bidirectionalElements = document.querySelectorAll('.animate-step-card, .animate-indicator');
       
       const bidirectionalObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -619,8 +636,10 @@
       });
       
       bidirectionalElements.forEach((el, index) => {
-        // Add staggered delays for cascading effect
-        el.style.transitionDelay = `${index * 0.08}s`;
+        // Add staggered delays for cascading effect (only for step cards)
+        if (el.classList.contains('animate-step-card')) {
+          el.style.transitionDelay = `${index * 0.08}s`;
+        }
         bidirectionalObserver.observe(el);
       });
     }

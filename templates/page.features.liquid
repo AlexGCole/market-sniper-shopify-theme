@@ -75,7 +75,105 @@
   </div>
 </section>
 
-{% section 'what-you-get' %}
+<section class="what-you-get-section" id="what-you-get">
+  <div class="container">
+    <div class="section-header">
+      <h2>What You Get</h2>
+      <p>Complete trading solution with everything you need</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+        </div>
+        <h3>TradingView Integration</h3>
+        <p>Indicators and strategies delivered directly to your TradingView account for seamless trading</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+        </div>
+        <h3>Automated Alerts</h3>
+        <p>Real-time notifications when trading opportunities arise based on your configured strategies</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        <h3>Bot Configuration Support</h3>
+        <p>Expert guidance on setting up and optimizing your trading bot for maximum performance</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <h3>Strategy Library</h3>
+        <p>Access to proven trading strategies tested across multiple market conditions</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 010 7.75"></path>
+          </svg>
+        </div>
+        <h3>Exclusive Discord Community</h3>
+        <p>Connect with other traders and get real-time support from our team</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </div>
+        <h3>Regular Updates</h3>
+        <p>Continuous improvements to indicators, strategies, and bot functionality</p>
+      </div>
+    </div>
+
+    <div class="features-cta">
+      <a href="/pages/products" class="btn btn-primary">View Bot Suite Plans</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Match how-it-works styling */
+  .what-you-get-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, rgba(0, 204, 51, 0.03) 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+  }
+  .features-cta {
+    text-align: center;
+    margin-top: 40px;
+  }
+</style>
 
 <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 

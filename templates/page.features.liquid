@@ -168,6 +168,23 @@
     transform: translateY(0);
   }
 
+  /* Step card bidirectional animations */
+  .animate-step-card {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-step-card.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .animate-step-card.hidden {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+
   .features-hero-alt .hero-subtitle {
     font-size: 18px;
     margin-bottom: 30px;
@@ -449,7 +466,7 @@
     </div>
 
     <div class="steps-grid">
-      <div class="step-card">
+      <div class="step-card animate-step-card">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -461,7 +478,7 @@
         <p>Indicators and strategies delivered directly to your TradingView account for seamless trading</p>
       </div>
 
-      <div class="step-card">
+      <div class="step-card animate-step-card">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -472,7 +489,7 @@
         <p>Real-time notifications when trading opportunities arise based on your configured strategies</p>
       </div>
 
-      <div class="step-card">
+      <div class="step-card animate-step-card">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"></path>
@@ -483,7 +500,7 @@
         <p>Expert guidance on setting up and optimizing your trading bot for maximum performance</p>
       </div>
 
-      <div class="step-card">
+      <div class="step-card animate-step-card">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
@@ -495,7 +512,7 @@
         <p>Access to proven trading strategies tested across multiple market conditions</p>
       </div>
 
-      <div class="step-card">
+      <div class="step-card animate-step-card">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
@@ -508,7 +525,7 @@
         <p>Connect with other traders and get real-time support from our team</p>
       </div>
 
-      <div class="step-card">
+      <div class="step-card animate-step-card">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="23 4 23 10 17 10"></polyline>
@@ -562,19 +579,17 @@
   // Scroll animation trigger - repeatable for all animated elements
   (function() {
     function initScrollAnimations() {
-      const animatedElements = document.querySelectorAll(
+      // One-way animations (stay visible once triggered)
+      const oneWayElements = document.querySelectorAll(
         '.animate-section-header, .animate-slide-up-title, .animate-slide-up-tagline, ' +
         '.animate-slide-up-subtitle, .animate-slide-up-cta, .animate-slide-in-card'
       );
       
-      if (animatedElements.length === 0) return;
-      
-      const observer = new IntersectionObserver((entries) => {
+      const oneWayObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
           } else {
-            // Remove visible class when scrolling out of view
             entry.target.classList.remove('visible');
           }
         });
@@ -583,7 +598,31 @@
         rootMargin: '0px 0px -50px 0px'
       });
       
-      animatedElements.forEach(el => observer.observe(el));
+      oneWayElements.forEach(el => oneWayObserver.observe(el));
+      
+      // Bidirectional animations (animate on scroll up and down)
+      const bidirectionalElements = document.querySelectorAll('.animate-step-card');
+      
+      const bidirectionalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('hidden');
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+            entry.target.classList.add('hidden');
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      bidirectionalElements.forEach((el, index) => {
+        // Add staggered delays for cascading effect
+        el.style.transitionDelay = `${index * 0.08}s`;
+        bidirectionalObserver.observe(el);
+      });
     }
     
     if (document.readyState === 'loading') {

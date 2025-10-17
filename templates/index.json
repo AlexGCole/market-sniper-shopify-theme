@@ -90,69 +90,6 @@
         "section_subtitle": "From signup to trading - with or without automation"
       }
     },
-    "trading-bot": {
-      "type": "trading-bot",
-      "blocks": {
-        "bot-feature-1": {
-          "type": "feature",
-          "settings": {
-            "title": "Proven Trading Strategies",
-            "description": "Battle-tested strategies automatically synced to your TradingView account - trade them manually or automate"
-          }
-        },
-        "bot-feature-2": {
-          "type": "feature",
-          "settings": {
-            "title": "Sharp Shooter Candles 4.2",
-            "description": "Advanced candlestick indicator with buy/sell signals, MACD integration, and reversal detection"
-          }
-        },
-        "bot-feature-3": {
-          "type": "feature",
-          "settings": {
-            "title": "Sharp Shooter RSI 2.0",
-            "description": "RSI divergence detection with early trend change signals and overbought/oversold zones"
-          }
-        },
-        "bot-feature-4": {
-          "type": "feature",
-          "settings": {
-            "title": "Optional Bot Automation",
-            "description": "Connect your own TradingView alerts to enable automated execution - you maintain full control"
-          }
-        },
-        "bot-feature-5": {
-          "type": "feature",
-          "settings": {
-            "title": "Private Discord Community",
-            "description": "Exclusive Discord channel for strategy discussion, bot setup, and dedicated support"
-          }
-        },
-        "bot-feature-6": {
-          "type": "feature",
-          "settings": {
-            "title": "Priority Support",
-            "description": "Direct access to our team for questions, strategy optimization, and technical assistance"
-          }
-        }
-      },
-      "block_order": [
-        "bot-feature-1",
-        "bot-feature-2",
-        "bot-feature-3",
-        "bot-feature-4",
-        "bot-feature-5",
-        "bot-feature-6"
-      ],
-      "settings": {
-        "badge_text": "",
-        "title": "Professional Trading Tools with Optional Automation",
-        "subtitle": "Everything you need for manual or automated trading",
-        "show_stat": false,
-        "stat_number": "",
-        "stat_label": ""
-      }
-    },
     "pricing": {
       "type": "pricing",
       "blocks": {
@@ -271,7 +208,6 @@
     "header",
     "hero",
     "how-it-works",
-    "trading-bot",
     "pricing",
     "faq",
     "footer"

@@ -17,7 +17,7 @@
           <span class="optional-badge">Optional Add-On</span>
         {% endif %}
         
-        <h1 class="product-title">{{ product.title }}</h1>
+        <h1 class="product-title animate-product-title">{{ product.title }}</h1>
         
         <div class="product-price">
           <span class="price">{{ product.selected_or_first_available_variant.price | money }}</span>
@@ -79,7 +79,7 @@
           <div class="plan-selector">
             <label>Choose Your Plan:</label>
             <div class="plan-options">
-              <div class="plan-option monthly-option">
+              <div class="plan-option monthly-option animate-plan-option">
                 <input type="radio" name="plan_choice" id="monthly-plan" value="monthly" 
                   {% if product.handle == 'trading-bot-suite-49' %}checked{% endif %}>
                 <label for="monthly-plan">
@@ -87,7 +87,7 @@
                   <span class="plan-price">$49/mo</span>
                 </label>
               </div>
-              <div class="plan-option annual-option">
+              <div class="plan-option annual-option animate-plan-option">
                 <input type="radio" name="plan_choice" id="annual-plan" value="annual"
                   {% if product.handle == 'trading-bot-suite-490-annual' %}checked{% endif %}>
                 <label for="annual-plan">

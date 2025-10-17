@@ -82,6 +82,21 @@ function initBidirectionalAnimations() {
         botStat.classList.add('animate-slide-left');
         observer.observe(botStat);
     }
+    
+    // Animate product page title
+    const productTitle = document.querySelector('.animate-product-title');
+    if (productTitle) {
+        productTitle.classList.add('animate-slide-left');
+        observer.observe(productTitle);
+    }
+    
+    // Animate product page plan options
+    const planOptions = document.querySelectorAll('.animate-plan-option');
+    planOptions.forEach((el, index) => {
+        el.classList.add('animate-slide-left');
+        el.style.transitionDelay = `${index * 0.15}s`;
+        observer.observe(el);
+    });
 }
 
 // Parallax effect for hero background

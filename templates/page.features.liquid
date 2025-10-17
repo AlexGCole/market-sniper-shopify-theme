@@ -145,6 +145,13 @@
     transform: translateX(0);
   }
 
+  .animate-slide-up-title.no-transition,
+  .animate-slide-up-tagline.no-transition,
+  .animate-slide-up-subtitle.no-transition,
+  .animate-slide-up-cta.no-transition {
+    transition: none !important;
+  }
+
   .animate-slide-in-card {
     opacity: 0;
     transform: translateX(60px);
@@ -154,6 +161,10 @@
   .animate-slide-in-card.visible {
     opacity: 1;
     transform: translateX(0);
+  }
+
+  .animate-slide-in-card.no-transition {
+    transition: none !important;
   }
 
   /* Section header animations - scroll triggered */
@@ -166,6 +177,10 @@
   .animate-section-header.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .animate-section-header.no-transition {
+    transition: none !important;
   }
 
   /* Step card bidirectional animations */
@@ -622,8 +637,8 @@
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
           el.classList.add('visible');
-          el.style.transition = 'none';
-          setTimeout(() => el.style.transition = '', 50);
+          el.classList.add('no-transition');
+          setTimeout(() => el.classList.remove('no-transition'), 100);
         }
       });
       

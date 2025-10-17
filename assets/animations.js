@@ -6,7 +6,7 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
     }, observerOptions);
-    const elementsToAnimate = document.querySelectorAll('.indicator-item, .faq-item');
+    const elementsToAnimate = document.querySelectorAll('.indicator-item');
     elementsToAnimate.forEach(el => { el.classList.add('animate-on-scroll'); observer.observe(el); });
 }
 
@@ -61,8 +61,16 @@ function initBidirectionalAnimations() {
         observer.observe(el);
     });
     
+    // Target FAQ items with staggered delays (all from right)
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((el, index) => {
+        el.classList.add('animate-slide-right');
+        el.style.transitionDelay = `${index * 0.08}s`;
+        observer.observe(el);
+    });
+    
     // Animate section headers (all from left)
-    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header');
+    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header, .faq .section-header');
     headers.forEach(header => {
         header.classList.add('animate-slide-left');
         observer.observe(header);

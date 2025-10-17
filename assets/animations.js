@@ -29,34 +29,34 @@ function initBidirectionalAnimations() {
         });
     }, observerOptions);
     
-    // Target how-it-works step cards with staggered delays
+    // Target how-it-works step cards with staggered delays (alternating left/right)
     const stepCards = document.querySelectorAll('.how-it-works .step-card');
     stepCards.forEach((el, index) => {
-        el.classList.add('animate-scale');
+        el.classList.add(index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right');
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
     
-    // Target bot suite cards with staggered delays
+    // Target bot suite cards with staggered delays (all from left)
     const botCards = document.querySelectorAll('.bot-feature-card');
     botCards.forEach((el, index) => {
-        el.classList.add('animate-on-scroll-bidirectional');
+        el.classList.add('animate-slide-left');
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
     
-    // Target what you get cards with staggered delays
+    // Target what you get cards with staggered delays (alternating left/right)
     const whatYouGetCards = document.querySelectorAll('.what-you-get-section .feature-card');
     whatYouGetCards.forEach((el, index) => {
-        el.classList.add('animate-scale');
+        el.classList.add(index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right');
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
     
-    // Target pricing cards with staggered delays
+    // Target pricing cards with staggered delays (alternating left/right)
     const pricingCards = document.querySelectorAll('.pricing-option');
     pricingCards.forEach((el, index) => {
-        el.classList.add('animate-scale');
+        el.classList.add(index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right');
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
@@ -71,7 +71,7 @@ function initBidirectionalAnimations() {
     // Animate bot stat
     const botStat = document.querySelector('.bot-stat');
     if (botStat) {
-        botStat.classList.add('animate-scale');
+        botStat.classList.add('animate-on-scroll-bidirectional');
         observer.observe(botStat);
     }
 }

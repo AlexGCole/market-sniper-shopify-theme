@@ -4,255 +4,236 @@
   Features page template
 {% endcomment %}
 
-<section class="hero features-hero">
+<section class="hero features-hero-alt">
   <div class="container">
-    <div class="hero-content features-hero-content">
-      <h1 class="hero-title features-hero-title">
-        Bot Suite<br>
-        <span class="gradient-text animated-gradient">Automated Trading Made Simple</span>
-      </h1>
-      <p class="hero-subtitle features-hero-subtitle">Automated trading with professional indicators and strategies - everything you need to trade smarter</p>
-      <div class="hero-cta features-hero-cta">
-        <a href="/pages/products" class="btn btn-primary pulse-button">View Plans</a>
+    <div class="features-hero-grid">
+      <div class="features-hero-content">
+        <div class="features-hero-label">Complete Trading Solution</div>
+        <h1 class="hero-title">
+          Bot Suite
+        </h1>
+        <h2 class="features-hero-tagline">
+          <span class="gradient-text">Automated Trading Made Simple</span>
+        </h2>
+        <p class="hero-subtitle">Automated trading with professional indicators and strategies - everything you need to trade smarter</p>
+        <div class="hero-cta">
+          <a href="/pages/products" class="btn btn-primary">View Plans</a>
+        </div>
+      </div>
+      <div class="features-hero-visual">
+        <div class="features-stats-card">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-number">3+</div>
+              <div class="stat-label">Professional Tools</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-number">24/7</div>
+              <div class="stat-label">Automated Trading</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-number">200+</div>
+              <div class="stat-label">Active Traders</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="floating-elements">
-      <div class="float-element element-1"></div>
-      <div class="float-element element-2"></div>
-      <div class="float-element element-3"></div>
-      <div class="float-element element-4"></div>
-    </div>
   </div>
-  <div class="hero-bg features-hero-bg"></div>
+  <div class="hero-bg"></div>
 </section>
 
 <style>
-  /* Animated gradient for text */
-  .features-hero .animated-gradient {
-    background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88, #00ff41);
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 3s ease infinite;
-  }
-
-  @keyframes gradientShift {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  /* Animated background */
-  .features-hero-bg {
-    background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 204, 51, 0.05) 50%, rgba(0, 255, 136, 0.1) 100%);
-    background-size: 200% 200%;
-    animation: bgShift 8s ease infinite;
-  }
-
-  @keyframes bgShift {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  /* Floating elements */
-  .floating-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  /* Features hero alternative layout */
+  .features-hero-alt {
+    padding: 100px 20px;
+    position: relative;
     overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
   }
 
-  .float-element {
-    position: absolute;
-    background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 204, 51, 0.1));
-    border-radius: 50%;
-    filter: blur(60px);
-    animation: float 20s ease-in-out infinite;
+  .features-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  .float-element.element-1 {
-    width: 300px;
-    height: 300px;
-    top: -150px;
-    right: 10%;
-    animation-delay: 0s;
+  .features-hero-label {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 20px;
+    color: #00ff41;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
   }
 
-  .float-element.element-2 {
-    width: 200px;
-    height: 200px;
-    bottom: -100px;
-    left: 15%;
-    animation-delay: 2s;
+  .features-hero-alt .hero-title {
+    font-size: 64px;
+    line-height: 1.1;
+    margin-bottom: 10px;
   }
 
-  .float-element.element-3 {
-    width: 250px;
-    height: 250px;
-    top: 50%;
-    right: -125px;
-    animation-delay: 4s;
+  .features-hero-tagline {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
   }
 
-  .float-element.element-4 {
-    width: 180px;
-    height: 180px;
-    top: 20%;
-    left: 5%;
-    animation-delay: 6s;
+  .features-hero-alt .hero-subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
   }
 
-  @keyframes float {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-      opacity: 0.3;
+  /* Stats card on the right */
+  .features-stats-card {
+    background: rgba(0, 255, 65, 0.05);
+    border: 2px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .stat-item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stat-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #00ff41;
+  }
+
+  .stat-content {
+    flex: 1;
+  }
+
+  .stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #00ff41;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+  }
+
+  /* Responsive layout */
+  @media (max-width: 968px) {
+    .features-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
     }
-    33% {
-      transform: translate(30px, -30px) scale(1.1);
-      opacity: 0.5;
+
+    .features-hero-alt .hero-title {
+      font-size: 48px;
     }
-    66% {
-      transform: translate(-20px, 20px) scale(0.9);
-      opacity: 0.4;
+
+    .features-hero-tagline {
+      font-size: 32px;
     }
-  }
 
-  /* Content animations */
-  .features-hero-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .features-hero-title {
-    animation: fadeInUp 1s ease-out;
-  }
-
-  .features-hero-subtitle {
-    animation: fadeInUp 1s ease-out 0.2s backwards;
-  }
-
-  .features-hero-cta {
-    animation: fadeInUp 1s ease-out 0.4s backwards;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
+    .features-stats-card {
+      padding: 30px 20px;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
-  /* Pulsing button */
-  .pulse-button {
-    position: relative;
-    animation: buttonPulse 2s ease-in-out infinite;
-  }
-
-  .pulse-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 255, 65, 0.3);
-    border-radius: 8px;
-    transform: translate(-50%, -50%);
-    animation: pulseRing 2s ease-out infinite;
-  }
-
-  @keyframes buttonPulse {
-    0%, 100% {
-      box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4);
-    }
-    50% {
-      box-shadow: 0 0 0 10px rgba(0, 255, 65, 0);
-    }
-  }
-
-  @keyframes pulseRing {
-    0% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0.5;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1.5);
-      opacity: 0;
+    .stat-number {
+      font-size: 28px;
     }
   }
 
-  /* Hover effect enhancement */
-  .pulse-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.4);
-    transition: all 0.3s ease;
-  }
-
-  /* Add shimmer effect on title */
-  .features-hero-title {
-    position: relative;
-  }
-
-  .features-hero-title::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  @keyframes shimmer {
-    0% {
-      left: -100%;
-    }
-    100% {
-      left: 100%;
-    }
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 768px) {
-    .float-element {
-      filter: blur(40px);
+  @media (max-width: 640px) {
+    .features-hero-alt {
+      padding: 60px 20px;
     }
 
-    .float-element.element-1 {
-      width: 200px;
-      height: 200px;
+    .features-hero-alt .hero-title {
+      font-size: 36px;
     }
 
-    .float-element.element-2 {
-      width: 150px;
-      height: 150px;
+    .features-hero-tagline {
+      font-size: 24px;
     }
 
-    .float-element.element-3 {
-      width: 180px;
-      height: 180px;
+    .features-hero-alt .hero-subtitle {
+      font-size: 16px;
     }
 
-    .float-element.element-4 {
-      width: 120px;
-      height: 120px;
+    .stat-item {
+      gap: 15px;
+      padding: 15px 0;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .stat-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .stat-number {
+      font-size: 24px;
+    }
+
+    .stat-label {
+      font-size: 12px;
     }
   }
 </style>

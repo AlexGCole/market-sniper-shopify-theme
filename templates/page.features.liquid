@@ -623,10 +623,10 @@
       // One-way animations (stay visible once triggered)
       const oneWayElements = document.querySelectorAll(
         '.animate-section-header, .animate-slide-up-title, .animate-slide-up-tagline, ' +
-        '.animate-slide-up-subtitle, .animate-slide-up-cta, .animate-slide-in-card'
+        '.animate-slide-up-subtitle, .animate-slide-up-cta'
       );
       
-      // Check if elements are initially in view and set to final state immediately
+      // Check if elements are initially in view and set to final state immediately (except stats card)
       oneWayElements.forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -636,6 +636,24 @@
           el.classList.add('no-transition');
         }
       });
+      
+      // Animate stats card separately (should animate on load)
+      const statsCard = document.querySelector('.animate-slide-in-card');
+      if (statsCard) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            } else {
+              entry.target.classList.remove('visible');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px'
+        });
+        observer.observe(statsCard);
+      }
       
       const oneWayObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

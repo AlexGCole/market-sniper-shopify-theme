@@ -5,14 +5,14 @@
         <span class="hero-badge">{{ section.settings.badge_text }}</span>
       {% endif %}
       
-      <h1 class="hero-title">
+      <h1 class="hero-title animate-hero-element">
         {{ section.settings.hero_title_line1 }}<br>
         <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
       </h1>
       
-      <p class="hero-subtitle">{{ section.settings.hero_subtitle }}</p>
+      <p class="hero-subtitle animate-hero-element">{{ section.settings.hero_subtitle }}</p>
       
-      <div class="hero-cta">
+      <div class="hero-cta animate-hero-element">
         {% if section.settings.primary_button_text != blank %}
           <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
             {{ section.settings.primary_button_text }}
@@ -26,7 +26,7 @@
       </div>
       
       {% if section.settings.show_stats %}
-        <div class="hero-stats">
+        <div class="hero-stats animate-hero-element">
           {% for block in section.blocks %}
             <div class="stat">
               <div class="stat-number">{{ block.settings.stat_number }}</div>
@@ -40,7 +40,56 @@
   <div class="hero-bg"></div>
 </section>
 
+<style>
+  /* Hero animation styles */
+  .animate-hero-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
 
+  .animate-hero-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate-hero-element:nth-of-type(1) { transition-delay: 0.1s; }
+  .animate-hero-element:nth-of-type(2) { transition-delay: 0.3s; }
+  .animate-hero-element:nth-of-type(3) { transition-delay: 0.5s; }
+  .animate-hero-element:nth-of-type(4) { transition-delay: 0.7s; }
+</style>
+
+<script>
+  // Hero animation on scroll
+  (function() {
+    function initHeroAnimations() {
+      const heroElements = document.querySelectorAll('.animate-hero-element');
+      
+      if (heroElements.length === 0) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px'
+      });
+      
+      heroElements.forEach(el => observer.observe(el));
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroAnimations);
+    } else {
+      initHeroAnimations();
+    }
+  })();
+</script>
 
 {% schema %}
 {

@@ -122,47 +122,38 @@
     margin-bottom: 20px;
   }
 
-  /* Slide up animation for hero elements */
-  .animate-slide-up-title {
-    animation: slideUpFade 0.8s ease-out 0.1s backwards;
-  }
-
-  .animate-slide-up-tagline {
-    animation: slideUpFade 0.8s ease-out 0.4s backwards;
-  }
-
-  .animate-slide-up-subtitle {
-    animation: slideUpFade 0.8s ease-out 0.7s backwards;
-  }
-
+  /* Slide up animation for hero elements - scroll triggered */
+  .animate-slide-up-title,
+  .animate-slide-up-tagline,
+  .animate-slide-up-subtitle,
   .animate-slide-up-cta {
-    animation: slideUpFade 0.8s ease-out 1s backwards;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-slide-up-title { transition-delay: 0.1s; }
+  .animate-slide-up-tagline { transition-delay: 0.4s; }
+  .animate-slide-up-subtitle { transition-delay: 0.7s; }
+  .animate-slide-up-cta { transition-delay: 1s; }
+
+  .animate-slide-up-title.visible,
+  .animate-slide-up-tagline.visible,
+  .animate-slide-up-subtitle.visible,
+  .animate-slide-up-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .animate-slide-in-card {
-    animation: slideInRight 1s ease-out 0.5s backwards;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 1s ease-out 0.5s, transform 1s ease-out 0.5s;
   }
 
-  @keyframes slideUpFade {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(60px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .animate-slide-in-card.visible {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   /* Section header animations - scroll triggered */
@@ -568,12 +559,15 @@
 </style>
 
 <script>
-  // Scroll animation trigger for section headers - repeatable
+  // Scroll animation trigger - repeatable for all animated elements
   (function() {
     function initScrollAnimations() {
-      const headers = document.querySelectorAll('.animate-section-header');
+      const animatedElements = document.querySelectorAll(
+        '.animate-section-header, .animate-slide-up-title, .animate-slide-up-tagline, ' +
+        '.animate-slide-up-subtitle, .animate-slide-up-cta, .animate-slide-in-card'
+      );
       
-      if (headers.length === 0) return;
+      if (animatedElements.length === 0) return;
       
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -589,7 +583,7 @@
         rootMargin: '0px 0px -50px 0px'
       });
       
-      headers.forEach(header => observer.observe(header));
+      animatedElements.forEach(el => observer.observe(el));
     }
     
     if (document.readyState === 'loading') {

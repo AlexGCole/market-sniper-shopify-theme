@@ -7,7 +7,7 @@
   <!-- Compact Hero Section -->
   <section class="products-hero-compact">
     <div class="container">
-      <h1 class="products-hero-title">Choose Your <span class="gradient-text">Trading Path</span></h1>
+      <h1 class="products-hero-title animate-products-title">Choose Your <span class="gradient-text">Trading Path</span></h1>
     </div>
   </section>
 
@@ -143,22 +143,50 @@
 </div>
 
 <style>
-  /* Products hero title animation */
-  .products-hero-title {
-    animation: slideUpFade 0.8s ease-out 0.2s backwards;
+  /* Products hero title animation - scroll triggered */
+  .animate-products-title {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
-  @keyframes slideUpFade {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .animate-products-title.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
+
+<script>
+  // Products title animation on scroll
+  (function() {
+    function initProductsAnimations() {
+      const title = document.querySelector('.animate-products-title');
+      
+      if (!title) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px'
+      });
+      
+      observer.observe(title);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initProductsAnimations);
+    } else {
+      initProductsAnimations();
+    }
+  })();
+</script>
 
 {% schema %}
 {

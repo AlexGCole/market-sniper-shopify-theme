@@ -145,13 +145,6 @@
     transform: translateX(0);
   }
 
-  .animate-slide-up-title.no-transition,
-  .animate-slide-up-tagline.no-transition,
-  .animate-slide-up-subtitle.no-transition,
-  .animate-slide-up-cta.no-transition {
-    transition: none !important;
-  }
-
   .animate-slide-in-card {
     opacity: 0;
     transform: translateX(60px);
@@ -161,10 +154,6 @@
   .animate-slide-in-card.visible {
     opacity: 1;
     transform: translateX(0);
-  }
-
-  .animate-slide-in-card.no-transition {
-    transition: none !important;
   }
 
   /* Section header animations - scroll triggered */
@@ -177,10 +166,6 @@
   .animate-section-header.visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  .animate-section-header.no-transition {
-    transition: none !important;
   }
 
   /* Step card bidirectional animations */
@@ -632,30 +617,12 @@
         '.animate-slide-up-subtitle, .animate-slide-up-cta, .animate-slide-in-card'
       );
       
-      // Check if elements are initially in view and set to final state immediately
-      oneWayElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          // Set final state directly to prevent any animation
-          el.style.opacity = '1';
-          el.style.transform = 'translateX(0)';
-          el.classList.add('visible');
-          el.classList.add('no-transition');
-        }
-      });
-      
       const oneWayObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
           } else {
             entry.target.classList.remove('visible');
-            // Remove inline styles and no-transition when scrolling out
-            if (entry.target.classList.contains('no-transition')) {
-              entry.target.classList.remove('no-transition');
-              entry.target.style.opacity = '';
-              entry.target.style.transform = '';
-            }
           }
         });
       }, {

@@ -12,7 +12,7 @@
 
     <div class="features-grid">
       {% for block in section.blocks %}
-        <div class="feature-card" {{ block.shopify_attributes }}>
+        <div class="feature-card animate-on-scroll scale-in" {{ block.shopify_attributes }}>
           <div class="feature-icon">
             {% if block.settings.title contains "Video" or block.settings.title contains "Hour" or block.settings.title contains "Coaching" %}
               <!-- Video/Education Icon -->

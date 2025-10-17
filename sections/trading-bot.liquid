@@ -12,7 +12,7 @@
 
     <div class="bot-features">
       {% for block in section.blocks %}
-        <div class="bot-feature-card" {{ block.shopify_attributes }}>
+        <div class="bot-feature-card animate-on-scroll fade-in-left" {{ block.shopify_attributes }}>
           <div class="bot-feature-icon">
             {% if block.settings.title contains "Automated Trading Bot" %}
               <!-- Robot/Automation Icon -->

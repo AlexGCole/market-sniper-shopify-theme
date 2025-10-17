@@ -1,13 +1,63 @@
 // Animation Controller
 
-// Observe elements for scroll animations
+// Observe elements for scroll animations (one-way, keeps visible state)
 function initScrollAnimations() {
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
     }, observerOptions);
-    const elementsToAnimate = document.querySelectorAll('.feature-card, .step, .indicator-item, .pricing-card, .faq-item, .bot-feature');
+    const elementsToAnimate = document.querySelectorAll('.step, .indicator-item, .pricing-card, .faq-item');
     elementsToAnimate.forEach(el => { el.classList.add('animate-on-scroll'); observer.observe(el); });
+}
+
+// Observe elements for bidirectional scroll animations
+function initBidirectionalAnimations() {
+    const observerOptions = { 
+        threshold: 0.15, 
+        rootMargin: '0px 0px -100px 0px' 
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('hidden');
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+                entry.target.classList.add('hidden');
+            }
+        });
+    }, observerOptions);
+    
+    // Target bot suite cards with staggered delays
+    const botCards = document.querySelectorAll('.bot-feature-card');
+    botCards.forEach((el, index) => {
+        el.classList.add('animate-on-scroll-bidirectional');
+        el.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(el);
+    });
+    
+    // Target what you get cards with staggered delays
+    const whatYouGetCards = document.querySelectorAll('.what-you-get-section .feature-card');
+    whatYouGetCards.forEach((el, index) => {
+        el.classList.add('animate-scale');
+        el.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(el);
+    });
+    
+    // Animate section headers
+    const headers = document.querySelectorAll('.bot-header, .what-you-get-section .section-header');
+    headers.forEach(header => {
+        header.classList.add('animate-on-scroll-bidirectional');
+        observer.observe(header);
+    });
+    
+    // Animate bot stat
+    const botStat = document.querySelector('.bot-stat');
+    if (botStat) {
+        botStat.classList.add('animate-scale');
+        observer.observe(botStat);
+    }
 }
 
 // Parallax effect for hero background
@@ -65,6 +115,7 @@ function animateValue(element) {
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
+    initBidirectionalAnimations();
     initParallax();
     animateStats();
     setTimeout(() => {

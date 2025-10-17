@@ -92,6 +92,74 @@
     transform: translateY(0);
 }
 
+/* Bidirectional scroll animations */
+.animate-on-scroll-bidirectional {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll-bidirectional.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-on-scroll-bidirectional.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Slide in from left (bidirectional) */
+.animate-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-slide-left.hidden {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+/* Slide in from right (bidirectional) */
+.animate-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-slide-right.hidden {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+/* Scale animation (bidirectional) */
+.animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.animate-scale.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
 /* Hover effects */
 .hover-lift {
     transition: transform var(--transition-base);

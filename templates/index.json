@@ -256,7 +256,7 @@
         "setup-addon": {
           "type": "setup_fee_addon",
           "settings": {
-            "addon_name": "Professional Setup",
+            "addon_name": "Setup",
             "addon_price": "249",
             "addon_features": "✓ Complete Bot Installation\n✓ TradingView Integration\n✓ Strategy Configuration\n✓ Alert Setup & Testing\n✓ 1-on-1 Setup Support",
             "addon_button_link": "/products/bot-suite-setup",

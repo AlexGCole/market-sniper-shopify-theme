@@ -41,32 +41,47 @@
 </section>
 
 <style>
-  /* Hero animation styles */
-  .animate-hero-element {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  /* Hero animation styles - with higher specificity to override global animations */
+  .hero .animate-hero-element {
+    opacity: 0 !important;
+    transform: translateX(-50px) !important;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
+    animation: none !important; /* Prevent global keyframe animations */
   }
 
-  .animate-hero-element.visible {
-    opacity: 1;
-    transform: translateX(0);
+  .hero .animate-hero-element.visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
   }
 
-  .animate-hero-element:nth-of-type(1) { transition-delay: 0.1s; }
-  .animate-hero-element:nth-of-type(2) { transition-delay: 0.3s; }
-  .animate-hero-element:nth-of-type(3) { transition-delay: 0.5s; }
-  .animate-hero-element:nth-of-type(4) { transition-delay: 0.7s; }
+  .hero .animate-hero-element:nth-of-type(1) { transition-delay: 0.1s !important; }
+  .hero .animate-hero-element:nth-of-type(2) { transition-delay: 0.3s !important; }
+  .hero .animate-hero-element:nth-of-type(3) { transition-delay: 0.5s !important; }
+  .hero .animate-hero-element:nth-of-type(4) { transition-delay: 0.7s !important; }
 </style>
 
 <script>
   // Hero animation on scroll and initial load
   (function() {
     function initHeroAnimations() {
-      const heroElements = document.querySelectorAll('.animate-hero-element');
+      const heroElements = document.querySelectorAll('.hero .animate-hero-element');
       
       if (heroElements.length === 0) return;
       
+      // Check if elements are initially in viewport and trigger animation
+      heroElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInViewport) {
+          // Small delay to ensure CSS is loaded
+          setTimeout(() => {
+            el.classList.add('visible');
+          }, 50);
+        }
+      });
+      
+      // Setup IntersectionObserver for scroll animations
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {

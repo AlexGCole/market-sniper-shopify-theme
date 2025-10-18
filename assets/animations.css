@@ -112,7 +112,7 @@
     pointer-events: auto;
 }
 
-/* Individual delays for staggered effect */
+/* Individual delays for staggered effect - LEFT SIDE */
 .hero-badge.animate-hero-left.hero-visible { 
     transition-delay: 0.1s; 
 }
@@ -137,6 +137,7 @@
     transition-delay: 0.6s; 
 }
 
+/* Three stats in a row - all come from left with staggered delays */
 .hero-stats .stat.animate-hero-left.hero-visible:nth-child(1) { 
     transition-delay: 0.5s; 
 }
@@ -149,7 +150,7 @@
     transition-delay: 0.7s; 
 }
 
-/* Right-sliding element delays */
+/* Individual delays for staggered effect - RIGHT SIDE */
 .hero-badge.animate-hero-right.hero-visible { 
     transition-delay: 0.1s; 
 }
@@ -172,6 +173,15 @@
 
 .features-stats-card.animate-hero-right.hero-visible { 
     transition-delay: 0.6s; 
+}
+
+/* Override: if stats are on right side, still come from left when 3 together */
+.hero-stats .stat.animate-hero-right.hero-visible {
+    transform: translateX(-50px) !important;
+}
+
+.hero-stats .stat.animate-hero-right:not(.hero-visible) {
+    transform: translateX(-50px) !important;
 }
 
 .hero-stats .stat.animate-hero-right.hero-visible:nth-child(1) { 

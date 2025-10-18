@@ -65,7 +65,7 @@ function initBidirectionalAnimations() {
         observer.observe(el);
     });
     
-    // Animate section headers (all from left)
+    // Animate section headers (all from left) - EXCLUDES HERO
     const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header, .faq .section-header');
     headers.forEach(header => {
         header.classList.add('animate-slide-left');
@@ -109,7 +109,8 @@ function initParallax() {
 
 // Animate statistics on scroll
 function animateStats() {
-    const stats = document.querySelectorAll('.stat-number, .bot-stat-number');
+    // EXCLUDE hero stats from animation
+    const stats = document.querySelectorAll('.stat-number:not(.hero .stat-number), .bot-stat-number');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
@@ -193,11 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentBg = backgrounds[bgIndex];
             section.style.setProperty('background', currentBg, 'important');
             section.style.setProperty('border-top', borders[bgIndex].top, 'important');
-            if (borders[bgIndex].bottom !== 'none') { section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important'); }
+            if (borders[bgIndex].bottom !== 'none') { section.setProperty('border-bottom', borders[bgIndex].bottom, 'important'); }
             lastBackground = currentBg;
             alternateIndex++;
         });
     }, 100);
 });
-
-

@@ -3,8 +3,9 @@
 // Initialize hero animations immediately
 function initHeroAnimations() {
     // Simple and direct - just add hero-visible to all hero elements
+    // NOW INCLUDES BOTH .hero AND .features-hero-alt
     function addVisibleClass() {
-        const heroElements = document.querySelectorAll('.hero .animate-hero-left, .features-hero-alt .animate-hero-left, .hero .animate-hero-right, .features-hero-alt .animate-hero-right');
+        const heroElements = document.querySelectorAll('.hero .animate-hero-left, .hero .animate-hero-right, .features-hero-alt .animate-hero-left, .features-hero-alt .animate-hero-right');
         heroElements.forEach(el => {
             el.classList.add('hero-visible');
         });
@@ -58,7 +59,7 @@ function initBidirectionalAnimations() {
     });
     
     // Target what you get cards with staggered delays (all from right)
-    const whatYouGetCards = document.querySelectorAll('.what-you-get-section .feature-card');
+    const whatYouGetCards = document.querySelectorAll('.what-you-get-section .feature-card, .what-you-get-section .step-card');
     whatYouGetCards.forEach((el, index) => {
         el.classList.add('animate-slide-right');
         el.style.transitionDelay = `${index * 0.1}s`;
@@ -190,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         allSections.forEach((section) => {
             if (window.getComputedStyle(section).display === 'none') { return; }
             const tagName = section.tagName.toLowerCase();
-            if (section.classList.contains('hero')) {
+            if (section.classList.contains('hero') || section.classList.contains('features-hero-alt')) {
                 section.style.setProperty('background', 'linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 204, 51, 0.12) 30%, rgba(0, 255, 65, 0.05) 70%, rgba(10, 26, 15, 0.95) 100%)', 'important');
                 const heroBg = section.querySelector('.hero-bg');
                 if (heroBg) {

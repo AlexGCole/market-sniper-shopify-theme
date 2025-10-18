@@ -82,23 +82,19 @@
     }
 }
 
-/* REPLACE the entire HERO ANIMATIONS section in animations.css with this */
-
 /* ===== HERO ANIMATIONS - SIMPLIFIED ===== */
 
 /* Initial state - hidden and shifted */
-.animate-hero-left:not(.hero-visible),
+.animate-hero-left:not(.hero-visible) {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50px) !important;
+}
+
 .animate-hero-right:not(.hero-visible) {
     opacity: 0;
     pointer-events: none;
-}
-
-.animate-hero-left:not(.hero-visible) {
-    transform: translateX(-50px);
-}
-
-.animate-hero-right:not(.hero-visible) {
-    transform: translateX(50px);
+    transform: translateX(50px) !important;
 }
 
 /* Animated state - visible with smooth transition */

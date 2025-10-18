@@ -53,6 +53,18 @@ function initBidirectionalAnimations() {
         observer.observe(el);
     });
     
+    // Target features cards with alternating left/right animations
+    const featureCards = document.querySelectorAll('.features-section .feature-card');
+    featureCards.forEach((el, index) => {
+        if (index % 2 === 0) {
+            el.classList.add('animate-slide-left');
+        } else {
+            el.classList.add('animate-slide-right');
+        }
+        el.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(el);
+    });
+    
     // Target pricing cards with staggered delays (all from left)
     const pricingCards = document.querySelectorAll('.pricing-option');
     pricingCards.forEach((el, index) => {
@@ -70,7 +82,7 @@ function initBidirectionalAnimations() {
     });
     
     // Animate section headers (all from left)
-    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header, .faq .section-header');
+    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .features-section .section-header, .pricing-section .section-header, .faq .section-header');
     headers.forEach(header => {
         header.classList.add('animate-slide-left');
         observer.observe(header);
@@ -203,5 +215,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 100);
 });
-
-

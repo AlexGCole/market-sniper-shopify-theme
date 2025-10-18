@@ -4,37 +4,18 @@
   Features page template
 {% endcomment %}
 
-<style>
-  .features-hero-no-animation {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-    transition: none !important;
-  }
-</style>
-
-<script>
-  // Remove no-animation class after initial page load
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      document.querySelectorAll('.features-hero-no-animation').forEach(function(el) {
-        el.classList.remove('features-hero-no-animation');
-      });
-    }, 100);
-  });
-</script>
-
-<section class="hero features-hero-alt">
+<section class="hero features-hero-alt features-hero-initial-load">
   <div class="container">
     <div class="features-hero-grid">
       <div class="features-hero-content">
-        <h1 class="hero-title animate-slide-up-title features-hero-no-animation">
+        <h1 class="hero-title animate-slide-up-title">
           Trading Toolkit
         </h1>
-        <h2 class="features-hero-tagline animate-slide-up-tagline features-hero-no-animation">
+        <h2 class="features-hero-tagline animate-slide-up-tagline">
           <span class="gradient-text">Strategies & Support</span>
         </h2>
-        <p class="hero-subtitle animate-slide-up-subtitle features-hero-no-animation">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
-        <div class="hero-cta animate-slide-up-cta features-hero-no-animation">
+        <p class="hero-subtitle animate-slide-up-subtitle">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
+        <div class="hero-cta animate-slide-up-cta">
           <a href="/pages/products" class="btn btn-primary">Get Started Today</a>
         </div>
       </div>
@@ -162,6 +143,17 @@
   .animate-slide-up-cta.visible {
     opacity: 1;
     transform: translateX(0);
+  }
+
+  /* Disable animations on initial load */
+  .features-hero-initial-load .animate-slide-up-title,
+  .features-hero-initial-load .animate-slide-up-tagline,
+  .features-hero-initial-load .animate-slide-up-subtitle,
+  .features-hero-initial-load .animate-slide-up-cta,
+  .features-hero-initial-load .animate-slide-in-card {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    transition: none !important;
   }
 
   .animate-slide-in-card {
@@ -630,6 +622,18 @@
     }
   }
 </style>
+
+<script>
+  // Remove initial load class after page renders
+  window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      const hero = document.querySelector('.features-hero-initial-load');
+      if (hero) {
+        hero.classList.remove('features-hero-initial-load');
+      }
+    }, 100);
+  });
+</script>
 
 <script>
   // Scroll animation trigger - repeatable for all animated elements

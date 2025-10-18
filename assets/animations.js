@@ -2,39 +2,9 @@
 
 // Initialize hero animations immediately
 function initHeroAnimations() {
-    // Simple, direct approach - find and animate all hero elements
-    function animateAllHeroElements() {
-        // Get all hero sections first, then find elements within them
-        const heroSections = document.querySelectorAll('.hero, .features-hero-alt');
-        
-        heroSections.forEach(section => {
-            // Find all animated elements within this section
-            const animatedElements = section.querySelectorAll('.animate-hero-left, .animate-hero-right');
-            
-            animatedElements.forEach(element => {
-                // Force add the hero-visible class to all elements
-                element.classList.add('hero-visible');
-            });
-        });
-        
-        // Also try a comprehensive global search
-        const allElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
-        allElements.forEach(element => {
-            if (element.closest('.hero, .features-hero-alt')) {
-                element.classList.add('hero-visible');
-            }
-        });
-    }
-    
-    // Run immediately
-    animateAllHeroElements();
-    
-    // Multiple attempts to catch all elements as they become available
-    [50, 150, 300, 600, 1000, 2000].forEach(delay => {
-        setTimeout(() => {
-            animateAllHeroElements();
-        }, delay);
-    });
+    // CSS animations will handle the hero elements automatically
+    // No JavaScript class manipulation needed - CSS animations do the work
+    console.log('Hero animations initialized - using CSS keyframe animations');
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)

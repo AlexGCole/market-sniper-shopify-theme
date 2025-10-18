@@ -10,7 +10,7 @@ function initScrollAnimations() {
     elementsToAnimate.forEach(el => { el.classList.add('animate-on-scroll'); observer.observe(el); });
 }
 
-// Observe elements for bidirectional scroll animations
+// Observe elements for scroll animations (one-way, stays visible once triggered)
 function initBidirectionalAnimations() {
     const observerOptions = { 
         threshold: 0.15, 
@@ -20,11 +20,7 @@ function initBidirectionalAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.remove('hidden');
                 entry.target.classList.add('visible');
-            } else {
-                entry.target.classList.remove('visible');
-                entry.target.classList.add('hidden');
             }
         });
     }, observerOptions);

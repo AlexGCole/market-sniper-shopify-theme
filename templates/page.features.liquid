@@ -637,14 +637,6 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-            // Remove inline styles when scrolling out so animations work on scroll back
-            if (entry.target.classList.contains('no-transition')) {
-              entry.target.classList.remove('no-transition');
-              entry.target.style.opacity = '';
-              entry.target.style.transform = '';
-            }
           }
         });
       }, {
@@ -654,17 +646,13 @@
       
       oneWayElements.forEach(el => oneWayObserver.observe(el));
       
-      // Bidirectional animations (animate on scroll up and down)
-      const bidirectionalElements = document.querySelectorAll('.animate-step-card, .animate-indicator, .animate-cta-button');
+      // One-way animations (animate once, stay visible)
+      const onceAnimatedElements = document.querySelectorAll('.animate-step-card, .animate-indicator, .animate-cta-button');
       
-      const bidirectionalObserver = new IntersectionObserver((entries) => {
+      const onceObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.remove('hidden');
             entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-            entry.target.classList.add('hidden');
           }
         });
       }, {
@@ -672,12 +660,12 @@
         rootMargin: '0px 0px -100px 0px'
       });
       
-      bidirectionalElements.forEach((el, index) => {
+      onceAnimatedElements.forEach((el, index) => {
         // Add staggered delays for cascading effect (only for step cards)
         if (el.classList.contains('animate-step-card')) {
           el.style.transitionDelay = `${index * 0.08}s`;
         }
-        bidirectionalObserver.observe(el);
+        onceObserver.observe(el);
       });
     }
     

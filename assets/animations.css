@@ -99,47 +99,42 @@
     }
 }
 
-/* Auto-animate hero elements after page load */
-.hero .animate-hero-left,
-.features-hero-alt .animate-hero-left {
-    animation: heroAutoSlideIn 0.8s ease-out forwards !important;
-}
 
 /* Individual delays for each element type */
 .hero-badge.animate-hero-left { 
-    animation-delay: 0.1s !important; 
+    transition-delay: 0.1s !important; 
 }
 
 .hero-title.animate-hero-left { 
-    animation-delay: 0.2s !important; 
+    transition-delay: 0.2s !important; 
 }
 
 .features-hero-tagline.animate-hero-left { 
-    animation-delay: 0.25s !important; 
+    transition-delay: 0.25s !important; 
 }
 
 .hero-subtitle.animate-hero-left { 
-    animation-delay: 0.3s !important; 
+    transition-delay: 0.3s !important; 
 }
 
 .hero-cta.animate-hero-left { 
-    animation-delay: 0.4s !important; 
+    transition-delay: 0.4s !important; 
 }
 
 .features-stats-card.animate-hero-left { 
-    animation-delay: 0.5s !important; 
+    transition-delay: 0.5s !important; 
 }
 
 .hero-stats .stat.animate-hero-left:nth-child(1) { 
-    animation-delay: 0.5s !important; 
+    transition-delay: 0.5s !important; 
 }
 
 .hero-stats .stat.animate-hero-left:nth-child(2) { 
-    animation-delay: 0.6s !important; 
+    transition-delay: 0.6s !important; 
 }
 
 .hero-stats .stat.animate-hero-left:nth-child(3) { 
-    animation-delay: 0.7s !important; 
+    transition-delay: 0.7s !important; 
 }
 
 .animate-hero-left.hero-visible,

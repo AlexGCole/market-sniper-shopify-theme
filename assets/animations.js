@@ -2,9 +2,18 @@
 
 // Initialize hero animations immediately
 function initHeroAnimations() {
-    // CSS animations will handle the hero elements automatically
-    // No JavaScript class manipulation needed - CSS animations do the work
-    console.log('Hero animations initialized - using CSS keyframe animations');
+    // Simple and direct - just add hero-visible to all hero elements
+    function addVisibleClass() {
+        const heroElements = document.querySelectorAll('.hero .animate-hero-left, .features-hero-alt .animate-hero-left, .hero .animate-hero-right, .features-hero-alt .animate-hero-right');
+        heroElements.forEach(el => {
+            el.classList.add('hero-visible');
+        });
+    }
+    
+    // Run immediately and with delays
+    addVisibleClass();
+    setTimeout(addVisibleClass, 100);
+    setTimeout(addVisibleClass, 500);
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)

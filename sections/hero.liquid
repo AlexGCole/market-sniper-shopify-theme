@@ -48,7 +48,7 @@
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
   
-  .animate-hero-left.visible {
+  .animate-hero-left.hero-visible {
     opacity: 1;
     transform: translateX(0);
   }
@@ -60,41 +60,48 @@
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
   
-  .animate-hero-right.visible {
+  .animate-hero-right.hero-visible {
     opacity: 1;
     transform: translateX(0);
   }
   
   /* Staggered delays for hero elements */
-  .animate-hero-left:nth-of-type(1) { transition-delay: 0.1s; }
-  .animate-hero-left:nth-of-type(2) { transition-delay: 0.2s; }
-  .animate-hero-left:nth-of-type(3) { transition-delay: 0.3s; }
-  .animate-hero-left:nth-of-type(4) { transition-delay: 0.4s; }
+  .hero-badge.animate-hero-left { transition-delay: 0.1s; }
+  .hero-title.animate-hero-left { transition-delay: 0.2s; }
+  .hero-subtitle.animate-hero-left { transition-delay: 0.3s; }
+  .hero-cta.animate-hero-left { transition-delay: 0.4s; }
   
-  .animate-hero-right:nth-of-type(1) { transition-delay: 0.5s; }
-  .animate-hero-right:nth-of-type(2) { transition-delay: 0.6s; }
-  .animate-hero-right:nth-of-type(3) { transition-delay: 0.7s; }
+  .stat.animate-hero-right:nth-child(1) { transition-delay: 0.5s; }
+  .stat.animate-hero-right:nth-child(2) { transition-delay: 0.6s; }
+  .stat.animate-hero-right:nth-child(3) { transition-delay: 0.7s; }
 </style>
 
 <script>
-  // Trigger hero animations on page load
+  // Trigger hero animations immediately - multiple methods to ensure it works
   (function() {
-    function initHeroAnimations() {
-      const heroElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
+    function triggerHeroAnimations() {
+      const heroElements = document.querySelectorAll('.hero .animate-hero-left, .hero .animate-hero-right');
       
-      // Trigger animations immediately on page load
-      setTimeout(() => {
+      if (heroElements.length > 0) {
         heroElements.forEach(el => {
-          el.classList.add('visible');
+          el.classList.add('hero-visible');
         });
-      }, 100);
+      }
     }
     
+    // Method 1: Immediate execution
+    triggerHeroAnimations();
+    
+    // Method 2: After a tiny delay
+    setTimeout(triggerHeroAnimations, 50);
+    
+    // Method 3: On DOMContentLoaded
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initHeroAnimations);
-    } else {
-      initHeroAnimations();
+      document.addEventListener('DOMContentLoaded', triggerHeroAnimations);
     }
+    
+    // Method 4: On window load
+    window.addEventListener('load', triggerHeroAnimations);
   })();
 </script>
 

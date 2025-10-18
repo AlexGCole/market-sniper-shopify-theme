@@ -112,29 +112,43 @@
     pointer-events: auto;
 }
 
-/* Individual delays for staggered effect - LEFT SIDE */
-.hero-badge.animate-hero-left.hero-visible { 
+/* Individual delays for staggered effect - MAIN HERO LEFT SIDE */
+.hero .hero-badge.animate-hero-left.hero-visible { 
     transition-delay: 0.1s; 
 }
 
-.hero-title.animate-hero-left.hero-visible { 
+.hero .hero-title.animate-hero-left.hero-visible { 
     transition-delay: 0.2s; 
 }
 
-.features-hero-tagline.animate-hero-left.hero-visible { 
-    transition-delay: 0.3s; 
-}
-
-.hero-subtitle.animate-hero-left.hero-visible { 
+.hero .hero-subtitle.animate-hero-left.hero-visible { 
     transition-delay: 0.4s; 
 }
 
-.hero-cta.animate-hero-left.hero-visible { 
+.hero .hero-cta.animate-hero-left.hero-visible { 
     transition-delay: 0.5s; 
 }
 
-.features-stats-card.animate-hero-left.hero-visible { 
-    transition-delay: 0.6s; 
+/* Individual delays for staggered effect - FEATURES HERO LEFT SIDE */
+.features-hero-alt h1.animate-hero-left.hero-visible { 
+    transition-delay: 0.1s; 
+}
+
+.features-hero-alt h2.animate-hero-left.hero-visible { 
+    transition-delay: 0.2s; 
+}
+
+.features-hero-alt .hero-subtitle.animate-hero-left.hero-visible,
+.features-hero-alt p.animate-hero-left.hero-visible { 
+    transition-delay: 0.3s; 
+}
+
+.features-hero-alt .hero-cta.animate-hero-left.hero-visible { 
+    transition-delay: 0.4s; 
+}
+
+.features-hero-alt .features-stats-card.animate-hero-left.hero-visible { 
+    transition-delay: 0.5s; 
 }
 
 /* Three stats in a row - all come from left with staggered delays */
@@ -150,51 +164,42 @@
     transition-delay: 0.7s; 
 }
 
-/* Individual delays for staggered effect - RIGHT SIDE */
-.hero-badge.animate-hero-right.hero-visible { 
+/* Individual delays for staggered effect - MAIN HERO RIGHT SIDE */
+.hero .hero-badge.animate-hero-right.hero-visible { 
     transition-delay: 0.1s; 
 }
 
-.hero-title.animate-hero-right.hero-visible { 
+.hero .hero-title.animate-hero-right.hero-visible { 
     transition-delay: 0.2s; 
 }
 
-.features-hero-tagline.animate-hero-right.hero-visible { 
-    transition-delay: 0.3s; 
-}
-
-.hero-subtitle.animate-hero-right.hero-visible { 
+.hero .hero-subtitle.animate-hero-right.hero-visible { 
     transition-delay: 0.4s; 
 }
 
-.hero-cta.animate-hero-right.hero-visible { 
+.hero .hero-cta.animate-hero-right.hero-visible { 
     transition-delay: 0.5s; 
 }
 
-.features-stats-card.animate-hero-right.hero-visible { 
-    transition-delay: 0.6s; 
+/* Individual delays for staggered effect - FEATURES HERO RIGHT SIDE */
+.features-hero-alt h2.animate-hero-right.hero-visible { 
+    transition-delay: 0.2s; 
 }
 
-/* Override: if stats are on right side, still come from left when 3 together */
-.hero-stats .stat.animate-hero-right.hero-visible {
-    transform: translateX(-50px) !important;
+.features-hero-alt .hero-subtitle.animate-hero-right.hero-visible,
+.features-hero-alt p.animate-hero-right.hero-visible { 
+    transition-delay: 0.3s; 
 }
 
-.hero-stats .stat.animate-hero-right:not(.hero-visible) {
-    transform: translateX(-50px) !important;
+.features-hero-alt .hero-cta.animate-hero-right.hero-visible { 
+    transition-delay: 0.4s; 
 }
 
-.hero-stats .stat.animate-hero-right.hero-visible:nth-child(1) { 
+.features-hero-alt .features-stats-card.animate-hero-right.hero-visible { 
     transition-delay: 0.5s; 
 }
 
-.hero-stats .stat.animate-hero-right.hero-visible:nth-child(2) { 
-    transition-delay: 0.6s; 
-}
-
-.hero-stats .stat.animate-hero-right.hero-visible:nth-child(3) { 
-    transition-delay: 0.7s; 
-}
+/* All hero stats now animate from left with proper staggered timing */
 
 /* ===== SCROLL-TRIGGERED ANIMATIONS ===== */
 

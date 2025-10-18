@@ -28,16 +28,30 @@ function debounce(func, wait) {
 
 // Initialize hero animations immediately
 function initHeroAnimations() {
-    const heroElements = document.querySelectorAll(
+    // Target only elements within hero sections to avoid conflicts
+    const mainHeroElements = document.querySelectorAll(
         '.hero .animate-hero-left, ' +
-        '.hero .animate-hero-right, ' +
+        '.hero .animate-hero-right'
+    );
+    
+    const featuresHeroElements = document.querySelectorAll(
         '.features-hero-alt .animate-hero-left, ' +
         '.features-hero-alt .animate-hero-right'
     );
     
-    heroElements.forEach(el => {
-        el.classList.add('hero-visible');
-    });
+    // Initialize main hero with staggered delay
+    setTimeout(() => {
+        mainHeroElements.forEach(el => {
+            el.classList.add('hero-visible');
+        });
+    }, 100);
+    
+    // Initialize features hero with staggered delay
+    setTimeout(() => {
+        featuresHeroElements.forEach(el => {
+            el.classList.add('hero-visible');
+        });
+    }, 150);
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)

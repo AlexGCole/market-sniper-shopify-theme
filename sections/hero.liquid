@@ -28,8 +28,7 @@
       {% if section.settings.show_stats %}
         <div class="hero-stats">
           {% for block in section.blocks %}
-            {% assign is_even = forloop.index | modulo: 2 %}
-            <div class="stat {% if is_even == 0 %}animate-hero-right{% else %}animate-hero-left{% endif %}">
+            <div class="stat animate-hero-left">
               <div class="stat-number">{{ block.settings.stat_number }}</div>
               <div class="stat-label">{{ block.settings.stat_label }}</div>
             </div>
@@ -41,40 +40,7 @@
   <div class="hero-bg"></div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Get all hero animation elements
-  const heroElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
-  
-  // Add hero-visible class after a short delay to trigger animations
-  setTimeout(() => {
-    heroElements.forEach(element => {
-      element.classList.add('hero-visible');
-    });
-  }, 100);
-  
-  // Scroll animations for other sections
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  // Observe all scroll-triggered animation elements
-  const scrollElements = document.querySelectorAll(
-    '.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale, .animate-on-scroll-bidirectional'
-  );
-  
-  scrollElements.forEach(el => observer.observe(el));
-});
-</script>
+{% comment %} Animation script moved to animations.js to prevent conflicts {% endcomment %}
 
 {% schema %}
 {

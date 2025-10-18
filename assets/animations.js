@@ -2,19 +2,27 @@
 
 // Initialize hero animations immediately
 function initHeroAnimations() {
-    // Simple and direct - just add hero-visible to all hero elements
-    // NOW INCLUDES BOTH .hero AND .features-hero-alt
+    // Add hero-visible class to trigger CSS animations
     function addVisibleClass() {
-        const heroElements = document.querySelectorAll('.hero .animate-hero-left, .hero .animate-hero-right, .features-hero-alt .animate-hero-left, .features-hero-alt .animate-hero-right');
+        const heroElements = document.querySelectorAll(
+            '.hero .animate-hero-left, ' +
+            '.hero .animate-hero-right, ' +
+            '.features-hero-alt .animate-hero-left, ' +
+            '.features-hero-alt .animate-hero-right'
+        );
+        
         heroElements.forEach(el => {
             el.classList.add('hero-visible');
         });
     }
     
-    // Run immediately and with delays
+    // Run immediately
     addVisibleClass();
+    
+    // Run again with small delays to ensure DOM is ready
+    setTimeout(addVisibleClass, 50);
     setTimeout(addVisibleClass, 100);
-    setTimeout(addVisibleClass, 500);
+    setTimeout(addVisibleClass, 200);
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)

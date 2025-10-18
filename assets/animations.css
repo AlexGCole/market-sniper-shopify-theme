@@ -1,3 +1,5 @@
+/* ===== KEYFRAMES ===== */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -80,92 +82,83 @@
     }
 }
 
-/* Hero animations - slide in from left */
-.animate-hero-left {
+/* ===== HERO ANIMATIONS ===== */
+
+/* Force all hero elements to start hidden */
+.hero .animate-hero-left,
+.hero .animate-hero-right,
+.features-hero-alt .animate-hero-left,
+.features-hero-alt .animate-hero-right {
     opacity: 0 !important;
+    will-change: opacity, transform;
+}
+
+.hero .animate-hero-left,
+.features-hero-alt .animate-hero-left {
     transform: translateX(-50px) !important;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
 }
 
-/* Keyframes for auto hero animation */
-@keyframes heroAutoSlideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-/* Individual delays for each element type */
-.hero-badge.animate-hero-left { 
-    transition-delay: 0.1s !important; 
-}
-
-.hero-title.animate-hero-left { 
-    transition-delay: 0.2s !important; 
-}
-
-.features-hero-tagline.animate-hero-left { 
-    transition-delay: 0.25s !important; 
-}
-
-.hero-subtitle.animate-hero-left { 
-    transition-delay: 0.3s !important; 
-}
-
-.hero-cta.animate-hero-left { 
-    transition-delay: 0.4s !important; 
-}
-
-.features-stats-card.animate-hero-left { 
-    transition-delay: 0.5s !important; 
-}
-
-.hero-stats .stat.animate-hero-left:nth-child(1) { 
-    transition-delay: 0.5s !important; 
-}
-
-.hero-stats .stat.animate-hero-left:nth-child(2) { 
-    transition-delay: 0.6s !important; 
-}
-
-.hero-stats .stat.animate-hero-left:nth-child(3) { 
-    transition-delay: 0.7s !important; 
-}
-
-.animate-hero-left.hero-visible,
-.hero .animate-hero-left.hero-visible,
-.features-hero-alt .animate-hero-left.hero-visible,
-.hero-title.animate-hero-left.hero-visible,
-.hero-subtitle.animate-hero-left.hero-visible,
-.hero-cta.animate-hero-left.hero-visible,
-.hero-badge.animate-hero-left.hero-visible,
-.features-hero-tagline.animate-hero-left.hero-visible,
-.features-stats-card.animate-hero-left.hero-visible {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-}
-
-/* Hero animations - slide in from right */
-.animate-hero-right {
-    opacity: 0 !important;
+.hero .animate-hero-right,
+.features-hero-alt .animate-hero-right {
     transform: translateX(50px) !important;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
 }
 
-.animate-hero-right.hero-visible,
+/* Apply animation when hero-visible class is added */
+.hero .animate-hero-left.hero-visible,
+.features-hero-alt .animate-hero-left.hero-visible {
+    animation: slideInLeft 0.8s ease-out forwards !important;
+}
+
 .hero .animate-hero-right.hero-visible,
 .features-hero-alt .animate-hero-right.hero-visible {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
+    animation: slideInRight 0.8s ease-out forwards !important;
 }
 
+/* Staggered delays for hero elements */
+.hero-badge.animate-hero-left.hero-visible,
+.features-hero-alt .hero-badge.animate-hero-left.hero-visible { 
+    animation-delay: 0.1s !important; 
+}
 
-/* Scroll-triggered animations */
+.hero-title.animate-hero-left.hero-visible,
+.features-hero-alt .hero-title.animate-hero-left.hero-visible { 
+    animation-delay: 0.2s !important; 
+}
+
+.features-hero-tagline.animate-hero-left.hero-visible,
+.features-hero-alt .features-hero-tagline.animate-hero-left.hero-visible { 
+    animation-delay: 0.25s !important; 
+}
+
+.hero-subtitle.animate-hero-left.hero-visible,
+.features-hero-alt .hero-subtitle.animate-hero-left.hero-visible { 
+    animation-delay: 0.3s !important; 
+}
+
+.hero-cta.animate-hero-left.hero-visible,
+.features-hero-alt .hero-cta.animate-hero-left.hero-visible { 
+    animation-delay: 0.4s !important; 
+}
+
+.features-stats-card.animate-hero-left.hero-visible,
+.features-hero-alt .features-stats-card.animate-hero-left.hero-visible { 
+    animation-delay: 0.5s !important; 
+}
+
+.hero-stats .stat.animate-hero-left.hero-visible:nth-child(1) { 
+    animation-delay: 0.5s !important; 
+}
+
+.hero-stats .stat.animate-hero-left.hero-visible:nth-child(2) { 
+    animation-delay: 0.6s !important; 
+}
+
+.hero-stats .stat.animate-hero-left.hero-visible:nth-child(3) { 
+    animation-delay: 0.7s !important; 
+}
+
+/* ===== SCROLL-TRIGGERED ANIMATIONS ===== */
+
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
@@ -225,7 +218,8 @@
     transform: scale(1);
 }
 
-/* Hover effects */
+/* ===== HOVER EFFECTS ===== */
+
 .hover-lift {
     transition: transform var(--transition-base);
 }

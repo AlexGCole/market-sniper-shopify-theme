@@ -167,6 +167,55 @@ function initBidirectionalAnimations() {
         observer.observe(el);
     });
     
+    // Animate additional product page elements
+    const productBadge = document.querySelector('.product-page .optional-badge.animate-slide-left');
+    if (productBadge) {
+        productBadge.classList.add('animate-slide-left');
+        observer.observe(productBadge);
+    }
+    
+    const productPrice = document.querySelector('.product-page .product-price.animate-slide-left');
+    if (productPrice) {
+        productPrice.classList.add('animate-slide-left');
+        observer.observe(productPrice);
+    }
+    
+    const automationNotice = document.querySelector('.product-page .automation-notice.animate-slide-left');
+    if (automationNotice) {
+        automationNotice.classList.add('animate-slide-left');
+        observer.observe(automationNotice);
+    }
+    
+    const setupFeeInfo = document.querySelector('.product-page .setup-fee-info.animate-slide-left');
+    if (setupFeeInfo) {
+        setupFeeInfo.classList.add('animate-slide-left');
+        observer.observe(setupFeeInfo);
+    }
+    
+    const productDescription = document.querySelector('.product-page .product-description.animate-slide-left');
+    if (productDescription) {
+        productDescription.classList.add('animate-slide-left');
+        observer.observe(productDescription);
+    }
+    
+    const planSelector = document.querySelector('.product-page .plan-selector.animate-slide-right');
+    if (planSelector) {
+        planSelector.classList.add('animate-slide-right');
+        observer.observe(planSelector);
+    }
+    
+    const addToCartBtn = document.querySelector('.product-page .add-to-cart-btn.animate-slide-right');
+    if (addToCartBtn) {
+        addToCartBtn.classList.add('animate-slide-right');
+        observer.observe(addToCartBtn);
+    }
+    
+    const cartMessage = document.querySelector('.product-page .cart-message.animate-slide-right');
+    if (cartMessage) {
+        cartMessage.classList.add('animate-slide-right');
+        observer.observe(cartMessage);
+    }
+    
     // Animate indicator elements based on their position
     const indicatorContentLeft = document.querySelectorAll('.indicator-content.animate-slide-left');
     const indicatorVisualRight = document.querySelectorAll('.indicator-visual.animate-slide-right');

@@ -194,21 +194,37 @@
     transform: scale(0.95) translateY(20px);
   }
 
-  /* Indicator bidirectional animations */
-  .animate-indicator {
+  /* Indicator bidirectional animations - split by side */
+  .animate-indicator-left {
     opacity: 0;
     transform: translateX(-50px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
 
-  .animate-indicator.visible {
+  .animate-indicator-left.visible {
     opacity: 1;
     transform: translateX(0);
   }
 
-  .animate-indicator.hidden {
+  .animate-indicator-left.hidden {
     opacity: 0;
     transform: translateX(-50px);
+  }
+
+  .animate-indicator-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .animate-indicator-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .animate-indicator-right.hidden {
+    opacity: 0;
+    transform: translateX(50px);
   }
 
   /* CTA button bidirectional animation */
@@ -457,8 +473,8 @@
     </div>
 
     <div class="indicators-grid">
-      <div class="indicator-item normal animate-indicator">
-        <div class="indicator-content">
+      <div class="indicator-item normal">
+        <div class="indicator-content animate-indicator-left">
           <span class="indicator-badge">Version 4.2</span>
           <h3>Sharp Shooter Candles</h3>
           <p class="indicator-description">Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.</p>
@@ -470,15 +486,15 @@
             <li>✓ Trending Dots</li>
           </ul>
         </div>
-        <div class="indicator-visual">
+        <div class="indicator-visual animate-indicator-right">
           <div class="indicator-visual-container">
             <img src="{{ 'sharp-shooter-candles.jpg' | asset_url }}" alt="Sharp Shooter Candles">
           </div>
         </div>
       </div>
 
-      <div class="indicator-item reverse animate-indicator">
-        <div class="indicator-content">
+      <div class="indicator-item reverse">
+        <div class="indicator-content animate-indicator-right">
           <span class="indicator-badge">Version 2.0</span>
           <h3>Sharp Shooter RSI</h3>
           <p class="indicator-description">Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.</p>
@@ -489,7 +505,7 @@
             <li>✓ Customizable Length & Style</li>
           </ul>
         </div>
-        <div class="indicator-visual">
+        <div class="indicator-visual animate-indicator-left">
           <div class="indicator-visual-container">
             <img src="{{ 'sharp-shooter-rsi.jpg' | asset_url }}" alt="Sharp Shooter RSI">
           </div>
@@ -677,7 +693,7 @@
       oneWayElements.forEach(el => oneWayObserver.observe(el));
       
       // Bidirectional animations (animate on scroll up and down)
-      const bidirectionalElements = document.querySelectorAll('.animate-step-card, .animate-indicator, .animate-cta-button');
+      const bidirectionalElements = document.querySelectorAll('.animate-step-card, .animate-indicator-left, .animate-indicator-right, .animate-cta-button');
       
       const bidirectionalObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

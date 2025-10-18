@@ -113,6 +113,10 @@
     transition-delay: 0.2s !important; 
 }
 
+.features-hero-tagline.animate-hero-left { 
+    transition-delay: 0.25s !important; 
+}
+
 .hero-subtitle.animate-hero-left { 
     transition-delay: 0.3s !important; 
 }
@@ -131,6 +135,10 @@
 
 .hero-stats .stat.animate-hero-left:nth-child(3) { 
     transition-delay: 0.7s !important; 
+}
+
+.features-stats-card.animate-hero-left { 
+    transition-delay: 0.5s !important; 
 }
 
 /* Scroll-triggered animations */

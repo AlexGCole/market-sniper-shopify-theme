@@ -104,14 +104,22 @@
 }
 
 /* Apply animation when hero-visible class is added */
+.animate-hero-left.hero-visible,
 .hero .animate-hero-left.hero-visible,
-.features-hero-alt .animate-hero-left.hero-visible {
+.features-hero-alt .animate-hero-left.hero-visible,
+.hero-title.hero-visible,
+.hero-subtitle.hero-visible,
+.hero-cta.hero-visible,
+.stat.hero-visible {
     animation: slideInLeft 0.8s ease-out forwards !important;
+    opacity: 1 !important;
 }
 
+.animate-hero-right.hero-visible,
 .hero .animate-hero-right.hero-visible,
 .features-hero-alt .animate-hero-right.hero-visible {
     animation: slideInRight 0.8s ease-out forwards !important;
+    opacity: 1 !important;
 }
 
 /* Staggered delays for hero elements */

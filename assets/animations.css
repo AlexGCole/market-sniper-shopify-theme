@@ -111,15 +111,13 @@
 .hero-subtitle.hero-visible,
 .hero-cta.hero-visible,
 .stat.hero-visible {
-    animation: slideInLeft 0.8s ease-out forwards !important;
-    opacity: 1 !important;
+    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
 
 .animate-hero-right.hero-visible,
 .hero .animate-hero-right.hero-visible,
 .features-hero-alt .animate-hero-right.hero-visible {
-    animation: slideInRight 0.8s ease-out forwards !important;
-    opacity: 1 !important;
+    animation: slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
 
 /* Staggered delays for hero elements */
@@ -130,39 +128,39 @@
 
 .hero-title.animate-hero-left.hero-visible,
 .features-hero-alt .hero-title.animate-hero-left.hero-visible { 
-    animation-delay: 0.2s !important; 
+    animation-delay: 0.3s !important; 
 }
 
 .features-hero-tagline.animate-hero-left.hero-visible,
 .features-hero-alt .features-hero-tagline.animate-hero-left.hero-visible { 
-    animation-delay: 0.25s !important; 
+    animation-delay: 0.4s !important; 
 }
 
 .hero-subtitle.animate-hero-left.hero-visible,
 .features-hero-alt .hero-subtitle.animate-hero-left.hero-visible { 
-    animation-delay: 0.3s !important; 
+    animation-delay: 0.5s !important; 
 }
 
 .hero-cta.animate-hero-left.hero-visible,
 .features-hero-alt .hero-cta.animate-hero-left.hero-visible { 
-    animation-delay: 0.4s !important; 
+    animation-delay: 0.65s !important; 
 }
 
 .features-stats-card.animate-hero-left.hero-visible,
 .features-hero-alt .features-stats-card.animate-hero-left.hero-visible { 
-    animation-delay: 0.5s !important; 
+    animation-delay: 0.8s !important; 
 }
 
 .hero-stats .stat.animate-hero-left.hero-visible:nth-child(1) { 
-    animation-delay: 0.5s !important; 
+    animation-delay: 0.65s !important; 
 }
 
 .hero-stats .stat.animate-hero-left.hero-visible:nth-child(2) { 
-    animation-delay: 0.6s !important; 
+    animation-delay: 0.8s !important; 
 }
 
 .hero-stats .stat.animate-hero-left.hero-visible:nth-child(3) { 
-    animation-delay: 0.7s !important; 
+    animation-delay: 0.95s !important; 
 }
 
 /* ===== SCROLL-TRIGGERED ANIMATIONS ===== */

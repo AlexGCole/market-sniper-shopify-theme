@@ -2,14 +2,30 @@
 
 // Initialize hero animations immediately
 function initHeroAnimations() {
+    // Select all hero elements with animation classes
     const heroElements = document.querySelectorAll('.hero .animate-hero-left, .hero .animate-hero-right');
     
-    // Trigger animations after a short delay
+    // Also check features-hero-alt section specifically
+    const featuresHeroElements = document.querySelectorAll('.features-hero-alt .animate-hero-left, .features-hero-alt .animate-hero-right');
+    
+    // Combine both sets
+    const allHeroElements = [...heroElements, ...featuresHeroElements];
+    
+    // Trigger animations immediately and after a short delay to ensure all elements are animated
     setTimeout(() => {
-        heroElements.forEach(el => {
+        allHeroElements.forEach(el => {
             el.classList.add('hero-visible');
         });
-    }, 150);
+    }, 50);
+    
+    // Fallback - ensure all elements are animated after page load
+    setTimeout(() => {
+        allHeroElements.forEach(el => {
+            if (!el.classList.contains('hero-visible')) {
+                el.classList.add('hero-visible');
+            }
+        });
+    }, 500);
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)
@@ -215,4 +231,5 @@ document.addEventListener('DOMContentLoaded', () => {
             alternateIndex++;
         });
     }, 100);
+});
 });

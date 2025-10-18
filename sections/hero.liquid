@@ -10,9 +10,9 @@
         <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
       </h1>
       
-      <p class="hero-subtitle animate-hero-left">{{ section.settings.hero_subtitle }}</p>
+      <p class="hero-subtitle animate-hero-right">{{ section.settings.hero_subtitle }}</p>
       
-      <div class="hero-cta animate-hero-left">
+      <div class="hero-cta animate-hero-right">
         {% if section.settings.primary_button_text != blank %}
           <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
             {{ section.settings.primary_button_text }}
@@ -28,7 +28,8 @@
       {% if section.settings.show_stats %}
         <div class="hero-stats">
           {% for block in section.blocks %}
-            <div class="stat animate-hero-left">
+            {% assign is_even = forloop.index | modulo: 2 %}
+            <div class="stat {% if is_even == 0 %}animate-hero-right{% else %}animate-hero-left{% endif %}">
               <div class="stat-number">{{ block.settings.stat_number }}</div>
               <div class="stat-label">{{ block.settings.stat_label }}</div>
             </div>

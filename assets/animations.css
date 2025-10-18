@@ -87,7 +87,9 @@
     transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
 }
 
-.animate-hero-left.hero-visible {
+.animate-hero-left.hero-visible,
+.hero .animate-hero-left.hero-visible,
+.features-hero-alt .animate-hero-left.hero-visible {
     opacity: 1 !important;
     transform: translateX(0) !important;
 }
@@ -99,7 +101,9 @@
     transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
 }
 
-.animate-hero-right.hero-visible {
+.animate-hero-right.hero-visible,
+.hero .animate-hero-right.hero-visible,
+.features-hero-alt .animate-hero-right.hero-visible {
     opacity: 1 !important;
     transform: translateX(0) !important;
 }

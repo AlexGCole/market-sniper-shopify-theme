@@ -2,8 +2,14 @@
 
 // Initialize hero animations immediately
 function initHeroAnimations() {
+    console.log('🎬 initHeroAnimations called');
+    
     // Add hero-visible class to trigger CSS animations
     function addVisibleClass() {
+        // Check if hero section exists
+        const heroSection = document.querySelector('.hero, .features-hero-alt');
+        console.log('Hero section found:', heroSection ? heroSection.className : 'NONE');
+        
         const heroElements = document.querySelectorAll(
             '.hero .animate-hero-left, ' +
             '.hero .animate-hero-right, ' +
@@ -11,7 +17,16 @@ function initHeroAnimations() {
             '.features-hero-alt .animate-hero-right'
         );
         
-        heroElements.forEach(el => {
+        console.log(`Found ${heroElements.length} hero elements`);
+        
+        if (heroElements.length === 0) {
+            console.warn('⚠️ No hero elements found! Checking what exists...');
+            console.log('All .animate-hero-left:', document.querySelectorAll('.animate-hero-left').length);
+            console.log('All .animate-hero-right:', document.querySelectorAll('.animate-hero-right').length);
+        }
+        
+        heroElements.forEach((el, index) => {
+            console.log(`Adding hero-visible to element ${index}:`, el.tagName, el.className);
             el.classList.add('hero-visible');
         });
     }
@@ -175,12 +190,10 @@ function animateValue(element) {
 
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('✅ animations.js loaded successfully');
+    
     // Initialize hero animations FIRST
     initHeroAnimations();
-    
-    // Also run it again after a short delay to ensure all elements are found
-    setTimeout(initHeroAnimations, 50);
-    setTimeout(initHeroAnimations, 200);
     
     initScrollAnimations();
     initBidirectionalAnimations();

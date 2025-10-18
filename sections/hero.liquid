@@ -41,6 +41,41 @@
   <div class="hero-bg"></div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all hero animation elements
+  const heroElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
+  
+  // Add hero-visible class after a short delay to trigger animations
+  setTimeout(() => {
+    heroElements.forEach(element => {
+      element.classList.add('hero-visible');
+    });
+  }, 100);
+  
+  // Scroll animations for other sections
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all scroll-triggered animation elements
+  const scrollElements = document.querySelectorAll(
+    '.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale, .animate-on-scroll-bidirectional'
+  );
+  
+  scrollElements.forEach(el => observer.observe(el));
+});
+</script>
+
 {% schema %}
 {
   "name": "Hero Section",

@@ -1,53 +1,60 @@
 // Animation Controller
 
+// Throttle function
+function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Debounce function
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 // Initialize hero animations immediately
 function initHeroAnimations() {
-    console.log('🎬 initHeroAnimations called');
+    const heroElements = document.querySelectorAll(
+        '.hero .animate-hero-left, ' +
+        '.hero .animate-hero-right, ' +
+        '.features-hero-alt .animate-hero-left, ' +
+        '.features-hero-alt .animate-hero-right'
+    );
     
-    // Add hero-visible class to trigger CSS animations
-    function addVisibleClass() {
-        // Check if hero section exists
-        const heroSection = document.querySelector('.hero, .features-hero-alt');
-        console.log('Hero section found:', heroSection ? heroSection.className : 'NONE');
-        
-        const heroElements = document.querySelectorAll(
-            '.hero .animate-hero-left, ' +
-            '.hero .animate-hero-right, ' +
-            '.features-hero-alt .animate-hero-left, ' +
-            '.features-hero-alt .animate-hero-right'
-        );
-        
-        console.log(`Found ${heroElements.length} hero elements`);
-        
-        if (heroElements.length === 0) {
-            console.warn('⚠️ No hero elements found! Checking what exists...');
-            console.log('All .animate-hero-left:', document.querySelectorAll('.animate-hero-left').length);
-            console.log('All .animate-hero-right:', document.querySelectorAll('.animate-hero-right').length);
-        }
-        
-        heroElements.forEach((el, index) => {
-            console.log(`Adding hero-visible to element ${index}:`, el.tagName, el.className);
-            el.classList.add('hero-visible');
-        });
-    }
-    
-    // Run immediately
-    addVisibleClass();
-    
-    // Run again with small delays to ensure DOM is ready
-    setTimeout(addVisibleClass, 50);
-    setTimeout(addVisibleClass, 100);
-    setTimeout(addVisibleClass, 200);
+    heroElements.forEach(el => {
+        el.classList.add('hero-visible');
+    });
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)
 function initScrollAnimations() {
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+        entries.forEach(entry => { 
+            if (entry.isIntersecting) { 
+                entry.target.classList.add('visible'); 
+            } 
+        });
     }, observerOptions);
     const elementsToAnimate = document.querySelectorAll('.indicator-item');
-    elementsToAnimate.forEach(el => { el.classList.add('animate-on-scroll'); observer.observe(el); });
+    elementsToAnimate.forEach(el => { 
+        el.classList.add('animate-on-scroll'); 
+        observer.observe(el); 
+    });
 }
 
 // Observe elements for scroll animations (one-way, stays visible once triggered)
@@ -190,16 +197,16 @@ function animateValue(element) {
 
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('✅ animations.js loaded successfully');
-    
-    // Initialize hero animations FIRST
+    // Initialize hero animations immediately
     initHeroAnimations();
     
+    // Initialize other animations
     initScrollAnimations();
     initBidirectionalAnimations();
     initParallax();
     animateStats();
     
+    // Set alternating section backgrounds
     setTimeout(() => {
         const allSections = document.querySelectorAll('section:not(.header):not(.navbar), footer');
         const backgrounds = ['#050807', '#0A0A0A'];
@@ -209,9 +216,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
         let alternateIndex = 0;
         let lastBackground = null;
+        
         allSections.forEach((section) => {
             if (window.getComputedStyle(section).display === 'none') { return; }
             const tagName = section.tagName.toLowerCase();
+            
             if (section.classList.contains('hero') || section.classList.contains('features-hero-alt')) {
                 section.style.setProperty('background', 'linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 204, 51, 0.12) 30%, rgba(0, 255, 65, 0.05) 70%, rgba(10, 26, 15, 0.95) 100%)', 'important');
                 const heroBg = section.querySelector('.hero-bg');
@@ -221,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 lastBackground = 'linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 204, 51, 0.12) 30%, rgba(0, 255, 65, 0.05) 70%, rgba(10, 26, 15, 0.95) 100%)';
                 return;
             }
+            
             if (section.classList.contains('products-hero-compact')) {
                 section.style.setProperty('background', 'linear-gradient(135deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 204, 51, 0.08) 50%, rgba(10, 26, 15, 0.9) 100%)', 'important');
                 section.style.setProperty('position', 'relative', 'important');
@@ -230,17 +240,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 lastBackground = 'linear-gradient(135deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 204, 51, 0.08) 50%, rgba(10, 26, 15, 0.9) 100%)';
                 return;
             }
+            
             if (section.classList.contains('footer') || tagName === 'footer') {
                 const footerBg = lastBackground === '#050807' ? '#0A0A0A' : '#050807';
                 section.style.setProperty('background', footerBg, 'important');
                 section.style.setProperty('border-top', '1px solid rgba(0, 255, 65, 0.2)', 'important');
                 return;
             }
+            
             const bgIndex = alternateIndex % 2;
             const currentBg = backgrounds[bgIndex];
             section.style.setProperty('background', currentBg, 'important');
             section.style.setProperty('border-top', borders[bgIndex].top, 'important');
-            if (borders[bgIndex].bottom !== 'none') { section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important'); }
+            if (borders[bgIndex].bottom !== 'none') { 
+                section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important'); 
+            }
             lastBackground = currentBg;
             alternateIndex++;
         });
@@ -249,6 +263,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Also initialize hero animations on window load as a fallback
 window.addEventListener('load', () => {
-    // Re-run hero animations to catch any missed elements
     initHeroAnimations();
 });

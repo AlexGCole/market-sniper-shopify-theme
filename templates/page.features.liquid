@@ -4,18 +4,37 @@
   Features page template
 {% endcomment %}
 
+<style>
+  .features-hero-no-animation {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    transition: none !important;
+  }
+</style>
+
+<script>
+  // Remove no-animation class after initial page load
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.querySelectorAll('.features-hero-no-animation').forEach(function(el) {
+        el.classList.remove('features-hero-no-animation');
+      });
+    }, 100);
+  });
+</script>
+
 <section class="hero features-hero-alt">
   <div class="container">
     <div class="features-hero-grid">
       <div class="features-hero-content">
-        <h1 class="hero-title animate-slide-up-title" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">
+        <h1 class="hero-title animate-slide-up-title features-hero-no-animation">
           Trading Toolkit
         </h1>
-        <h2 class="features-hero-tagline animate-slide-up-tagline" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">
+        <h2 class="features-hero-tagline animate-slide-up-tagline features-hero-no-animation">
           <span class="gradient-text">Strategies & Support</span>
         </h2>
-        <p class="hero-subtitle animate-slide-up-subtitle" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
-        <div class="hero-cta animate-slide-up-cta" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">
+        <p class="hero-subtitle animate-slide-up-subtitle features-hero-no-animation">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
+        <div class="hero-cta animate-slide-up-cta features-hero-no-animation">
           <a href="/pages/products" class="btn btn-primary">Get Started Today</a>
         </div>
       </div>

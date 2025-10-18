@@ -1,3 +1,22 @@
+<style>
+  .hero-no-initial-animation {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    transition: none !important;
+  }
+</style>
+
+<script>
+  // Remove no-animation class after initial page load
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.querySelectorAll('.hero-no-initial-animation').forEach(function(el) {
+        el.classList.remove('hero-no-initial-animation');
+      });
+    }, 100);
+  });
+</script>
+
 <section class="hero">
   <div class="container">
     <div class="hero-content">
@@ -5,14 +24,14 @@
         <span class="hero-badge">{{ section.settings.badge_text }}</span>
       {% endif %}
       
-      <h1 class="hero-title animate-hero-element" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">
+      <h1 class="hero-title animate-hero-element hero-no-initial-animation">
         {{ section.settings.hero_title_line1 }}<br>
         <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
       </h1>
       
-      <p class="hero-subtitle animate-hero-element" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">{{ section.settings.hero_subtitle }}</p>
+      <p class="hero-subtitle animate-hero-element hero-no-initial-animation">{{ section.settings.hero_subtitle }}</p>
       
-      <div class="hero-cta animate-hero-element" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">
+      <div class="hero-cta animate-hero-element hero-no-initial-animation">
         {% if section.settings.primary_button_text != blank %}
           <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
             {{ section.settings.primary_button_text }}
@@ -26,7 +45,7 @@
       </div>
       
       {% if section.settings.show_stats %}
-        <div class="hero-stats animate-hero-element" style="opacity: 1 !important; transform: translateX(0) !important; transition: none !important;">
+        <div class="hero-stats animate-hero-element hero-no-initial-animation">
           {% for block in section.blocks %}
             <div class="stat">
               <div class="stat-number">{{ block.settings.stat_number }}</div>

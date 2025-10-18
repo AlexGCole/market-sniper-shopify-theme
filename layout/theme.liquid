@@ -30,62 +30,7 @@
   <!-- CSS Files -->
   <link rel="stylesheet" href="{{ 'reset.css' | asset_url }}">
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
-  <link rel="stylesheet" href="{{ 'animations.css' | asset_url }}">
-  
-  <!-- CRITICAL: Block hero animations before any other scripts run -->
-  <style>
-    .hero,
-    .hero *,
-    .hero::before,
-    .hero::after,
-    .hero *::before,
-    .hero *::after {
-      animation: none !important;
-      transition: none !important;
-      transform: none !important;
-      opacity: 1 !important;
-    }
-  </style>
-  
-  <script>
-    // Execute immediately to block animations before DOMContentLoaded
-    (function() {
-      // Mark hero as no-animate before anything else loads
-      window.heroNoAnimate = true;
-      
-      // Run as soon as DOM is interactive (before DOMContentLoaded)
-      function disableHeroAnimations() {
-        const hero = document.querySelector('.hero');
-        if (hero) {
-          const allElements = hero.querySelectorAll('*');
-          
-          // Remove animation classes
-          hero.classList.remove('animate-on-scroll', 'animate-slide-left', 'animate-slide-right');
-          allElements.forEach(el => {
-            el.classList.remove('animate-on-scroll', 'animate-slide-left', 'animate-slide-right', 'animate-scale');
-          });
-          
-          // Force immediate visibility
-          hero.style.opacity = '1';
-          hero.style.transform = 'none';
-          allElements.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-          });
-        }
-      }
-      
-      // Try multiple times to ensure it catches the hero
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', disableHeroAnimations);
-      } else {
-        disableHeroAnimations();
-      }
-      
-      // Also run immediately in case hero is already in DOM
-      setTimeout(disableHeroAnimations, 0);
-    })();
-  </script>
+  <link rel="stylesheet" href="{{ 'animations.css' | asset_url }}?v=4">
 </head>
 <body class="template-{{ template.name | handle }}">
 

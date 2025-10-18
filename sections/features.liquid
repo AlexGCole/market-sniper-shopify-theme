@@ -289,27 +289,53 @@
       width: 100%;
     }
   }
-  .features-section .section-header {
-  animation: none !important;
-}
-
-.features-section .section-header h2,
-.features-section .section-header p {
-  animation: none !important;
-  opacity: 1;
-}
-
-.features-section .features-cta {
-  animation: none !important;
-  opacity: 1;
-}
-
-.features-section .btn {
-  animation: none !important;
-  opacity: 1;
-}
-
 </style>
+
+<script>
+  (function() {
+    function initFeaturesSectionAnimations() {
+      const featureSection = document.querySelector('.features-section');
+      if (!featureSection) return;
+      
+      // Animate section header
+      const header = featureSection.querySelector('.section-header');
+      if (header) {
+        header.style.opacity = '0';
+        header.style.transform = 'translateX(-50px)';
+        header.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      }
+      
+      // Animate CTA button
+      const cta = featureSection.querySelector('.features-cta');
+      if (cta) {
+        cta.style.opacity = '0';
+        cta.style.transform = 'translateX(-50px)';
+        cta.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      }
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      if (header) observer.observe(header);
+      if (cta) observer.observe(cta);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFeaturesSectionAnimations);
+    } else {
+      initFeaturesSectionAnimations();
+    }
+  })();
+</script>
 
 {% schema %}
 {

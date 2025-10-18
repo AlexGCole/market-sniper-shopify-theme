@@ -4,27 +4,36 @@
 function initHeroAnimations() {
     // Simple, direct approach - find and animate all hero elements
     function animateAllHeroElements() {
-        // Get all elements that should be animated in hero sections
-        const heroElements = [
-            ...document.querySelectorAll('.hero .animate-hero-left'),
-            ...document.querySelectorAll('.hero .animate-hero-right'),
-            ...document.querySelectorAll('.features-hero-alt .animate-hero-left'),
-            ...document.querySelectorAll('.features-hero-alt .animate-hero-right')
-        ];
+        // Get all hero sections first, then find elements within them
+        const heroSections = document.querySelectorAll('.hero, .features-hero-alt');
         
-        heroElements.forEach(element => {
-            if (!element.classList.contains('hero-visible')) {
+        heroSections.forEach(section => {
+            // Find all animated elements within this section
+            const animatedElements = section.querySelectorAll('.animate-hero-left, .animate-hero-right');
+            
+            animatedElements.forEach(element => {
+                // Force add the hero-visible class to all elements
+                element.classList.add('hero-visible');
+            });
+        });
+        
+        // Also try a comprehensive global search
+        const allElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
+        allElements.forEach(element => {
+            if (element.closest('.hero, .features-hero-alt')) {
                 element.classList.add('hero-visible');
             }
         });
     }
     
-    // Run immediately and with delays
+    // Run immediately
     animateAllHeroElements();
     
-    // Multiple attempts to catch all elements
-    [100, 300, 600, 1000].forEach(delay => {
-        setTimeout(animateAllHeroElements, delay);
+    // Multiple attempts to catch all elements as they become available
+    [50, 150, 300, 600, 1000, 2000].forEach(delay => {
+        setTimeout(() => {
+            animateAllHeroElements();
+        }, delay);
     });
 }
 

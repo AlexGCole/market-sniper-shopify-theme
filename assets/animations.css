@@ -89,7 +89,13 @@
 
 .animate-hero-left.hero-visible,
 .hero .animate-hero-left.hero-visible,
-.features-hero-alt .animate-hero-left.hero-visible {
+.features-hero-alt .animate-hero-left.hero-visible,
+.hero-title.animate-hero-left.hero-visible,
+.hero-subtitle.animate-hero-left.hero-visible,
+.hero-cta.animate-hero-left.hero-visible,
+.hero-badge.animate-hero-left.hero-visible,
+.features-hero-tagline.animate-hero-left.hero-visible,
+.features-stats-card.animate-hero-left.hero-visible {
     opacity: 1 !important;
     transform: translateX(0) !important;
 }

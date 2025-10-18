@@ -2,17 +2,17 @@
   <div class="container">
     <div class="hero-content">
       {% if section.settings.show_badge and section.settings.badge_text != blank %}
-        <span class="hero-badge">{{ section.settings.badge_text }}</span>
+        <span class="hero-badge animate-hero-left">{{ section.settings.badge_text }}</span>
       {% endif %}
       
-      <h1 class="hero-title">
+      <h1 class="hero-title animate-hero-left">
         {{ section.settings.hero_title_line1 }}<br>
         <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
       </h1>
       
-      <p class="hero-subtitle">{{ section.settings.hero_subtitle }}</p>
+      <p class="hero-subtitle animate-hero-left">{{ section.settings.hero_subtitle }}</p>
       
-      <div class="hero-cta">
+      <div class="hero-cta animate-hero-left">
         {% if section.settings.primary_button_text != blank %}
           <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
             {{ section.settings.primary_button_text }}
@@ -28,7 +28,7 @@
       {% if section.settings.show_stats %}
         <div class="hero-stats">
           {% for block in section.blocks %}
-            <div class="stat">
+            <div class="stat animate-hero-right">
               <div class="stat-number">{{ block.settings.stat_number }}</div>
               <div class="stat-label">{{ block.settings.stat_label }}</div>
             </div>
@@ -39,6 +39,64 @@
   </div>
   <div class="hero-bg"></div>
 </section>
+
+<style>
+  /* Hero animations - slide in from left */
+  .animate-hero-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .animate-hero-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Hero animations - slide in from right */
+  .animate-hero-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .animate-hero-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Staggered delays for hero elements */
+  .animate-hero-left:nth-of-type(1) { transition-delay: 0.1s; }
+  .animate-hero-left:nth-of-type(2) { transition-delay: 0.2s; }
+  .animate-hero-left:nth-of-type(3) { transition-delay: 0.3s; }
+  .animate-hero-left:nth-of-type(4) { transition-delay: 0.4s; }
+  
+  .animate-hero-right:nth-of-type(1) { transition-delay: 0.5s; }
+  .animate-hero-right:nth-of-type(2) { transition-delay: 0.6s; }
+  .animate-hero-right:nth-of-type(3) { transition-delay: 0.7s; }
+</style>
+
+<script>
+  // Trigger hero animations on page load
+  (function() {
+    function initHeroAnimations() {
+      const heroElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
+      
+      // Trigger animations immediately on page load
+      setTimeout(() => {
+        heroElements.forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 100);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroAnimations);
+    } else {
+      initHeroAnimations();
+    }
+  })();
+</script>
 
 {% schema %}
 {

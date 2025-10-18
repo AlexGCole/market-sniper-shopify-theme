@@ -90,7 +90,9 @@ function initBidirectionalAnimations() {
     const stepCards = document.querySelectorAll('.how-it-works .step-card');
     stepCards.forEach((el, index) => {
         el.classList.add('animate-slide-left');
-        el.style.transitionDelay = `${index * 0.1}s`;
+        // Ensure first card has a visible delay (0.1s minimum)
+        const delay = Math.max(0.1, index * 0.1);
+        el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
     
@@ -108,7 +110,9 @@ function initBidirectionalAnimations() {
     const whatYouGetCards = document.querySelectorAll('.what-you-get-section .feature-card, .what-you-get-section .step-card');
     whatYouGetCards.forEach((el, index) => {
         el.classList.add('animate-slide-right');
-        el.style.transitionDelay = `${index * 0.1}s`;
+        // Ensure first card has a visible delay (0.1s minimum)
+        const delay = Math.max(0.1, index * 0.1);
+        el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
     
@@ -116,7 +120,9 @@ function initBidirectionalAnimations() {
     const pricingCards = document.querySelectorAll('.pricing-option');
     pricingCards.forEach((el, index) => {
         el.classList.add('animate-slide-left');
-        el.style.transitionDelay = `${index * 0.1}s`;
+        // Ensure first card has a visible delay (0.1s minimum)
+        const delay = Math.max(0.1, index * 0.1);
+        el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
     
@@ -124,7 +130,9 @@ function initBidirectionalAnimations() {
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach((el, index) => {
         el.classList.add('animate-slide-left');
-        el.style.transitionDelay = `${index * 0.08}s`;
+        // Ensure first item has a visible delay (0.08s minimum)
+        const delay = Math.max(0.08, index * 0.08);
+        el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
     
@@ -153,7 +161,9 @@ function initBidirectionalAnimations() {
     const planOptions = document.querySelectorAll('.animate-plan-option');
     planOptions.forEach((el, index) => {
         el.classList.add('animate-slide-left');
-        el.style.transitionDelay = `${index * 0.15}s`;
+        // Ensure first card has a visible delay (0.15s minimum)
+        const delay = Math.max(0.15, index * 0.15);
+        el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
     

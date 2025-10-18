@@ -82,85 +82,75 @@
     }
 }
 
-/* ===== HERO ANIMATIONS ===== */
+/* REPLACE the entire HERO ANIMATIONS section in animations.css with this */
 
-/* Force all hero elements to start hidden */
-.hero .animate-hero-left,
-.hero .animate-hero-right,
-.features-hero-alt .animate-hero-left,
-.features-hero-alt .animate-hero-right {
-    opacity: 0 !important;
-    will-change: opacity, transform;
+/* ===== HERO ANIMATIONS - SIMPLIFIED ===== */
+
+/* Initial state - hidden and shifted */
+.animate-hero-left:not(.hero-visible),
+.animate-hero-right:not(.hero-visible) {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.hero .animate-hero-left,
-.features-hero-alt .animate-hero-left {
-    transform: translateX(-50px) !important;
+.animate-hero-left:not(.hero-visible) {
+    transform: translateX(-50px);
 }
 
-.hero .animate-hero-right,
-.features-hero-alt .animate-hero-right {
-    transform: translateX(50px) !important;
+.animate-hero-right:not(.hero-visible) {
+    transform: translateX(50px);
 }
 
-/* Apply animation when hero-visible class is added */
-.animate-hero-left.hero-visible,
-.hero .animate-hero-left.hero-visible,
-.features-hero-alt .animate-hero-left.hero-visible,
-.hero-title.hero-visible,
-.hero-subtitle.hero-visible,
-.hero-cta.hero-visible,
-.stat.hero-visible {
-    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+/* Animated state - visible with smooth transition */
+.animate-hero-left.hero-visible {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    pointer-events: auto;
 }
 
-.animate-hero-right.hero-visible,
-.hero .animate-hero-right.hero-visible,
-.features-hero-alt .animate-hero-right.hero-visible {
-    animation: slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+.animate-hero-right.hero-visible {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    pointer-events: auto;
 }
 
-/* Staggered delays for hero elements */
-.hero-badge.animate-hero-left.hero-visible,
-.features-hero-alt .hero-badge.animate-hero-left.hero-visible { 
-    animation-delay: 0.1s !important; 
+/* Individual delays for staggered effect */
+.hero-badge.animate-hero-left.hero-visible { 
+    transition-delay: 0.1s; 
 }
 
-.hero-title.animate-hero-left.hero-visible,
-.features-hero-alt .hero-title.animate-hero-left.hero-visible { 
-    animation-delay: 0.3s !important; 
+.hero-title.animate-hero-left.hero-visible { 
+    transition-delay: 0.2s; 
 }
 
-.features-hero-tagline.animate-hero-left.hero-visible,
-.features-hero-alt .features-hero-tagline.animate-hero-left.hero-visible { 
-    animation-delay: 0.4s !important; 
+.features-hero-tagline.animate-hero-left.hero-visible { 
+    transition-delay: 0.3s; 
 }
 
-.hero-subtitle.animate-hero-left.hero-visible,
-.features-hero-alt .hero-subtitle.animate-hero-left.hero-visible { 
-    animation-delay: 0.5s !important; 
+.hero-subtitle.animate-hero-left.hero-visible { 
+    transition-delay: 0.4s; 
 }
 
-.hero-cta.animate-hero-left.hero-visible,
-.features-hero-alt .hero-cta.animate-hero-left.hero-visible { 
-    animation-delay: 0.65s !important; 
+.hero-cta.animate-hero-left.hero-visible { 
+    transition-delay: 0.5s; 
 }
 
-.features-stats-card.animate-hero-left.hero-visible,
-.features-hero-alt .features-stats-card.animate-hero-left.hero-visible { 
-    animation-delay: 0.8s !important; 
+.features-stats-card.animate-hero-left.hero-visible { 
+    transition-delay: 0.6s; 
 }
 
 .hero-stats .stat.animate-hero-left.hero-visible:nth-child(1) { 
-    animation-delay: 0.65s !important; 
+    transition-delay: 0.5s; 
 }
 
 .hero-stats .stat.animate-hero-left.hero-visible:nth-child(2) { 
-    animation-delay: 0.8s !important; 
+    transition-delay: 0.6s; 
 }
 
 .hero-stats .stat.animate-hero-left.hero-visible:nth-child(3) { 
-    animation-delay: 0.95s !important; 
+    transition-delay: 0.7s; 
 }
 
 /* ===== SCROLL-TRIGGERED ANIMATIONS ===== */

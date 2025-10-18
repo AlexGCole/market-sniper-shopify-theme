@@ -2,41 +2,30 @@
 
 // Initialize hero animations immediately
 function initHeroAnimations() {
-    // Function to find and animate all hero elements
-    function animateHeroElements() {
-        // Force find ALL elements with animation classes everywhere in the document
-        const allAnimatedElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
+    // Simple, direct approach - find and animate all hero elements
+    function animateAllHeroElements() {
+        // Get all elements that should be animated in hero sections
+        const heroElements = [
+            ...document.querySelectorAll('.hero .animate-hero-left'),
+            ...document.querySelectorAll('.hero .animate-hero-right'),
+            ...document.querySelectorAll('.features-hero-alt .animate-hero-left'),
+            ...document.querySelectorAll('.features-hero-alt .animate-hero-right')
+        ];
         
-        allAnimatedElements.forEach(el => {
-            // Only animate if the element is within a hero section and doesn't already have hero-visible
-            if (el.closest('.hero, .features-hero-alt') && !el.classList.contains('hero-visible')) {
-                el.classList.add('hero-visible');
-                el.classList.remove('hidden');
+        heroElements.forEach(element => {
+            if (!element.classList.contains('hero-visible')) {
+                element.classList.add('hero-visible');
             }
-        });
-        
-        // Also do the section-by-section approach as backup
-        const heroSections = document.querySelectorAll('.hero, .features-hero-alt');
-        heroSections.forEach(section => {
-            const animatedElements = section.querySelectorAll('.animate-hero-left, .animate-hero-right');
-            animatedElements.forEach(el => {
-                if (!el.classList.contains('hero-visible')) {
-                    el.classList.add('hero-visible');
-                    el.classList.remove('hidden');
-                }
-            });
         });
     }
     
-    // Immediate execution then multiple fallbacks
-    animateHeroElements();
+    // Run immediately and with delays
+    animateAllHeroElements();
     
-    setTimeout(animateHeroElements, 50);
-    setTimeout(animateHeroElements, 150);
-    setTimeout(animateHeroElements, 300);
-    setTimeout(animateHeroElements, 500);
-    setTimeout(animateHeroElements, 1000);
-    setTimeout(animateHeroElements, 2000);
+    // Multiple attempts to catch all elements
+    [100, 300, 600, 1000].forEach(delay => {
+        setTimeout(animateAllHeroElements, delay);
+    });
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)
@@ -191,6 +180,10 @@ function animateValue(element) {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize hero animations FIRST
     initHeroAnimations();
+    
+    // Also run it again after a short delay to ensure all elements are found
+    setTimeout(initHeroAnimations, 50);
+    setTimeout(initHeroAnimations, 200);
     
     initScrollAnimations();
     initBidirectionalAnimations();

@@ -98,7 +98,9 @@ function initBidirectionalAnimations() {
     const botCards = document.querySelectorAll('.bot-feature-card');
     botCards.forEach((el, index) => {
         el.classList.add('animate-slide-left');
-        el.style.transitionDelay = `${index * 0.1}s`;
+        // Ensure first card has a visible delay (0.1s minimum)
+        const delay = Math.max(0.1, index * 0.1);
+        el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
     
@@ -162,6 +164,12 @@ function initBidirectionalAnimations() {
     const indicatorVisualLeft = document.querySelectorAll('.indicator-visual.animate-slide-left');
     
     [...indicatorContentLeft, ...indicatorVisualRight, ...indicatorContentRight, ...indicatorVisualLeft].forEach((el, index) => {
+        observer.observe(el);
+    });
+    
+    // Animate What You Get section header (changed to animate-slide-left)
+    const whatYouGetHeader = document.querySelectorAll('.what-you-get-section .section-header.animate-slide-left');
+    whatYouGetHeader.forEach(el => {
         observer.observe(el);
     });
 }

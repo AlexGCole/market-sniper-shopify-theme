@@ -1,26 +1,26 @@
 {% section 'header' %}
 
 {% comment %}
-  Features page template
+  Features page template - ALL elements slide from LEFT on initial load
 {% endcomment %}
 
-<section class="hero features-hero-alt features-hero-initial-load">
+<section class="hero features-hero-alt">
   <div class="container">
     <div class="features-hero-grid">
       <div class="features-hero-content">
-        <h1 class="hero-title animate-slide-up-title">
+        <h1 class="hero-title animate-hero-left">
           Trading Toolkit
         </h1>
-        <h2 class="features-hero-tagline animate-slide-up-tagline">
+        <h2 class="features-hero-tagline animate-hero-left">
           <span class="gradient-text">Strategies & Support</span>
         </h2>
-        <p class="hero-subtitle animate-slide-up-subtitle">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
-        <div class="hero-cta animate-slide-up-cta">
+        <p class="hero-subtitle animate-hero-left">Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.</p>
+        <div class="hero-cta animate-hero-left">
           <a href="/pages/products" class="btn btn-primary">Get Started Today</a>
         </div>
       </div>
       <div class="features-hero-visual">
-        <div class="features-stats-card animate-slide-in-card">
+        <div class="features-stats-card animate-hero-left">
           <div class="stat-item">
             <div class="stat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -95,20 +95,6 @@
     margin: 0 auto;
   }
 
-  .features-hero-label {
-    display: inline-block;
-    padding: 8px 16px;
-    background: rgba(0, 255, 65, 0.1);
-    border: 1px solid rgba(0, 255, 65, 0.3);
-    border-radius: 20px;
-    color: #00ff41;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-  }
-
   .features-hero-alt .hero-title {
     font-size: 64px;
     line-height: 1.1;
@@ -122,118 +108,25 @@
     margin-bottom: 20px;
   }
 
-  /* Slide in from left animation for hero elements - scroll triggered */
-  .animate-slide-up-title,
-  .animate-slide-up-tagline,
-  .animate-slide-up-subtitle,
-  .animate-slide-up-cta {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  /* Features page hero elements with staggered delays */
+  .features-hero-alt h1.animate-hero-left { 
+    transition-delay: 0.1s !important; 
   }
 
-  .animate-slide-up-title { transition-delay: 0.1s; }
-  .animate-slide-up-tagline { transition-delay: 0.35s; }
-  .animate-slide-up-subtitle { transition-delay: 0.65s; }
-  .animate-slide-up-cta { transition-delay: 0.95s; }
-
-  .animate-slide-up-title.visible,
-  .animate-slide-up-tagline.visible,
-  .animate-slide-up-subtitle.visible,
-  .animate-slide-up-cta.visible {
-    opacity: 1;
-    transform: translateX(0);
+  .features-hero-alt h2.animate-hero-left { 
+    transition-delay: 0.2s !important; 
   }
 
-  /* Disable animations on initial load */
-  .features-hero-initial-load .animate-slide-up-title,
-  .features-hero-initial-load .animate-slide-up-tagline,
-  .features-hero-initial-load .animate-slide-up-subtitle,
-  .features-hero-initial-load .animate-slide-up-cta,
-  .features-hero-initial-load .animate-slide-in-card {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-    transition: none !important;
-    transition-delay: 0s !important;
+  .features-hero-alt p.animate-hero-left { 
+    transition-delay: 0.3s !important; 
   }
 
-  .animate-slide-in-card {
-    opacity: 0;
-    transform: translateX(-60px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    transition-delay: 0.5s;
+  .features-hero-alt .hero-cta.animate-hero-left { 
+    transition-delay: 0.4s !important; 
   }
 
-  .animate-slide-in-card.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  /* Section header animations - scroll triggered */
-  .animate-section-header {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .animate-section-header.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .animate-section-header.no-transition {
-    transition: none !important;
-  }
-
-  /* Step card bidirectional animations */
-  .animate-step-card {
-    opacity: 0;
-    transform: scale(0.95) translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .animate-step-card.visible {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-
-  .animate-step-card.hidden {
-    opacity: 0;
-    transform: scale(0.95) translateY(20px);
-  }
-
-  /* Indicator bidirectional animations */
-  .animate-indicator {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-  }
-
-  .animate-indicator.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .animate-indicator.hidden {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-
-  /* CTA button bidirectional animation */
-  .animate-cta-button {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .animate-cta-button.visible {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-
-  .animate-cta-button.hidden {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
+  .features-hero-alt .features-stats-card.animate-hero-left { 
+    transition-delay: 0.5s !important; 
   }
 
   .features-hero-alt .hero-subtitle {
@@ -623,82 +516,5 @@
     }
   }
 </style>
-
-<script>
-  // Remove initial load class after page renders
-  window.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      const hero = document.querySelector('.features-hero-initial-load');
-      if (hero) {
-        hero.classList.remove('features-hero-initial-load');
-      }
-    }, 100);
-  });
-</script>
-
-<script>
-  // Scroll animation trigger - repeatable for all animated elements
-  (function() {
-    function initScrollAnimations() {
-      // One-way animations (stay visible once triggered)
-      const oneWayElements = document.querySelectorAll(
-        '.animate-section-header, .animate-slide-up-title, .animate-slide-up-tagline, ' +
-        '.animate-slide-up-subtitle, .animate-slide-up-cta, .animate-slide-in-card'
-      );
-      
-      // Check if elements are initially in view and set to final state immediately
-      oneWayElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          el.style.opacity = '1';
-          el.style.transform = 'translateX(0)';
-          el.classList.add('visible');
-          el.classList.add('no-transition');
-        }
-      });
-      
-      const oneWayObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-      
-      oneWayElements.forEach(el => oneWayObserver.observe(el));
-      
-      // One-way animations (animate once, stay visible)
-      const onceAnimatedElements = document.querySelectorAll('.animate-step-card, .animate-indicator, .animate-cta-button');
-      
-      const onceObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -100px 0px'
-      });
-      
-      onceAnimatedElements.forEach((el, index) => {
-        // Add staggered delays for cascading effect (only for step cards)
-        if (el.classList.contains('animate-step-card')) {
-          el.style.transitionDelay = `${index * 0.08}s`;
-        }
-        onceObserver.observe(el);
-      });
-    }
-    
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initScrollAnimations);
-    } else {
-      initScrollAnimations();
-    }
-  })();
-</script>
 
 {% section 'footer' %}

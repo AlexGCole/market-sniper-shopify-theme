@@ -1,18 +1,18 @@
-<section class="hero hero-initial-load">
+<section class="hero">
   <div class="container">
     <div class="hero-content">
       {% if section.settings.show_badge and section.settings.badge_text != blank %}
         <span class="hero-badge">{{ section.settings.badge_text }}</span>
       {% endif %}
       
-      <h1 class="hero-title animate-hero-element">
+      <h1 class="hero-title">
         {{ section.settings.hero_title_line1 }}<br>
         <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
       </h1>
       
-      <p class="hero-subtitle animate-hero-element">{{ section.settings.hero_subtitle }}</p>
+      <p class="hero-subtitle">{{ section.settings.hero_subtitle }}</p>
       
-      <div class="hero-cta animate-hero-element">
+      <div class="hero-cta">
         {% if section.settings.primary_button_text != blank %}
           <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
             {{ section.settings.primary_button_text }}
@@ -26,7 +26,7 @@
       </div>
       
       {% if section.settings.show_stats %}
-        <div class="hero-stats animate-hero-element">
+        <div class="hero-stats">
           {% for block in section.blocks %}
             <div class="stat">
               <div class="stat-number">{{ block.settings.stat_number }}</div>
@@ -39,95 +39,6 @@
   </div>
   <div class="hero-bg"></div>
 </section>
-
-<script>
-  // Immediately set hero to visible on initial load
-  (function() {
-    const heroElements = document.querySelectorAll('.animate-hero-element');
-    heroElements.forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'translateX(0)';
-      el.classList.add('visible');
-      el.classList.add('initial-load');
-    });
-  })();
-</script>
-
-<style>
-  /* Hero animation styles */
-  .animate-hero-element {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .animate-hero-element.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .animate-hero-element:nth-of-type(1) { transition-delay: 0.1s; }
-  .animate-hero-element:nth-of-type(2) { transition-delay: 0.3s; }
-  .animate-hero-element:nth-of-type(3) { transition-delay: 0.5s; }
-  .animate-hero-element:nth-of-type(4) { transition-delay: 0.7s; }
-
-  /* Disable animations on initial load */
-  .hero-initial-load .animate-hero-element {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-    transition: none !important;
-    transition-delay: 0s !important;
-  }
-  
-  .hero-initial-load .animate-hero-element:nth-of-type(1),
-  .hero-initial-load .animate-hero-element:nth-of-type(2),
-  .hero-initial-load .animate-hero-element:nth-of-type(3),
-  .hero-initial-load .animate-hero-element:nth-of-type(4) {
-    transition-delay: 0s !important;
-  }
-</style>
-
-<script>
-  // Remove initial load class after page renders
-  window.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      const hero = document.querySelector('.hero-initial-load');
-      if (hero) {
-        hero.classList.remove('hero-initial-load');
-      }
-    }, 100);
-  });
-</script>
-
-<script>
-  // Hero animation on scroll
-  (function() {
-    function initHeroAnimations() {
-      const heroElements = document.querySelectorAll('.animate-hero-element');
-      
-      if (heroElements.length === 0) return;
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px'
-      });
-      
-      heroElements.forEach(el => observer.observe(el));
-    }
-    
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initHeroAnimations);
-    } else {
-      initHeroAnimations();
-    }
-  })();
-</script>
 
 {% schema %}
 {

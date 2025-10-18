@@ -120,8 +120,10 @@ function initBidirectionalAnimations() {
     const pricingCards = document.querySelectorAll('.pricing-option');
     pricingCards.forEach((el, index) => {
         el.classList.add('animate-slide-left');
-        // Ensure first card has a visible delay (0.1s minimum)
-        const delay = Math.max(0.1, index * 0.1);
+        // Check if we're on the products page and adjust timing accordingly
+        const isProductsPage = document.querySelector('.products-page');
+        const baseDelay = isProductsPage ? 0.4 : 0.1; // Start after product header on products page
+        const delay = Math.max(baseDelay, baseDelay + (index * 0.1));
         el.style.transitionDelay = `${delay}s`;
         observer.observe(el);
     });
@@ -140,6 +142,20 @@ function initBidirectionalAnimations() {
     const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header, .faq .section-header');
     headers.forEach(header => {
         header.classList.add('animate-slide-left');
+        observer.observe(header);
+    });
+    
+    // Animate products page elements with proper timing
+    const productsHeroTitle = document.querySelector('.products-hero-title.animate-slide-left');
+    if (productsHeroTitle) {
+        productsHeroTitle.style.transitionDelay = '0.1s';
+        observer.observe(productsHeroTitle);
+    }
+    
+    const productHeaders = document.querySelectorAll('.product-header.animate-slide-left');
+    productHeaders.forEach((header, index) => {
+        // Add delay to sync with pricing cards - headers should come before pricing
+        header.style.transitionDelay = `${0.2 + (index * 0.1)}s`;
         observer.observe(header);
     });
     

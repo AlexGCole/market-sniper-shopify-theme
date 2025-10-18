@@ -7,14 +7,14 @@
   <!-- Compact Hero Section -->
   <section class="products-hero-compact">
     <div class="container">
-      <h1 class="products-hero-title animate-products-title">Choose Your <span class="gradient-text">Trading Path</span></h1>
+      <h1 class="products-hero-title animate-slide-left">Choose Your <span class="gradient-text">Trading Path</span></h1>
     </div>
   </section>
 
   <!-- Bot Suite Section -->
   <section class="product-showcase bot-suite-section">
     <div class="container">
-      <div class="product-header">
+      <div class="product-header animate-slide-left">
         <span class="product-badge">Main Product</span>
         <h2>Bot Suite</h2>
         <p class="product-tagline">Proven trading strategies with automation capabilities</p>
@@ -142,49 +142,6 @@
 
 </div>
 
-<style>
-  /* Products hero title animation - scroll triggered */
-  .animate-products-title {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .animate-products-title.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-</style>
-
-<script>
-  // Products title animation on scroll
-  (function() {
-    function initProductsAnimations() {
-      const title = document.querySelector('.animate-products-title');
-      
-      if (!title) return;
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px'
-      });
-      
-      observer.observe(title);
-    }
-    
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initProductsAnimations);
-    } else {
-      initProductsAnimations();
-    }
-  })();
-</script>
 
 {% schema %}
 {

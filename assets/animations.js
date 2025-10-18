@@ -19,6 +19,11 @@ function initBidirectionalAnimations() {
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            // Skip hero elements
+            if (entry.target.closest('.hero')) {
+                return;
+            }
+            
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
@@ -109,7 +114,7 @@ function initParallax() {
 
 // Animate statistics on scroll
 function animateStats() {
-    // EXCLUDE hero stats from animation
+    // EXCLUDE hero stats completely
     const stats = document.querySelectorAll('.stat-number:not(.hero .stat-number), .bot-stat-number');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -150,10 +155,25 @@ function animateValue(element) {
 
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
+    // Force disable hero animations first
+    if (window.heroNoAnimate) {
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const allElements = hero.querySelectorAll('*');
+            hero.classList.remove('animate-on-scroll', 'animate-slide-left', 'animate-slide-right');
+            allElements.forEach(el => {
+                el.classList.remove('animate-on-scroll', 'animate-slide-left', 'animate-slide-right', 'animate-scale');
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
+    }
+    
     initScrollAnimations();
     initBidirectionalAnimations();
     initParallax();
     animateStats();
+    
     setTimeout(() => {
         const allSections = document.querySelectorAll('section:not(.header):not(.navbar), footer');
         const backgrounds = ['#050807', '#0A0A0A'];
@@ -194,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentBg = backgrounds[bgIndex];
             section.style.setProperty('background', currentBg, 'important');
             section.style.setProperty('border-top', borders[bgIndex].top, 'important');
-            if (borders[bgIndex].bottom !== 'none') { section.setProperty('border-bottom', borders[bgIndex].bottom, 'important'); }
+            if (borders[bgIndex].bottom !== 'none') { section.style.setProperty('border-bottom', borders[bgIndex].bottom, 'important'); }
             lastBackground = currentBg;
             alternateIndex++;
         });

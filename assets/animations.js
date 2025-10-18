@@ -154,6 +154,16 @@ function initBidirectionalAnimations() {
         el.style.transitionDelay = `${index * 0.15}s`;
         observer.observe(el);
     });
+    
+    // Animate indicator elements based on their position
+    const indicatorContentLeft = document.querySelectorAll('.indicator-content.animate-slide-left');
+    const indicatorVisualRight = document.querySelectorAll('.indicator-visual.animate-slide-right');
+    const indicatorContentRight = document.querySelectorAll('.indicator-content.animate-slide-right');
+    const indicatorVisualLeft = document.querySelectorAll('.indicator-visual.animate-slide-left');
+    
+    [...indicatorContentLeft, ...indicatorVisualRight, ...indicatorContentRight, ...indicatorVisualLeft].forEach((el, index) => {
+        observer.observe(el);
+    });
 }
 
 // Parallax effect for hero background

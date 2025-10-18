@@ -151,16 +151,16 @@
     transition-delay: 0.5s; 
 }
 
-/* Homepage hero stats - now come from right with staggered delays */
-.hero-stats .stat.animate-hero-right.hero-visible:nth-child(1) { 
+/* Homepage hero stats - now come from left with staggered delays */
+.hero-stats .stat.animate-hero-left.hero-visible:nth-child(1) { 
     transition-delay: 0.6s; 
 }
 
-.hero-stats .stat.animate-hero-right.hero-visible:nth-child(2) { 
+.hero-stats .stat.animate-hero-left.hero-visible:nth-child(2) { 
     transition-delay: 0.7s; 
 }
 
-.hero-stats .stat.animate-hero-right.hero-visible:nth-child(3) { 
+.hero-stats .stat.animate-hero-left.hero-visible:nth-child(3) { 
     transition-delay: 0.8s; 
 }
 

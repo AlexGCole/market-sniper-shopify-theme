@@ -4,22 +4,53 @@
 function initHeroAnimations() {
     // Function to find and animate all hero elements
     function animateHeroElements() {
-        // Use a more comprehensive selector to catch all elements
-        const allHeroElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
+        // Get all hero sections first
+        const heroSections = document.querySelectorAll('.hero, .features-hero-alt');
         
-        allHeroElements.forEach(el => {
-            // Only animate if the element is within a hero section
-            if (el.closest('.hero, .features-hero-alt')) {
+        heroSections.forEach(section => {
+            // Find all animated elements within each hero section
+            const animatedElements = section.querySelectorAll('.animate-hero-left, .animate-hero-right');
+            
+            animatedElements.forEach(el => {
+                // Ensure the element has the animation class and add visible class
+                if (el.classList.contains('animate-hero-left') || el.classList.contains('animate-hero-right')) {
+                    // Add the visible class and remove any conflicting classes
+                    el.classList.add('hero-visible');
+                    el.classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Also do a fallback search for any missed elements
+        const allAnimatedElements = document.querySelectorAll('.animate-hero-left, .animate-hero-right');
+        allAnimatedElements.forEach(el => {
+            if (el.closest('.hero, .features-hero-alt') && !el.classList.contains('hero-visible')) {
                 el.classList.add('hero-visible');
+                el.classList.remove('hidden');
             }
         });
     }
     
-    // Try multiple times to ensure all elements are found
-    setTimeout(animateHeroElements, 50);
-    setTimeout(animateHeroElements, 150);
-    setTimeout(animateHeroElements, 300);
-    setTimeout(animateHeroElements, 500);
+    // Try multiple times with different timing to ensure all elements are found
+    setTimeout(() => {
+        animateHeroElements();
+    }, 10);
+    
+    setTimeout(() => {
+        animateHeroElements();
+    }, 100);
+    
+    setTimeout(() => {
+        animateHeroElements();
+    }, 250);
+    
+    setTimeout(() => {
+        animateHeroElements();
+    }, 500);
+    
+    setTimeout(() => {
+        animateHeroElements();
+    }, 1000);
 }
 
 // Observe elements for scroll animations (one-way, keeps visible state)

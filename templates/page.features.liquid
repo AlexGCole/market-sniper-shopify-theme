@@ -122,6 +122,11 @@
     margin-bottom: 20px;
   }
 
+  /* Override any global animations */
+  .features-hero-alt * {
+    animation: none !important;
+  }
+
   /* Slide in from left animation for hero elements - scroll triggered */
   .animate-slide-up-title,
   .animate-slide-up-tagline,
@@ -130,6 +135,7 @@
     opacity: 0;
     transform: translateX(-50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    animation: none !important;
   }
 
   .animate-slide-up-title { transition-delay: 0.1s; }
@@ -150,6 +156,7 @@
     transform: translateX(60px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     transition-delay: 0.5s;
+    animation: none !important;
   }
 
   .animate-slide-in-card.visible {

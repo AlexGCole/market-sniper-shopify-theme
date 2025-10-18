@@ -156,3 +156,215 @@
 .hover-glow:hover {
     box-shadow: var(--shadow-glow);
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes candleGrow {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+@keyframes rsiPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateY(-50%) scaleX(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scaleX(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+    }
+}
+
+/* Hero animations - slide in from left */
+.animate-hero-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-hero-left.hero-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hero animations - slide in from right */
+.animate-hero-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-hero-right.hero-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered delays for hero elements */
+.hero-badge.animate-hero-left { 
+    transition-delay: 0.1s; 
+}
+
+.hero-title.animate-hero-left { 
+    transition-delay: 0.2s; 
+}
+
+.hero-subtitle.animate-hero-left { 
+    transition-delay: 0.3s; 
+}
+
+.hero-cta.animate-hero-left { 
+    transition-delay: 0.4s; 
+}
+
+.stat.animate-hero-right:nth-child(1) { 
+    transition-delay: 0.5s; 
+}
+
+.stat.animate-hero-right:nth-child(2) { 
+    transition-delay: 0.6s; 
+}
+
+.stat.animate-hero-right:nth-child(3) { 
+    transition-delay: 0.7s; 
+}
+
+/* Scroll-triggered animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* One-way scroll animations - animate once, stay visible */
+.animate-on-scroll-bidirectional {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll-bidirectional.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide in from left (one-way) */
+.animate-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide in from right (one-way) */
+.animate-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scale animation (one-way) */
+.animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hover effects */
+.hover-lift {
+    transition: transform var(--transition-base);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.hover-glow {
+    transition: box-shadow var(--transition-base);
+}
+
+.hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+}

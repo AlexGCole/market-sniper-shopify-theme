@@ -1,5 +1,17 @@
 // Animation Controller
 
+// Initialize hero animations immediately
+function initHeroAnimations() {
+    const heroElements = document.querySelectorAll('.hero .animate-hero-left, .hero .animate-hero-right');
+    
+    // Trigger animations after a short delay
+    setTimeout(() => {
+        heroElements.forEach(el => {
+            el.classList.add('hero-visible');
+        });
+    }, 150);
+}
+
 // Observe elements for scroll animations (one-way, keeps visible state)
 function initScrollAnimations() {
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
@@ -150,6 +162,9 @@ function animateValue(element) {
 
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize hero animations FIRST
+    initHeroAnimations();
+    
     initScrollAnimations();
     initBidirectionalAnimations();
     initParallax();

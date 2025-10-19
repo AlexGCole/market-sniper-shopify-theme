@@ -139,9 +139,12 @@ function initBidirectionalAnimations() {
     });
     
     // Animate section headers (all from left) - EXCLUDES HERO
-    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header, .faq .section-header');
+    const headers = document.querySelectorAll('.how-it-works .section-header, .bot-header, .what-you-get-section .section-header, .pricing-section .section-header, .faq .section-header, .indicators .section-header');
     headers.forEach(header => {
-        header.classList.add('animate-slide-left');
+        // Add animate-slide-left class if not already present
+        if (!header.classList.contains('animate-slide-left')) {
+            header.classList.add('animate-slide-left');
+        }
         observer.observe(header);
     });
     

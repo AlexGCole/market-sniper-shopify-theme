@@ -5,7 +5,7 @@
 
 <section class="indicators" id="indicators">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header animate-slide-left">
       <h2>{{ section.settings.section_title }}</h2>
       <p>{{ section.settings.section_subtitle }}</p>
     </div>
@@ -13,7 +13,7 @@
     <div class="indicators-grid">
       {% for block in section.blocks %}
         <div class="indicator-item {% cycle 'normal', 'reverse' %}" {{ block.shopify_attributes }}>
-          <div class="indicator-content">
+          <div class="indicator-content animate-slide-{% cycle 'left', 'right' %}">
             <span class="indicator-badge">{{ block.settings.version }}</span>
             <h3>{{ block.settings.title }}</h3>
             <p class="indicator-description">{{ block.settings.description }}</p>
@@ -31,7 +31,7 @@
             {% endif %}
           </div>
 
-          <div class="indicator-visual">
+          <div class="indicator-visual animate-slide-{% cycle 'right', 'left' %}">
             <div class="indicator-visual-container">
               {% if block.settings.image %}
                 {{ block.settings.image | image_url: width: 800 | image_tag }}

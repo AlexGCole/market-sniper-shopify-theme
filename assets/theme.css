@@ -589,9 +589,10 @@ section {
 .price .period { font-size: 1.2rem; color: rgba(255, 255, 255, 0.6); align-self: flex-end; padding-bottom: 8px; }
 .savings { display: inline-block; background: rgba(0, 255, 65, 0.2); color: #00ff41; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem; margin-top: 10px; }
 .plan-features { list-style: none; padding: 0; margin: 30px 0; flex-grow: 1; text-align: left; }
-.plan-features li { padding: 12px 0; font-size: 0.95rem; color: rgba(255, 255, 255, 0.9); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-.plan-features li:last-child { border-bottom: none; }
-.pricing-option.featured .plan-features li { border-bottom: 1px solid rgba(0, 255, 65, 0.1); }
+.plan-features li { padding: 15px 0; font-size: 0.95rem; color: rgba(255, 255, 255, 0.9); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.plan-features li:first-child { border-top: none; padding-top: 0; }
+.pricing-option.featured .plan-features li { border-top: 1px solid rgba(0, 255, 65, 0.1); }
+.pricing-option.featured .plan-features li:first-child { border-top: none; }
 .pricing-option .btn { width: 100%; margin-top: auto; padding: 15px 30px; border-radius: 10px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 @media (max-width: 968px) { .pricing-wrapper { flex-direction: column; align-items: center; } .pricing-option { flex: 1 1 100%; max-width: 100%; } .pricing-option.featured { transform: scale(1); } .pricing-option.featured:hover { transform: translateY(-10px); } }
 @media (max-width: 640px) { .pricing-section { padding: 60px 20px; } .price .amount { font-size: 2.5rem; } }
@@ -644,7 +645,8 @@ section {
 .pricing-option.addon .price-header h4 { color: #ffa500; }
 .pricing-option.addon .price .amount { color: #ffa500; background: none; -webkit-text-fill-color: #ffa500; }
 .pricing-option.addon .price .period { color: rgba(255, 165, 0, 0.7); }
-.pricing-option.addon .plan-features li { border-bottom: 1px solid rgba(255, 165, 0, 0.1); }
+.pricing-option.addon .plan-features li { border-top: 1px solid rgba(255, 165, 0, 0.1); }
+.pricing-option.addon .plan-features li:first-child { border-top: none; }
 .pricing-option.addon .btn-secondary { border: 2px solid #ffa500; color: #ffa500; font-weight: 700; background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 140, 0, 0.05)); box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2); }
 .pricing-option.addon .btn-secondary:hover { background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.15)); border-color: #ff8c00; box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4); transform: translateY(-2px); }
 .btn-disabled { background: rgba(128, 128, 128, 0.3); color: rgba(255, 255, 255, 0.5); cursor: not-allowed; box-shadow: none; border: 2px solid rgba(128, 128, 128, 0.3); }

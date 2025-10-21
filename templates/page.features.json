@@ -88,7 +88,7 @@
       }
     },
     "what-you-get-benefits": {
-      "type": "trading-bot",
+      "type": "features",
       "blocks": {
         "benefit-1": {
           "type": "feature",
@@ -135,9 +135,8 @@
       },
       "block_order": ["benefit-1", "benefit-2", "benefit-3", "benefit-4", "benefit-5", "benefit-6"],
       "settings": {
-        "title": "What You Get",
-        "subtitle": "Complete trading solution with everything you need",
-        "show_stat": false
+        "section_title": "What You Get",
+        "section_subtitle": "Complete trading solution with everything you need"
       }
     },
     "footer": {

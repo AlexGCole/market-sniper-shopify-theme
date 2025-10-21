@@ -574,6 +574,8 @@ section {
 .pricing-section { 
     padding: 80px 20px;
     background: linear-gradient(135deg, rgba(0, 255, 65, 0.03) 0%, rgba(0, 204, 51, 0.02) 100%);
+    border-top: none;
+    border-bottom: none;
 }
 .pricing-wrapper { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 24px; max-width: 1200px; margin: 0 auto; }
 .pricing-option { flex: 0 1 320px; max-width: 380px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }

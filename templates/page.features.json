@@ -4,51 +4,6 @@
       "type": "header",
       "settings": {}
     },
-    "features-hero": {
-      "type": "features-hero",
-      "blocks": {
-        "stat-1": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "chart",
-            "label": "Professional Indicators",
-            "description": "Sharp Shooter Candles & RSI"
-          }
-        },
-        "stat-2": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "settings",
-            "label": "Position Management",
-            "description": "Automated entry & exit control"
-          }
-        },
-        "stat-3": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "filter",
-            "label": "Advanced Filters",
-            "description": "Fine-tune your trading signals"
-          }
-        },
-        "stat-4": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "globe",
-            "label": "Asset Coverage",
-            "description": "Crypto, forex, futures, equities"
-          }
-        }
-      },
-      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"],
-      "settings": {
-        "hero_title": "Trading Toolkit",
-        "hero_tagline": "Strategies & Support",
-        "hero_subtitle": "Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support.",
-        "button_text": "Get Started Today",
-        "button_link": "/pages/products"
-      }
-    },
     "trading-bot": {
       "type": "trading-bot",
       "blocks": {
@@ -193,7 +148,6 @@
   },
   "order": [
     "header",
-    "features-hero",
     "trading-bot",
     "indicators",
     "what-you-get",

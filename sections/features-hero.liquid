@@ -1,63 +1,64 @@
 {% comment %}
   sections/features-hero.liquid
-  Hero section for features page
+  Hero section specifically for features page with Trading Toolkit layout
 {% endcomment %}
 
-<section class="hero features-hero-alt">
+<section class="hero features-hero">
   <div class="container">
-    <div class="features-hero-grid">
-      <div class="features-hero-content">
+    <div class="hero-layout">
+      <div class="hero-content">
         <h1 class="hero-title animate-hero-left">
-          {{ section.settings.hero_title }}
+          {{ section.settings.hero_title_line1 }}
         </h1>
-        <h2 class="features-hero-tagline animate-hero-left">
-          <span class="gradient-text">{{ section.settings.hero_tagline }}</span>
+        
+        <h2 class="hero-tagline animate-hero-left">
+          <span class="gradient-text">{{ section.settings.hero_title_line2 }}</span>
         </h2>
+        
         <p class="hero-subtitle animate-hero-left">{{ section.settings.hero_subtitle }}</p>
+        
         <div class="hero-cta animate-hero-left">
-          <a href="{{ section.settings.button_link }}" class="btn btn-primary">{{ section.settings.button_text }}</a>
+          <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
+            {{ section.settings.primary_button_text }}
+          </a>
         </div>
       </div>
-      <div class="features-hero-visual">
-        <div class="features-stats-card animate-hero-right">
-          {% for block in section.blocks %}
-            <div class="stat-item" {{ block.shopify_attributes }}>
-              <div class="stat-icon">
-                {% if block.settings.icon_type == "chart" %}
+      
+      <div class="hero-features-panel">
+        {% for block in section.blocks %}
+          {% if block.type == 'feature_item' %}
+            <div class="feature-item" {{ block.shopify_attributes }}>
+              <div class="feature-icon">
+                {% if block.settings.icon_type == 'chart' %}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 3v18h18"></path>
-                    <path d="M18 17V9"></path>
-                    <path d="M13 12V6"></path>
-                    <path d="M8 15V9"></path>
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
                   </svg>
-                {% elsif block.settings.icon_type == "settings" %}
+                {% elsif block.settings.icon_type == 'settings' %}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"></path>
                     <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"></path>
                   </svg>
-                {% elsif block.settings.icon_type == "filter" %}
+                {% elsif block.settings.icon_type == 'filter' %}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                   </svg>
-                {% elsif block.settings.icon_type == "globe" %}
+                {% elsif block.settings.icon_type == 'globe' %}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="2" y1="12" x2="22" y2="12"></line>
                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                   </svg>
-                {% else %}
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
                 {% endif %}
               </div>
-              <div class="stat-content">
-                <div class="stat-label">{{ block.settings.label }}</div>
-                <div class="stat-description">{{ block.settings.description }}</div>
+              <div class="feature-content">
+                <h3 class="feature-title">{{ block.settings.title }}</h3>
+                <p class="feature-description">{{ block.settings.description }}</p>
               </div>
             </div>
-          {% endfor %}
-        </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -65,72 +66,50 @@
 </section>
 
 <style>
-  /* Features hero alternative layout */
-  .features-hero-alt {
-    padding: 100px 20px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .features-hero-grid {
+  .features-hero .hero-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    min-height: 80vh;
   }
 
-  .features-hero-alt .hero-title {
-    font-size: 64px;
-    line-height: 1.1;
-    margin-bottom: 10px;
+  .features-hero .hero-content {
+    max-width: 600px;
   }
 
-  .features-hero-tagline {
-    font-size: 42px;
+  .features-hero .hero-tagline {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 700;
-    line-height: 1.2;
     margin-bottom: 20px;
+    color: #00ff41;
   }
 
-  .gradient-text {
-    background: linear-gradient(135deg, #00ff41, #00cc33);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .features-hero-alt .hero-subtitle {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  /* Stats card on the right */
-  .features-stats-card {
+  .features-hero .hero-features-panel {
     background: rgba(0, 255, 65, 0.05);
-    border: 2px solid rgba(0, 255, 65, 0.2);
+    border: 1px solid rgba(0, 255, 65, 0.2);
     border-radius: 20px;
-    padding: 40px 30px;
-    backdrop-filter: blur(10px);
+    padding: 40px;
+    max-width: 500px;
   }
 
-  .stat-item {
+  .features-hero .feature-item {
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 20px 0;
-  }
-
-  .stat-item:not(:last-child) {
     border-bottom: 1px solid rgba(0, 255, 65, 0.1);
   }
 
-  .stat-icon {
+  .features-hero .feature-item:last-child {
+    border-bottom: none;
+  }
+
+  .features-hero .feature-icon {
     width: 50px;
     height: 50px;
     background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -138,87 +117,43 @@
     flex-shrink: 0;
   }
 
-  .stat-icon svg {
+  .features-hero .feature-icon svg {
     width: 24px;
     height: 24px;
     color: #00ff41;
   }
 
-  .stat-content {
+  .features-hero .feature-content {
     flex: 1;
   }
 
-  .stat-label {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 600;
-    margin-bottom: 6px;
+  .features-hero .feature-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 5px;
   }
 
-  .stat-description {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
+  .features-hero .feature-description {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.4;
   }
 
-  /* Responsive layout */
   @media (max-width: 968px) {
-    .features-hero-grid {
+    .features-hero .hero-layout {
       grid-template-columns: 1fr;
       gap: 40px;
+      text-align: center;
     }
 
-    .features-hero-alt .hero-title {
-      font-size: 48px;
-    }
-
-    .features-hero-tagline {
-      font-size: 32px;
-    }
-
-    .features-stats-card {
+    .features-hero .hero-features-panel {
+      max-width: 100%;
       padding: 30px 20px;
     }
-  }
 
-  @media (max-width: 640px) {
-    .features-hero-alt {
-      padding: 60px 20px;
-    }
-
-    .features-hero-alt .hero-title {
-      font-size: 36px;
-    }
-
-    .features-hero-tagline {
-      font-size: 24px;
-    }
-
-    .features-hero-alt .hero-subtitle {
-      font-size: 16px;
-    }
-
-    .stat-item {
-      gap: 15px;
+    .features-hero .feature-item {
       padding: 15px 0;
-    }
-
-    .stat-icon {
-      width: 40px;
-      height: 40px;
-    }
-
-    .stat-icon svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .stat-label {
-      font-size: 14px;
-    }
-
-    .stat-description {
-      font-size: 12px;
     }
   }
 </style>
@@ -229,73 +164,77 @@
   "settings": [
     {
       "type": "text",
-      "id": "hero_title",
-      "label": "Hero Title",
+      "id": "hero_title_line1",
+      "label": "Title Line 1",
       "default": "Trading Toolkit"
     },
     {
       "type": "text",
-      "id": "hero_tagline",
-      "label": "Hero Tagline",
+      "id": "hero_title_line2",
+      "label": "Title Line 2 (Gradient)",
       "default": "Strategies & Support"
     },
     {
       "type": "textarea",
       "id": "hero_subtitle",
-      "label": "Hero Subtitle",
+      "label": "Subtitle",
       "default": "Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support."
     },
     {
       "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
       "default": "Get Started Today"
     },
     {
       "type": "url",
-      "id": "button_link",
-      "label": "Button Link",
-      "default": "/pages/products"
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
     }
   ],
   "blocks": [
     {
-      "type": "stat_item",
-      "name": "Stat Item",
+      "type": "feature_item",
+      "name": "Feature Item",
       "settings": [
         {
           "type": "select",
           "id": "icon_type",
           "label": "Icon Type",
           "options": [
-            { "value": "chart", "label": "Chart" },
-            { "value": "settings", "label": "Settings" },
-            { "value": "filter", "label": "Filter" },
-            { "value": "globe", "label": "Globe" },
-            { "value": "check", "label": "Checkmark" }
+            {
+              "value": "chart",
+              "label": "Chart"
+            },
+            {
+              "value": "settings",
+              "label": "Settings"
+            },
+            {
+              "value": "filter",
+              "label": "Filter"
+            },
+            {
+              "value": "globe",
+              "label": "Globe"
+            }
           ],
           "default": "chart"
         },
         {
           "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "Professional Indicators"
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
         },
         {
           "type": "text",
           "id": "description",
           "label": "Description",
-          "default": "Sharp Shooter Candles & RSI"
+          "default": "Feature description"
         }
       ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Features Hero"
     }
   ]
 }
 {% endschema %}
-

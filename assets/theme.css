@@ -578,7 +578,7 @@ section {
 .pricing-wrapper { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 24px; max-width: 1200px; margin: 0 auto; }
 .pricing-option { flex: 0 1 320px; max-width: 380px; background: rgba(255, 255, 255, 0.02); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }
 .pricing-option:hover { transform: translateY(-10px); border-color: #00ff41; box-shadow: 0 20px 40px rgba(0, 255, 65, 0.25); }
-.pricing-option.featured { background: rgba(0, 255, 65, 0.05); border-color: #00ff41; box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2); transform: scale(1.05); }
+.pricing-option.featured { background: rgba(0, 255, 65, 0.05); border-color: #00ff41; transform: scale(1.05); }
 .pricing-option.featured:hover { transform: scale(1.05) translateY(-10px); }
 .popular-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); color: #000; padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 .price-header h4 { font-size: 1.5rem; margin-bottom: 20px; font-weight: 700; color: #fff; }
@@ -848,4 +848,3 @@ section {
 /* Utility helpers for templates */
 .max-w-800 { max-width: 800px; margin-left: auto; margin-right: auto; }
 .mt-16 { margin-top: 16px; }
-

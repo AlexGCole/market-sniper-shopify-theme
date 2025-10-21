@@ -1,0 +1,301 @@
+{% comment %}
+  sections/features-hero.liquid
+  Hero section for features page
+{% endcomment %}
+
+<section class="hero features-hero-alt">
+  <div class="container">
+    <div class="features-hero-grid">
+      <div class="features-hero-content">
+        <h1 class="hero-title animate-hero-left">
+          {{ section.settings.hero_title }}
+        </h1>
+        <h2 class="features-hero-tagline animate-hero-left">
+          <span class="gradient-text">{{ section.settings.hero_tagline }}</span>
+        </h2>
+        <p class="hero-subtitle animate-hero-left">{{ section.settings.hero_subtitle }}</p>
+        <div class="hero-cta animate-hero-left">
+          <a href="{{ section.settings.button_link }}" class="btn btn-primary">{{ section.settings.button_text }}</a>
+        </div>
+      </div>
+      <div class="features-hero-visual">
+        <div class="features-stats-card animate-hero-right">
+          {% for block in section.blocks %}
+            <div class="stat-item" {{ block.shopify_attributes }}>
+              <div class="stat-icon">
+                {% if block.settings.icon_type == "chart" %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3v18h18"></path>
+                    <path d="M18 17V9"></path>
+                    <path d="M13 12V6"></path>
+                    <path d="M8 15V9"></path>
+                  </svg>
+                {% elsif block.settings.icon_type == "settings" %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                {% elsif block.settings.icon_type == "filter" %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                  </svg>
+                {% elsif block.settings.icon_type == "globe" %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                {% else %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                {% endif %}
+              </div>
+              <div class="stat-content">
+                <div class="stat-label">{{ block.settings.label }}</div>
+                <div class="stat-description">{{ block.settings.description }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bg"></div>
+</section>
+
+<style>
+  /* Features hero alternative layout */
+  .features-hero-alt {
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .features-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .features-hero-alt .hero-title {
+    font-size: 64px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .features-hero-tagline {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00ff41, #00cc33);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .features-hero-alt .hero-subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Stats card on the right */
+  .features-stats-card {
+    background: rgba(0, 255, 65, 0.05);
+    border: 2px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .stat-item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stat-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #00ff41;
+  }
+
+  .stat-content {
+    flex: 1;
+  }
+
+  .stat-label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .stat-description {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+  }
+
+  /* Responsive layout */
+  @media (max-width: 968px) {
+    .features-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .features-hero-alt .hero-title {
+      font-size: 48px;
+    }
+
+    .features-hero-tagline {
+      font-size: 32px;
+    }
+
+    .features-stats-card {
+      padding: 30px 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .features-hero-alt {
+      padding: 60px 20px;
+    }
+
+    .features-hero-alt .hero-title {
+      font-size: 36px;
+    }
+
+    .features-hero-tagline {
+      font-size: 24px;
+    }
+
+    .features-hero-alt .hero-subtitle {
+      font-size: 16px;
+    }
+
+    .stat-item {
+      gap: 15px;
+      padding: 15px 0;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .stat-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+    }
+
+    .stat-description {
+      font-size: 12px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Features Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Trading Toolkit"
+    },
+    {
+      "type": "text",
+      "id": "hero_tagline",
+      "label": "Hero Tagline",
+      "default": "Strategies & Support"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Professional Sharp Shooter indicators for TradingView, battle-tested trading strategies, position management tools, and an active Discord community with dedicated support."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Get Started Today"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/pages/products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat_item",
+      "name": "Stat Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            { "value": "chart", "label": "Chart" },
+            { "value": "settings", "label": "Settings" },
+            { "value": "filter", "label": "Filter" },
+            { "value": "globe", "label": "Globe" },
+            { "value": "check", "label": "Checkmark" }
+          ],
+          "default": "chart"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Professional Indicators"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Sharp Shooter Candles & RSI"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Hero"
+    }
+  ]
+}
+{% endschema %}
+

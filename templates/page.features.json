@@ -87,6 +87,15 @@
         "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
       }
     },
+    "what-you-get": {
+      "type": "what-you-get",
+      "settings": {
+        "section_title": "What You Get",
+        "section_subtitle": "Complete trading solution with everything you need",
+        "button_text": "View All Plans",
+        "button_link": "/pages/products"
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {}
@@ -96,6 +105,7 @@
     "header",
     "trading-bot",
     "indicators",
+    "what-you-get",
     "footer"
   ]
 }

@@ -1,6 +1,6 @@
 {% comment %}
   sections/indicators.liquid
-  Indicators showcase section with images - UPDATED with fixed bullets
+  Indicators showcase section with images - UPDATED with slide animations
 {% endcomment %}
 
 <section class="indicators" id="indicators">
@@ -93,14 +93,60 @@
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+    opacity: 0;
+    animation: slideInFromLeft 0.8s ease-out forwards;
   }
 
   .indicator-item.reverse {
     direction: rtl;
+    animation: slideInFromRight 0.8s ease-out forwards;
   }
 
   .indicator-item.reverse > * {
     direction: ltr;
+  }
+
+  /* Stagger the animations */
+  .indicator-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .indicator-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .indicator-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .indicator-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .indicator-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .indicator-content {

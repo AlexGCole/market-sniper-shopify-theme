@@ -13,77 +13,61 @@
     <div class="pricing-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'pricing_plan' %}
-          <div class="pricing-option {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
-            {% if block.settings.is_popular %}
-              <span class="popular-tag">Most Popular</span>
-            {% endif %}
-            
-            <div class="price-header">
-              <h4>{{ block.settings.plan_name }}</h4>
-              
-              <div class="price">
-                <span class="amount">${{ block.settings.price }}</span>
-                <span class="period">/{{ block.settings.period }}</span>
-              </div>
-              
-              {% if block.settings.savings_text != blank %}
-                <span class="savings">{{ block.settings.savings_text }}</span>
+          {% assign product = block.settings.product %}
+          {% if product != blank %}
+            <div class="pricing-option {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
+              {% if block.settings.is_popular %}
+                <span class="popular-tag">Most Popular</span>
               {% endif %}
-            </div>
-
-            <ul class="plan-features">
-              {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
-              {% for feature in features %}
-                {% if feature != blank %}
-                  <li>{{ feature }}</li>
+              
+              <div class="price-header">
+                <h4>{{ block.settings.plan_name | default: product.title }}</h4>
+                
+                <div class="price">
+                  <span class="amount">{{ product.price | money_without_trailing_zeros }}</span>
+                  <span class="period">/{{ block.settings.period }}</span>
+                </div>
+                
+                {% if block.settings.savings_text != blank %}
+                  <span class="savings">{{ block.settings.savings_text }}</span>
                 {% endif %}
-              {% endfor %}
-            </ul>
+              </div>
 
-            {% if block.settings.button_link != blank %}
-              <a href="{{ block.settings.button_link }}" class="btn btn-primary">
-                {{ block.settings.button_text }}
+              <ul class="plan-features">
+                {{ product.description }}
+              </ul>
+
+              <a href="{{ product.url }}" class="btn btn-primary">
+                {{ block.settings.button_text | default: "Get Started" }}
               </a>
-            {% else %}
-              <a href="#" class="btn btn-primary" onclick="alert('Please configure product link'); return false;">
-                {{ block.settings.button_text }}
-              </a>
-            {% endif %}
-          </div>
+            </div>
+          {% endif %}
         {% endif %}
 
         {% if block.type == 'setup_fee_addon' %}
-          <div class="pricing-option addon" {{ block.shopify_attributes }}>
-            <span class="popular-tag">Optional<br>Add-On</span>
-            
-            <div class="price-header">
-              <h4>{{ block.settings.addon_name }}</h4>
+          {% assign addon_product = block.settings.product %}
+          {% if addon_product != blank %}
+            <div class="pricing-option addon" {{ block.shopify_attributes }}>
+              <span class="popular-tag">Optional<br>Add-On</span>
               
-              <div class="price">
-                <span class="amount">${{ block.settings.addon_price }}</span>
-                <span class="period">one-time</span>
+              <div class="price-header">
+                <h4>{{ block.settings.addon_name | default: addon_product.title }}</h4>
+                
+                <div class="price">
+                  <span class="amount">{{ addon_product.price | money_without_trailing_zeros }}</span>
+                  <span class="period">one-time</span>
+                </div>
               </div>
+
+              <ul class="plan-features">
+                {{ addon_product.description }}
+              </ul>
+
+              <a href="{{ addon_product.url }}" class="btn btn-secondary">
+                {{ block.settings.addon_button_text | default: "Add Setup Service" }}
+              </a>
             </div>
-
-            <ul class="plan-features">
-              {% assign features = block.settings.addon_features | newline_to_br | split: '<br />' %}
-              {% for feature in features %}
-                {% if feature != blank %}
-                  <li>{{ feature }}</li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-
-            {% if block.settings.addon_button_link != blank %}
-              <a href="{{ block.settings.addon_button_link }}" class="btn btn-secondary">
-                {{ block.settings.addon_button_text }}
-              </a>
-            {% else %}
-              <a href="#" class="btn btn-secondary" onclick="alert('Please configure product link'); return false;">
-                {{ block.settings.addon_button_text }}
-              </a>
-            {% endif %}
-          </div>
+          {% endif %}
         {% endif %}
       {% endfor %}
     </div>
@@ -115,16 +99,16 @@
       "name": "Pricing Plan",
       "settings": [
         {
-          "type": "text",
-          "id": "plan_name",
-          "label": "Plan Name",
-          "default": "Monthly"
+          "type": "product",
+          "id": "product",
+          "label": "Select Product",
+          "info": "The product's price and description will be displayed automatically"
         },
         {
           "type": "text",
-          "id": "price",
-          "label": "Price (numbers only)",
-          "default": "49"
+          "id": "plan_name",
+          "label": "Plan Name (optional)",
+          "info": "Leave blank to use product title"
         },
         {
           "type": "text",
@@ -146,18 +130,6 @@
           "default": false
         },
         {
-          "type": "textarea",
-          "id": "features",
-          "label": "Features (one per line)",
-          "default": "✓ Proven Trading Strategies\n✓ Sharp Shooter Candles 4.2\n✓ Sharp Shooter RSI 2.0\n✓ Optional Bot Automation\n✓ Private Discord Community\n✓ Priority Support"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Product Page Link",
-          "info": "e.g., /products/bot-suite-monthly"
-        },
-        {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
@@ -170,28 +142,16 @@
       "name": "Setup Fee Add-on",
       "settings": [
         {
+          "type": "product",
+          "id": "product",
+          "label": "Select Setup Product",
+          "info": "The product's price and description will be displayed automatically"
+        },
+        {
           "type": "text",
           "id": "addon_name",
-          "label": "Add-on Name",
-          "default": "Setup"
-        },
-        {
-          "type": "text",
-          "id": "addon_price",
-          "label": "Add-on Price (numbers only)",
-          "default": "249"
-        },
-        {
-          "type": "textarea",
-          "id": "addon_features",
-          "label": "Add-on Features (one per line)",
-          "default": "✓ Complete Bot Installation\n✓ TradingView Integration\n✓ Strategy Configuration\n✓ Alert Setup & Testing\n✓ 1-on-1 Setup Support"
-        },
-        {
-          "type": "url",
-          "id": "addon_button_link",
-          "label": "Add-on Product Page Link",
-          "info": "e.g., /products/setup-service"
+          "label": "Add-on Name (optional)",
+          "info": "Leave blank to use product title"
         },
         {
           "type": "text",
@@ -207,22 +167,10 @@
       "name": "Pricing",
       "blocks": [
         {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Monthly",
-            "price": "49",
-            "period": "mo"
-          }
+          "type": "pricing_plan"
         },
         {
-          "type": "pricing_plan",
-          "settings": {
-            "plan_name": "Annual",
-            "price": "490",
-            "period": "yr",
-            "savings_text": "Save $98/year",
-            "is_popular": true
-          }
+          "type": "pricing_plan"
         },
         {
           "type": "setup_fee_addon"

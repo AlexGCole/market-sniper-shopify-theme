@@ -10,18 +10,18 @@
       <p class="bot-subtitle">{{ section.settings.subtitle }}</p>
     </div>
 
-    <div class="bot-features">
+    <div class="bot-features-panel">
       {% for block in section.blocks %}
-        <div class="bot-feature-card" {{ block.shopify_attributes }}>
+        <div class="bot-feature-item {% unless forloop.last %}bot-feature-item-with-border{% endunless %}" {{ block.shopify_attributes }}>
           <div class="bot-feature-icon">
-            {% if block.settings.title contains "Automated Trading Bot" %}
-              <!-- Robot/Automation Icon -->
+            {% if block.settings.title contains "Automated Trading Alerts" %}
+              <!-- Monitor with Bell Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <circle cx="12" cy="5" r="2"></circle>
-                <path d="M12 7v4"></path>
-                <line x1="8" y1="16" x2="8" y2="16"></line>
-                <line x1="16" y1="16" x2="16" y2="16"></line>
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+                <circle cx="18" cy="6" r="2"></circle>
+                <path d="M18 4v4"></path>
               </svg>
             {% elsif block.settings.title contains "Sharp Shooter Candles" %}
               <!-- Candlestick Chart Icon -->
@@ -120,48 +120,53 @@
     color: rgba(255, 255, 255, 0.7);
   }
 
-  .bot-features {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  .bot-features-panel {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 20px;
     max-width: 800px;
     margin: 0 auto;
+    overflow: hidden;
   }
 
-  .bot-feature-card {
+  .bot-feature-item {
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 25px 30px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    border-radius: 15px;
     transition: all 0.3s ease;
   }
 
-  .bot-feature-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0, 255, 65, 0.5);
+  .bot-feature-item:hover {
     background: rgba(0, 255, 65, 0.05);
-    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+  }
+
+  .bot-feature-item-with-border {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
   }
 
   .bot-feature-icon {
-    flex-shrink: 0;
     width: 50px;
     height: 50px;
+    background: #00ff41;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 255, 65, 0.05));
-    border: 2px solid rgba(0, 255, 65, 0.3);
-    border-radius: 12px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .bot-feature-item:hover .bot-feature-icon {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
   }
 
   .bot-feature-icon svg {
-    width: 24px;
-    height: 24px;
-    color: #00ff41;
+    width: 25px;
+    height: 25px;
+    color: #000;
+    stroke-width: 2;
   }
 
   .bot-feature-content h3 {

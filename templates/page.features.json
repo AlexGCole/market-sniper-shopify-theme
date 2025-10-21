@@ -87,13 +87,57 @@
         "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
       }
     },
-    "what-you-get": {
-      "type": "what-you-get",
+    "what-you-get-benefits": {
+      "type": "trading-bot",
+      "blocks": {
+        "benefit-1": {
+          "type": "feature",
+          "settings": {
+            "title": "TradingView Integration",
+            "description": "Indicators and strategies delivered directly to your TradingView account for seamless trading"
+          }
+        },
+        "benefit-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Real-Time Trading Alerts",
+            "description": "Get instant notifications when indicators signal trading opportunities across your watchlist"
+          }
+        },
+        "benefit-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Configuration Support",
+            "description": "Expert guidance on setting up indicators, customizing strategies, and optimizing your trading approach"
+          }
+        },
+        "benefit-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Library",
+            "description": "Access to proven trading strategies tested across multiple market conditions"
+          }
+        },
+        "benefit-5": {
+          "type": "feature",
+          "settings": {
+            "title": "Exclusive Discord Community",
+            "description": "Connect with other traders and get real-time support from our team"
+          }
+        },
+        "benefit-6": {
+          "type": "feature",
+          "settings": {
+            "title": "Regular Updates",
+            "description": "Continuous improvements to indicators, strategies, and new features"
+          }
+        }
+      },
+      "block_order": ["benefit-1", "benefit-2", "benefit-3", "benefit-4", "benefit-5", "benefit-6"],
       "settings": {
-        "section_title": "What You Get",
-        "section_subtitle": "Complete trading solution with everything you need",
-        "button_text": "View All Plans",
-        "button_link": "/pages/products"
+        "title": "What You Get",
+        "subtitle": "Complete trading solution with everything you need",
+        "show_stat": false
       }
     },
     "footer": {
@@ -105,7 +149,7 @@
     "header",
     "trading-bot",
     "indicators",
-    "what-you-get",
+    "what-you-get-benefits",
     "footer"
   ]
 }

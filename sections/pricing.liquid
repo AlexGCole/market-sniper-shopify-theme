@@ -34,7 +34,8 @@
               </div>
 
               <ul class="plan-features">
-                {% assign features_list = product.description | newline_to_br | split: '<br />' %}
+                {% assign features_list = product.description | split: '
+' %}
                 {% for feature in features_list %}
                   {% if feature != blank %}
                     <li>{{ feature | strip }}</li>
@@ -65,7 +66,8 @@
               </div>
 
               <ul class="plan-features">
-                {% assign addon_features_list = addon_product.description | newline_to_br | split: '<br />' %}
+                {% assign addon_features_list = addon_product.description | split: '
+' %}
                 {% for feature in addon_features_list %}
                   {% if feature != blank %}
                     <li>{{ feature | strip }}</li>

@@ -149,9 +149,9 @@
   }
 
   .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
     max-width: 1200px;
     margin: 0 auto 50px;
   }
@@ -243,6 +243,12 @@
   .btn-primary {
     background: linear-gradient(135deg, #00ff41, #00cc33);
     color: #000;
+  }
+
+  @media (min-width: 1200px) {
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
   }
 
   @media (max-width: 968px) {

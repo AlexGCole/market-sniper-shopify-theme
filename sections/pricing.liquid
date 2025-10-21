@@ -13,7 +13,7 @@
     <div class="pricing-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'pricing_plan' %}
-          {% assign product = block.settings.product %}
+          {% assign product = all_products[block.settings.product] %}
           {% if product != blank %}
             <div class="pricing-option {% if block.settings.is_popular %}featured{% endif %}" {{ block.shopify_attributes }}>
               {% if block.settings.is_popular %}
@@ -24,7 +24,7 @@
                 <h4>{{ block.settings.plan_name | default: product.title }}</h4>
                 
                 <div class="price">
-                  <span class="amount">{{ product.price | money_without_trailing_zeros }}</span>
+                  <span class="amount">${{ product.price | divided_by: 100 }}</span>
                   <span class="period">/{{ block.settings.period }}</span>
                 </div>
                 
@@ -34,7 +34,12 @@
               </div>
 
               <ul class="plan-features">
-                {{ product.description }}
+                {% assign features_list = product.description | newline_to_br | split: '<br />' %}
+                {% for feature in features_list %}
+                  {% if feature != blank %}
+                    <li>{{ feature | strip }}</li>
+                  {% endif %}
+                {% endfor %}
               </ul>
 
               <a href="{{ product.url }}" class="btn btn-primary">
@@ -45,7 +50,7 @@
         {% endif %}
 
         {% if block.type == 'setup_fee_addon' %}
-          {% assign addon_product = block.settings.product %}
+          {% assign addon_product = all_products[block.settings.product] %}
           {% if addon_product != blank %}
             <div class="pricing-option addon" {{ block.shopify_attributes }}>
               <span class="popular-tag">Optional<br>Add-On</span>
@@ -54,13 +59,18 @@
                 <h4>{{ block.settings.addon_name | default: addon_product.title }}</h4>
                 
                 <div class="price">
-                  <span class="amount">{{ addon_product.price | money_without_trailing_zeros }}</span>
+                  <span class="amount">${{ addon_product.price | divided_by: 100 }}</span>
                   <span class="period">one-time</span>
                 </div>
               </div>
 
               <ul class="plan-features">
-                {{ addon_product.description }}
+                {% assign addon_features_list = addon_product.description | newline_to_br | split: '<br />' %}
+                {% for feature in addon_features_list %}
+                  {% if feature != blank %}
+                    <li>{{ feature | strip }}</li>
+                  {% endif %}
+                {% endfor %}
               </ul>
 
               <a href="{{ addon_product.url }}" class="btn btn-secondary">
@@ -99,10 +109,10 @@
       "name": "Pricing Plan",
       "settings": [
         {
-          "type": "product",
+          "type": "text",
           "id": "product",
-          "label": "Select Product",
-          "info": "The product's price and description will be displayed automatically"
+          "label": "Product Handle",
+          "info": "Enter the product handle (e.g., 'bot-suite-monthly')"
         },
         {
           "type": "text",
@@ -142,10 +152,10 @@
       "name": "Setup Fee Add-on",
       "settings": [
         {
-          "type": "product",
+          "type": "text",
           "id": "product",
-          "label": "Select Setup Product",
-          "info": "The product's price and description will be displayed automatically"
+          "label": "Product Handle",
+          "info": "Enter the product handle (e.g., 'bot-suite-setup')"
         },
         {
           "type": "text",

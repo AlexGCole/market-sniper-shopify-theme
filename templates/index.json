@@ -107,36 +107,30 @@
         "pricing-1": {
           "type": "pricing_plan",
           "settings": {
+            "product": "bot-suite-monthly",
             "plan_name": "Monthly",
-            "price": "49",
             "period": "mo",
             "savings_text": "",
             "is_popular": true,
-            "features": "✓ Two Battle-Tested Strategies - Sharp Shooter Candles 4.2 & Sharp Shooter RSI 3.2\n✓ 100% Full Automation Capability - Executes trades on your behalf\n✓ New Strategies Monthly - All future releases included at no extra cost\n✓ Private Discord Community - 200+ active traders sharing setups and results\n✓ Priority Support - Email or direct message us in the discord\n✓ Cancel Anytime - No contracts, no questions asked",
-            "button_link": "/products/bot-suite-monthly",
             "button_text": "Get Started"
           }
         },
         "pricing-2": {
           "type": "pricing_plan",
           "settings": {
+            "product": "bot-suite-annual",
             "plan_name": "Annual",
-            "price": "490",
             "period": "yr",
             "savings_text": "Save $98/year",
             "is_popular": false,
-            "features": "✓ Everything in Monthly Plan - Both strategies plus all future releases\n✓ Save $98/year - Get 2 months free vs monthly billing\n✓ Lock Your Rate Forever - Price guaranteed never to increase\n✓ Limited Yearly Plans - This option will eventually go away",
-            "button_link": "/products/bot-suite-annual",
             "button_text": "Get Started"
           }
         },
         "setup-addon": {
           "type": "setup_fee_addon",
           "settings": {
+            "product": "bot-suite-setup",
             "addon_name": "Setup",
-            "addon_price": "249",
-            "addon_features": "✓ 1-Hour Setup Call - personal video walkthrough with our team\n✓ Bot Installation Walkthrough - We guide you through every step\n✓ TradingView Configuration - Step-by-step help connecting strategies\n✓ Strategy Configuration- Personalized settings for your account\n✓ Alert Setup & Testing - Verify everything works before we hang up",
-            "addon_button_link": "/products/bot-suite-setup",
             "addon_button_text": "Add Setup Service"
           }
         }

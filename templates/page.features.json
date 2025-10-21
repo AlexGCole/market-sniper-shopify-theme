@@ -87,7 +87,7 @@
         "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
       }
     },
-    "what-you-get-benefits": {
+    "benefits-section": {
       "type": "what-you-get",
       "blocks": {
         "feature-1": {
@@ -150,7 +150,7 @@
     "header",
     "trading-bot",
     "indicators",
-    "what-you-get-benefits",
+    "benefits-section",
     "footer"
   ]
 }

@@ -186,7 +186,7 @@
         "button_text": "View All Plans",
         "button_link": "/pages/products"
       }
-    },
+    }
   },
   "order": [
     "header",

@@ -85,6 +85,8 @@
     margin-bottom: 20px;
     color: #00ff41;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .features-hero .hero-features-panel {
@@ -137,7 +139,10 @@
 
   .features-hero .feature-content {
     flex: 1;
-    text-align: center;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .features-hero .feature-title {

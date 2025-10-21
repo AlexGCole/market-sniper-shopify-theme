@@ -104,7 +104,10 @@
   }
 
   .indicator-content {
-    padding: 20px 0;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .indicator-badge {
@@ -153,6 +156,7 @@
     border-radius: 16px;
     padding: 0;
     width: 100%;
+    height: 400px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 255, 65, 0.1);
@@ -160,7 +164,9 @@
 
   .indicator-visual-container img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
     display: block;
     border-radius: 16px;
   }
@@ -238,9 +244,15 @@
       margin: 0;
     }
 
+    .indicator-visual-container {
+      height: 300px;
+    }
+    
     .indicator-visual-container img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
       max-width: 100%;
       display: block;
     }

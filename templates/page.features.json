@@ -4,43 +4,8 @@
       "type": "header",
       "settings": {}
     },
-    "features-hero": {
-      "type": "features-hero",
-      "blocks": {
-        "stat-1": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "chart",
-            "label": "Professional Indicators",
-            "description": "Sharp Shooter Candles & RSI"
-          }
-        },
-        "stat-2": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "settings",
-            "label": "Position Management",
-            "description": "Automated entry & exit control"
-          }
-        },
-        "stat-3": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "filter",
-            "label": "Advanced Filters",
-            "description": "Fine-tune your trading signals"
-          }
-        },
-        "stat-4": {
-          "type": "stat_item",
-          "settings": {
-            "icon_type": "globe",
-            "label": "Asset Coverage",
-            "description": "Crypto, forex, futures, equities"
-          }
-        }
-      },
-      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"],
+    "hero-section": {
+      "type": "hero",
       "settings": {
         "hero_title": "Trading Toolkit",
         "hero_tagline": "Strategies & Support",
@@ -139,7 +104,7 @@
   },
   "order": [
     "header",
-    "features-hero",
+    "hero-section",
     "trading-bot",
     "indicators",
     "footer"

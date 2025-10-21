@@ -1,6 +1,6 @@
 {% comment %}
   sections/trading-bot.liquid
-  Trading bot showcase section with updated icons
+  Trading bot showcase section with updated icons and card layout
 {% endcomment %}
 
 <section class="trading-bot" id="trading-bot">
@@ -10,9 +10,9 @@
       <p class="bot-subtitle">{{ section.settings.subtitle }}</p>
     </div>
 
-    <div class="bot-features-panel">
+    <div class="bot-features-grid">
       {% for block in section.blocks %}
-        <div class="bot-feature-item {% unless forloop.last %}bot-feature-item-with-border{% endunless %}" {{ block.shopify_attributes }}>
+        <div class="bot-feature-card" {{ block.shopify_attributes }}>
           <div class="bot-feature-icon">
             {% if block.settings.title contains "Automated Trading Alerts" %}
               <!-- Monitor with Bell Icon -->
@@ -120,29 +120,29 @@
     color: rgba(255, 255, 255, 0.7);
   }
 
-  .bot-features-panel {
-    background: rgba(0, 255, 65, 0.03);
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    border-radius: 20px;
+  .bot-features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     max-width: 800px;
     margin: 0 auto;
-    overflow: hidden;
   }
 
-  .bot-feature-item {
+  .bot-feature-card {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 25px 30px;
+    padding: 30px;
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 16px;
     transition: all 0.3s ease;
   }
 
-  .bot-feature-item:hover {
-    background: rgba(0, 255, 65, 0.05);
-  }
-
-  .bot-feature-item-with-border {
-    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  .bot-feature-card:hover {
+    background: rgba(0, 255, 65, 0.06);
+    border-color: rgba(0, 255, 65, 0.3);
+    transform: translateY(-2px);
   }
 
   .bot-feature-icon {
@@ -157,7 +157,7 @@
     transition: all 0.3s ease;
   }
 
-  .bot-feature-item:hover .bot-feature-icon {
+  .bot-feature-card:hover .bot-feature-icon {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
   }
@@ -167,6 +167,10 @@
     height: 25px;
     color: #000;
     stroke-width: 2;
+  }
+
+  .bot-feature-content {
+    flex: 1;
   }
 
   .bot-feature-content h3 {
@@ -179,6 +183,7 @@
   .bot-feature-content p {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
+    margin: 0;
   }
 
   .bot-stat {
@@ -211,12 +216,20 @@
       padding: 60px 15px;
     }
 
-    .bot-features {
+    .bot-features-grid {
       gap: 15px;
     }
 
     .bot-feature-card {
-      padding: 20px 15px;
+      padding: 20px;
+    }
+
+    .bot-feature-content h3 {
+      font-size: 1.1rem;
+    }
+
+    .bot-feature-content p {
+      font-size: 0.95rem;
     }
   }
 </style>
@@ -235,13 +248,13 @@
       "type": "text",
       "id": "title",
       "label": "Section Title",
-      "default": "Automated Trading Bot"
+      "default": "Professional Indicators & Trading Strategies"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Section Subtitle",
-      "default": "Trade smarter with our fully automated trading bot solution"
+      "default": "Everything you need for successful trading in one complete package"
     },
     {
       "type": "checkbox",

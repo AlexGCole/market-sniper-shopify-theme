@@ -57,6 +57,36 @@
         "show_stat": false
       }
     },
+    "indicators": {
+      "type": "indicators",
+      "blocks": {
+        "indicator-1": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 4.2",
+            "title": "Sharp Shooter Candles",
+            "description": "Fully customizable indicator with intuitive color-coding. Green for bullish, red for bearish, orange for overbought, and blue for oversold conditions.",
+            "features": "✓ Buy/Sell Signals\n✓ Reversal Detection\n✓ MACD Settings\n✓ Position Management\n✓ Trending Dots",
+            "fallback_image": "sharp-shooter-candles.jpg"
+          }
+        },
+        "indicator-2": {
+          "type": "indicator",
+          "settings": {
+            "version": "Version 2.0",
+            "title": "Sharp Shooter RSI",
+            "description": "Gain an edge with advanced RSI divergence detection. Identify trend changes before price action confirms them.",
+            "features": "✓ RSI Divergences\n✓ Early Buy/Sell Signals\n✓ EMA Trend Identification\n✓ Customizable Length & Style",
+            "fallback_image": "sharp-shooter-rsi.jpg"
+          }
+        }
+      },
+      "block_order": ["indicator-1", "indicator-2"],
+      "settings": {
+        "section_title": "Professional Trading Indicators",
+        "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {}
@@ -65,6 +95,7 @@
   "order": [
     "header",
     "trading-bot",
+    "indicators",
     "footer"
   ]
 }

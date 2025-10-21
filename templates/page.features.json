@@ -133,6 +133,10 @@
         "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
       }
     },
+    "test-section": {
+      "type": "test-section",
+      "settings": {}
+    },
     "what-you-get": {
       "type": "what-you-get",
       "blocks": {
@@ -197,6 +201,7 @@
     "hero-section",
     "trading-bot",
     "indicators",
+    "test-section",
     "what-you-get",
     "footer"
   ]

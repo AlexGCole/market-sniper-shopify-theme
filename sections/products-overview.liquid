@@ -21,62 +21,80 @@
       </div>
 
       <div class="product-pricing">
-        <div class="pricing-option featured">
-          <span class="popular-tag">Most Popular</span>
-          <div class="price-header">
-            <h4>Monthly</h4>
-            <div class="price">
-              <span class="amount">$49</span>
-              <span class="period">/mo</span>
+        {% assign monthly_product = all_products['bot-suite-monthly'] %}
+        {% if monthly_product != blank %}
+          <div class="pricing-option featured">
+            <span class="popular-tag">Most Popular</span>
+            <div class="price-header">
+              <h4>Monthly</h4>
+              <div class="price">
+                <span class="amount">${{ monthly_product.price | divided_by: 100 }}</span>
+                <span class="period">/mo</span>
+              </div>
             </div>
+            <ul class="plan-features">
+              {% assign features_list = monthly_product.description | split: '
+' %}
+              {% for feature in features_list %}
+                {% assign stripped_feature = feature | strip %}
+                {% if stripped_feature != blank and stripped_feature != '' %}
+                  <li>{{ stripped_feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <a href="{{ monthly_product.url }}" class="btn btn-primary">Get Started</a>
           </div>
-          <ul class="plan-features">
-            <li>✓ Two Battle-Tested Strategies - Sharp Shooter Candles 4.2 & Sharp Shooter RSI 3.2</li>
-            <li>✓ 100% Full Automation Capability - Executes trades on your behalf</li>
-            <li>✓ New Strategies Monthly - All future releases included at no extra cost</li>
-            <li>✓ Private Discord Community - 200+ active traders sharing setups and results</li>
-            <li>✓ Priority Support - Email or direct message us in the discord</li>
-            <li>✓ Cancel Anytime - No contracts, no questions asked</li>
-          </ul>
-          <a href="/products/bot-suite-monthly" class="btn btn-primary">Get Started</a>
-        </div>
+        {% endif %}
 
-        <div class="pricing-option">
-          <div class="price-header">
-            <h4>Annual</h4>
-            <div class="price">
-              <span class="amount">$490</span>
-              <span class="period">/yr</span>
+        {% assign annual_product = all_products['bot-suite-annual'] %}
+        {% if annual_product != blank %}
+          <div class="pricing-option">
+            <div class="price-header">
+              <h4>Annual</h4>
+              <div class="price">
+                <span class="amount">${{ annual_product.price | divided_by: 100 }}</span>
+                <span class="period">/yr</span>
+              </div>
+              <span class="savings">Save $98/year</span>
             </div>
-            <span class="savings">Save $98/year</span>
+            <ul class="plan-features">
+              {% assign features_list = annual_product.description | split: '
+' %}
+              {% for feature in features_list %}
+                {% assign stripped_feature = feature | strip %}
+                {% if stripped_feature != blank and stripped_feature != '' %}
+                  <li>{{ stripped_feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <a href="{{ annual_product.url }}" class="btn btn-primary">Get Started</a>
           </div>
-          <ul class="plan-features">
-            <li>✓ Everything in Monthly Plan - Both strategies plus all future releases</li>
-            <li>✓ Save $98/year - Get 2 months free vs monthly billing</li>
-            <li>✓ Lock Your Rate Forever - Price guaranteed never to increase</li>
-            <li>✓ Limited Yearly Plans - This option will eventually go away</li>
-          </ul>
-          <a href="/products/bot-suite-annual" class="btn btn-primary">Get Started</a>
-        </div>
+        {% endif %}
 
-        <div class="pricing-option addon">
-          <span class="popular-tag">Optional<br>Add-on</span>
-          <div class="price-header">
-            <h4>Setup</h4>
-            <div class="price">
-              <span class="amount">$249</span>
-              <span class="period">one-time</span>
+        {% assign setup_product = all_products['bot-suite-setup'] %}
+        {% if setup_product != blank %}
+          <div class="pricing-option addon">
+            <span class="popular-tag">Optional<br>Add-on</span>
+            <div class="price-header">
+              <h4>Setup</h4>
+              <div class="price">
+                <span class="amount">${{ setup_product.price | divided_by: 100 }}</span>
+                <span class="period">one-time</span>
+              </div>
             </div>
+            <ul class="plan-features">
+              {% assign features_list = setup_product.description | split: '
+' %}
+              {% for feature in features_list %}
+                {% assign stripped_feature = feature | strip %}
+                {% if stripped_feature != blank and stripped_feature != '' %}
+                  <li>{{ stripped_feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <a href="{{ setup_product.url }}" class="btn btn-secondary">Add Setup Service</a>
           </div>
-          <ul class="plan-features">
-            <li>✓ 1-Hour Setup Call - personal video walkthrough with our team</li>
-            <li>✓ Bot Installation Walkthrough - We guide you through every step</li>
-            <li>✓ TradingView Configuration - Step-by-step help connecting strategies</li>
-            <li>✓ Strategy Configuration - Personalized settings for your account</li>
-            <li>✓ Alert Setup & Testing - Verify everything works before we hang up</li>
-          </ul>
-          <a href="/products/bot-suite-setup" class="btn btn-secondary">Add Setup Service</a>
-        </div>
+        {% endif %}
       </div>
     </div>
   </section>

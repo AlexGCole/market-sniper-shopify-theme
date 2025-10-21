@@ -37,8 +37,9 @@
                 {% assign features_list = product.description | split: '
 ' %}
                 {% for feature in features_list %}
-                  {% if feature != blank %}
-                    <li>{{ feature | strip }}</li>
+                  {% assign stripped_feature = feature | strip %}
+                  {% if stripped_feature != blank and stripped_feature != '' %}
+                    <li>{{ stripped_feature }}</li>
                   {% endif %}
                 {% endfor %}
               </ul>
@@ -69,8 +70,9 @@
                 {% assign addon_features_list = addon_product.description | split: '
 ' %}
                 {% for feature in addon_features_list %}
-                  {% if feature != blank %}
-                    <li>{{ feature | strip }}</li>
+                  {% assign stripped_feature = feature | strip %}
+                  {% if stripped_feature != blank and stripped_feature != '' %}
+                    <li>{{ stripped_feature }}</li>
                   {% endif %}
                 {% endfor %}
               </ul>

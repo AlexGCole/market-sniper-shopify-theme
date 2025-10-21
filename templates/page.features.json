@@ -88,7 +88,7 @@
       }
     },
     "what-you-get-benefits": {
-      "type": "features",
+      "type": "what-you-get",
       "blocks": {
         "benefit-1": {
           "type": "feature",
@@ -136,7 +136,9 @@
       "block_order": ["benefit-1", "benefit-2", "benefit-3", "benefit-4", "benefit-5", "benefit-6"],
       "settings": {
         "section_title": "What You Get",
-        "section_subtitle": "Complete trading solution with everything you need"
+        "section_subtitle": "Complete trading solution with everything you need",
+        "button_text": "View All Plans",
+        "button_link": "/pages/products"
       }
     },
     "footer": {

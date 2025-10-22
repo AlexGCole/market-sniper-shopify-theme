@@ -71,43 +71,43 @@
         "feature-1": {
           "type": "feature",
           "settings": {
-            "title": "Automated Trading Alerts",
-            "description": "Alerts are automatically triggered when strategy conditions are met, notifying you of trading opportunities in real-time."
+            "title": "Trading Automation Tools",
+            "description": "Complete suite of automated trading alerts, bots, and strategy execution tools for hands-free trading."
           }
         },
         "feature-2": {
           "type": "feature",
           "settings": {
-            "title": "Sharp Shooter Candles 4.2",
-            "description": "Advanced candlestick indicator with buy/sell signals, MACD integration, and reversal detection."
+            "title": "Strategy-Based Indicators",
+            "description": "Indicators designed specifically for strategy execution, including Sharp Shooter Candles and RSI tools optimized for trading strategies."
           }
         },
         "feature-3": {
           "type": "feature",
           "settings": {
-            "title": "Sharp Shooter RSI 2.0",
-            "description": "RSI divergence detection with early trend change signals and overbought/oversold zones."
+            "title": "Strategy Libraries & Templates",
+            "description": "Comprehensive collection of proven trading strategies, templates, and systematic approaches for all market conditions."
           }
         },
         "feature-4": {
           "type": "feature",
           "settings": {
-            "title": "Proven Trading Strategies",
-            "description": "Battle-tested strategies automatically synced to your TradingView account."
+            "title": "Strategy Documentation & Guides",
+            "description": "Detailed strategy explanations, implementation guides, and comprehensive documentation for all trading approaches."
           }
         },
         "feature-5": {
           "type": "feature",
           "settings": {
-            "title": "Private Bot Discussion Channel",
-            "description": "Exclusive Discord channel for bot configuration, optimization, and dedicated support."
+            "title": "Community & Support Platforms",
+            "description": "Exclusive Discord communities, private channels, and dedicated support networks for traders at all levels."
           }
         },
         "feature-6": {
           "type": "feature",
           "settings": {
-            "title": "Priority Support",
-            "description": "Direct access to our team for bot questions, strategy optimization, and technical assistance."
+            "title": "Future Product Pipeline",
+            "description": "Continuous development of new tools, indicators, and trading solutions with regular updates and enhancements."
           }
         }
       },
@@ -121,8 +121,8 @@
       ],
       "settings": {
         "badge_text": "Now Available",
-        "title": "Professional Trading Strategies",
-        "subtitle": "Everything you need for successful trading in one complete package",
+        "title": "Market Sniper Products",
+        "subtitle": "Professional indicators, automated strategies, and comprehensive trading tools",
         "show_stat": false,
         "stat_number": "2+",
         "stat_label": "Years of Optimization"

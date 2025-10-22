@@ -623,7 +623,7 @@ section {
 
 /* What You Get section styles (migrated from inline) */
 .what-you-get-section { padding: 80px 20px; }
-@media (max-width: 968px) { .what-you-get-section { padding: 60px 15px; overflow-x: hidden; } .features-grid { grid-template-columns: 1fr !important; gap: 20px; } }
+@media (max-width: 968px) { .what-you-get-section { padding: 60px 15px; } .features-grid { grid-template-columns: 1fr !important; gap: 20px; } }
 @media (max-width: 640px) { .what-you-get-section { padding: 50px 10px; } .features-grid { grid-template-columns: 1fr !important; } }
 
 /* Products overview page styles (migrated from inline) */

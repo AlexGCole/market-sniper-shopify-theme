@@ -2,11 +2,18 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "Market Sniper"
+      }
     },
     "contact-form": {
       "type": "contact-form",
-      "settings": {}
+      "settings": {
+        "title": "Contact Market Sniper",
+        "subtitle": "Have questions? We're here to help you succeed in your trading journey",
+        "success_message": "Thanks for contacting us! We'll get back to you as soon as possible.",
+        "button_text": "Send Message"
+      }
     },
     "footer": {
       "type": "footer",

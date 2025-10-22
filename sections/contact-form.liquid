@@ -1,8 +1,8 @@
 <section class="contact-section">
   <div class="container">
     <div class="section-header animate-contact-header">
-      <h2>Contact Market Sniper</h2>
-      <p>Have questions? We're here to help you succeed in your trading journey</p>
+      <h2>{{ section.settings.title | default: "Contact Market Sniper" }}</h2>
+      <p>{{ section.settings.subtitle | default: "Have questions? We're here to help you succeed in your trading journey" }}</p>
     </div>
 
     <div class="contact-form-wrapper animate-contact-form">
@@ -12,7 +12,7 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            <p>Thanks for contacting us! We'll get back to you as soon as possible.</p>
+            <p>{{ section.settings.success_message | default: "Thanks for contacting us! We'll get back to you as soon as possible." }}</p>
           </div>
         {% endif %}
 
@@ -65,7 +65,7 @@
         </div>
 
         <button type="submit" class="submit-btn">
-          Send Message
+          {{ section.settings.button_text | default: "Send Message" }}
         </button>
       {% endform %}
     </div>

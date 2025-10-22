@@ -2,11 +2,17 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "Market Sniper"
+      }
     },
     "cart-items": {
       "type": "main-cart",
-      "settings": {}
+      "settings": {
+        "cart_title": "Your Cart",
+        "empty_cart_message": "Your cart is currently empty.",
+        "continue_shopping_text": "Continue Shopping"
+      }
     },
     "footer": {
       "type": "footer",

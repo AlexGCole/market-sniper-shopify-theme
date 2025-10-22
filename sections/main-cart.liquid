@@ -5,7 +5,7 @@
 
 <section class="cart-page">
   <div class="container">
-    <h1 class="cart-title">Your Cart</h1>
+    <h1 class="cart-title">{{ section.settings.cart_title | default: "Your Cart" }}</h1>
 
     {% if cart.item_count > 0 %}
       <div class="cart-content">
@@ -131,6 +131,25 @@
 {% schema %}
 {
   "name": "Cart",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "cart_title",
+      "label": "Cart Title",
+      "default": "Your Cart"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_message",
+      "label": "Empty Cart Message",
+      "default": "Your cart is currently empty."
+    },
+    {
+      "type": "text",
+      "id": "continue_shopping_text",
+      "label": "Continue Shopping Button Text",
+      "default": "Continue Shopping"
+    }
+  ]
 }
 {% endschema %}

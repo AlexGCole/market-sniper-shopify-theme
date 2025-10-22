@@ -11,7 +11,9 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "Market Sniper"
+      }
     },
     "hero-section": {
       "type": "features-hero",
@@ -118,9 +120,12 @@
         "feature-6"
       ],
       "settings": {
+        "badge_text": "Now Available",
         "title": "Professional Indicators & Trading Strategies",
         "subtitle": "Everything you need for successful trading in one complete package",
-        "show_stat": false
+        "show_stat": false,
+        "stat_number": "2+",
+        "stat_label": "Years of Optimization"
       }
     },
     "indicators": {
@@ -156,6 +161,67 @@
         "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
       }
     },
+    "17610911758c50136b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_77c26fd_j3ntR9": {
+          "type": "ai_gen_block_77c26fd",
+          "settings": {
+            "max_width": 1400,
+            "spacing": 40,
+            "grid_gap": 30,
+            "background_color": "#FFFFFF",
+            "text_color": "#121212",
+            "accent_color": "#334FB4",
+            "border_color": "#E5E5E5",
+            "hero_height": 500,
+            "hero_category": "Featured",
+            "hero_title": "The Future of Sustainable Fashion",
+            "hero_title_size": 42,
+            "hero_excerpt": "Exploring innovative materials and ethical practices shaping the next generation of fashion.",
+            "hero_author": "Sarah Johnson",
+            "hero_date": "October 21, 2025",
+            "hero_text_color": "#FFFFFF",
+            "hero_overlay_color": "rgba(0, 0, 0, 0.6)",
+            "article_1_category": "Style",
+            "article_1_title": "Minimalist Wardrobe Essentials",
+            "article_1_excerpt": "Building a versatile closet with timeless pieces that work for any occasion.",
+            "article_1_author": "Emma Davis",
+            "article_1_date": "October 20, 2025",
+            "article_2_category": "Trends",
+            "article_2_title": "Color Palettes for Fall",
+            "article_2_excerpt": "Discover the rich, warm tones dominating this season's fashion landscape.",
+            "article_2_author": "Michael Chen",
+            "article_2_date": "October 19, 2025",
+            "article_3_category": "Culture",
+            "article_3_title": "Behind the Seams: Designer Spotlight",
+            "article_3_excerpt": "An intimate conversation with emerging designers redefining contemporary fashion.",
+            "article_3_author": "Lisa Martinez",
+            "article_3_date": "October 18, 2025",
+            "sidebar_1_category": "Beauty",
+            "sidebar_1_title": "Natural Skincare Routines",
+            "sidebar_1_excerpt": "Simple, effective routines using organic ingredients.",
+            "sidebar_1_author": "Anna Lee",
+            "sidebar_1_date": "October 17, 2025",
+            "sidebar_2_category": "Lifestyle",
+            "sidebar_2_title": "Sustainable Living Tips",
+            "sidebar_2_excerpt": "Small changes that make a big environmental impact.",
+            "sidebar_2_author": "David Park",
+            "sidebar_2_date": "October 16, 2025",
+            "sidebar_3_category": "Travel",
+            "sidebar_3_title": "Packing Light for Long Trips",
+            "sidebar_3_excerpt": "Expert tips for traveling with just a carry-on.",
+            "sidebar_3_author": "Rachel Kim",
+            "sidebar_3_date": "October 15, 2025"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_77c26fd_j3ntR9"
+      ],
+      "settings": {}
+    },
     "footer": {
       "type": "footer",
       "settings": {}
@@ -166,6 +232,7 @@
     "hero-section",
     "trading-bot",
     "indicators",
+    "17610911758c50136b",
     "footer"
   ]
 }

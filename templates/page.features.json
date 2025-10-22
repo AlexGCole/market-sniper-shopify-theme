@@ -162,9 +162,65 @@
       }
     },
     "17610911758c50136b": {
-      "type": "_blocks",
-      "name": "What You Get",
-      "settings": {}
+      "type": "what-you-get",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "TradingView Integration",
+            "description": "Indicators and strategies delivered directly to your TradingView account for seamless trading."
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Real-Time Trading Alerts",
+            "description": "Get instant notifications when indicators signal trading opportunities across your watchlist."
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Configuration Support",
+            "description": "Expert guidance on setting up indicators, customizing strategies, and optimizing your trading approach."
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Library",
+            "description": "Access to proven trading strategies tested across multiple market conditions."
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "title": "Exclusive Discord Community",
+            "description": "Connect with other traders and get real-time support from our team."
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "title": "Regular Updates",
+            "description": "Continuous improvements to indicators, strategies, and new features."
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4",
+        "feature-5",
+        "feature-6"
+      ],
+      "settings": {
+        "section_title": "What You Get",
+        "section_subtitle": "Complete trading solution with everything you need",
+        "button_text": "View All Plans",
+        "button_link": "/pages/products"
+      }
     },
     "footer": {
       "type": "footer",

@@ -121,7 +121,7 @@
       ],
       "settings": {
         "badge_text": "Now Available",
-        "title": "Bot Suite - Complete Trading Solution",
+        "title": "Professional Trading Strategies",
         "subtitle": "Everything you need for successful trading in one complete package",
         "show_stat": false,
         "stat_number": "2+",
@@ -157,7 +157,7 @@
         "indicator-2"
       ],
       "settings": {
-        "section_title": "Standalone Trading Indicators",
+        "section_title": "Bot Suite Strategies",
         "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
       }
     },

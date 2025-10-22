@@ -161,66 +161,66 @@
         "section_subtitle": "Advanced tools to identify high-probability trading opportunities"
       }
     },
-    "17610911758c50136b": {
-      "type": "_blocks",
+    "what-you-get": {
+      "type": "what-you-get",
       "blocks": {
-        "ai_gen_block_77c26fd_j3ntR9": {
-          "type": "ai_gen_block_77c26fd",
+        "feature-1": {
+          "type": "feature",
           "settings": {
-            "max_width": 1400,
-            "spacing": 40,
-            "grid_gap": 30,
-            "background_color": "#FFFFFF",
-            "text_color": "#121212",
-            "accent_color": "#334FB4",
-            "border_color": "#E5E5E5",
-            "hero_height": 500,
-            "hero_category": "Featured",
-            "hero_title": "The Future of Sustainable Fashion",
-            "hero_title_size": 42,
-            "hero_excerpt": "Exploring innovative materials and ethical practices shaping the next generation of fashion.",
-            "hero_author": "Sarah Johnson",
-            "hero_date": "October 21, 2025",
-            "hero_text_color": "#FFFFFF",
-            "hero_overlay_color": "rgba(0, 0, 0, 0.6)",
-            "article_1_category": "Style",
-            "article_1_title": "Minimalist Wardrobe Essentials",
-            "article_1_excerpt": "Building a versatile closet with timeless pieces that work for any occasion.",
-            "article_1_author": "Emma Davis",
-            "article_1_date": "October 20, 2025",
-            "article_2_category": "Trends",
-            "article_2_title": "Color Palettes for Fall",
-            "article_2_excerpt": "Discover the rich, warm tones dominating this season's fashion landscape.",
-            "article_2_author": "Michael Chen",
-            "article_2_date": "October 19, 2025",
-            "article_3_category": "Culture",
-            "article_3_title": "Behind the Seams: Designer Spotlight",
-            "article_3_excerpt": "An intimate conversation with emerging designers redefining contemporary fashion.",
-            "article_3_author": "Lisa Martinez",
-            "article_3_date": "October 18, 2025",
-            "sidebar_1_category": "Beauty",
-            "sidebar_1_title": "Natural Skincare Routines",
-            "sidebar_1_excerpt": "Simple, effective routines using organic ingredients.",
-            "sidebar_1_author": "Anna Lee",
-            "sidebar_1_date": "October 17, 2025",
-            "sidebar_2_category": "Lifestyle",
-            "sidebar_2_title": "Sustainable Living Tips",
-            "sidebar_2_excerpt": "Small changes that make a big environmental impact.",
-            "sidebar_2_author": "David Park",
-            "sidebar_2_date": "October 16, 2025",
-            "sidebar_3_category": "Travel",
-            "sidebar_3_title": "Packing Light for Long Trips",
-            "sidebar_3_excerpt": "Expert tips for traveling with just a carry-on.",
-            "sidebar_3_author": "Rachel Kim",
-            "sidebar_3_date": "October 15, 2025"
-          },
-          "blocks": {}
+            "title": "TradingView Integration",
+            "description": "Indicators and strategies delivered directly to your TradingView account for seamless trading."
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Real-Time Trading Alerts",
+            "description": "Get instant notifications when indicators signal trading opportunities across your watchlist."
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Configuration Support",
+            "description": "Expert guidance on setting up indicators, customizing strategies, and optimizing your trading approach."
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Strategy Library",
+            "description": "Access to proven trading strategies tested across multiple market conditions."
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "title": "Exclusive Discord Community",
+            "description": "Connect with other traders and get real-time support from our team."
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "title": "Regular Updates",
+            "description": "Continuous improvements to indicators, strategies, and new features."
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_77c26fd_j3ntR9"
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4",
+        "feature-5",
+        "feature-6"
       ],
-      "settings": {}
+      "settings": {
+        "section_title": "What You Get",
+        "section_subtitle": "Complete trading solution with everything you need",
+        "button_text": "View All Plans",
+        "button_link": "/pages/products"
+      }
     },
     "footer": {
       "type": "footer",
@@ -232,7 +232,7 @@
     "hero-section",
     "trading-bot",
     "indicators",
-    "17610911758c50136b",
+    "what-you-get",
     "footer"
   ]
 }

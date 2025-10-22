@@ -2,11 +2,59 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "Market Sniper"
+      }
     },
-    "main": {
+    "products-hero": {
       "type": "products-overview",
-      "settings": {}
+      "settings": {
+        "hero_title": "Choose Your Trading Path"
+      }
+    },
+    "pricing": {
+      "type": "pricing",
+      "blocks": {
+        "pricing-1": {
+          "type": "pricing_plan",
+          "settings": {
+            "product": "bot-suite-monthly",
+            "plan_name": "Monthly",
+            "period": "mo",
+            "savings_text": "",
+            "is_popular": true,
+            "button_text": "Get Started"
+          }
+        },
+        "pricing-2": {
+          "type": "pricing_plan",
+          "settings": {
+            "product": "bot-suite-annual",
+            "plan_name": "Annual",
+            "period": "yr",
+            "savings_text": "Save $98/year",
+            "is_popular": false,
+            "button_text": "Get Started"
+          }
+        },
+        "setup-addon": {
+          "type": "setup_fee_addon",
+          "settings": {
+            "product": "bot-suite-setup",
+            "addon_name": "Setup",
+            "addon_button_text": "Add Setup Service"
+          }
+        }
+      },
+      "block_order": [
+        "pricing-1",
+        "pricing-2",
+        "setup-addon"
+      ],
+      "settings": {
+        "section_title": "Bot Suite",
+        "section_subtitle": "Choose the plan that works for you"
+      }
     },
     "footer": {
       "type": "footer",
@@ -15,7 +63,8 @@
   },
   "order": [
     "header",
-    "main",
+    "products-hero",
+    "pricing",
     "footer"
   ]
 }
